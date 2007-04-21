@@ -17,3 +17,6 @@ BD - MySQL:
   * Bajar MySQL 5.0 de http://dev.mysql.com/downloads/mysql/5.0.html (Windows (x86) ZIP/Setup.EXE)
   * Instalar
 
+Unit Tests - NUnit
+   * Bajar NUnit 2.4 de http://www.nunit.org/index.php?p=download (NUnit-2.4.0-r2-net-1.1.msi)
+   * Instalar
