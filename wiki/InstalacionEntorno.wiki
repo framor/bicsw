@@ -1,0 +1,19 @@
+#summary Guía de instalación del entorno de desarrollo.
+#labels Phase-Implementation,instalacion,entornodesarrollo
+
+= Introducción =
+
+Esta guía presenta los pasos necesarios para poder instalar todas las herramientas que conforman el entorno de desarrollo de BIC.
+
+
+= Detalles =
+
+IDE - Visual Studio 2003 - Enterprise Architect:
+  * Instalar FrontPage Extensions y Internet Information Services desde Agregar/Quitar Programas
+  * Instalar Prerequisitos
+  * Instalar VS2003
+
+BD - MySQL:
+  * Bajar MySQL 5.0 de http://dev.mysql.com/downloads/mysql/5.0.html (Windows (x86) ZIP/Setup.EXE)
+  * Instalar
+
