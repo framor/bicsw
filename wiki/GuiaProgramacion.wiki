@@ -1,0 +1,14 @@
+#summary Indica las conveciones a seguir para desarrollar en BIC
+#labels Phase-Implementation,diseño,programacion
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+   * ids sinteticos (long)
+   * agregar scripts db a carpeta scripts
+   * hbms como embedded resource
+   * select, rettrieve, save
