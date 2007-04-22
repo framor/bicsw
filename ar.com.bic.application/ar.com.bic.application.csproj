@@ -76,7 +76,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
@@ -89,17 +89,27 @@
                     Project = "{7693AA34-CAC8-4954-82B4-EF5392E13784}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "Spring.Core"
+                    AssemblyName = "Spring.Core"
+                    HintPath = "..\libraries\Spring.Core.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
-                    RelPath = "ServiceLocator.cs"
+                    RelPath = "BICContext.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "UsuarioService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "impl\UsuarioServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
