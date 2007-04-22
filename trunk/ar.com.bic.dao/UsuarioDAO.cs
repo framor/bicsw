@@ -13,14 +13,19 @@ namespace ar.com.bic.dao
 		{
 		}
 
-		public void Save(Usuario unUsuario) 
+		public void save(Usuario unUsuario) 
 		{
-
 			ISession s = HibernateSessionHelper.Instance.Session;
-			// Tell NHibernate that this object should be saved
 			s.Save(unUsuario);
-
 			s.Close();
 		}
+		public Usuario retrieve(long id) 
+		{
+			ISession s = HibernateSessionHelper.Instance.Session;
+			Object obj = s.Get(typeof(Usuario), id);
+			s.Close();
+			return (Usuario) obj;
+		}
+
 	}
 }
