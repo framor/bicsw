@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+	<description>
+		Configuracion de los servicios
+	</description>
+
+	<object id="TxProxyConfigurationTemplate" abstract="true"
+          type="Spring.Transaction.Interceptor.TransactionProxyFactoryObject, Spring.Data">
+    
+		<property name="PlatformTransactionManager" ref="HibernateTransactionManager"/>
+
+		<property name="TransactionAttributes">
+			<name-values>
+				<add key="*" value="PROPAGATION_REQUIRED"/>
+			</name-values>
+		</property>
+		
+	    <property name="PreInterceptors" ref="LoggingAdvice"/>
+	</object>
+	
+	<object id="usuarioService" parent="TxProxyConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.UsuarioService"/>
+		<property name="target" ref="usuarioServiceImpl"/>
+	</object>			
+	<object id="usuarioServiceImpl" type="ar.com.bic.application.impl.UsuarioServiceImpl, ar.com.bic.application">
+		<property name="usuarioDAO" ref="usuarioDAO"/>                    
+	</object>
+
+</objects>
+
