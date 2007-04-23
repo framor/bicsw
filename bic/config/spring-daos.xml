@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+	<description>
+		Configuracion de los DAOs
+	</description>
+
+	<import resource="spring-orm.xml"/>
+
+	<!-- DAOs -->
+	<object id="usuarioDAO" type="ar.com.bic.dao.UsuarioDAO, ar.com.bic.dao" >
+		<property name="SessionFactory" ref="SessionFactory"/>	
+	</object>
+	
+</objects>
