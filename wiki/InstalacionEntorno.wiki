@@ -9,6 +9,7 @@ Esta guía presenta los pasos necesarios para poder instalar todas las herramien
 = Detalles =
 
 Cliente SVN - Tortoise SVN
+VER http://weblogs.asp.net/rchartier/archive/2005/08/10/422184.aspx
    * Bajar el Tortoise 1.4.3 de http://tortoisesvn.net/downloads (	TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi)
    * Instalar
 
