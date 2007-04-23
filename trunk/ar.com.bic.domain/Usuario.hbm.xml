@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
     <class name="ar.com.bic.domain.Usuario, ar.com.bic.domain" table="usuario">
         <id name="id" column="id" type="long" access="field" > 
             <generator class="native" /> 

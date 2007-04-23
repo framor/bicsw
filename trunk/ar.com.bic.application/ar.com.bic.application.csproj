@@ -94,6 +94,16 @@
                     AssemblyName = "Spring.Core"
                     HintPath = "..\libraries\Spring.Core.dll"
                 />
+                <Reference
+                    Name = "Spring.Data"
+                    AssemblyName = "Spring.Data"
+                    HintPath = "..\libraries\Spring.Data.dll"
+                />
+                <Reference
+                    Name = "Spring.Data.NHibernate"
+                    AssemblyName = "Spring.Data.NHibernate"
+                    HintPath = "..\libraries\Spring.Data.NHibernate.dll"
+                />
             </References>
         </Build>
         <Files>

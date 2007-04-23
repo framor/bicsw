@@ -1,13 +1,13 @@
 using System;
+using Spring.Data.NHibernate.Support;
 using ar.com.bic.domain;
-using NHibernate;
 
 namespace ar.com.bic.dao
 {
 	/// <summary>
 	/// Descripción breve de UsuarioDAO.
 	/// </summary>
-	public class UsuarioDAO
+	public class UsuarioDAO : HibernateDaoSupport 
 	{
 		public UsuarioDAO()
 		{
@@ -15,16 +15,11 @@ namespace ar.com.bic.dao
 
 		public void save(Usuario unUsuario) 
 		{
-			ISession s = HibernateSessionHelper.Instance.Session;
-			s.Save(unUsuario);
-			s.Close();
+			HibernateTemplate.SaveOrUpdate(unUsuario);
 		}
 		public Usuario retrieve(long id) 
-		{
-			ISession s = HibernateSessionHelper.Instance.Session;
-			Object obj = s.Get(typeof(Usuario), id);
-			s.Close();
-			return (Usuario) obj;
+		{			
+			return (Usuario) HibernateTemplate.Get(typeof(Usuario), id);
 		}
 
 	}

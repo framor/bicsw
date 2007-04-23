@@ -65,11 +65,6 @@
             </Settings>
             <References>
                 <Reference
-                    Name = "NHibernate"
-                    AssemblyName = "NHibernate"
-                    HintPath = "..\libraries\NHibernate.dll"
-                />
-                <Reference
                     Name = "System"
                     AssemblyName = "System"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
@@ -90,29 +85,29 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "Iesi.Collections"
-                    AssemblyName = "Iesi.Collections"
-                    HintPath = "..\libraries\Iesi.Collections.dll"
+                    Name = "Spring.Data.NHibernate"
+                    AssemblyName = "Spring.Data.NHibernate"
+                    HintPath = "..\libraries\Spring.Data.NHibernate.dll"
+                />
+                <Reference
+                    Name = "Spring.Data"
+                    AssemblyName = "Spring.Data"
+                    HintPath = "..\libraries\Spring.Data.dll"
+                />
+                <Reference
+                    Name = "Spring.Core"
+                    AssemblyName = "Spring.Core"
+                    HintPath = "..\libraries\Spring.Core.dll"
                 />
                 <Reference
                     Name = "log4net"
                     AssemblyName = "log4net"
                     HintPath = "..\libraries\log4net.dll"
                 />
-                <Reference
-                    Name = "MySql.Data"
-                    AssemblyName = "MySql.Data"
-                    HintPath = "..\libraries\MySql.Data.dll"
-                />
             </References>
         </Build>
         <Files>
             <Include>
-                <File
-                    RelPath = "HibernateSessionHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
                 <File
                     RelPath = "UsuarioDAO.cs"
                     SubType = "Code"

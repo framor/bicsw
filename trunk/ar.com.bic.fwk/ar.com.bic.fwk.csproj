@@ -76,7 +76,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
@@ -84,12 +84,22 @@
                     AssemblyName = "Spring.Aop"
                     HintPath = "..\libraries\Spring.Aop.dll"
                 />
+                <Reference
+                    Name = "log4net"
+                    AssemblyName = "log4net"
+                    HintPath = "..\libraries\log4net.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
-                    RelPath = "spring\ThrowsAdvice.cs"
+                    RelPath = "aspects\LoggingAdvice.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "aspects\ThrowsAdvice.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
