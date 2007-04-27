@@ -13,7 +13,7 @@ namespace ar.com.bic.dao
 		{
 		}
 
-		public void save(Usuario unUsuario) 
+		public void save(Usuario unUsuario)  
 		{
 			HibernateTemplate.SaveOrUpdate(unUsuario);
 		}
