@@ -76,7 +76,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
             </References>
@@ -91,6 +91,71 @@
                 <File
                     RelPath = "Usuario.hbm.xml"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "dw\Atributo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\FactTable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\Filtro.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\Hecho.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\LookUpTable.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\Relacion.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\ReportItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dw\Tabla.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "sqlBuilder\MockHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "sqlBuilder\RelationNotFoundException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "sqlBuilder\ReportNotSupportedException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "sqlBuilder\SQLBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "sqlBuilder\SQLBuilderManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
             </Include>
         </Files>
