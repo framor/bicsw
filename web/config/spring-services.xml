@@ -5,21 +5,18 @@
 		Configuracion de los servicios
 	</description>
 
-	<object id="TxProxyConfigurationTemplate" abstract="true"
-          type="Spring.Transaction.Interceptor.TransactionProxyFactoryObject, Spring.Data">
+	<object id="serviceConfigurationTemplate" abstract="true"
+          type="Spring.Aop.Framework.ProxyFactoryObject, Spring.Aop">
     
-		<property name="PlatformTransactionManager" ref="HibernateTransactionManager"/>
-
-		<property name="TransactionAttributes">
-			<name-values>
-				<add key="*" value="PROPAGATION_REQUIRED"/>
-			</name-values>
-		</property>
-		
-	    <property name="PreInterceptors" ref="LoggingAdvice"/>
+	    <property name="InterceptorNames">
+			<list>
+				<value>loggingInterceptor</value>	    
+				<value>transactionInterceptor</value>
+			</list>
+	    </property>
 	</object>
 	
-	<object id="usuarioService" parent="TxProxyConfigurationTemplate">
+	<object id="usuarioService" parent="serviceConfigurationTemplate">
 		<property name="proxyInterfaces" value="ar.com.bic.application.UsuarioService"/>
 		<property name="target" ref="usuarioServiceImpl"/>
 	</object>			

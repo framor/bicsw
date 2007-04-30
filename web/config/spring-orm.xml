@@ -13,12 +13,12 @@
 		<property name="ConfigSections" value="databaseSettings"/>
 	</object>
 	
-	<db:dbProvider id="DbProvider" 
+	<db:dbProvider id="dbProvider" 
                    provider="SqlServer-1.1" 
                    connectionString="Data Source=${db.datasource};Database=${db.database};User ID=${db.user};Password=${db.password};"/>
 
-	<object id="SessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate">
-		<property name="DbProvider" ref="DbProvider"/>
+	<object id="sessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate">
+		<property name="DbProvider" ref="dbProvider"/>
 		<property name="MappingAssemblies">
 			<list>
 				<value>ar.com.bic.domain</value>
@@ -36,10 +36,10 @@
 		</property>
 	</object>
 
-	<object id="HibernateTransactionManager" 
+	<object id="hibernateTransactionManager" 
         type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate">
-		<property name="DbProvider" ref="DbProvider"/>
-		<property name="SessionFactory" ref="SessionFactory"/>
+		<property name="DbProvider" ref="dbProvider"/>
+		<property name="SessionFactory" ref="sessionFactory"/>
 	</object>
 	
 </objects>

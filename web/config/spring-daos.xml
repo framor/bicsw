@@ -9,7 +9,7 @@
 
 	<!-- DAOs -->
 	<object id="usuarioDAO" type="ar.com.bic.dao.UsuarioDAO, ar.com.bic.dao" >
-		<property name="SessionFactory" ref="SessionFactory"/>	
+		<property name="SessionFactory" ref="sessionFactory"/>	
 	</object>
 	
 </objects>
