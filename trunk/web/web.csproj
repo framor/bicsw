@@ -130,10 +130,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "index.html"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "Usuario.aspx"
                     SubType = "Form"
                     BuildAction = "Content"

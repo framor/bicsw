@@ -93,7 +93,11 @@
         </Build>
         <Files>
             <Include>
-                <Folder RelPath = "aspects\" />
+                <File
+                    RelPath = "aspects\LoggingAdvice.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
     </CSHARP>
