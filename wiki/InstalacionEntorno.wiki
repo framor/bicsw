@@ -12,6 +12,10 @@ Cliente SVN - Tortoise SVN
 VER http://weblogs.asp.net/rchartier/archive/2005/08/10/422184.aspx
    * Bajar el Tortoise 1.4.3 de http://tortoisesvn.net/downloads (	TortoiseSVN-1.4.3.8645-win32-svn-1.4.3.msi)
    * Instalar
+Para que funcione SVN con IIS hay que usar un patch. El tema es que el tortoise usa los directorio .svn para mantener la información de versionado y el IIS tiene problemas con este tipo de directorios. Una vez aplicado el patch el tortoise va a usar los directorios _svn.
+   * MiPC -> Propiedades -> Avanzada -> Variables de entorno
+   * New (nombre: SVN_ASP_DOT_NET_HACK - valor: true)
+   * Reiniciar
 
 IDE - Visual Studio 2003 - Enterprise Architect:
   * Instalar FrontPage Extensions y Internet Information Services desde Agregar/Quitar Programas
