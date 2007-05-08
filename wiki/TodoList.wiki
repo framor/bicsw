@@ -1,0 +1,10 @@
+#summary Lista de tareas a tener en cuenta
+
+= Introduction =
+
+Agregar las tareas postergadas que hay que tener en cuenta en el futuro.
+
+
+= TODO =
+
+  * Validar edición y eliminación de entidades (ver que no quede el sistema inconsistente)
