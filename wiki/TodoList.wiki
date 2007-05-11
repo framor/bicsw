@@ -7,10 +7,14 @@ Agregar las tareas postergadas que hay que tener en cuenta en el futuro.
 
 = TODO =
 
-* Validar edición y eliminación de entidades (ver que no quede el sistema inconsistente)
-* Cuando un id tiene dos o mas desc hay que poner las desc como desc de un solo atributo                                       pero uno elige cual mostrar en el reporte.
-* Cuando hay una lkp desnormalizada osea padre e hijo en la misma tabla se deberia                  detectar que es la misma tabla y no joinear con si misma, mas alla de que en la jerarquia si debo definir como padre e hija.
-* Aveces en las fact_tables o en las lkps de menos nivel se le agregan los ids de las otras
+- Validar edición y eliminación de entidades (ver que no quede el sistema inconsistente).
+
+- Cuando un id tiene dos o mas desc hay que poner las desc como desc de un solo atributo                                       pero uno elige cual mostrar en el reporte.
+
+- Cuando hay una lkp desnormalizada osea padre e hijo en la misma tabla se deberia                  detectar que es la misma tabla y no joinear con si misma, mas alla de que en la jerarquia si debo definir como padre e hija.
+
+- Aveces en las fact_tables o en las lkps de menos nivel se le agregan los ids de las otras
 lkps para hacerlo mas performante y no tener la necesidad de seguir todo el camino de las
 lkps intermedias y joinear directamente con la de destion. Para esto es conveniente crear 
 relaciones ocultas para que sepan que se pueden relacionar. Ocultas significa que no se deberian ver en el snowflake pero que en realidad el sistema y el arquitecto las conozca.
+
