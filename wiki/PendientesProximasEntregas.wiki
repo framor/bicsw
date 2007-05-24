@@ -1,0 +1,13 @@
+#summary Pendientes para las diferentes clases
+
+= Introduction =
+
+Lista de pendientes para las diferentes clases.
+
+
+= Details =
+
+05/06/2007
+- Casos de uso pendientes:
+    - ABM Metricas
+-Prototipos
