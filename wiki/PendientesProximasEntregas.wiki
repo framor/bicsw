@@ -11,4 +11,10 @@ Lista de pendientes para las diferentes clases.
 
 - Casos de uso pendientes:
     - ABM Metricas
+    - ABM Reportes
+    - ABM Visualizacion (No se si va como ABM)
 -Prototipos
+
+Sin Fecha
+- Casos de uso pendientes:
+    - ABM de filtros: Tenemos que discutir si creamos a los filtros como otro objeto de negocio, o en el momento del ABM de reporte creamos filtros, a mi me gustaria que se puedan guardar ya que pueden llegar a ser complejos.
