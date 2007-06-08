@@ -23,3 +23,5 @@ relaciones ocultas para que sepan que se pueden relacionar. Ocultas significa qu
 - Cuando verifica la existencia de algun objeto que use el objeto a borrar, se le deveria mostrar la ruta completa o el nombre del objeto que lo contiene, para poder facilitarle el analisis.
 
 - Se deberia hacer seguridad a nivel de objeto. O sea hay objetos que solo el arquitecto puede hacer ABM, pero hay otros en los cuales el reportero puede hacer ABM, siempre y cuando tenga permisos sobre dicho objeto.
+
+- Estaria bueno que se puedan hacer filtros locales, significa que una vez que se tiene los datos, poder ocultar algunos. Tipo como hace Excel con los autofiltros.
