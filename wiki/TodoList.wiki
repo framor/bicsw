@@ -25,3 +25,5 @@ relaciones ocultas para que sepan que se pueden relacionar. Ocultas significa qu
 - Se deberia hacer seguridad a nivel de objeto. O sea hay objetos que solo el arquitecto puede hacer ABM, pero hay otros en los cuales el reportero puede hacer ABM, siempre y cuando tenga permisos sobre dicho objeto.
 
 - Estaria bueno que se puedan hacer filtros locales, significa que una vez que se tiene los datos, poder ocultar algunos. Tipo como hace Excel con los autofiltros.
+
+- Falta hacer los CP de métricas y de proyecto.
