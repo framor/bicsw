@@ -1,3 +1,4 @@
+#summary Entrega para el martes 10/07/2007
 = Introduction =
 
 Próxima entrega: Martes 10 de julio de 2007
@@ -31,4 +32,3 @@ Realizar la factibilidad económica.
 Alejandra Fusco:
 Empezar a recopilar información acerca del video de 1 minuto que vamos a tener que presentar la segunda semana de agosto. 
 Realizar CP de métricas y CP proyecto.
-
