@@ -109,6 +109,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "BaseService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "BICContext.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

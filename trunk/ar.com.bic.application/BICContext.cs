@@ -5,7 +5,7 @@ using Spring.Context.Support;
 namespace ar.com.bic.application
 {
 	/// <summary>
-	/// Descripción breve de BICContext.
+	/// BICContext es un service locator que expone los servicios a la capa de presentación.
 	/// </summary>
 	public class BICContext
 	{
@@ -21,6 +21,9 @@ namespace ar.com.bic.application
 			this.ctx = ContextRegistry.GetContext();		
 		}
 
+		/// <summary>
+		/// Obtiene una implementación de UsuarioService
+		/// </summary>
 		public UsuarioService UsuarioService 
 		{
 			get { return (UsuarioService)ctx["usuarioService"]; }

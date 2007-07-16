@@ -6,7 +6,7 @@ using ar.com.bic.dao;
 namespace ar.com.bic.application
 {
 	/// <summary>
-	/// Descripción breve de UsuarioService.
+	/// Todos los servicios expuestos para el manejo de Usuarios.
 	/// </summary>
 	public interface UsuarioService
 	{

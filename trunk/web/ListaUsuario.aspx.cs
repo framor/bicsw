@@ -22,8 +22,7 @@ namespace bic
 	
 		private void Page_Load(object sender, System.EventArgs e)
 		{
-			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.select();
-			dgUsuarios.DataBind();
+			listUsuarios();
 		}
 
 		#region Código generado por el Diseñador de Web Forms
@@ -53,6 +52,13 @@ namespace bic
 		{
 			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
 			BICContext.Instance.UsuarioService.delete(id);
+			listUsuarios();
+		}
+
+		private void listUsuarios()
+		{
+			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.select();
+			dgUsuarios.DataBind();
 		}
 	}
 }
