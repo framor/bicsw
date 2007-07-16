@@ -5,6 +5,7 @@
 		Configuracion de los servicios
 	</description>
 
+	<!-- Template de configuración para todos los servicios -->
 	<object id="serviceConfigurationTemplate" abstract="true"
           type="Spring.Aop.Framework.ProxyFactoryObject, Spring.Aop">
     
@@ -21,7 +22,8 @@
 		<property name="target" ref="usuarioServiceImpl"/>
 	</object>			
 	<object id="usuarioServiceImpl" type="ar.com.bic.application.impl.UsuarioServiceImpl, ar.com.bic.application">
-		<property name="usuarioDAO" ref="usuarioDAO"/>                    
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
 	</object>
 
 </objects>

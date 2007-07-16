@@ -8,7 +8,7 @@
 	<import resource="spring-orm.xml"/>
 
 	<!-- DAOs -->
-	<object id="usuarioDAO" type="ar.com.bic.dao.UsuarioDAO, ar.com.bic.dao" >
+	<object id="genericDAO" type="ar.com.bic.dao.GenericDAO, ar.com.bic.dao" >
 		<property name="SessionFactory" ref="sessionFactory"/>	
 	</object>
 	

@@ -109,7 +109,7 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "UsuarioDAO.cs"
+                    RelPath = "GenericDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

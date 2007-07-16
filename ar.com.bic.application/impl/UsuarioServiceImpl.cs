@@ -1,20 +1,14 @@
 using System;
 using System.Collections;
 using ar.com.bic.domain;
-using ar.com.bic.dao;
 
 namespace ar.com.bic.application.impl
 {
 	/// <summary>
-	/// Descripción breve de UsuarioService.
+	/// Implementación de UsuarioService
 	/// </summary>
-	public class UsuarioServiceImpl : UsuarioService
+	public class UsuarioServiceImpl : BaseService, UsuarioService
 	{
-		private UsuarioDAO usuarioDAO;
-		public UsuarioDAO UsuarioDAO 
-		{
-			set { this.usuarioDAO = value; }
-		}
 
 		public UsuarioServiceImpl()
 		{
@@ -25,7 +19,7 @@ namespace ar.com.bic.application.impl
 		/// </summary>
 		public void save(Usuario unUsuario) 
 		{
-			this.usuarioDAO.save(unUsuario);
+			this.GenericDAO.save(unUsuario);
 		}
 
 		/// <summary>
@@ -33,7 +27,7 @@ namespace ar.com.bic.application.impl
 		/// </summary>
 		public Usuario retrieve(long id) 
 		{
-			return this.usuarioDAO.retrieve(id); 
+			return (Usuario) this.GenericDAO.retrieve(typeof(Usuario), id); 
 		}
 
 		/// <summary>
@@ -41,7 +35,7 @@ namespace ar.com.bic.application.impl
 		/// </summary>
 		public ICollection select() 
 		{
-			return this.usuarioDAO.select();
+			return this.GenericDAO.select(typeof(Usuario));
 		}
 
 		/// <summary>
@@ -49,7 +43,7 @@ namespace ar.com.bic.application.impl
 		/// </summary>
 		public void delete(long id)
 		{
-			this.usuarioDAO.delete(id);
+			this.GenericDAO.delete(typeof(Usuario), id);
 		}
 	}
 }

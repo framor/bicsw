@@ -25,15 +25,17 @@ namespace bic
 	
 		private void Page_Load(object sender, System.EventArgs e)
 		{
-			long id = long.Parse(Request.Params["id"]);
-			ViewState["id"] = id;
-			if (id != -1)
+			if (!Page.IsPostBack) 
 			{
-				Usuario u = BICContext.Instance.UsuarioService.retrieve(id);
-				this.txtNombre.Text = u.Nombre;
-				this.txtClave.Text = u.Clave;
+				long id = long.Parse(Request.Params["id"]);
+				ViewState["id"] = id;
+				if (id != -1)
+				{
+					Usuario u = BICContext.Instance.UsuarioService.retrieve(id);
+					this.txtNombre.Text = u.Nombre;
+					this.txtClave.Text = u.Clave;
+				}
 			}
-			
 		}
 
 		#region Código generado por el Diseñador de Web Forms
