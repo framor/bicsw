@@ -84,6 +84,15 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "Atributo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Atributo.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Proyecto.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

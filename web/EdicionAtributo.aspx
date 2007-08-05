@@ -1,4 +1,4 @@
-<%@ Page language="c#" Codebehind="EdicionProyecto.aspx.cs" AutoEventWireup="false" Inherits="bic.EdicionProyecto" %>
+<%@ Page language="c#" Codebehind="EdicionAtributo.aspx.cs" AutoEventWireup="false" Inherits="bic.EdicionAtributo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 	<HEAD>
@@ -16,17 +16,37 @@
 								<img src="./img/logo-small.jpg">
 							</td>
 							<td align="right">
-								<h1>&nbsp;</h1>
+								<h1><asp:Label ID="lblProyecto" Runat="server"></asp:Label></h1>
 								<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx"><img alt="Cerrar sesión" src="./img/logout.png"></a></p>
 							</td>
 						</tr>
 					</table>
 				</div>
 				<div id="tabs10">
+					<ul>
+						<li>
+							<a href="ListaAtributo.aspx" title="Atributos">
+								<span>Atributos</span></a>
+						<li>
+							<a href="ListaHecho.aspx" title="Hechos">
+								<span>Hechos</span></a>
+						<li>
+							<a href="ListaFiltro.aspx" title="Filtros">
+								<span>Filtros</span></a>
+						<li>
+							<a href="ListaMetrica.aspx" title="Metricas">
+								<span>Metricas</span></a>
+						<li>
+							<a href="ListaRelacion.aspx" title="Relaciones">
+								<span>Relaciones</span></a>
+						<li>
+							<a href="ListaReporte.aspx" title="Reportes">
+								<span>Reportes</span></a></li>
+					</ul>
 				</div>
 				<div id="container2" style="HEIGHT:450px">
 					<div id="content" style="HEIGHT:83%">
-						<h2>Proyectos</h2>
+						<h2>Atributos</h2>
 						<table width="100%" cellspacing="1" cellpadding="0" border="0">
 							<tr>
 								<td><b>Nombre</b></td>
@@ -36,45 +56,25 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>Descripcion</b></td>
+								<td><b>ID</b></td>
 								<td>
-									<asp:TextBox id="txtDescripcion" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqDescripcion" Runat="server" ControlToValidate="txtDescripcion" ErrorMessage="Por favor complete la Descripcion.">*</asp:RequiredFieldValidator>
+									<asp:TextBox id="txtCampoId" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="reqCampoId" Runat="server" ControlToValidate="txtCampoId" ErrorMessage="Por favor complete el Campo Id.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
-								<td><b>Servidor</b></td>
+								<td><b>DESC</b></td>
 								<td>
-									<asp:TextBox id="txtServidor" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqServidor" Runat="server" ControlToValidate="txtServidor" ErrorMessage="Por favor complete el Servidor.">*</asp:RequiredFieldValidator>
+									<asp:TextBox id="txtCampoDescripcion" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="reqCampoDescripcion" Runat="server" ControlToValidate="txtCampoDescripcion"
+										ErrorMessage="Por favor complete el Campo Descripcion.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
-								<td><b>Puerto</b></td>
+								<td><b>LookUp Table</b></td>
 								<td>
-									<asp:TextBox id="txtPuerto" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqPuerto" Runat="server" ControlToValidate="txtPuerto" ErrorMessage="Por favor complete el Puerto.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Esquema</b></td>
-								<td>
-									<asp:TextBox id="txtEsquema" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqEsquema" Runat="server" ControlToValidate="txtEsquema" ErrorMessage="Por favor complete el Esquema.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Usuario</b></td>
-								<td>
-									<asp:TextBox id="txtUsuario" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqUsuario" Runat="server" ControlToValidate="txtUsuario" ErrorMessage="Por favor complete el Usuario.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Password</b></td>
-								<td>
-									<asp:TextBox id="txtPassword" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqPassword" Runat="server" ControlToValidate="txtPassword" ErrorMessage="Por favor complete el Password.">*</asp:RequiredFieldValidator>
+									<asp:TextBox id="txtTablaLookup" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="reqTablaLookup" Runat="server" ControlToValidate="txtTablaLookup" ErrorMessage="Por favor complete la Tabla Lookup.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>

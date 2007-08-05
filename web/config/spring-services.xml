@@ -36,6 +36,15 @@
 		<property name="genericDAO" ref="genericDAO"/>	
 	</object>
 
+	<object id="atributoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.AtributoService"/>
+		<property name="target" ref="atributoServiceImpl"/>
+	</object>			
+	<object id="atributoServiceImpl" type="ar.com.bic.application.impl.AtributoServiceImpl, ar.com.bic.application">
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="proyectoDAO" ref="proyectoDAO"/>			
+	</object>
 
 </objects>
 

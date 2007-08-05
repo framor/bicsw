@@ -132,6 +132,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "EdicionAtributo.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionAtributo.aspx.cs"
+                    DependentUpon = "EdicionAtributo.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionAtributo.aspx.resx"
+                    DependentUpon = "EdicionAtributo.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "EdicionProyecto.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
@@ -193,6 +209,22 @@
                 <File
                     RelPath = "Home.aspx.resx"
                     DependentUpon = "Home.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ListaAtributo.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaAtributo.aspx.cs"
+                    DependentUpon = "ListaAtributo.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaAtributo.aspx.resx"
+                    DependentUpon = "ListaAtributo.aspx.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

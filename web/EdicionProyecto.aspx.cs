@@ -28,6 +28,14 @@ namespace bic
 		
 		protected System.Web.UI.WebControls.Label lblUsuario;
 		protected System.Web.UI.WebControls.Button btnCancelar;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqNombre;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqDescripcion;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqServidor;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqPuerto;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqEsquema;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqUsuario;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
+		protected System.Web.UI.WebControls.ValidationSummary valSummary;
 		protected System.Web.UI.WebControls.Button btnAceptar;
 	
 		private void Page_Load(object sender, System.EventArgs e)
