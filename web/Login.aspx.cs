@@ -9,21 +9,26 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
-using ar.com.bic.domain;
 
 namespace bic
 {
 	/// <summary>
-	/// Descripción breve de WebForm1.
+	/// Descripción breve de Login.
 	/// </summary>
-	public class ListaUsuario : System.Web.UI.Page
+	public class Login : System.Web.UI.Page
 	{
-		protected System.Web.UI.WebControls.Button btnNuevo;
-		protected System.Web.UI.WebControls.DataGrid dgUsuarios;
-	
+
+		protected System.Web.UI.WebControls.TextBox txtUsuario;
+		protected System.Web.UI.WebControls.TextBox txtContrasena;
+		protected System.Web.UI.WebControls.Button btnIniciar;
+		protected System.Web.UI.WebControls.CustomValidator valLogin;
+
 		private void Page_Load(object sender, System.EventArgs e)
 		{
-			listUsuarios();
+			if (!Page.IsPostBack)
+			{
+				Session["usuario"] = null;
+			}
 		}
 
 		#region Código generado por el Diseñador de Web Forms
@@ -42,30 +47,26 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgUsuarios.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
-			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
 			this.Load += new System.EventHandler(this.Page_Load);
-
+			this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
 		}
 		#endregion
 
-
-		private void dgUsuarios_ItemCommand(object sender, DataGridCommandEventArgs e)
+		private void btnIniciar_Click(object sender, System.EventArgs e)
 		{
-			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.UsuarioService.delete(id);
-			listUsuarios();
-		}
+			string usuario = this.txtUsuario.Text;
+			string contrasena = this.txtContrasena.Text;
+			if (BICContext.Instance.UsuarioService.login(usuario, contrasena))
+			{
+				Session["usuario"] = usuario;
+				Response.Redirect("ListaProyecto.aspx");
+			} 
+			else
+			{
+				this.valLogin.ErrorMessage = "Usuario o contraseña inválidos. Por favor intente nuevamente.";
+				this.valLogin.IsValid = false;
+			}
 
-		private void listUsuarios()
-		{
-			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.select();
-			dgUsuarios.DataBind();
-		}
-
-		private void btnNuevo_Click(object sender, System.EventArgs e)
-		{
-			Response.Redirect("EdicionUsuario.aspx?id=-1");
 		}
 	}
 }

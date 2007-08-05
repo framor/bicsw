@@ -119,7 +119,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ProyectoService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "UsuarioService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "impl\ProyectoServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

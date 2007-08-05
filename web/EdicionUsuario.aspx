@@ -11,9 +11,9 @@
 	<body MS_POSITIONING="GridLayout">
 		<form id="Form1" method="post" runat="server">
 			<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
-			<asp:TextBox id="txtClave" runat="server"></asp:TextBox>			
+			<asp:TextBox id="txtClave" runat="server"></asp:TextBox>
 			<asp:Button id="btnAceptar" runat="server" Text="Aceptar"></asp:Button>
-			<asp:Button id="btnCancelar" runat="server" Text="Cancelar"></asp:Button>			
+			<asp:Button id="btnCancelar" runat="server" Text="Cancelar"></asp:Button>
 		</form>
 	</body>
 </HTML>
