@@ -1,5 +1,3 @@
-using System;
-
 namespace ar.com.bic.domain
 {
 	/// <summary>

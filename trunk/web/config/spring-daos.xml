@@ -15,5 +15,9 @@
 	<object id="usuarioDAO" type="ar.com.bic.dao.UsuarioDAO, ar.com.bic.dao" >
 		<property name="SessionFactory" ref="sessionFactory"/>	
 	</object>
+
+	<object id="proyectoDAO" type="ar.com.bic.dao.ProyectoDAO, ar.com.bic.dao" >
+		<property name="SessionFactory" ref="sessionFactory"/>	
+	</object>
 	
 </objects>

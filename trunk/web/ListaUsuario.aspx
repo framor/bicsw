@@ -12,18 +12,20 @@
 	<body MS_POSITIONING="GridLayout">
 	<FORM id="Form1" method="post" runat="server">
 		<DIV id="container">
-			<DIV id="header">
-				<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
-					<TR>
-						<TD><IMG src="./img/logo-small.jpg">
-						</TD>
-						<TD align="right">
-							<H1>Personal Light</H1>
-							<P>Fernando J. Aramendi</P>
-						</TD>
-					</TR>
-				</TABLE>
-			</DIV>
+			<div id="header">
+				<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td>
+							<img src="./img/logo-small.jpg"/>
+						</td>
+						<td align="right">
+							<h1>&nbsp;</h1>
+							<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx" ><img alt="Cerrar sesión" src="./img/logout.png"/></a></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		
 			<DIV id="tabs10">
 				<UL>
 					<LI>

@@ -114,6 +114,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ProyectoDAO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "UsuarioDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

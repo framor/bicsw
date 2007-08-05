@@ -37,5 +37,14 @@ namespace ar.com.bic.application
 			get { return (ProyectoService)ctx["proyectoService"]; }
 		}
 
+		/// <summary>
+		/// Obtiene una implementación de AtributoService
+		/// </summary>
+		public AtributoService AtributoService 
+		{
+			get { return (AtributoService)ctx["atributoService"]; }
+		}
+
+
 	}
 }

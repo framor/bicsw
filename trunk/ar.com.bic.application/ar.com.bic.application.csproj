@@ -109,6 +109,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "AtributoService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "BaseService.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -125,6 +130,11 @@
                 />
                 <File
                     RelPath = "UsuarioService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "impl\AtributoServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

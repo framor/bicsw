@@ -22,13 +22,17 @@ namespace bic
 		protected System.Web.UI.WebControls.Label lblUsuario;
 		protected System.Web.UI.WebControls.Label lblProyecto;
 
+		private long ProyectoId
+		{
+			get { return (long) Session["proyectoId"]; }
+		}
+
 		private void Page_Load(object sender, System.EventArgs e)
 		{
 			if (!Page.IsPostBack) 
 			{
 				this.lblUsuario.Text = Session["usuario"].ToString();
-				long id = long.Parse(Request.Params["id"]);
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(id).Nombre;
+				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(ProyectoId).Nombre;
 			}
 		}
 
