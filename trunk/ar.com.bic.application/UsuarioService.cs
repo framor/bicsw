@@ -34,5 +34,13 @@ namespace ar.com.bic.application
 		/// </summary>
 		/// <param name="id">El id de usuario</param>
 		void delete(long id);
+
+		/// <summary>
+		/// Valida un usuario y contraseña
+		/// </summary>
+		/// <param name="usuario">el nombre de usuario</param>
+		/// <param name="contrasena">la contraseña</param>
+		/// <returns>si son válidos</returns>
+		bool login(string usuario, string contrasena);
 	}
 }

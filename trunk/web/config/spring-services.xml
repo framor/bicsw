@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
 
 	<description>
@@ -24,7 +24,18 @@
 	<object id="usuarioServiceImpl" type="ar.com.bic.application.impl.UsuarioServiceImpl, ar.com.bic.application">
 		<!-- TODO: setear el genericDAO en un template -->
 		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="usuarioDAO" ref="usuarioDAO"/>	
 	</object>
+
+	<object id="proyectoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.ProyectoService"/>
+		<property name="target" ref="proyectoServiceImpl"/>
+	</object>			
+	<object id="proyectoServiceImpl" type="ar.com.bic.application.impl.ProyectoServiceImpl, ar.com.bic.application">
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
+	</object>
+
 
 </objects>
 

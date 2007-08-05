@@ -16,24 +16,38 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de EdicionUsuario.
 	/// </summary>
-	public class EdicionUsuario : System.Web.UI.Page
+	public class EdicionProyecto : System.Web.UI.Page
 	{
-		protected System.Web.UI.WebControls.Button btnCancelar;
 		protected System.Web.UI.WebControls.TextBox txtNombre;
-		protected System.Web.UI.WebControls.TextBox txtClave;
+		protected System.Web.UI.WebControls.TextBox txtDescripcion;
+		protected System.Web.UI.WebControls.TextBox txtServidor;
+		protected System.Web.UI.WebControls.TextBox txtPuerto;
+		protected System.Web.UI.WebControls.TextBox txtEsquema;
+		protected System.Web.UI.WebControls.TextBox txtUsuario;
+		protected System.Web.UI.WebControls.TextBox txtPassword;
+		
+		protected System.Web.UI.WebControls.Label lblUsuario;
+		protected System.Web.UI.WebControls.Button btnCancelar;
 		protected System.Web.UI.WebControls.Button btnAceptar;
 	
 		private void Page_Load(object sender, System.EventArgs e)
 		{
 			if (!Page.IsPostBack) 
 			{
+				this.lblUsuario.Text = Session["usuario"].ToString();
+
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
 				if (id != -1)
 				{
-					Usuario u = BICContext.Instance.UsuarioService.retrieve(id);
-					this.txtNombre.Text = u.Nombre;
-					this.txtClave.Text = u.Clave;
+					Proyecto p = BICContext.Instance.ProyectoService.retrieve(id);
+					this.txtNombre.Text = p.Nombre;
+					this.txtDescripcion.Text = p.Descripcion;
+					this.txtServidor.Text = p.Servidor;
+					this.txtPuerto.Text = p.Puerto.ToString();
+					this.txtEsquema.Text = p.Esquema;
+					this.txtUsuario.Text = p.Usuario;
+					this.txtPassword.Text = p.Password;
 				}
 			}
 		}
@@ -64,24 +78,30 @@ namespace bic
 		private void btnAceptar_Click(object sender, System.EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			Usuario u;
+			Proyecto p;
 			if (id == -1)
 			{
-				u = new Usuario();
-				u.Nombre = this.txtNombre.Text;
+				p = new Proyecto();
 			} 
 			else 
 			{
-				u = BICContext.Instance.UsuarioService.retrieve(id);
+				p = BICContext.Instance.ProyectoService.retrieve(id);
 			}			
-			u.Clave = this.txtClave.Text;
-			BICContext.Instance.UsuarioService.save(u);
-			Response.Redirect("ListaUsuario.aspx");
+			p.Nombre = this.txtNombre.Text;
+			p.Descripcion = this.txtDescripcion.Text;
+			p.Servidor = this.txtServidor.Text;
+			p.Puerto = Int32.Parse(this.txtPuerto.Text);
+			p.Esquema = this.txtEsquema.Text;
+			p.Usuario = this.txtUsuario.Text;
+			p.Password = this.txtPassword.Text;
+
+			BICContext.Instance.ProyectoService.save(p);
+			Response.Redirect("ListaProyecto.aspx");
 		}
 
 		private void btnCancelar_Click(object sender, System.EventArgs e)
 		{
-			Response.Redirect("ListaUsuario.aspx");
+			Response.Redirect("ListaProyecto.aspx");
 		}
 	}
 }

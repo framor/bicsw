@@ -14,16 +14,22 @@ using ar.com.bic.domain;
 namespace bic
 {
 	/// <summary>
-	/// Descripción breve de WebForm1.
+	/// Descripción breve de Home.
 	/// </summary>
-	public class ListaUsuario : System.Web.UI.Page
+	public class Home : System.Web.UI.Page
 	{
-		protected System.Web.UI.WebControls.Button btnNuevo;
-		protected System.Web.UI.WebControls.DataGrid dgUsuarios;
-	
+
+		protected System.Web.UI.WebControls.Label lblUsuario;
+		protected System.Web.UI.WebControls.Label lblProyecto;
+
 		private void Page_Load(object sender, System.EventArgs e)
 		{
-			listUsuarios();
+			if (!Page.IsPostBack) 
+			{
+				this.lblUsuario.Text = Session["usuario"].ToString();
+				long id = long.Parse(Request.Params["id"]);
+				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(id).Nombre;
+			}
 		}
 
 		#region Código generado por el Diseñador de Web Forms
@@ -42,30 +48,8 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgUsuarios.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
-			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
 			this.Load += new System.EventHandler(this.Page_Load);
-
 		}
 		#endregion
-
-
-		private void dgUsuarios_ItemCommand(object sender, DataGridCommandEventArgs e)
-		{
-			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.UsuarioService.delete(id);
-			listUsuarios();
-		}
-
-		private void listUsuarios()
-		{
-			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.select();
-			dgUsuarios.DataBind();
-		}
-
-		private void btnNuevo_Click(object sender, System.EventArgs e)
-		{
-			Response.Redirect("EdicionUsuario.aspx?id=-1");
-		}
 	}
 }

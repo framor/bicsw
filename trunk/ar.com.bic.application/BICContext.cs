@@ -28,5 +28,14 @@ namespace ar.com.bic.application
 		{
 			get { return (UsuarioService)ctx["usuarioService"]; }
 		}
+
+		/// <summary>
+		/// Obtiene una implementación de ProyectoService
+		/// </summary>
+		public ProyectoService ProyectoService 
+		{
+			get { return (ProyectoService)ctx["proyectoService"]; }
+		}
+
 	}
 }

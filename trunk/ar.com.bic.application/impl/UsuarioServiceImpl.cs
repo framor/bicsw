@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using ar.com.bic.dao;
 using ar.com.bic.domain;
 
 namespace ar.com.bic.application.impl
@@ -9,6 +10,13 @@ namespace ar.com.bic.application.impl
 	/// </summary>
 	public class UsuarioServiceImpl : BaseService, UsuarioService
 	{
+
+		private UsuarioDAO usuarioDAO;
+		public UsuarioDAO UsuarioDAO 
+		{
+			get { return this.usuarioDAO; }
+			set { this.usuarioDAO = value; }
+		}
 
 		public UsuarioServiceImpl()
 		{
@@ -44,6 +52,12 @@ namespace ar.com.bic.application.impl
 		public void delete(long id)
 		{
 			this.GenericDAO.delete(typeof(Usuario), id);
+		}
+
+		public bool login(string usuario, string contrasena)
+		{
+			Usuario u = this.usuarioDAO.getByNombre(usuario);
+			return u != null && u.Clave.Equals(contrasena);
 		}
 	}
 }

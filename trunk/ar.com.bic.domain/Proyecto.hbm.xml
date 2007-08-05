@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="ar.com.bic.domain.Proyecto, ar.com.bic.domain" table="proyecto">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/> 
+        <property name="descripcion" column="descripcion" type="String" access="field"/> 
+        <property name="servidor" column="servidor" type="String" access="field"/>
+		<property name="puerto" column="puerto" type="int" access="field"/>
+		<property name="esquema" column="esquema" type="String" access="field"/>
+		<property name="usuario" column="usuario" type="String" access="field"/>
+		<property name="password" column="password" type="String" access="field"/>
+    </class>
+</hibernate-mapping>

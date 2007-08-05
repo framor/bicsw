@@ -132,18 +132,20 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "CrystalReport1.rpt"
-                    BuildAction = "EmbeddedResource"
-                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
-                    LastGenOutput = "CrystalReport1.cs"
+                    RelPath = "EdicionProyecto.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
                 />
                 <File
-                    RelPath = "CrystalReport1.cs"
-                    DependentUpon = "CrystalReport1.rpt"
-                    SubType = "Component"
+                    RelPath = "EdicionProyecto.aspx.cs"
+                    DependentUpon = "EdicionProyecto.aspx"
+                    SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
-                    DesignTime = "True"
-                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "EdicionProyecto.aspx.resx"
+                    DependentUpon = "EdicionProyecto.aspx.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "EdicionUsuario.aspx"
@@ -178,6 +180,38 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Home.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Home.aspx.cs"
+                    DependentUpon = "Home.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Home.aspx.resx"
+                    DependentUpon = "Home.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ListaProyecto.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaProyecto.aspx.cs"
+                    DependentUpon = "ListaProyecto.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaProyecto.aspx.resx"
+                    DependentUpon = "ListaProyecto.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ListaUsuario.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
@@ -194,34 +228,20 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "MainForm.aspx"
+                    RelPath = "Login.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "MainForm.aspx.cs"
-                    DependentUpon = "MainForm.aspx"
+                    RelPath = "Login.aspx.cs"
+                    DependentUpon = "Login.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MainForm.aspx.resx"
-                    DependentUpon = "MainForm.aspx.cs"
+                    RelPath = "Login.aspx.resx"
+                    DependentUpon = "Login.aspx.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "ReportTest.rpt"
-                    BuildAction = "EmbeddedResource"
-                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
-                    LastGenOutput = "ReportTest.cs"
-                />
-                <File
-                    RelPath = "ReportTest.cs"
-                    DependentUpon = "ReportTest.rpt"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                    DesignTime = "True"
-                    AutoGen = "True"
                 />
                 <File
                     RelPath = "Web.config"
@@ -245,6 +265,34 @@
                 />
                 <File
                     RelPath = "config\spring-services.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\logo.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\logo-small.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\logout.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\tableft10.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\tabright10.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "lib\bic.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "lib\bic.js"
                     BuildAction = "Content"
                 />
             </Include>
