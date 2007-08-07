@@ -151,6 +151,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "esquema\Columna.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "esquema\Esquema.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "esquema\Tabla.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "sqlBuilder\MockHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
