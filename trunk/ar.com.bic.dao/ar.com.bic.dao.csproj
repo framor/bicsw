@@ -104,12 +104,22 @@
                     AssemblyName = "log4net"
                     HintPath = "..\libraries\log4net.dll"
                 />
+                <Reference
+                    Name = "MySql.Data"
+                    AssemblyName = "MySql.Data"
+                    HintPath = "..\libraries\MySql.Data.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
                     RelPath = "GenericDAO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MySQLEsquemaDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
