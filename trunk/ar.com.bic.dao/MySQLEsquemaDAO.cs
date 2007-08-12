@@ -18,7 +18,7 @@ namespace ar.com.bic.dao
 		{
 		}
 
-		public Esquema getEsquema(string server, string database, string user, string password)
+		public Esquema GetEsquema(string server, string database, string user, string password)
 		{
 			string connStr = String.Format("Server=?;Database=?;Uid=?;Pwd=?", 
 				new object[]{server, database, user, password});
