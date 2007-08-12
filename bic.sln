@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ar.com.bic.fwk", "ar.com.bi
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{56AA0222-5C35-465B-B122-1ABA95EC1C03}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -45,6 +49,10 @@ Global
 		{DA2E4D26-4BC4-48AF-8DB2-9C31F5194247}.Debug.Build.0 = Debug|.NET
 		{DA2E4D26-4BC4-48AF-8DB2-9C31F5194247}.Release.ActiveCfg = Release|.NET
 		{DA2E4D26-4BC4-48AF-8DB2-9C31F5194247}.Release.Build.0 = Release|.NET
+		{56AA0222-5C35-465B-B122-1ABA95EC1C03}.Debug.ActiveCfg = Debug|.NET
+		{56AA0222-5C35-465B-B122-1ABA95EC1C03}.Debug.Build.0 = Debug|.NET
+		{56AA0222-5C35-465B-B122-1ABA95EC1C03}.Release.ActiveCfg = Release|.NET
+		{56AA0222-5C35-465B-B122-1ABA95EC1C03}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
