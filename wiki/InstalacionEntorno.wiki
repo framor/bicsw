@@ -33,3 +33,4 @@ DB Client - MySQL GUI
 Unit Tests - NUnit
    * Bajar NUnit 2.4 de http://www.nunit.org/index.php?p=download (NUnit-2.4.0-r2-net-1.1.msi)
    * Instalar
+   * Para correr los test se debe ejecturar el archivo Test.nunit dentro del proyecto test. Habría que probar esta configuración http://www.codeproject.com/csharp/TomazNunitTests.asp
