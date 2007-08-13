@@ -14,6 +14,13 @@ namespace ar.com.bic.domain.esquema
 		private string nombreTabla;
 		private IList columnas = new ArrayList();
 
+		public Tabla(string alias, string nombreBD, string nombreTabla)
+		{
+			this.alias = alias;
+			this.nombreBD = nombreBD;
+			this.nombreTabla = nombreTabla;
+		}
+
 		public IList Columnas
 		{
 			get {return new ArrayList(this.columnas); }
@@ -24,11 +31,10 @@ namespace ar.com.bic.domain.esquema
 			set {this.alias = value;}
 		}
 
-		public Tabla(string alias, string nombreBD, string nombreTabla)
+		public string NombreTabla
 		{
-			this.alias = alias;
-			this.nombreBD = nombreBD;
-			this.nombreTabla = nombreTabla;
+			get {return this.nombreTabla; }
+			set {this.nombreTabla = value;}
 		}
 
 		public void AgregarColumna(Columna col)
