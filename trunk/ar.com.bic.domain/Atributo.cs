@@ -1,16 +1,19 @@
 using System;
+using System.Collections;
+using ar.com.bic.domain.interfaces;
+using ar.com.bic.domain.esquema;
 
 namespace ar.com.bic.domain
 {
 	/// <summary>
 	/// Descripción breve de Atributo.
 	/// </summary>
-	public class Atributo
+	public class Atributo : ITablaMapeable
 	{
 		private long id;
 		private string nombre;
-		private string campoId;
-		private string campoDescripcion;
+		private Columna campoId;
+		private ArrayList camposDescripciones;
 		private string tablaLookup;
 		private Proyecto proyecto;
 
@@ -33,16 +36,16 @@ namespace ar.com.bic.domain
 			set { nombre = value; }
 		}
 
-		public string CampoId
+		public Columna CampoId
 		{
 			get { return campoId; }
 			set { campoId = value; }
 		}
 
-		public string CampoDescripcion
+		public ArrayList CamposDescripciones
 		{
-			get { return campoDescripcion; }
-			set { campoDescripcion = value; }
+			get { return camposDescripciones; }
+			set { camposDescripciones = value; }
 		}
 
 		public string TablaLookup
@@ -55,6 +58,16 @@ namespace ar.com.bic.domain
 		{
 			get { return proyecto; }
 			set { proyecto = value; }
+		}
+
+		public ArrayList GetTablas()
+		{
+			return this.campoId.Tablas;
+		}
+
+		public Columna GetColumna()
+		{
+			return this.campoId;
 		}
 	}
 }

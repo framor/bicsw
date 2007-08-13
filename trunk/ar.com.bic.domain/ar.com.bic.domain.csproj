@@ -93,6 +93,26 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Camino.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filtro.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Hecho.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Metrica.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Proyecto.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -100,6 +120,21 @@
                 <File
                     RelPath = "Proyecto.hbm.xml"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Relacion.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reporte.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TablaReporte.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Usuario.cs"
@@ -122,6 +157,16 @@
                 />
                 <File
                     RelPath = "esquema\Tabla.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "interfaces\ICamino.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "interfaces\ITablaMapeable.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -10,6 +10,7 @@ namespace ar.com.bic.domain.esquema
 	{
 		private string nombre;
 		private string tipo;
+		private ArrayList tablas = new ArrayList();
 
 		public string Tipo
 		{
@@ -21,6 +22,17 @@ namespace ar.com.bic.domain.esquema
 			get {return this.nombre; }
 			set {this.nombre = value;}
 		}
+
+		public ArrayList Tablas
+		{
+			get {return this.tablas;}
+		}
+		
+		public void AgregarTabla(Tabla tabla)
+		{
+			this.tablas.Add(tabla);
+		}
+
 
 		public Columna(string nombre, string tipo)
 		{
