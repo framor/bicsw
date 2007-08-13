@@ -42,22 +42,22 @@ namespace ar.com.bic.dao
 				Tabla t = null;
 
 				if (ds.Tables.Count != 0 && ds.Tables[0].Rows.Count != 0)
-				{
-					t = new Tabla(ds.Tables[0].Rows[0].ItemArray[0].ToString());
-					nombreTablaAnterior = t.Nombre;
+				{	// FER A. cambie el constructor ahora los parametros son Tabla(string alias, string nombreBD, string nombreTabla)
+					t = new Tabla(ds.Tables[0].Rows[0].ItemArray[0].ToString(),database,ds.Tables[0].Rows[0].ItemArray[0].ToString());
+					nombreTablaAnterior = t.NombreTabla;
 				}
 
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					t.Nombre = dr.ItemArray[0].ToString();
-					if (!t.Nombre.Equals(nombreTablaAnterior))
+					t.NombreTabla = dr.ItemArray[0].ToString();
+					if (!t.NombreTabla.Equals(nombreTablaAnterior))
 					{
 						e.AgregarTabla(t);
-						t = new Tabla(t.Nombre);
+						t = new Tabla(t.NombreTabla,database,t.NombreTabla);
 					}
 					Columna col = new Columna(dr.ItemArray[1].ToString(), dr.ItemArray[2].ToString());
 					t.AgregarColumna(col);
-					nombreTablaAnterior = t.Nombre;										
+					nombreTablaAnterior = t.NombreTabla;
 				}
 				con.Close();
 			}
