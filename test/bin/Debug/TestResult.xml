@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Documents and Settings\fernando\Mis documentos\Visual Studio Projects\BIC\test\bin\Debug\test.dll" total="3" failures="1" not-run="0" date="2007-08-12" time="23:03:08">
+  <environment nunit-version="2.4.1.0" clr-version="1.1.4322.2407" os-version="Microsoft Windows NT 5.1.2600.0" platform="Win32NT" cwd="C:\Archivos de programa\NUnit 2.4.1\bin" machine-name="FERPC" user="fernando" user-domain="FERPC" />
+  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
+  <test-suite name="C:\Documents and Settings\fernando\Mis documentos\Visual Studio Projects\BIC\test\bin\Debug\test.dll" success="False" time="2.534" asserts="0">
+    <results>
+      <test-suite name="test" success="False" time="2.524" asserts="0">
+        <results>
+          <test-suite name="bic" success="True" time="0.040" asserts="0">
+            <results>
+              <test-suite name="domain" success="True" time="0.040" asserts="0">
+                <results>
+                  <test-suite name="TestCaseExample" success="True" time="0.030" asserts="0">
+                    <results>
+                      <test-case name="test.bic.domain.TestCaseExample.ExampleTest" executed="True" success="True" time="0.000" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite name="MySQLEsquemaDaoTest" success="False" time="2.464" asserts="0">
+            <results>
+              <test-case name="test.MySQLEsquemaDaoTest.GetEsquemaTest" executed="True" success="False" time="2.413" asserts="0">
+                <failure>
+                  <message><![CDATA[MySql.Data.MySqlClient.MySqlException : Unable to connect to any of the specified MySQL hosts.
+  ----> System.Net.Sockets.SocketException : Host desconocido]]></message>
+                  <stack-trace><![CDATA[   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at ar.com.bic.dao.MySQLEsquemaDAO.GetEsquema(String server, String database, String user, String password) in C:\Documents and Settings\fernando\Mis documentos\Visual Studio Projects\BIC\ar.com.bic.dao\MySQLEsquemaDAO.cs:line 30
+   at test.MySQLEsquemaDaoTest.GetEsquemaTest() in C:\Documents and Settings\fernando\Mis documentos\Visual Studio Projects\BIC\test\MySQLEsquemaDaoTest.cs.cs:line 21
+--SocketException
+   at System.Net.Dns.GetHostByName(String hostName)
+   at MySql.Data.Common.StreamCreator.GetStream(UInt32 timeOut)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+          <test-suite name="ReporteTest" success="True" time="0.020" asserts="0">
+            <results>
+              <test-case name="test.ReporteTest.DameTablasCandidatas" executed="True" success="True" time="0.010" asserts="6" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
