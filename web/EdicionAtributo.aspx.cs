@@ -51,8 +51,8 @@ namespace bic
 				{
 					Atributo a = BICContext.Instance.AtributoService.retrieve(id);
 					this.txtNombre.Text = a.Nombre;
-					this.txtCampoId.Text = a.CampoId;
-					this.txtCampoDescripcion.Text = a.CampoDescripcion;
+					this.txtCampoId.Text = a.CampoId.Nombre;
+					//this.txtCampoDescripcion.Text = a.CampoDescripcion;
 					this.txtTablaLookup.Text = a.TablaLookup;
 				}
 
@@ -96,8 +96,8 @@ namespace bic
 				a = BICContext.Instance.AtributoService.retrieve(id);
 			}			
 			a.Nombre = this.txtNombre.Text;
-			a.CampoId = this.txtCampoId.Text;
-			a.CampoDescripcion = this.txtCampoDescripcion.Text;
+			//a.CampoId.Nombre = this.txtCampoId.Text;
+			//a.CampoDescripcion = this.txtCampoDescripcion.Text;
 			a.TablaLookup = this.txtTablaLookup.Text;
 			a.Proyecto = BICContext.Instance.ProyectoService.retrieve(ProyectoId);
 
