@@ -20,11 +20,10 @@ namespace ar.com.bic.dao
 
 		public Esquema GetEsquema(string server, string database, string user, string password)
 		{
-			string connStr = String.Format("Server=?;Database=?;Uid=?;Pwd=?", 
+			string connStr = String.Format("Server={0};Database={1};Uid={2};Pwd={3}", 
 				new object[]{server, database, user, password});
 			MySqlConnection con = new MySqlConnection(connStr);
 
-			DataRow myRow = null;
 			using (con)
 			{
 				con.Open();
@@ -42,7 +41,7 @@ namespace ar.com.bic.dao
 				Tabla t = null;
 
 				if (ds.Tables.Count != 0 && ds.Tables[0].Rows.Count != 0)
-				{	// FER A. cambie el constructor ahora los parametros son Tabla(string alias, string nombreBD, string nombreTabla)
+				{	
 					t = new Tabla(ds.Tables[0].Rows[0].ItemArray[0].ToString(),database,ds.Tables[0].Rows[0].ItemArray[0].ToString());
 					nombreTablaAnterior = t.NombreTabla;
 				}
@@ -60,8 +59,8 @@ namespace ar.com.bic.dao
 					nombreTablaAnterior = t.NombreTabla;
 				}
 				con.Close();
+				return e;
 			}
-			return null;
 		}
 	}
 }
