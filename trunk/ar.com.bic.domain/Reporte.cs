@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ar.com.bic.domain.interfaces;
 using ar.com.bic.domain.esquema;
+using ar.com.bic.fwk;
 
 namespace ar.com.bic.domain
 {
@@ -85,7 +86,7 @@ namespace ar.com.bic.domain
 			ArrayList tablas = new ArrayList();
 
 			// Le pido las tablas donde estan estas metricas
-			ArrayList tablasFact = this.DameTablas(this.Metricas);
+			IList tablasFact = this.DameTablas(this.Metricas);
 			
 			// Itero en la colleccion de Tablas preguntandole si tiene a todas las metricas
 			foreach(Tabla tabla in tablasFact)
@@ -97,7 +98,7 @@ namespace ar.com.bic.domain
 			return tablas;
 		}
 
-		public ArrayList DameTablas(IList columnas)
+		public IList DameTablas(IList columnas)
 		{
 			
 			ArrayList tablas = new ArrayList();
@@ -105,9 +106,11 @@ namespace ar.com.bic.domain
 			foreach(ITablaMapeable columna in columnas)
 			{
 				tablas.AddRange(columna.GetTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
+				
 			};
 			
-			return tablas;
+			// Con esta funcion quito los repetidos
+			return Util.ConvertirSet(tablas);
 		}
 
 
