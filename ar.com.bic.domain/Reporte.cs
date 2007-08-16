@@ -91,21 +91,25 @@ namespace ar.com.bic.domain
 			// Itero en la colleccion de Tablas preguntandole si tiene a todas las metricas
 			foreach(Tabla tabla in tablasFact)
 			{
-				if(tabla.Tenes(this.Metricas)) 
-					tablas.Add(tabla);
+//				if(tabla.Tenes(this.Metricas)) 
+//					tablas.Add(tabla);
 			}
 
 			return tablas;
 		}
 
+<<<<<<< .mine
+		public ArrayList DameTablas(IList campos)
+=======
 		public IList DameTablas(IList columnas)
+>>>>>>> .theirs
 		{
 			
 			ArrayList tablas = new ArrayList();
 			// Le pido a todos los campos que me den las tablas donde estan presentes
-			foreach(ITablaMapeable columna in columnas)
+			foreach(ITablaMapeable campo in campos)
 			{
-				tablas.AddRange(columna.GetTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
+				tablas.AddRange(campo.GetTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
 				
 			};
 			

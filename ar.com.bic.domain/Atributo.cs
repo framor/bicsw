@@ -12,17 +12,12 @@ namespace ar.com.bic.domain
 	{
 		private long id;
 		private string nombre;
-		private Columna campoId;
-		private ArrayList camposDescripciones;
-		private string tablaLookup;
+		private Campo campoId;
+		private ArrayList camposDescripciones = new ArrayList();
+		private Tabla tablaLookup;
 		private Proyecto proyecto;
 
-		public Atributo()
-		{
-			//
-			// TODO: agregar aquí la lógica del constructor
-			//
-		}
+		public Atributo() {}
 
 		public long Id 
 		{
@@ -36,7 +31,7 @@ namespace ar.com.bic.domain
 			set { nombre = value; }
 		}
 
-		public Columna CampoId
+		public Campo CampoId
 		{
 			get { return campoId; }
 			set { campoId = value; }
@@ -44,11 +39,10 @@ namespace ar.com.bic.domain
 
 		public ArrayList CamposDescripciones
 		{
-			get { return camposDescripciones; }
-			set { camposDescripciones = value; }
+			get { return new ArrayList(camposDescripciones); }
 		}
 
-		public string TablaLookup
+		public Tabla TablaLookup
 		{
 			get { return tablaLookup; }
 			set { tablaLookup = value; }
@@ -60,12 +54,21 @@ namespace ar.com.bic.domain
 			set { proyecto = value; }
 		}
 
-		public ArrayList GetTablas()
+		public void AgregarCampoDescripcion(Campo value)
 		{
-			return this.campoId.Tablas;
+			this.camposDescripciones.Add(value);
 		}
 
-		public Columna GetColumna()
+		public ArrayList GetTablas()
+		{
+			//return this.campoId.Tablas;
+			// TODO: el campo no conoce todas las tablas que tambien tienen un campo igual a el.
+			// el campo es una representacion del esquema de la bd.
+			// esto lo debería resolver otro objeto.
+			return null;
+		}
+
+		public Campo GetCampo()
 		{
 			return this.campoId;
 		}

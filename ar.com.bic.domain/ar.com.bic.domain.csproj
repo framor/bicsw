@@ -103,6 +103,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Campo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Filtro.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -151,17 +156,17 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "esquema\Columna.cs"
+                    RelPath = "catalogo\Catalogo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "esquema\Esquema.cs"
+                    RelPath = "catalogo\Columna.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "esquema\Tabla.cs"
+                    RelPath = "catalogo\Tabla.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

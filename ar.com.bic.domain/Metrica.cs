@@ -33,9 +33,9 @@ namespace ar.com.bic.domain
 			return this.hecho.GetTablas();
 		}
 		
-		public Columna GetColumna()
+		public Campo GetCampo()
 		{
-			return this.hecho.GetColumna();
+			return this.hecho.GetCampo();
 		}
 		#endregion
 
