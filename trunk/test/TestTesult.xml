@@ -1,47 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\Test.nunit" total="2" failures="1" not-run="0" date="2007-08-12" time="15:14:17">
-  <environment nunit-version="2.4.0.2" clr-version="1.1.4322.573" os-version="Microsoft Windows NT 5.1.2600.0" platform="Win32NT" cwd="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\bin\Debug" machine-name="FERNANDO-26A3CB" user="Fernando" user-domain="FERNANDO-26A3CB" />
+<test-results name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\Test.nunit" total="1" failures="0" not-run="0" date="2007-08-16" time="00:12:18">
+  <environment nunit-version="2.4.0.2" clr-version="1.1.4322.573" os-version="Microsoft Windows NT 5.1.2600.0" platform="Win32NT" cwd="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test" machine-name="FERNANDO-26A3CB" user="Fernando" user-domain="FERNANDO-26A3CB" />
   <culture-info current-culture="es-AR" current-uiculture="en-US" />
-  <test-suite name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\Test.nunit" success="False" time="2.531" asserts="0">
+  <test-suite name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\Test.nunit" success="True" time="188.938" asserts="0">
     <results>
-      <test-suite name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\bin\Debug\test.dll" success="False" time="2.531" asserts="0">
+      <test-suite name="C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\test\bin\Debug\test.dll" success="True" time="188.938" asserts="0">
         <results>
-          <test-suite name="test" success="False" time="2.531" asserts="0">
+          <test-suite name="test" success="True" time="188.938" asserts="0">
             <results>
-              <test-suite name="bic" success="True" time="0.047" asserts="0">
+              <test-suite name="MySQLEsquemaDaoTest" success="True" time="188.906" asserts="0">
                 <results>
-                  <test-suite name="domain" success="True" time="0.047" asserts="0">
-                    <results>
-                      <test-suite name="TestCaseExample" success="True" time="0.047" asserts="0">
-                        <results>
-                          <test-case name="test.bic.domain.TestCaseExample.ExampleTest" executed="True" success="True" time="0.016" asserts="1" />
-                        </results>
-                      </test-suite>
-                    </results>
-                  </test-suite>
-                </results>
-              </test-suite>
-              <test-suite name="MySQLEsquemaDaoTest" success="False" time="2.438" asserts="0">
-                <results>
-                  <test-case name="test.MySQLEsquemaDaoTest.GetEsquemaTest" executed="True" success="False" time="2.391" asserts="0">
-                    <failure>
-                      <message><![CDATA[MySql.Data.MySqlClient.MySqlException : Unable to connect to any of the specified MySQL hosts.
-  ----> System.Net.Sockets.SocketException : No such host is known]]></message>
-                      <stack-trace><![CDATA[   at MySql.Data.MySqlClient.NativeDriver.Open()
-   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
-   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
-   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
-   at MySql.Data.MySqlClient.MySqlConnection.Open()
-   at ar.com.bic.dao.MySQLEsquemaDAO.GetEsquema(String server, String database, String user, String password) in C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\ar.com.bic.dao\MySQLEsquemaDAO.cs:line 30
-   at test.MySQLEsquemaDaoTest.GetEsquemaTest() in c:\documents and settings\fernando\my documents\utn\proyecto\bic\test\mysqlesquemadaotest.cs.cs:line 21
---SocketException
-   at System.Net.Dns.GetHostByName(String hostName)
-   at MySql.Data.Common.StreamCreator.GetStream(UInt32 timeOut)
-   at MySql.Data.MySqlClient.NativeDriver.Open()
-]]></stack-trace>
-                    </failure>
-                  </test-case>
+                  <test-case name="test.MySQLEsquemaDaoTest.GetEsquemaTest" executed="True" success="True" time="188.875" asserts="2" />
                 </results>
               </test-suite>
             </results>

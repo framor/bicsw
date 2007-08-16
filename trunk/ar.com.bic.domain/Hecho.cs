@@ -12,24 +12,28 @@ namespace ar.com.bic.domain
 	{
 		
 		private string nombre;
-		private Columna ColumnaHecho;
+		private Campo CampoHecho;
 
-		public Hecho(string nombre, Columna columna)
+		public Hecho(string nombre, Campo campo)
 		{
 			this.nombre = nombre;
-			this.ColumnaHecho = columna;
+			this.CampoHecho = campo;
 		}
 
 		#region Metodos Publicos
 			
 		public ArrayList GetTablas()
 		{
-			return this.ColumnaHecho.Tablas;
+			// return this.CampoHecho.Tablas;
+			// TODO: el campo no conoce todas las tablas que tambien tienen un campo igual a el.
+			// el campo es una representacion del esquema de la bd.
+			// esto lo debería resolver otro objeto.
+			return null;
 		}
 
-		public Columna GetColumna()
+		public Campo GetCampo()
 		{
-			return this.ColumnaHecho;
+			return this.CampoHecho;
 		}
 
 		#endregion

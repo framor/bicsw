@@ -12,7 +12,7 @@ namespace ar.com.bic.domain.interfaces
 	
 		ArrayList GetTablas();
 
-		Columna GetColumna();
+		Campo GetCampo();
 		
 	}
 }

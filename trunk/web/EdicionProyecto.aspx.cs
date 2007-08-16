@@ -53,7 +53,7 @@ namespace bic
 					this.txtDescripcion.Text = p.Descripcion;
 					this.txtServidor.Text = p.Servidor;
 					this.txtPuerto.Text = p.Puerto.ToString();
-					this.txtEsquema.Text = p.Esquema;
+					this.txtEsquema.Text = p.Database;
 					this.txtUsuario.Text = p.Usuario;
 					this.txtPassword.Text = p.Password;
 				}
@@ -99,7 +99,7 @@ namespace bic
 			p.Descripcion = this.txtDescripcion.Text;
 			p.Servidor = this.txtServidor.Text;
 			p.Puerto = Int32.Parse(this.txtPuerto.Text);
-			p.Esquema = this.txtEsquema.Text;
+			p.Database = this.txtEsquema.Text;
 			p.Usuario = this.txtUsuario.Text;
 			p.Password = this.txtPassword.Text;
 

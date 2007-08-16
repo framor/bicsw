@@ -1,3 +1,6 @@
+using System.Collections;
+using ar.com.bic.domain.esquema;
+
 namespace ar.com.bic.domain
 {
 	/// <summary>
@@ -9,10 +12,13 @@ namespace ar.com.bic.domain
 		private string nombre;
 		private string descripcion;
 
+		private IList campos = new ArrayList();
+		private IList tablas = new ArrayList();
+
 		/* Conexion a BD */
 		private string servidor;
 		private int puerto;
-		private string esquema;
+		private string database;
 		private string usuario;
 		private string password;
 
@@ -53,10 +59,10 @@ namespace ar.com.bic.domain
 			set { puerto = value; }
 		}
 
-		public string Esquema
+		public string Database
 		{
-			get { return esquema; }
-			set { esquema = value; }
+			get { return database; }
+			set { database = value; }
 		}
 
 		public string Usuario
@@ -70,5 +76,49 @@ namespace ar.com.bic.domain
 			get { return password; }
 			set { password = value; }
 		}
+
+		/// <summary>
+		/// Campos existentes en el proyecto
+		/// </summary>
+		public IList Campos
+		{
+			get {return new ArrayList(this.campos); }
+		}
+		/// <summary>
+		/// Las Tablas que se agregaron al proyecto (en la BD pueden existir más)
+		/// </summary>
+		public IList Tablas
+		{
+			get {return new ArrayList(this.tablas); }
+		}
+
+		public void AgregarTabla(Tabla tbl)
+		{
+			this.tablas.Add(tbl);
+			foreach (Columna col in tbl.Columnas)
+			{
+				NotificarColumna(col);
+			}
+		}
+
+		/// <summary>
+		/// Informa al catálogo que se agregó una columna al mismo de forma
+		/// de ir extrayendo los campos
+		/// </summary>
+		/// <param name="col"></param>
+		private void NotificarColumna(Columna col)
+		{
+			foreach (Campo campo in this.campos)
+			{
+				if (campo.Nombre.Equals(col.Nombre))
+				{
+					return;
+				}
+			}
+			// si no existe, lo creo y lo agrego al catalogo
+			Campo nuevoCampo = new Campo(col);
+			this.campos.Add(nuevoCampo);	
+		}
+
 	}
 }
