@@ -18,33 +18,33 @@ namespace ar.com.bic.application.impl
 		/// <summary>
 		/// Implementacion de ProyectoService.save
 		/// </summary>
-		public void save(Proyecto unProyecto) 
+		public void Save(Proyecto unProyecto) 
 		{
-			this.GenericDAO.save(unProyecto);
+			this.GenericDAO.Save(unProyecto);
 		}
 
 		/// <summary>
 		/// Implementacion de ProyectoService.retrieve
 		/// </summary>
-		public Proyecto retrieve(long id) 
+		public Proyecto Retrieve(long id) 
 		{
-			return (Proyecto) this.GenericDAO.retrieve(typeof(Proyecto), id); 
+			return (Proyecto) this.GenericDAO.Retrieve(typeof(Proyecto), id); 
 		}
 
 		/// <summary>
 		/// Implementacion de ProyectoService.select
 		/// </summary>
-		public ICollection select() 
+		public ICollection Select() 
 		{
-			return this.GenericDAO.select(typeof(Proyecto));
+			return this.GenericDAO.Select(typeof(Proyecto));
 		}
 
 		/// <summary>
 		/// Implementacion de ProyectoService.delete
 		/// </summary>
-		public void delete(long id)
+		public void Delete(long id)
 		{
-			this.GenericDAO.delete(typeof(Proyecto), id);
+			this.GenericDAO.Delete(typeof(Proyecto), id);
 		}
 
 	}

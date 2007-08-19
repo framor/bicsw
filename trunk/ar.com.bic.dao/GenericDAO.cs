@@ -19,7 +19,7 @@ namespace ar.com.bic.dao
 		/// Persiste un objeto a través de NHibernate
 		/// </summary>
 		/// <param name="persistentObject">el objecto a grabar</param>
-		public void save(Object persistentObject)  
+		public void Save(Object persistentObject)  
 		{
 			HibernateTemplate.SaveOrUpdate(persistentObject);
 		}
@@ -30,7 +30,7 @@ namespace ar.com.bic.dao
 		/// <param name="entityType">El tipo de objeto</param>
 		/// <param name="id">El id de objeto</param>
 		/// <returns>El objeto obtenido</returns>
-		public Object retrieve(Type entityType, long id) 
+		public Object Retrieve(Type entityType, long id) 
 		{			
 			return HibernateTemplate.Get(entityType, id);
 		}
@@ -40,7 +40,7 @@ namespace ar.com.bic.dao
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>
 		/// <returns>Una coleccion de los objetos</returns>
-		public ICollection select(Type entityType) 
+		public ICollection Select(Type entityType) 
 		{
 			return HibernateTemplate.Find("from " + entityType.Name);
 		}
@@ -50,7 +50,7 @@ namespace ar.com.bic.dao
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>
 		/// <param name="id">El id del objeto </param>
-		public void delete(Type entityType, long id) 
+		public void Delete(Type entityType, long id) 
 		{
 			HibernateTemplate.Delete("from " + entityType.Name + " o where o.id =" + id);
 		}

@@ -32,7 +32,7 @@ namespace bic
 			if (!Page.IsPostBack) 
 			{
 				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(ProyectoId).Nombre;
+				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
 			}
 		}
 

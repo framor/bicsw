@@ -1,20 +1,19 @@
 using System;
 using System.Data;
-using System.Text;
-using ar.com.bic.domain.esquema;
+using ar.com.bic.domain.catalogo;
 using MySql.Data.MySqlClient;
 
 namespace ar.com.bic.dao
 {
 	/// <summary>
-	/// Este DAO se encarga de leer la información del esquema de la BD
+	/// Este DAO se encarga de leer la información del catalogo de la BD
 	/// </summary>
-	public class MySQLEsquemaDAO
+	public class MySQLDAO
 	{
 
-		private static readonly string GET_CATALOGO_SQL = "SELECT table_name, column_name, data_type, table_schema FROM `information_schema`.`COLUMNS`";
+		private static readonly string GET_CATALOGO_SQL = "SELECT table_name, column_name, data_type, table_schema FROM `information_schema`.`COLUMNS` where table_schema = ?database";
 
-		public MySQLEsquemaDAO()
+		public MySQLDAO()
 		{
 		}
 
@@ -43,21 +42,21 @@ namespace ar.com.bic.dao
 				if (ds.Tables.Count != 0 && ds.Tables[0].Rows.Count != 0)
 				{	
 					t = new Tabla(ds.Tables[0].Rows[0].ItemArray[0].ToString(), ds.Tables[0].Rows[0].ItemArray[3].ToString());
-					nombreTablaAnterior = t.NombreTabla;
+					nombreTablaAnterior = t.Nombre;
 				}
 
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					t.NombreTabla = dr.ItemArray[0].ToString();
+					t.Nombre = dr.ItemArray[0].ToString();
 					t.NombreBD = dr.ItemArray[3].ToString();
-					if (!t.NombreTabla.Equals(nombreTablaAnterior))
+					if (!t.Nombre.Equals(nombreTablaAnterior))
 					{
 						cat.AgregarTabla(t);
-						t = new Tabla(t.NombreTabla, t.NombreBD);
+						t = new Tabla(t.Nombre, t.NombreBD);
 					}
 					Columna c = new Columna(dr.ItemArray[1].ToString(), dr.ItemArray[2].ToString(), t);
 					t.AgregarColumna(c);
-					nombreTablaAnterior = t.NombreTabla;
+					nombreTablaAnterior = t.Nombre;
 				}
 				con.Close();
 				return cat;

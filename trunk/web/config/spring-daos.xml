@@ -19,5 +19,8 @@
 	<object id="proyectoDAO" type="ar.com.bic.dao.ProyectoDAO, ar.com.bic.dao" >
 		<property name="SessionFactory" ref="sessionFactory"/>	
 	</object>
+
+	<object id="mySQLDAO" type="ar.com.bic.dao.MySQLDAO, ar.com.bic.dao" >
+	</object>
 	
 </objects>

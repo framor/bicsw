@@ -24,23 +24,23 @@ namespace ar.com.bic.application.impl
 		/// <summary>
 		/// Implementacion de AtributoService.save
 		/// </summary>
-		public void save(Atributo unAtributo) 
+		public void Save(Atributo unAtributo) 
 		{
-			this.GenericDAO.save(unAtributo);
+			this.GenericDAO.Save(unAtributo);
 		}
 
 		/// <summary>
 		/// Implementacion de AtributoService.retrieve
 		/// </summary>
-		public Atributo retrieve(long id) 
+		public Atributo Retrieve(long id) 
 		{
-			return (Atributo) this.GenericDAO.retrieve(typeof(Atributo), id); 
+			return (Atributo) this.GenericDAO.Retrieve(typeof(Atributo), id); 
 		}
 
 		/// <summary>
 		/// Implementacion de AtributoService.select
 		/// </summary>
-		public ICollection select(long proyectoId) 
+		public ICollection Select(long proyectoId) 
 		{
 			return this.ProyectoDAO.selectAtributos(proyectoId);
 		}
@@ -48,9 +48,9 @@ namespace ar.com.bic.application.impl
 		/// <summary>
 		/// Implementacion de AtributoService.delete
 		/// </summary>
-		public void delete(long id)
+		public void Delete(long id)
 		{
-			this.GenericDAO.delete(typeof(Atributo), id);
+			this.GenericDAO.Delete(typeof(Atributo), id);
 		}
 
 	}

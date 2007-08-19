@@ -48,12 +48,12 @@ namespace bic
 				ViewState["id"] = id;
 				if (id != -1)
 				{
-					Proyecto p = BICContext.Instance.ProyectoService.retrieve(id);
+					Proyecto p = BICContext.Instance.ProyectoService.Retrieve(id);
 					this.txtNombre.Text = p.Nombre;
 					this.txtDescripcion.Text = p.Descripcion;
 					this.txtServidor.Text = p.Servidor;
 					this.txtPuerto.Text = p.Puerto.ToString();
-					this.txtEsquema.Text = p.Database;
+					this.txtEsquema.Text = p.NombreBD;
 					this.txtUsuario.Text = p.Usuario;
 					this.txtPassword.Text = p.Password;
 				}
@@ -93,17 +93,17 @@ namespace bic
 			} 
 			else 
 			{
-				p = BICContext.Instance.ProyectoService.retrieve(id);
+				p = BICContext.Instance.ProyectoService.Retrieve(id);
 			}			
 			p.Nombre = this.txtNombre.Text;
 			p.Descripcion = this.txtDescripcion.Text;
 			p.Servidor = this.txtServidor.Text;
 			p.Puerto = Int32.Parse(this.txtPuerto.Text);
-			p.Database = this.txtEsquema.Text;
+			p.NombreBD = this.txtEsquema.Text;
 			p.Usuario = this.txtUsuario.Text;
 			p.Password = this.txtPassword.Text;
 
-			BICContext.Instance.ProyectoService.save(p);
+			BICContext.Instance.ProyectoService.Save(p);
 			Response.Redirect("ListaProyecto.aspx");
 		}
 

@@ -56,7 +56,7 @@ namespace bic
 		{
 			string usuario = this.txtUsuario.Text;
 			string contrasena = this.txtContrasena.Text;
-			if (BICContext.Instance.UsuarioService.login(usuario, contrasena))
+			if (BICContext.Instance.UsuarioService.Login(usuario, contrasena))
 			{
 				Session["usuario"] = usuario;
 				Response.Redirect("ListaProyecto.aspx");

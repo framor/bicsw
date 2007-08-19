@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using ar.com.bic.domain.interfaces;
-using ar.com.bic.domain.esquema;
 
 namespace ar.com.bic.domain
 {
@@ -28,7 +26,7 @@ namespace ar.com.bic.domain
 
 		#region Metodos Publicos
 			
-		public ArrayList GetTablas()
+		public IList GetTablas()
 		{
 			return this.hecho.GetTablas();
 		}

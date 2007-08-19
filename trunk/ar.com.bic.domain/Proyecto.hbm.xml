@@ -8,7 +8,7 @@
         <property name="descripcion" column="descripcion" type="String" access="field"/> 
         <property name="servidor" column="servidor" type="String" access="field"/>
 		<property name="puerto" column="puerto" type="int" access="field"/>
-		<property name="esquema" column="esquema" type="String" access="field"/>
+		<property name="nombreBD" column="nombreBD" type="String" access="field"/>
 		<property name="usuario" column="usuario" type="String" access="field"/>
 		<property name="password" column="password" type="String" access="field"/>
     </class>

@@ -24,13 +24,14 @@ namespace bic
 		protected System.Web.UI.WebControls.TextBox txtNombre;
 		protected System.Web.UI.WebControls.TextBox txtCampoId;
 		protected System.Web.UI.WebControls.TextBox txtCampoDescripcion;
-		protected System.Web.UI.WebControls.TextBox txtTablaLookup;
+		protected System.Web.UI.WebControls.DropDownList ddlTablaLookup;
 
 		protected System.Web.UI.WebControls.Button btnAceptar;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqNombre;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqCampoId;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqCampoDescripcion;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqTablaLookup;
+		protected System.Web.UI.WebControls.ValidationSummary valSummary;
 		protected System.Web.UI.WebControls.Button btnCancelar;
 
 		private long ProyectoId
@@ -43,17 +44,20 @@ namespace bic
 			if (!Page.IsPostBack) 
 			{
 				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(ProyectoId).Nombre;
+				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
+
+				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(ProyectoId);
+				this.ddlTablaLookup.DataBind();
 
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
 				if (id != -1)
 				{
-					Atributo a = BICContext.Instance.AtributoService.retrieve(id);
+					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 					this.txtNombre.Text = a.Nombre;
 					this.txtCampoId.Text = a.CampoId.Nombre;
 					//this.txtCampoDescripcion.Text = a.CampoDescripcion;
-					//this.txtTablaLookup.Text = a.TablaLookup;
+					//this.ddlTablaLookup.SelectedValue = a.TablaLookup.Nombre;
 				}
 
 			}
@@ -93,15 +97,15 @@ namespace bic
 			} 
 			else 
 			{
-				a = BICContext.Instance.AtributoService.retrieve(id);
+				a = BICContext.Instance.AtributoService.Retrieve(id);
 			}			
 			a.Nombre = this.txtNombre.Text;
 			//a.CampoId.Nombre = this.txtCampoId.Text;
 			//a.CampoDescripcion = this.txtCampoDescripcion.Text;
-			//a.TablaLookup = this.txtTablaLookup.Text;
-			a.Proyecto = BICContext.Instance.ProyectoService.retrieve(ProyectoId);
+			//a.TablaLookup = BICContext.Instance..txtTablaLookup.Text;
+			a.Proyecto = BICContext.Instance.ProyectoService.Retrieve(ProyectoId);
 
-			BICContext.Instance.AtributoService.save(a);
+			BICContext.Instance.AtributoService.Save(a);
 			Response.Redirect("ListaAtributo.aspx");
 		}
 

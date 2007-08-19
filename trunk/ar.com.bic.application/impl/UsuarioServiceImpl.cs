@@ -25,36 +25,36 @@ namespace ar.com.bic.application.impl
 		/// <summary>
 		/// Implementacion de UsuarioService.save
 		/// </summary>
-		public void save(Usuario unUsuario) 
+		public void Save(Usuario unUsuario) 
 		{
-			this.GenericDAO.save(unUsuario);
+			this.GenericDAO.Save(unUsuario);
 		}
 
 		/// <summary>
 		/// Implementacion de UsuarioService.retrieve
 		/// </summary>
-		public Usuario retrieve(long id) 
+		public Usuario Retrieve(long id) 
 		{
-			return (Usuario) this.GenericDAO.retrieve(typeof(Usuario), id); 
+			return (Usuario) this.GenericDAO.Retrieve(typeof(Usuario), id); 
 		}
 
 		/// <summary>
 		/// Implementacion de UsuarioService.select
 		/// </summary>
-		public ICollection select() 
+		public ICollection Select() 
 		{
-			return this.GenericDAO.select(typeof(Usuario));
+			return this.GenericDAO.Select(typeof(Usuario));
 		}
 
 		/// <summary>
 		/// Implementacion de UsuarioService.delete
 		/// </summary>
-		public void delete(long id)
+		public void Delete(long id)
 		{
-			this.GenericDAO.delete(typeof(Usuario), id);
+			this.GenericDAO.Delete(typeof(Usuario), id);
 		}
 
-		public bool login(string usuario, string contrasena)
+		public bool Login(string usuario, string contrasena)
 		{
 			Usuario u = this.usuarioDAO.getByNombre(usuario);
 			return u != null && u.Clave.Equals(contrasena);

@@ -1,5 +1,5 @@
 using System.Collections;
-using ar.com.bic.domain.esquema;
+using ar.com.bic.domain.catalogo;
 
 namespace ar.com.bic.domain
 {
@@ -18,15 +18,12 @@ namespace ar.com.bic.domain
 		/* Conexion a BD */
 		private string servidor;
 		private int puerto;
-		private string database;
+		private string nombreBD;
 		private string usuario;
 		private string password;
 
 		public Proyecto()
 		{
-			//
-			// TODO: agregar aquí la lógica del constructor
-			//
 		}
 
 		public long Id 
@@ -59,10 +56,10 @@ namespace ar.com.bic.domain
 			set { puerto = value; }
 		}
 
-		public string Database
+		public string NombreBD
 		{
-			get { return database; }
-			set { database = value; }
+			get { return nombreBD; }
+			set { nombreBD = value; }
 		}
 
 		public string Usuario

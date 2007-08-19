@@ -1,28 +1,20 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
-using ar.com.bic.domain;
 
 namespace bic
 {
 	/// <summary>
 	/// Descripción breve de WebForm1.
 	/// </summary>
-	public class ListaProyecto : System.Web.UI.Page
+	public class ListaProyecto : Page
 	{
-		protected System.Web.UI.WebControls.Button btnNuevo;
-		protected System.Web.UI.WebControls.DataGrid dgProyectos;
-		protected System.Web.UI.WebControls.Label lblUsuario;
+		protected Button btnNuevo;
+		protected DataGrid dgProyectos;
+		protected Label lblUsuario;
 	
-		private void Page_Load(object sender, System.EventArgs e)
+		private void Page_Load(object sender, EventArgs e)
 		{
 			if (!Page.IsPostBack)
 			{
@@ -47,10 +39,10 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgProyectos.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgProyectos_ItemCommand);
-			this.dgProyectos.ItemCreated += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgProyectos_ItemCreated);
-			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
+			this.dgProyectos.ItemCommand += new DataGridCommandEventHandler(this.dgProyectos_ItemCommand);
+			this.dgProyectos.ItemCreated += new DataGridItemEventHandler(this.dgProyectos_ItemCreated);
+			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
+			this.Load += new EventHandler(this.Page_Load);
 
 		}
 		#endregion
@@ -73,9 +65,9 @@ namespace bic
 		private void dgProyectos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgProyectos.DataKeys[e.Item.ItemIndex];
-			if (e.CommandName.Equals("Delete"))
+			if (e.CommandName.Equals("Borrar"))
 			{
-				BICContext.Instance.ProyectoService.delete(id);
+				BICContext.Instance.ProyectoService.Delete(id);
 				listProyectos();
 			}
 			else if (e.CommandName.Equals("Seleccionar"))
@@ -87,11 +79,11 @@ namespace bic
 
 		private void listProyectos()
 		{
-			dgProyectos.DataSource = BICContext.Instance.ProyectoService.select();
+			dgProyectos.DataSource = BICContext.Instance.ProyectoService.Select();
 			dgProyectos.DataBind();
 		}
 
-		private void btnNuevo_Click(object sender, System.EventArgs e)
+		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("EdicionProyecto.aspx?id=-1");
 		}

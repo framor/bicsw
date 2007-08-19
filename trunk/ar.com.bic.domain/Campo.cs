@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
+using ar.com.bic.domain.catalogo;
+using ar.com.bic.fwk;
 
-namespace ar.com.bic.domain.esquema
+namespace ar.com.bic.domain
 {
 	/// <summary>
 	/// Un campo es la unificación de todas las columnas que tienen el 
@@ -12,8 +13,17 @@ namespace ar.com.bic.domain.esquema
 	/// </summary>
 	public class Campo
 	{
+		private long id;
 		private string nombre;
 		private ArrayList columnas = new ArrayList();
+
+		private Campo() {}
+
+		public long Id 
+		{
+			get { return this.id; }
+			set { this.id = value; }
+		}
 
 		public string Nombre
 		{
@@ -23,11 +33,24 @@ namespace ar.com.bic.domain.esquema
 		/// <summary>
 		/// Columnas que corresponden a este campo
 		/// </summary>
-		public ArrayList Columnas
+		public IList Columnas
 		{
 			get {return new ArrayList(this.columnas);}
 		}
 		
+		public IList Tablas
+		{
+			get
+			{
+				IList tablas = new ArrayList();
+				foreach (Columna col in this.columnas)
+				{
+					tablas.Add(col.Tabla);
+				}
+				return Util.ConvertirSet(tablas);
+			}
+		}
+
 		public void AgregarColumnas(Columna col)
 		{
 			this.columnas.Add(col);

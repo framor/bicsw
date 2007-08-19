@@ -1,13 +1,6 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
 
 namespace bic
@@ -15,24 +8,24 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de ListaAtributo.
 	/// </summary>
-	public class ListaAtributo : System.Web.UI.Page
+	public class ListaAtributo : Page
 	{
-		protected System.Web.UI.WebControls.Label lblUsuario;
-		protected System.Web.UI.WebControls.Label lblProyecto;
-		protected System.Web.UI.WebControls.DataGrid dgAtributos;
-		protected System.Web.UI.WebControls.Button btnNuevo;
+		protected Label lblUsuario;
+		protected Label lblProyecto;
+		protected DataGrid dgAtributos;
+		protected Button btnNuevo;
 
 		private long ProyectoId
 		{
 			get { return (long) Session["proyectoId"]; }
 		}
 
-		private void Page_Load(object sender, System.EventArgs e)
+		private void Page_Load(object sender, EventArgs e)
 		{
 			if (!Page.IsPostBack) 
 			{
 				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.retrieve(ProyectoId).Nombre;
+				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
 				listAtributos();
 			}
 		}
@@ -53,10 +46,10 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.Load += new System.EventHandler(this.Page_Load);
-			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-			this.dgAtributos.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgAtributos_ItemCommand);
-			this.dgAtributos.ItemCreated += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgAtributos_ItemCreated);
+			this.Load += new EventHandler(this.Page_Load);
+			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
+			this.dgAtributos.ItemCommand += new DataGridCommandEventHandler(this.dgAtributos_ItemCommand);
+			this.dgAtributos.ItemCreated += new DataGridItemEventHandler(this.dgAtributos_ItemCreated);
 		}
 		#endregion
 
@@ -78,17 +71,17 @@ namespace bic
 		private void dgAtributos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgAtributos.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.AtributoService.delete(id);
+			BICContext.Instance.AtributoService.Delete(id);
 			listAtributos();
 		}
 
 		private void listAtributos()
 		{
-			dgAtributos.DataSource = BICContext.Instance.AtributoService.select(ProyectoId);
+			dgAtributos.DataSource = BICContext.Instance.AtributoService.Select(ProyectoId);
 			dgAtributos.DataBind();
 		}
 
-		private void btnNuevo_Click(object sender, System.EventArgs e)
+		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("EdicionAtributo.aspx?id=-1");
 		}

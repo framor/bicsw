@@ -1,27 +1,19 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
-using ar.com.bic.domain;
 
 namespace bic
 {
 	/// <summary>
 	/// Descripción breve de WebForm1.
 	/// </summary>
-	public class ListaUsuario : System.Web.UI.Page
+	public class ListaUsuario : Page
 	{
-		protected System.Web.UI.WebControls.Button btnNuevo;
-		protected System.Web.UI.WebControls.DataGrid dgUsuarios;
+		protected Button btnNuevo;
+		protected DataGrid dgUsuarios;
 	
-		private void Page_Load(object sender, System.EventArgs e)
+		private void Page_Load(object sender, EventArgs e)
 		{
 			listUsuarios();
 		}
@@ -42,9 +34,9 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgUsuarios.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
-			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
+			this.dgUsuarios.ItemCommand += new DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
+			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
+			this.Load += new EventHandler(this.Page_Load);
 
 		}
 		#endregion
@@ -53,17 +45,17 @@ namespace bic
 		private void dgUsuarios_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.UsuarioService.delete(id);
+			BICContext.Instance.UsuarioService.Delete(id);
 			listUsuarios();
 		}
 
 		private void listUsuarios()
 		{
-			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.select();
+			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.Select();
 			dgUsuarios.DataBind();
 		}
 
-		private void btnNuevo_Click(object sender, System.EventArgs e)
+		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("EdicionUsuario.aspx?id=-1");
 		}

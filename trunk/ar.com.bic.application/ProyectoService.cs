@@ -14,25 +14,25 @@ namespace ar.com.bic.application
 		/// Persiste un proyecto
 		/// </summary>
 		/// <param name="unProyecto">EL proyecto a ser grabado</param>
-		void save(Proyecto unProyecto); 
+		void Save(Proyecto unProyecto); 
 
 		/// <summary>
 		/// Obtiene un proyecto a través de su id
 		/// </summary>
 		/// <param name="id">El id de proyecto</param>
 		/// <returns>El proyecto correspondiente</returns>
-		Proyecto retrieve(long id);
+		Proyecto Retrieve(long id);
 
 		/// <summary>
 		/// Obtiene todos los proyectos
 		/// </summary>
 		/// <returns>Una coleccion de proyectos</returns>
-		ICollection select();
+		ICollection Select();
 
 		/// <summary>
 		/// Elimina un proyecto
 		/// </summary>
 		/// <param name="id">El id de proyecto</param>
-		void delete(long id);
+		void Delete(long id);
 	}
 }

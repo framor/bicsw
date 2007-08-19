@@ -1,6 +1,5 @@
-using System;
 using System.Collections;
-using ar.com.bic.domain.esquema;
+using ar.com.bic.domain.catalogo;
 
 namespace ar.com.bic.domain
 {

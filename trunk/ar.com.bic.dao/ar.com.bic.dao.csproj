@@ -119,7 +119,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MySQLEsquemaDAO.cs"
+                    RelPath = "MySQLDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
