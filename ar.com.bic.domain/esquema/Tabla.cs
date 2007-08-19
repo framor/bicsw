@@ -4,22 +4,22 @@ using ar.com.bic.domain.interfaces;
 
 namespace ar.com.bic.domain.esquema
 {
-	/// <summary>
-	/// Descripción breve de Tabla.
-	/// </summary>
+	/// Una tabla es una representación de una tabla de la BD. 
+	/// Tiene un nombre y está compuesta por varias columnas. 
 	public class Tabla
 	{
 		private string alias;
-		private string nombreBD;
 		private string nombreTabla;
+		private string nombreBD;
 		private IList columnas = new ArrayList();
 
-		public Tabla(string alias, string nombreBD, string nombreTabla)
+		public Tabla(string alias, string nombreTabla, string nombreBD)
 		{
 			this.alias = alias;
-			this.nombreBD = nombreBD;
 			this.nombreTabla = nombreTabla;
+			this.nombreBD  = nombreBD;
 		}
+		public Tabla(string nombreTabla, string nombreBD) : this(nombreTabla, nombreTabla, nombreBD) {}
 
 		public IList Columnas
 		{
@@ -37,27 +37,15 @@ namespace ar.com.bic.domain.esquema
 			set {this.nombreTabla = value;}
 		}
 
+		public string NombreBD
+		{
+			get {return this.nombreBD; }
+			set {this.nombreBD = value;}
+		}
+
 		public void AgregarColumna(Columna col)
 		{
 			this.columnas.Add(col);
 		}
-		
-
-		public bool Tenes(IList listaColumnas)
-		{
-			foreach(ITablaMapeable columna in listaColumnas)
-			{
-				if(!this.Tenes(columna.GetColumna()))
-					return false;
-			}
-
-			return true;
-		}
-
-		public bool Tenes(Columna columna)
-		{
-			return this.Columnas.Contains(columna);
-		}
-
 	}
 }
