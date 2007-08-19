@@ -11,4 +11,5 @@ Add your content here.
    * ids sinteticos (long)
    * agregar scripts db a carpeta scripts
    * hbms como embedded resource
-   * select, rettrieve, save
+   * columnas en bd con separaciond de underscore (ej. tabla_lookup_id)
+   * nombre de métodos en daos y servicios: select, retrieve, save
