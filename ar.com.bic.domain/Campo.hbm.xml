@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="ar.com.bic.domain.Campo, ar.com.bic.domain" table="campo">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/> 
+    </class>
+</hibernate-mapping>

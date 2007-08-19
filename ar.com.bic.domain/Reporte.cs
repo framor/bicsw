@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
+using ar.com.bic.domain.catalogo;
 using ar.com.bic.domain.interfaces;
-using ar.com.bic.domain.esquema;
 using ar.com.bic.fwk;
 
 namespace ar.com.bic.domain
@@ -98,11 +97,7 @@ namespace ar.com.bic.domain
 			return tablas;
 		}
 
-<<<<<<< .mine
-		public ArrayList DameTablas(IList campos)
-=======
-		public IList DameTablas(IList columnas)
->>>>>>> .theirs
+		public IList DameTablas(IList campos)
 		{
 			
 			ArrayList tablas = new ArrayList();

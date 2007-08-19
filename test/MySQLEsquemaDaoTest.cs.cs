@@ -1,6 +1,6 @@
-using ar.com.bic.domain.esquema;
-using NUnit.Framework;
 using ar.com.bic.dao;
+using ar.com.bic.domain.catalogo;
+using NUnit.Framework;
 
 namespace test
 {
@@ -13,7 +13,7 @@ namespace test
 
 		public MySQLEsquemaDaoTest() {}
 
-		private MySQLEsquemaDAO dao = new MySQLEsquemaDAO();
+		private MySQLDAO dao = new MySQLDAO();
 
 		[Test]
 		public void GetEsquemaTest()

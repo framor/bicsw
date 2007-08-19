@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using ar.com.bic.domain.interfaces;
-using ar.com.bic.domain.esquema;
 
 namespace ar.com.bic.domain
 {
@@ -22,13 +20,9 @@ namespace ar.com.bic.domain
 
 		#region Metodos Publicos
 			
-		public ArrayList GetTablas()
+		public IList GetTablas()
 		{
-			// return this.CampoHecho.Tablas;
-			// TODO: el campo no conoce todas las tablas que tambien tienen un campo igual a el.
-			// el campo es una representacion del esquema de la bd.
-			// esto lo debería resolver otro objeto.
-			return null;
+			return this.CampoHecho.Tablas;
 		}
 
 		public Campo GetCampo()

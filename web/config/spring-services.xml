@@ -46,5 +46,15 @@
 		<property name="proyectoDAO" ref="proyectoDAO"/>			
 	</object>
 
+	<object id="catalogoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.CatalogoService"/>
+		<property name="target" ref="catalogoServiceImpl"/>
+	</object>			
+	<object id="catalogoServiceImpl" type="ar.com.bic.application.impl.CatalogoServiceImpl, ar.com.bic.application">
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="mySQLDAO" ref="mySQLDAO"/>			
+	</object>
+
 </objects>
 

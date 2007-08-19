@@ -124,6 +124,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CatalogoService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ProyectoService.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -135,6 +140,11 @@
                 />
                 <File
                     RelPath = "impl\AtributoServiceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "impl\CatalogoServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

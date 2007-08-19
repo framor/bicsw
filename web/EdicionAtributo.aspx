@@ -73,8 +73,9 @@
 							<tr>
 								<td><b>LookUp Table</b></td>
 								<td>
-									<asp:TextBox id="txtTablaLookup" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqTablaLookup" Runat="server" ControlToValidate="txtTablaLookup" ErrorMessage="Por favor complete la Tabla Lookup.">*</asp:RequiredFieldValidator>
+									<asp:DropDownList id="ddlTablaLookup" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqTablaLookup" Runat="server" ControlToValidate="ddlTablaLookup" ErrorMessage="Por favor complete la Tabla Lookup.">*</asp:RequiredFieldValidator>
+									
 								</td>
 							</tr>
 							<tr>

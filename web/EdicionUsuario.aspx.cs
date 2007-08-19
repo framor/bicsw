@@ -1,13 +1,6 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
 using ar.com.bic.domain;
 
@@ -16,14 +9,14 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de EdicionUsuario.
 	/// </summary>
-	public class EdicionUsuario : System.Web.UI.Page
+	public class EdicionUsuario : Page
 	{
-		protected System.Web.UI.WebControls.Button btnCancelar;
-		protected System.Web.UI.WebControls.TextBox txtNombre;
-		protected System.Web.UI.WebControls.TextBox txtClave;
-		protected System.Web.UI.WebControls.Button btnAceptar;
+		protected Button btnCancelar;
+		protected TextBox txtNombre;
+		protected TextBox txtClave;
+		protected Button btnAceptar;
 	
-		private void Page_Load(object sender, System.EventArgs e)
+		private void Page_Load(object sender, EventArgs e)
 		{
 			if (!Page.IsPostBack) 
 			{
@@ -31,7 +24,7 @@ namespace bic
 				ViewState["id"] = id;
 				if (id != -1)
 				{
-					Usuario u = BICContext.Instance.UsuarioService.retrieve(id);
+					Usuario u = BICContext.Instance.UsuarioService.Retrieve(id);
 					this.txtNombre.Text = u.Nombre;
 					this.txtClave.Text = u.Clave;
 				}
@@ -54,14 +47,14 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
+			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
+			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+			this.Load += new EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void btnAceptar_Click(object sender, System.EventArgs e)
+		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
 			Usuario u;
@@ -72,14 +65,14 @@ namespace bic
 			} 
 			else 
 			{
-				u = BICContext.Instance.UsuarioService.retrieve(id);
+				u = BICContext.Instance.UsuarioService.Retrieve(id);
 			}			
 			u.Clave = this.txtClave.Text;
-			BICContext.Instance.UsuarioService.save(u);
+			BICContext.Instance.UsuarioService.Save(u);
 			Response.Redirect("ListaUsuario.aspx");
 		}
 
-		private void btnCancelar_Click(object sender, System.EventArgs e)
+		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("ListaUsuario.aspx");
 		}

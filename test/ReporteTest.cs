@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using ar.com.bic.domain;
-using ar.com.bic.domain.esquema;
 using NUnit.Framework;
 
 namespace test

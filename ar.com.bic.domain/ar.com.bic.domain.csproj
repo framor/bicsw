@@ -108,6 +108,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Campo.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Filtro.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -166,9 +170,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "catalogo\Columna.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "catalogo\Tabla.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "catalogo\Tabla.hbm.xml"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "interfaces\ICamino.cs"
