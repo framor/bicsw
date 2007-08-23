@@ -32,5 +32,22 @@ namespace ar.com.bic.application.impl
 			Catalogo c = this.mySQLDAO.GetCatalogo(p.Servidor, p.NombreBD, p.Usuario, p.Password);
 			return c.Tablas;
 		}
+
+		/// <summary>
+		/// Implementacion de CatalogoServiceImpl.SelectCamposDisponibles
+		/// </summary>
+		public IList SelectCamposDisponibles(long idProyecto)
+		{
+			Proyecto p = (Proyecto) this.GenericDAO.Retrieve(typeof(Proyecto), idProyecto);
+			// FIXME: aca en realidad se debéría retornar p.Campos, 
+			// se esta retornando todo el catalogo para probar
+			Catalogo c = this.mySQLDAO.GetCatalogo(p.Servidor, p.NombreBD, p.Usuario, p.Password);
+			ArrayList ret = new ArrayList();
+			foreach (Tabla t in c.Tablas)
+			{
+				ret.AddRange(t.Columnas);
+			}
+			return ret;
+		}
 	}
 }

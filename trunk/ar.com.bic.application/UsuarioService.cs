@@ -40,7 +40,7 @@ namespace ar.com.bic.application
 		/// </summary>
 		/// <param name="usuario">el nombre de usuario</param>
 		/// <param name="contrasena">la contraseña</param>
-		/// <returns>si son válidos</returns>
-		bool Login(string usuario, string contrasena);
+		/// <returns>el Usuario logeado o null de tener datos invalidos</returns>
+		Usuario Login(string usuario, string contrasena);
 	}
 }

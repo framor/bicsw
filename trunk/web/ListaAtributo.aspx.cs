@@ -8,25 +8,21 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de ListaAtributo.
 	/// </summary>
-	public class ListaAtributo : Page
+	public class ListaAtributo : BasePage
 	{
 		protected Label lblUsuario;
 		protected Label lblProyecto;
 		protected DataGrid dgAtributos;
 		protected Button btnNuevo;
 
-		private long ProyectoId
-		{
-			get { return (long) Session["proyectoId"]; }
-		}
-
 		private void Page_Load(object sender, EventArgs e)
 		{
+			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
-				listAtributos();
+				this.lblUsuario.Text = Usuario.Nombre;
+				this.lblProyecto.Text = Proyecto.Nombre;
+				ListAtributos();
 			}
 		}
 
@@ -72,12 +68,12 @@ namespace bic
 		{
 			long id = (long) this.dgAtributos.DataKeys[e.Item.ItemIndex];
 			BICContext.Instance.AtributoService.Delete(id);
-			listAtributos();
+			ListAtributos();
 		}
 
-		private void listAtributos()
+		private void ListAtributos()
 		{
-			dgAtributos.DataSource = BICContext.Instance.AtributoService.Select(ProyectoId);
+			dgAtributos.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
 			dgAtributos.DataBind();
 		}
 

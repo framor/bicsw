@@ -26,6 +26,7 @@
 
 	<div id="tabs10">
 	  <ul>
+		<li><a href="ListaTabla.aspx" title="Tablas"><span>Tablas</span></a></li>	  
 		<li><a href="ListaAtributo.aspx" title="Atributos"><span>Atributos</span></a></li>
 		<li><a href="ListaHecho.aspx" title="Hechos"><span>Hechos</span></a></li>
 		<li><a href="ListaFiltro.aspx" title="Filtros"><span>Filtros</span></a></li>

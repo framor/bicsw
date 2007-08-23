@@ -8,7 +8,7 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de WebForm1.
 	/// </summary>
-	public class ListaProyecto : Page
+	public class ListaProyecto : BasePage
 	{
 		protected Button btnNuevo;
 		protected DataGrid dgProyectos;
@@ -16,10 +16,11 @@ namespace bic
 	
 		private void Page_Load(object sender, EventArgs e)
 		{
+			BaseLoad();
 			if (!Page.IsPostBack)
 			{
-				listProyectos();
-				this.lblUsuario.Text = Session["usuario"].ToString();
+				ListProyectos();
+				this.lblUsuario.Text = Usuario.Nombre;
 			}
 		}
 
@@ -68,16 +69,16 @@ namespace bic
 			if (e.CommandName.Equals("Borrar"))
 			{
 				BICContext.Instance.ProyectoService.Delete(id);
-				listProyectos();
+				ListProyectos();
 			}
 			else if (e.CommandName.Equals("Seleccionar"))
 			{
-				Session["proyectoId"] = id;
+				Session["proyecto"] = BICContext.Instance.ProyectoService.Retrieve(id);
 				Response.Redirect("Home.aspx");
 			}
 		}
 
-		private void listProyectos()
+		private void ListProyectos()
 		{
 			dgProyectos.DataSource = BICContext.Instance.ProyectoService.Select();
 			dgProyectos.DataBind();
