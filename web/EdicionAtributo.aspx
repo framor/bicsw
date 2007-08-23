@@ -58,15 +58,15 @@
 							<tr>
 								<td><b>ID</b></td>
 								<td>
-									<asp:TextBox id="txtCampoId" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqCampoId" Runat="server" ControlToValidate="txtCampoId" ErrorMessage="Por favor complete el Campo Id.">*</asp:RequiredFieldValidator>
+									<asp:DropDownList id="ddlCampoId" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqCampoId" Runat="server" ControlToValidate="ddlCampoId" ErrorMessage="Por favor complete el Campo Id.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>DESC</b></td>
 								<td>
-									<asp:TextBox id="txtCampoDescripcion" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqCampoDescripcion" Runat="server" ControlToValidate="txtCampoDescripcion"
+									<asp:DropDownList id="ddlCampoDescripcion" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqCampoDescripcion" Runat="server" ControlToValidate="ddlCampoDescripcion"
 										ErrorMessage="Por favor complete el Campo Descripcion.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>

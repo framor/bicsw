@@ -1,38 +1,26 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
-using ar.com.bic.domain;
 
 namespace bic
 {
 	/// <summary>
 	/// Descripción breve de Home.
 	/// </summary>
-	public class Home : System.Web.UI.Page
+	public class Home : BasePage
 	{
 
-		protected System.Web.UI.WebControls.Label lblUsuario;
-		protected System.Web.UI.WebControls.Label lblProyecto;
+		protected Label lblUsuario;
+		protected Label lblProyecto;
 
-		private long ProyectoId
+		private void Page_Load(object sender, EventArgs e)
 		{
-			get { return (long) Session["proyectoId"]; }
-		}
-
-		private void Page_Load(object sender, System.EventArgs e)
-		{
+			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
+				this.lblUsuario.Text = Usuario.Nombre;
+				this.lblProyecto.Text = Proyecto.Nombre;
 			}
 		}
 
@@ -52,7 +40,7 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.Load += new System.EventHandler(this.Page_Load);
+			this.Load += new EventHandler(this.Page_Load);
 		}
 		#endregion
 	}

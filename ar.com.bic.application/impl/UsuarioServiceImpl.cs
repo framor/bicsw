@@ -54,10 +54,14 @@ namespace ar.com.bic.application.impl
 			this.GenericDAO.Delete(typeof(Usuario), id);
 		}
 
-		public bool Login(string usuario, string contrasena)
+		public Usuario Login(string usuario, string contrasena)
 		{
 			Usuario u = this.usuarioDAO.getByNombre(usuario);
-			return u != null && u.Clave.Equals(contrasena);
+			if (u != null && u.Clave.Equals(contrasena))
+			{
+				return u;
+			}
+			return null;
 		}
 	}
 }

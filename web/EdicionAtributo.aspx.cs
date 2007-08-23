@@ -16,14 +16,12 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de EdicionAtributo.
 	/// </summary>
-	public class EdicionAtributo : System.Web.UI.Page
+	public class EdicionAtributo : BasePage
 	{
 		protected System.Web.UI.WebControls.Label lblUsuario;
 		protected System.Web.UI.WebControls.Label lblProyecto;
 
 		protected System.Web.UI.WebControls.TextBox txtNombre;
-		protected System.Web.UI.WebControls.TextBox txtCampoId;
-		protected System.Web.UI.WebControls.TextBox txtCampoDescripcion;
 		protected System.Web.UI.WebControls.DropDownList ddlTablaLookup;
 
 		protected System.Web.UI.WebControls.Button btnAceptar;
@@ -32,22 +30,26 @@ namespace bic
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqCampoDescripcion;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqTablaLookup;
 		protected System.Web.UI.WebControls.ValidationSummary valSummary;
+		protected System.Web.UI.WebControls.DropDownList ddlCampoId;
+		protected System.Web.UI.WebControls.DropDownList ddlCampoDescripcion;
 		protected System.Web.UI.WebControls.Button btnCancelar;
 
-		private long ProyectoId
-		{
-			get { return (long) Session["proyectoId"]; }
-		}
 
 		private void Page_Load(object sender, System.EventArgs e)
 		{
+			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Session["usuario"].ToString();
-				this.lblProyecto.Text = BICContext.Instance.ProyectoService.Retrieve(ProyectoId).Nombre;
+				this.lblUsuario.Text = Usuario.Nombre;
+				this.lblProyecto.Text = Proyecto.Nombre;
 
-				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(ProyectoId);
+				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
 				this.ddlTablaLookup.DataBind();
+				IList campos = BICContext.Instance.CatalogoService.SelectCamposDisponibles(Proyecto.Id);
+				this.ddlCampoDescripcion.DataSource = campos;
+				this.ddlCampoDescripcion.DataBind();
+				this.ddlCampoId.DataSource = campos;
+				this.ddlCampoId.DataBind();
 
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
@@ -55,7 +57,7 @@ namespace bic
 				{
 					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 					this.txtNombre.Text = a.Nombre;
-					this.txtCampoId.Text = a.CampoId.Nombre;
+					//this.txtCampoId.Text = a.CampoId.Nombre;
 					//this.txtCampoDescripcion.Text = a.CampoDescripcion;
 					//this.ddlTablaLookup.SelectedValue = a.TablaLookup.Nombre;
 				}
@@ -103,7 +105,7 @@ namespace bic
 			//a.CampoId.Nombre = this.txtCampoId.Text;
 			//a.CampoDescripcion = this.txtCampoDescripcion.Text;
 			//a.TablaLookup = BICContext.Instance..txtTablaLookup.Text;
-			a.Proyecto = BICContext.Instance.ProyectoService.Retrieve(ProyectoId);
+			a.Proyecto = Proyecto;
 
 			BICContext.Instance.AtributoService.Save(a);
 			Response.Redirect("ListaAtributo.aspx");

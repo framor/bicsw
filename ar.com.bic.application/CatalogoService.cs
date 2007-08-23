@@ -14,5 +14,12 @@ namespace ar.com.bic.application
 		/// <returns></returns>
 		IList SelectTablasDisponibles(long idProyecto);
 
+		/// <summary>
+		/// Obtiene las columnas que existene en la bd configurada
+		/// </summary>
+		/// <param name="idProyecto">El id del proyecto</param>
+		/// <returns></returns>
+		IList SelectCamposDisponibles(long idProyecto);
+
 	}
 }

@@ -132,6 +132,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BasePage.cs"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "EdicionAtributo.aspx"
                     SubType = "Form"
                     BuildAction = "Content"

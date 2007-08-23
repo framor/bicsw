@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
+using ar.com.bic.domain;
 
 namespace bic
 {
@@ -56,9 +57,10 @@ namespace bic
 		{
 			string usuario = this.txtUsuario.Text;
 			string contrasena = this.txtContrasena.Text;
-			if (BICContext.Instance.UsuarioService.Login(usuario, contrasena))
+			Usuario u = BICContext.Instance.UsuarioService.Login(usuario, contrasena);
+			if (u != null)
 			{
-				Session["usuario"] = usuario;
+				Session["usuario"] = u;
 				Response.Redirect("ListaProyecto.aspx");
 			} 
 			else
