@@ -12,5 +12,7 @@ namespace ar.com.bic.domain.interfaces
 
 		Campo GetCampo();
 		
+		IList GetColumnas();
+
 	}
 }

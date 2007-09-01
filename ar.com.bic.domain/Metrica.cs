@@ -35,6 +35,13 @@ namespace ar.com.bic.domain
 		{
 			return this.hecho.GetCampo();
 		}
+
+		public IList GetColumnas()
+		{
+			return this.hecho.GetColumnas();
+		}
+
+
 		#endregion
 
 	}

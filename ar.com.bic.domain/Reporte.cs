@@ -90,8 +90,8 @@ namespace ar.com.bic.domain
 			// Itero en la colleccion de Tablas preguntandole si tiene a todas las metricas
 			foreach(Tabla tabla in tablasFact)
 			{
-//				if(tabla.Tenes(this.Metricas)) 
-//					tablas.Add(tabla);
+				if(tabla.Tenes(this.Metricas)) 
+					tablas.Add(tabla);
 			}
 
 			return tablas;

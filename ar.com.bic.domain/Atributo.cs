@@ -68,5 +68,11 @@ namespace ar.com.bic.domain
 		{
 			return this.campoId;
 		}
+
+		public IList GetColumnas()
+		{
+			return this.CampoId.GetColumnas();
+		}
+
 	}
 }

@@ -1,4 +1,6 @@
 using ar.com.bic.domain;
+using ar.com.bic.domain.catalogo;
+using System.Collections;
 using NUnit.Framework;
 
 namespace test
@@ -19,141 +21,159 @@ namespace test
 		[Test]
 		public void DameTablasCandidatas()
 		{
-//			// Creo las tablas fact
-//			Tabla tablaFact1 = new Tabla("Tabla Fact 1","db","TablaFact1");
-//			Tabla tablaFact2 = new Tabla("Tabla Fact 2","db","TablaFact2");
-//			Tabla tablaFact3 = new Tabla("Tabla Fact 3","db","TablaFact3");
-//			Tabla tablaFact4 = new Tabla("Tabla Fact 4","db","TablaFact4");
-//			Tabla tablaFact5 = new Tabla("Tabla Fact 5","db","TablaFact5");
-//			Tabla tablaFact6 = new Tabla("Tabla Fact 6","db","TablaFact6");
-//			
-//			// Creo las campos
-//			Campo campo1 = new Campo("Campo1","char");
-//			Campo campo2 = new Campo("Campo2","char");
-//			Campo campo3 = new Campo("Campo3","char");
-//			Campo campo4 = new Campo("Campo4","char");
-//			Campo campo5 = new Campo("Campo5","char");
-//			Campo campo6 = new Campo("Campo6","char");
-//			Campo campo7 = new Campo("Campo7","char");
-//			Campo campo8 = new Campo("Campo8","char");
-//			Campo campo9 = new Campo("Campo9","char");
-//			Campo campo10 = new Campo("Campo10","char");
-//
-//			
-//			//Agrego las campos a las tablas
-//			tablaFact1.AgregarCampo(campo1);
-//			tablaFact1.AgregarCampo(campo2);
-//			tablaFact1.AgregarCampo(campo3);
-//			tablaFact1.AgregarCampo(campo4);
-//			tablaFact1.AgregarCampo(campo10);
-//
-//			tablaFact2.AgregarCampo(campo1);
-//			tablaFact2.AgregarCampo(campo2);
-//			tablaFact2.AgregarCampo(campo3);
-//			tablaFact2.AgregarCampo(campo5);
-//
-//			tablaFact3.AgregarCampo(campo1);
-//			tablaFact3.AgregarCampo(campo2);
-//			tablaFact3.AgregarCampo(campo3);
-//			tablaFact3.AgregarCampo(campo6);
-//			tablaFact3.AgregarCampo(campo10);
-//
-//			tablaFact4.AgregarCampo(campo1);
-//			tablaFact4.AgregarCampo(campo2);
-//			tablaFact4.AgregarCampo(campo3);
-//			tablaFact4.AgregarCampo(campo7);
-//
-//			tablaFact5.AgregarCampo(campo1);
-//			tablaFact5.AgregarCampo(campo2);
-//			tablaFact5.AgregarCampo(campo3);
-//			tablaFact5.AgregarCampo(campo8);
-//			tablaFact5.AgregarCampo(campo10);
-//			
-//			tablaFact6.AgregarCampo(campo1);
-//			tablaFact6.AgregarCampo(campo2);
-//			tablaFact6.AgregarCampo(campo3);
-//			tablaFact6.AgregarCampo(campo9);
-//
-//			// Agrego las tablas a las campos
-//			campo1.AgregarTabla(tablaFact1);
-//			campo1.AgregarTabla(tablaFact2);
-//			campo1.AgregarTabla(tablaFact3);
-//			campo1.AgregarTabla(tablaFact4);
-//			campo1.AgregarTabla(tablaFact5);
-//			campo1.AgregarTabla(tablaFact6);
-//
-//			campo2.AgregarTabla(tablaFact1);
-//			campo2.AgregarTabla(tablaFact2);
-//			campo2.AgregarTabla(tablaFact3);
-//			campo2.AgregarTabla(tablaFact4);
-//			campo2.AgregarTabla(tablaFact5);
-//			campo2.AgregarTabla(tablaFact6);
-//
-//			campo3.AgregarTabla(tablaFact1);
-//			campo3.AgregarTabla(tablaFact2);
-//			campo3.AgregarTabla(tablaFact3);
-//			campo3.AgregarTabla(tablaFact4);
-//			campo3.AgregarTabla(tablaFact5);
-//			campo3.AgregarTabla(tablaFact6);
-//
-//            campo4.AgregarTabla(tablaFact1);
-//
-//			campo5.AgregarTabla(tablaFact2);
-//
-//			campo6.AgregarTabla(tablaFact3);
-//
-//			campo7.AgregarTabla(tablaFact4);
-//
-//			campo8.AgregarTabla(tablaFact5);
-//
-//			campo9.AgregarTabla(tablaFact6);
-//
-//			campo10.AgregarTabla(tablaFact1);
-//			campo10.AgregarTabla(tablaFact3);
-//			campo10.AgregarTabla(tablaFact5);
-//
-//
-//			// Creo los hechos en base a las campos
-//			Hecho hecho1 = new Hecho("Hecho 1",campo1);
-//			Hecho hecho2 = new Hecho("Hecho 2",campo2);
-//			Hecho hecho3 = new Hecho("Hecho 3",campo3);
-//			Hecho hecho4 = new Hecho("Hecho 4",campo4);
-//			Hecho hecho5 = new Hecho("Hecho 5",campo5);
-//			Hecho hecho6 = new Hecho("Hecho 6",campo6);
-//			Hecho hecho7 = new Hecho("Hecho 7",campo7);
-//			Hecho hecho8 = new Hecho("Hecho 8",campo8);
-//			Hecho hecho9 = new Hecho("Hecho 9",campo9);
-//			Hecho hecho10 = new Hecho("Hecho 10",campo10);
-//			
-//			// Creo las metricas de esos echos para el reporte
-//			Metrica metrica1 = new Metrica("Metrica 1","sum",hecho1);
-//			Metrica metrica2 = new Metrica("Metrica 2","sum",hecho2);
-//			Metrica metrica3 = new Metrica("Metrica 3","sum",hecho3);
-//			Metrica metrica4 = new Metrica("Metrica 4","sum",hecho4);
-//			Metrica metrica5 = new Metrica("Metrica 5","sum",hecho5);
-//			Metrica metrica6 = new Metrica("Metrica 6","sum",hecho6);
-//			Metrica metrica7 = new Metrica("Metrica 7","sum",hecho7);
-//			Metrica metrica8 = new Metrica("Metrica 8","sum",hecho8);
-//			Metrica metrica9 = new Metrica("Metrica 9","sum",hecho9);
-//			Metrica metrica10 = new Metrica("Metrica 10","sum",hecho10);
-//			
-//			//Agrego metricas al reporte
-//			this.reporte.AgregarMetrica(metrica1);
-//			this.reporte.AgregarMetrica(metrica10);
-//            
-//			//Le pido las tablas fact que tienen todas las metricas o sea las candidatas
-//			ArrayList tablasCandidatas = this.reporte.DameTablasCandidatas();
-//			
-//			//Verifico que se alla elegido bien las tablas candidatas
-//			Assert.Contains(tablaFact1,tablasCandidatas);
-//			Assert.Contains(tablaFact3,tablasCandidatas);
-//			Assert.Contains(tablaFact5,tablasCandidatas);
-//
-//			//Verifico que no se allan elegido tablas que no tenian esas metricas
-//
-//			Assert.IsFalse(tablasCandidatas.Contains(tablaFact2));
-//			Assert.IsFalse(tablasCandidatas.Contains(tablaFact4));
-//			Assert.IsFalse(tablasCandidatas.Contains(tablaFact6));
+			// Creo las tablas fact
+			Tabla tablaFact1 = new Tabla("Tabla Fact 1","db","TablaFact1");
+			Tabla tablaFact2 = new Tabla("Tabla Fact 2","db","TablaFact2");
+			Tabla tablaFact3 = new Tabla("Tabla Fact 3","db","TablaFact3");
+			Tabla tablaFact4 = new Tabla("Tabla Fact 4","db","TablaFact4");
+			Tabla tablaFact5 = new Tabla("Tabla Fact 5","db","TablaFact5");
+			Tabla tablaFact6 = new Tabla("Tabla Fact 6","db","TablaFact6");
+			
+			// Creo las columnas
+
+			Columna columna1  = new Columna("campo_a","char",tablaFact1 );
+			Columna columna2  = new Columna("campo_b","char",tablaFact1 );
+			Columna columna3  = new Columna("campo_c","char",tablaFact1 );
+			Columna columna4  = new Columna("campo_d","char",tablaFact1 );
+			Columna columna5  = new Columna("campo_j","char",tablaFact1 );
+			Columna columna6  = new Columna("campo_a","char",tablaFact2 );
+			Columna columna7  = new Columna("campo_b","char",tablaFact2 );
+			Columna columna8  = new Columna("campo_c","char",tablaFact2 );
+			Columna columna9  = new Columna("campo_e","char",tablaFact2 );
+			Columna columna10  = new Columna("campo_a","char",tablaFact3 );
+			Columna columna11  = new Columna("campo_b","char",tablaFact3 );
+			Columna columna12  = new Columna("campo_c","char",tablaFact3 );
+			Columna columna13  = new Columna("campo_f","char",tablaFact3 );
+			Columna columna14  = new Columna("campo_j","char",tablaFact3 );
+			Columna columna15  = new Columna("campo_a","char",tablaFact4 );
+			Columna columna16  = new Columna("campo_b","char",tablaFact4 );
+			Columna columna17  = new Columna("campo_c","char",tablaFact4 );
+			Columna columna18  = new Columna("campo_g","char",tablaFact4 );
+			Columna columna19  = new Columna("campo_a","char",tablaFact5 );
+			Columna columna20  = new Columna("campo_b","char",tablaFact5 );
+			Columna columna21  = new Columna("campo_c","char",tablaFact5 );
+			Columna columna22  = new Columna("campo_h","char",tablaFact5 );
+			Columna columna23  = new Columna("campo_j","char",tablaFact5 );
+			Columna columna24  = new Columna("campo_a","char",tablaFact6 );
+			Columna columna25  = new Columna("campo_b","char",tablaFact6 );
+			Columna columna26  = new Columna("campo_c","char",tablaFact6 );
+			Columna columna27  = new Columna("campo_i","char",tablaFact6 );
+
+			// Creo los campos con las columnas
+
+			Campo campo_a = new Campo(columna1);
+			Campo campo_b = new Campo(columna2);
+			Campo campo_c = new Campo(columna3);
+			Campo campo_d = new Campo(columna4);
+			Campo campo_e = new Campo(columna9);
+			Campo campo_f = new Campo(columna13);
+			Campo campo_g = new Campo(columna18);
+			Campo campo_h = new Campo(columna22);
+			Campo campo_i = new Campo(columna27);
+			Campo campo_j = new Campo(columna5);
+			
+			// Agrego el resto de las columnas a los campos del mismo nombre
+
+			campo_a.AgregarColumnas(columna6);
+			campo_a.AgregarColumnas(columna10);
+			campo_a.AgregarColumnas(columna15);
+			campo_a.AgregarColumnas(columna19);
+			campo_a.AgregarColumnas(columna24);
+			
+			campo_b.AgregarColumnas(columna7);
+			campo_b.AgregarColumnas(columna11);
+			campo_b.AgregarColumnas(columna16);
+			campo_b.AgregarColumnas(columna20);
+			campo_b.AgregarColumnas(columna25);
+			
+			campo_c.AgregarColumnas(columna8);
+			campo_c.AgregarColumnas(columna12);
+			campo_c.AgregarColumnas(columna17);
+			campo_c.AgregarColumnas(columna21);
+			campo_c.AgregarColumnas(columna26);
+			
+			campo_j.AgregarColumnas(columna14);
+			campo_j.AgregarColumnas(columna23);
+
+			// Agrego las columnas a sus correspondientes tablas
+
+			tablaFact1.AgregarColumna(columna1); 
+			tablaFact1.AgregarColumna(columna2); 
+			tablaFact1.AgregarColumna(columna3); 
+			tablaFact1.AgregarColumna(columna4); 
+			tablaFact1.AgregarColumna(columna5); 
+			
+			tablaFact2.AgregarColumna(columna6); 
+			tablaFact2.AgregarColumna(columna7); 
+			tablaFact2.AgregarColumna(columna8); 
+			tablaFact2.AgregarColumna(columna9); 
+			
+			tablaFact3.AgregarColumna(columna10);
+			tablaFact3.AgregarColumna(columna11);
+			tablaFact3.AgregarColumna(columna12);
+			tablaFact3.AgregarColumna(columna13);
+			tablaFact3.AgregarColumna(columna14);
+			
+			tablaFact4.AgregarColumna(columna15);
+			tablaFact4.AgregarColumna(columna16);
+			tablaFact4.AgregarColumna(columna17);
+			tablaFact4.AgregarColumna(columna18);
+			
+			tablaFact5.AgregarColumna(columna19);
+			tablaFact5.AgregarColumna(columna20);
+			tablaFact5.AgregarColumna(columna21);
+			tablaFact5.AgregarColumna(columna22);
+			tablaFact5.AgregarColumna(columna23);
+			
+			tablaFact6.AgregarColumna(columna24);
+			tablaFact6.AgregarColumna(columna25);
+			tablaFact6.AgregarColumna(columna26);
+			tablaFact6.AgregarColumna(columna27);
+
+			// Creo los hechos en base a las campos
+
+			Hecho hecho_a = new Hecho("Hecho a",campo_a);
+			Hecho hecho_b = new Hecho("Hecho b",campo_b);
+			Hecho hecho_c = new Hecho("Hecho c",campo_c);
+			Hecho hecho_d = new Hecho("Hecho d",campo_d);
+			Hecho hecho_e = new Hecho("Hecho e",campo_e);
+			Hecho hecho_f = new Hecho("Hecho f",campo_f);
+			Hecho hecho_g = new Hecho("Hecho g",campo_g);
+			Hecho hecho_h = new Hecho("Hecho h",campo_h);
+			Hecho hecho_i = new Hecho("Hecho i",campo_i);
+			Hecho hecho_j = new Hecho("Hecho j",campo_j);
+
+			// Creo las metricas de esos echos para el reporte
+
+			Metrica metrica_a = new Metrica("Metrica a","sum",hecho_a);
+			Metrica metrica_b = new Metrica("Metrica b","sum",hecho_b);
+			Metrica metrica_c = new Metrica("Metrica c","sum",hecho_c);
+			Metrica metrica_d = new Metrica("Metrica d","sum",hecho_d);
+			Metrica metrica_e = new Metrica("Metrica e","sum",hecho_e);
+			Metrica metrica_f = new Metrica("Metrica f","sum",hecho_f);
+			Metrica metrica_g = new Metrica("Metrica g","sum",hecho_g);
+			Metrica metrica_h = new Metrica("Metrica h","sum",hecho_h);
+			Metrica metrica_i = new Metrica("Metrica i","sum",hecho_i);
+			Metrica metrica_j = new Metrica("Metrica j","sum",hecho_j);
+			
+			//Agrego metricas al reporte
+
+			this.reporte.AgregarMetrica(metrica_a);
+			this.reporte.AgregarMetrica(metrica_j);
+            
+			//Le pido las tablas fact que tienen todas las metricas o sea las candidatas
+			ArrayList tablasCandidatas = this.reporte.DameTablasCandidatas();
+			
+			//Verifico que se alla elegido bien las tablas candidatas
+			Assert.Contains(tablaFact1,tablasCandidatas);
+			Assert.Contains(tablaFact3,tablasCandidatas);
+			Assert.Contains(tablaFact5,tablasCandidatas);
+
+			//Verifico que no se allan elegido tablas que no tenian esas metricas
+
+			Assert.IsFalse(tablasCandidatas.Contains(tablaFact2));
+			Assert.IsFalse(tablasCandidatas.Contains(tablaFact4));
+			Assert.IsFalse(tablasCandidatas.Contains(tablaFact6));
 		}
 	}
 }
