@@ -18,7 +18,7 @@ namespace test
 		[Test]
 		public void GetEsquemaTest()
 		{
-			Catalogo c = dao.GetCatalogo("localhost", "bic", "root", "bic");
+			Catalogo c = dao.GetCatalogo("localhost", "bic", "bic", "bic");
 			Assert.IsNotNull(c);
 			Assert.IsNotEmpty(c.Tablas);
 		}

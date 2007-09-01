@@ -1,8 +1,9 @@
 using System.Collections;
 using ar.com.bic.domain.catalogo;
+using ar.com.bic.domain.interfaces;
 using ar.com.bic.fwk;
 
-namespace ar.com.bic.domain
+namespace ar.com.bic.domain 
 {
 	/// <summary>
 	/// Un campo es la unificación de todas las columnas que tienen el 
@@ -11,7 +12,7 @@ namespace ar.com.bic.domain
 	/// solo existira un Campo para nombre_id. Esto permite que se pueda 
 	/// obtener el dato de la tabla más conveniente.
 	/// </summary>
-	public class Campo
+	public class Campo : ITablaMapeable
 	{
 		private long id;
 		private string nombre;
@@ -70,6 +71,21 @@ namespace ar.com.bic.domain
 		public override int GetHashCode()
 		{
 			return this.nombre.GetHashCode ();
+		}
+
+		public IList GetTablas()
+		{
+			return this.Tablas;
+		}
+
+		public IList GetColumnas()
+		{
+			return this.Columnas;
+		}
+
+		public Campo GetCampo()
+		{
+			return this;
 		}
 
 	}

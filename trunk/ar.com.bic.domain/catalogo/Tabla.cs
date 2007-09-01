@@ -1,4 +1,5 @@
 using System.Collections;
+using ar.com.bic.domain.interfaces;
 
 namespace ar.com.bic.domain.catalogo
 {
@@ -54,5 +55,42 @@ namespace ar.com.bic.domain.catalogo
 		{
 			this.columnas.Add(col);
 		}
+
+		/// <summary>
+		/// Busca los campos en la lista de columnas.
+		/// </summary>
+		/// <param name="campo"></param>
+		/// <returns>True si la tabla tiene todos los campos, sino false.</returns>
+		public bool Tenes(IList campos)
+		{
+			foreach(ITablaMapeable campo in campos)
+			{
+				if(!this.Tenes(campo))
+					return false;
+			}
+			
+			return true;
+		}
+		
+		/// <summary>
+		/// Busca el campo en la lista de columnas.
+		/// </summary>
+		/// <param name="campo"></param>
+		/// <returns>True si tiene alguna columna con el mismo nombre que
+		/// el campo, sino false.</returns>
+		public bool Tenes(ITablaMapeable campo)
+		{
+			
+			IList columnas = campo.GetColumnas();
+
+			foreach(Columna columna in columnas)
+			{
+				if(this.Columnas.Contains(columna))
+					return true;
+			}
+
+			return false;
+		}
+
 	}
 }
