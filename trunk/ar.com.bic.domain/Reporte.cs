@@ -1,6 +1,7 @@
 using System.Collections;
 using ar.com.bic.domain.catalogo;
 using ar.com.bic.domain.interfaces;
+using ar.com.bic.domain.exception;
 using ar.com.bic.fwk;
 
 namespace ar.com.bic.domain
@@ -56,7 +57,7 @@ namespace ar.com.bic.domain
 				//TODO Hacer Try y Catch de la exepcion al momento de generar el camino por la no existencia de camino
 				
 				//Creo el objeto TablaReporte con la tabala Fact destino y todos sus caminos
-                TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Metricas));
+                TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Atributos));
 	
 			}
 
@@ -93,6 +94,9 @@ namespace ar.com.bic.domain
 				if(tabla.Tenes(this.Metricas)) 
 					tablas.Add(tabla);
 			}
+			
+			if(tablas.Count == 0)
+				throw new TablaCandidataException("No existe ninguna Fact Table que tenga todas las metricas");
 
 			return tablas;
 		}

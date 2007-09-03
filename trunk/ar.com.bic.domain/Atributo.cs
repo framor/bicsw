@@ -8,7 +8,7 @@ namespace ar.com.bic.domain
 	/// <summary>
 	/// Descripción breve de Atributo.
 	/// </summary>
-	public class Atributo : ITablaMapeable
+	public class Atributo : ITablaMapeable, ICamino
 	{
 		private long id;
 		private string nombre;
@@ -16,6 +16,7 @@ namespace ar.com.bic.domain
 		private ArrayList camposDescripciones = new ArrayList();
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
+		Relacion hijo;
 
 		public Atributo() {}
 
@@ -73,6 +74,21 @@ namespace ar.com.bic.domain
 		{
 			return this.CampoId.GetColumnas();
 		}
+
+		public Camino GeneraCamino(Tabla tabla)
+		{
+			Camino camino;
+
+			if(!tabla.Tenes(this.CampoId))
+				camino = this.hijo.GeneraCamino(tabla);
+			else
+				camino = new Camino();
+
+			camino.AgregarAtributo(this);
+
+			return camino;
+		}
+
 
 	}
 }
