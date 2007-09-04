@@ -183,6 +183,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "exception\NoExisteCaminoException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "exception\NoExisteHijoException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "exception\TablaCandidataException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

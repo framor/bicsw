@@ -13,7 +13,7 @@ namespace ar.com.bic.domain.exception
 
 		public TablaCandidataException(String mensaje)
 		{
-			//TODO Escribuir en la propiedad message
+			//TODO Escribir en la propiedad message
 		}
 
 	}

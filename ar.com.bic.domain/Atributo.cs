@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ar.com.bic.domain.catalogo;
 using ar.com.bic.domain.interfaces;
+using ar.com.bic.domain.exception;
 
 namespace ar.com.bic.domain
 {
@@ -19,6 +20,14 @@ namespace ar.com.bic.domain
 		Relacion hijo;
 
 		public Atributo() {}
+
+		public Atributo(string nombre,Campo campoId, Tabla tablaLkp, Proyecto proyecto) 
+		{
+			this.Nombre = nombre;
+			this.CampoId = campoId;
+			this.TablaLookup = tablaLkp;
+			this.Proyecto = proyecto;
+		}
 
 		public long Id 
 		{
@@ -79,8 +88,21 @@ namespace ar.com.bic.domain
 		{
 			Camino camino;
 
+            
 			if(!tabla.Tenes(this.CampoId))
-				camino = this.hijo.GeneraCamino(tabla);
+				try
+				{
+					camino = this.hijo.GeneraCamino(tabla);
+				}
+				// Si no tiene hijos cancela por referencia nula.
+				// Capturo la excepcion.
+				catch(NullReferenceException nre)
+				{	
+					// Subo de nivel de Excepcion a una excepcion del dominio.
+					// Mando un excepcion de hijo inexistente.
+					throw new NoExisteHijoException("El atributo no tiene hijos, es el ultimo en la jerarquia",nre);
+				}
+				
 			else
 				camino = new Camino();
 

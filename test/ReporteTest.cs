@@ -229,6 +229,95 @@ namespace test
 			// Esto deberia tirar una excepcion de que no hay tablas candidatas.
 			this.reporte.DameTablasCandidatas();
 		}
+
+		[Test]
+		[ExpectedException(typeof(NoExisteCaminoException))]
+		public void GeneraCaminos()
+		{
+			// Creo las tablas fact
+			Tabla tablaFact1 = new Tabla("Tabla Fact 1","db","TablaFact1");
+			Tabla tablaFact2 = new Tabla("Tabla Fact 2","db","TablaFact2");
+			Tabla tablaLkp1 = new Tabla("Tabla Lkp 1","db","TablaLkp1");
+
+			// Creo las columnas
+
+			Columna columna1  = new Columna("campo_a","char",tablaFact1 );
+			Columna columna2  = new Columna("campo_b","char",tablaFact1 );
+			Columna columna3  = new Columna("campo_c","char",tablaFact1 );
+			Columna columna4  = new Columna("campo_d","char",tablaFact1 );
+			Columna columna5  = new Columna("campo_j","char",tablaFact1 );
+			Columna columna6  = new Columna("campo_a","char",tablaFact2 );
+			Columna columna7  = new Columna("campo_b","char",tablaFact2 );
+			Columna columna8  = new Columna("campo_c","char",tablaFact2 );
+			Columna columna9  = new Columna("campo_e","char",tablaFact2 );
+
+			Columna columnaLkp1  = new Columna("campoLkp_a","char",tablaLkp1 );
+
+			// Creo los campos con las columnas
+
+			Campo campo_a = new Campo(columna1);
+			Campo campo_b = new Campo(columna2);
+			Campo campo_c = new Campo(columna3);
+			Campo campo_d = new Campo(columna4);
+			Campo campo_e = new Campo(columna9);
+			Campo campo_j = new Campo(columna5);
+
+			Campo campoLkp_a = new Campo(columnaLkp1);
+		
+			// Agrego el resto de las columnas a los campos del mismo nombre
+
+			campo_a.AgregarColumnas(columna6);
+			campo_b.AgregarColumnas(columna7);
+			campo_c.AgregarColumnas(columna8);
+			
+			// Agrego las columnas a sus correspondientes tablas
+
+			tablaFact1.AgregarColumna(columna1); 
+			tablaFact1.AgregarColumna(columna2); 
+			tablaFact1.AgregarColumna(columna3); 
+			tablaFact1.AgregarColumna(columna4); 
+			tablaFact1.AgregarColumna(columna5); 
+			
+			tablaFact2.AgregarColumna(columna6); 
+			tablaFact2.AgregarColumna(columna7); 
+			tablaFact2.AgregarColumna(columna8); 
+			tablaFact2.AgregarColumna(columna9); 
+
+			tablaLkp1.AgregarColumna(columnaLkp1);
+
+			// Creo el atributo en base a el campo
+
+			Atributo atributo_a = new Atributo("Atributo a",campoLkp_a,tablaLkp1,null);
+			
+			// Creo la coleccion de Atributos
+			IList atributos = new ArrayList();
+
+			atributos.Add(atributo_a);
+
+
+			// Creo los hechos en base a las campos
+
+			Hecho hecho_a = new Hecho("Hecho a",campo_a);
+			Hecho hecho_b = new Hecho("Hecho b",campo_b);
+			Hecho hecho_c = new Hecho("Hecho c",campo_c);
+			Hecho hecho_d = new Hecho("Hecho d",campo_d);
+			Hecho hecho_e = new Hecho("Hecho e",campo_e);
+			Hecho hecho_j = new Hecho("Hecho j",campo_j);
+
+			// Creo las metricas de esos echos para el reporte
+
+			Metrica metrica_a = new Metrica("Metrica a","sum",hecho_a);
+			Metrica metrica_b = new Metrica("Metrica b","sum",hecho_b);
+			Metrica metrica_c = new Metrica("Metrica c","sum",hecho_c);
+			Metrica metrica_d = new Metrica("Metrica d","sum",hecho_d);
+			Metrica metrica_e = new Metrica("Metrica e","sum",hecho_e);
+			Metrica metrica_j = new Metrica("Metrica j","sum",hecho_j);
+
+			// Esto deberia tirar una excepcion de que no existe ningun camino.
+			this.reporte.GeneraCaminos(tablaFact1,atributos);
+
+		}
+
 		[Test]
 		public void DameTablasCandidatas()
 		{

@@ -73,7 +73,21 @@ namespace ar.com.bic.domain
 			//Por cada campo que cumpla con la interfaz TablaMapeable le pido que genere camino
 			foreach(ICamino campo in campos)
 			{	//TODO aca me llegaria la exepcion de que no hay camino desde el atributo
-				caminos.Add(campo.GeneraCamino(tabla));
+				try
+				{
+					caminos.Add(campo.GeneraCamino(tabla));
+
+				}
+				// Si me llega una excepcion al no encontrar hijos significa
+				// que no encontro un camino hasta la Fact.
+				// Capturo la Excepcion.
+				catch(NoExisteHijoException nehe)
+				{
+					// Subo de nivel de Excepcion a una excepcion del dominio.
+					// Mando un excepcion de que no encuentra un camino por lo menos.
+					throw new NoExisteCaminoException("Por lo menos uno de los atributos no tiene camino hasta la tabla Fact",nehe);
+				}
+				
 			}
 
 			return caminos;
