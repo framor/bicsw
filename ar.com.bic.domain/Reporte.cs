@@ -48,18 +48,29 @@ namespace ar.com.bic.domain
 
 		public void GeneraConsulta()
 		{
-			
+			IList tablasReporte = new ArrayList();
 			// Le pido las tablas candidatas a elegir - Son las que tienen todas las metricas
 			ArrayList tablasFactCandidatas = this.DameTablasCandidatas();
 			            
 			foreach(Tabla tabla in tablasFactCandidatas)
 			{
-				//TODO Hacer Try y Catch de la exepcion al momento de generar el camino por la no existencia de camino
-				
-				//Creo el objeto TablaReporte con la tabala Fact destino y todos sus caminos
-                TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Atributos));
-	
+				try
+				{
+					//Creo el objeto TablaReporte con la tabala Fact destino y todos sus caminos
+					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Atributos));
+
+					// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
+					// por tener todos los caminos.
+					tablasReporte.Add(tablaReporte);
+				}
+				catch(NoExisteCaminoException nece)
+				{
+                    
+				}
 			}
+
+			if(tablasReporte.Count == 0)
+				throw new ReporteInvalidoException("Imposible generar el reporte, no existe combinacion entre los atributos y las metricas seleccionadas");
 
 			return;
 
@@ -76,7 +87,6 @@ namespace ar.com.bic.domain
 				try
 				{
 					caminos.Add(campo.GeneraCamino(tabla));
-
 				}
 				// Si me llega una excepcion al no encontrar hijos significa
 				// que no encontro un camino hasta la Fact.
@@ -87,11 +97,9 @@ namespace ar.com.bic.domain
 					// Mando un excepcion de que no encuentra un camino por lo menos.
 					throw new NoExisteCaminoException("Por lo menos uno de los atributos no tiene camino hasta la tabla Fact",nehe);
 				}
-				
 			}
 
 			return caminos;
-
 		}
 
 		public ArrayList DameTablasCandidatas()
@@ -110,7 +118,7 @@ namespace ar.com.bic.domain
 			}
 			
 			if(tablas.Count == 0)
-				throw new TablaCandidataException("No existe ninguna Fact Table que tenga todas las metricas");
+				throw new NoExisteTablaCandidataException("No existe ninguna Fact Table que tenga todas las metricas");
 
 			return tablas;
 		}

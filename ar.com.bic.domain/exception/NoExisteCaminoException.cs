@@ -9,14 +9,14 @@ namespace ar.com.bic.domain.exception
 	/// </summary>
 	public class NoExisteCaminoException : Exception
 	{
-		public NoExisteCaminoException()
+		public NoExisteCaminoException(string mensaje): base(mensaje)
 		{
 			//
 			// TODO: agregar aquí la lógica del constructor
 			//
 		}
 
-		public NoExisteCaminoException(string mensaje,Exception ex)
+		public NoExisteCaminoException(string mensaje,Exception ex): base(mensaje,ex)
 		{
 			//TODO Escribir en la propiedad message
 		}

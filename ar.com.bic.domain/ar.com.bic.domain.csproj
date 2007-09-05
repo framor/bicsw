@@ -193,7 +193,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "exception\TablaCandidataException.cs"
+                    RelPath = "exception\NoExisteTablaCandidataException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "exception\ReporteInvalidoException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
