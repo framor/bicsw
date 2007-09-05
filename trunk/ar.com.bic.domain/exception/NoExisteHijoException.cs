@@ -7,13 +7,13 @@ namespace ar.com.bic.domain.exception
 	/// </summary>
 	public class NoExisteHijoException : Exception
 	{
-		public NoExisteHijoException()
+		public NoExisteHijoException(string mensaje): base(mensaje)
 		{
 			//
 			// TODO: agregar aquí la lógica del constructor
 			//
 		}
-		public NoExisteHijoException(string mensaje,Exception ex)
+		public NoExisteHijoException(string mensaje,Exception ex): base(mensaje,ex)
 		{
 			//TODO Escribir en la propiedad message
 		}
