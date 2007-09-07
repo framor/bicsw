@@ -17,7 +17,8 @@ namespace ar.com.bic.domain
 		private ArrayList camposDescripciones = new ArrayList();
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
-		Relacion hijo;
+		private Atributo hijo;
+		private IList padres = new ArrayList();
 
 		public Atributo() {}
 
@@ -28,6 +29,18 @@ namespace ar.com.bic.domain
 			this.TablaLookup = tablaLkp;
 			this.Proyecto = proyecto;
 		}
+
+		public Atributo Hijo
+		{
+			get { return this.hijo; }
+			set { this.hijo = value; }
+		}
+
+		public void AgregarPadre(Atributo padre)
+		{
+			this.padres.Add(padre);
+		}
+
 
 		public long Id 
 		{
@@ -90,23 +103,28 @@ namespace ar.com.bic.domain
 
             
 			if(!tabla.Tenes(this.CampoId))
+			{
 				try
 				{
 					camino = this.hijo.GeneraCamino(tabla);
+					camino.AgregarAtributo(this);
 				}
-				// Si no tiene hijos cancela por referencia nula.
-				// Capturo la excepcion.
+					// Si no tiene hijos cancela por referencia nula.
+					// Capturo la excepcion.
 				catch(NullReferenceException nre)
 				{	
 					// Subo de nivel de Excepcion a una excepcion del dominio.
 					// Mando un excepcion de hijo inexistente.
 					throw new NoExisteHijoException("El atributo no tiene hijos, es el ultimo en la jerarquia",nre);
 				}
-				
+			}	
 			else
+			{
 				camino = new Camino();
+				camino.AtributoFact = this;
+			}
 
-			camino.AgregarAtributo(this);
+
 
 			return camino;
 		}

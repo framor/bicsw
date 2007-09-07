@@ -29,68 +29,31 @@ namespace test
 		#region Test
 
 		[Test]
-		public void Prueba()
+		public void GeneraConsulta()
 		{
-			//			IList lista1 = new ArrayList();
-			//			SortedList lista2 = new SortedList();
-			//
-			//			String a = new String('a',2);
-			//			String b = new String('b',2);
-			//			String c = new String('c',2);
-			//			String d = new String('d',2);
-			//			String e = new String('e',2);
-			//
-			//			lista1.Add(b);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(c);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(e);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(d);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(a);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(b);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(c);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(e);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(d);
-			//			Console.WriteLine(lista1.Count);
-			//			lista1.Add(a);
-			//			lista1.Add(b);
-			//			lista1.Add(c);
-			//			lista1.Add(e);
-			//			lista1.Add(d);
-			//			lista1.Add(a);
-			//			lista1.Add(b);
-			//			lista1.Add(c);
-			//			lista1.Add(e);
-			//			lista1.Add(d);
-			//			lista1.Add(a);
-			//
-			//			lista2.Add(b,b);
-			//			lista2.Add(c,c);
-			//			lista2.Add(e,e);
-			//			lista2.Add(d,d);
-			//			lista2.Add(a,a);
-			//
-			//			lista2.TrimToSize();
-			//
-			//			foreach(String x in lista1)
-			//			{
-			//				Console.WriteLine(x);
-			//			}
-			//
-			//			Console.WriteLine(lista1.Count + " " + lista1.IndexOf(a));
-			//			Console.WriteLine(lista2.Count + " " + lista2.IndexOfValue(a));
+			//Genero el ambiente
+			this.LimpiarAmbiente();
+			this.GenerarAmbiente3();
 
-			
+			IList atributos = new ArrayList();
 
+			//Agrego los atributos al reporte
+
+			this.reporte.AgregarAtributo((Atributo)this.atributos["Atributo d"]);
+			this.reporte.AgregarAtributo((Atributo)this.atributos["Atributo c"]);
+
+			//Agrego metricas al reporte
+
+			this.reporte.AgregarMetrica((Metrica) this.metricas["Metrica a"]);
+			this.reporte.AgregarMetrica((Metrica) this.metricas["Metrica c"]);
+
+			this.reporte.GeneraConsulta();
+
+			Assert.AreSame(this.tablasFact["Tabla Fact 2"],this.reporte.TablaReporte.Tabla);
+
+			Console.WriteLine(this.reporte.TablaReporte.DameSql());
 
 		}
-
 
 		[Test]
 		[ExpectedException(typeof(NoExisteCaminoException))]
@@ -456,6 +419,198 @@ namespace test
 
 			// Agrego los atributos
 			this.atributos.Add("Atributo a",atributo_a);
+
+			// Agrego los hechos
+			this.hechos.Add("Hecho a",hecho_a);
+			this.hechos.Add("Hecho b",hecho_b);
+			this.hechos.Add("Hecho c",hecho_c);
+			this.hechos.Add("Hecho d",hecho_d);
+			this.hechos.Add("Hecho e",hecho_e);
+			this.hechos.Add("Hecho j",hecho_j);
+
+			// Agrego las metricas
+			this.metricas.Add("Metrica a",metrica_a);
+			this.metricas.Add("Metrica b",metrica_b);
+			this.metricas.Add("Metrica c",metrica_c);
+			this.metricas.Add("Metrica d",metrica_d);
+			this.metricas.Add("Metrica e",metrica_e);
+			this.metricas.Add("Metrica j",metrica_j);
+
+
+
+		}
+
+
+		public void GenerarAmbiente3()
+		{
+			// Creo las tablas
+			Tabla tablaFact1 = new Tabla("Tabla Fact 1","TablaFact1","db");
+			Tabla tablaFact2 = new Tabla("Tabla Fact 2","TablaFact2","db");
+			Tabla tablaLkp1 = new Tabla("Tabla Lkp 1","TablaLkp1","db");
+			Tabla tablaLkp2 = new Tabla("Tabla Lkp 2","TablaLkp2","db");
+			Tabla tablaLkp3 = new Tabla("Tabla Lkp 3","TablaLkp3","db");
+			Tabla tablaLkp4 = new Tabla("Tabla Lkp 4","TablaLkp4","db");
+			Tabla tablaLkp5 = new Tabla("Tabla Lkp 5","TablaLkp5","db");
+			Tabla tablaLkp6 = new Tabla("Tabla Lkp 6","TablaLkp6","db");
+
+			// Le asigno el peso
+
+			tablaFact1.Peso = 50;
+			tablaFact2.Peso = 30;
+
+			// Creo las columnas
+
+			Columna columna1  = new Columna("campo_a","char",tablaFact1 );
+			Columna columna2  = new Columna("campo_b","char",tablaFact1 );
+			Columna columna3  = new Columna("campo_c","char",tablaFact1 );
+			Columna columna4  = new Columna("campo_d","char",tablaFact1 );
+			Columna columna5  = new Columna("campo_j","char",tablaFact1 );
+			Columna columna6  = new Columna("campo_a","char",tablaFact2 );
+			Columna columna7  = new Columna("campo_b","char",tablaFact2 );
+			Columna columna8  = new Columna("campo_c","char",tablaFact2 );
+			Columna columna9  = new Columna("campo_e","char",tablaFact2 );
+
+			Columna columnaLkp1  = new Columna("campoLkp_a","char",tablaLkp1 );
+			Columna columnaLkp2  = new Columna("campoLkp_b","char",tablaLkp2 );
+			Columna columnaLkp3  = new Columna("campoLkp_c","char",tablaLkp3 );
+			Columna columnaLkp4  = new Columna("campoLkp_d","char",tablaLkp4 );
+			Columna columnaLkp5  = new Columna("campoLkp_e","char",tablaLkp5 );
+			Columna columnaLkp6  = new Columna("campoLkp_f","char",tablaLkp6 );
+
+			// creo la columna que relaciona las lkps 5-4 y 6-3.
+			Columna columnaLkp7  = new Columna("campoLkp_c","char",tablaLkp6 );
+			Columna columnaLkp8  = new Columna("campoLkp_d","char",tablaLkp5 );
+
+			// Creo la columna en la fact que se relaciona con las lkps
+			Columna columnaFact1  = new Columna("campoLkp_e","char",tablaFact1);
+			Columna columnaFact2  = new Columna("campoLkp_f","char",tablaFact1);
+			Columna columnaFact3  = new Columna("campoLkp_e","char",tablaFact2);
+			Columna columnaFact4  = new Columna("campoLkp_f","char",tablaFact2);
+
+			// Creo los campos con las columnas
+
+			Campo campo_a = new Campo(columna1);
+			Campo campo_b = new Campo(columna2);
+			Campo campo_c = new Campo(columna3);
+			Campo campo_d = new Campo(columna4);
+			Campo campo_e = new Campo(columna9);
+			Campo campo_j = new Campo(columna5);
+
+			Campo campoLkp_a = new Campo(columnaLkp1);
+			Campo campoLkp_b = new Campo(columnaLkp2);
+			Campo campoLkp_c = new Campo(columnaLkp3);
+			Campo campoLkp_d = new Campo(columnaLkp4);
+			Campo campoLkp_e = new Campo(columnaLkp5);
+			Campo campoLkp_f = new Campo(columnaLkp6);
+		
+			// Agrego el resto de las columnas a los campos del mismo nombre
+
+			campo_a.AgregarColumnas(columna6);
+			campo_b.AgregarColumnas(columna7);
+			campo_c.AgregarColumnas(columna8);
+			campoLkp_e.AgregarColumnas(columnaFact1);
+			campoLkp_e.AgregarColumnas(columnaFact3);
+			campoLkp_f.AgregarColumnas(columnaFact2);
+			campoLkp_f.AgregarColumnas(columnaFact4);
+			campoLkp_c.AgregarColumnas(columnaLkp7);
+			campoLkp_d.AgregarColumnas(columnaLkp8);
+			
+			// Agrego las columnas a sus correspondientes tablas
+
+			tablaFact1.AgregarColumna(columna1); 
+			tablaFact1.AgregarColumna(columna2); 
+			tablaFact1.AgregarColumna(columna3); 
+			tablaFact1.AgregarColumna(columna4); 
+			tablaFact1.AgregarColumna(columna5); 
+			tablaFact1.AgregarColumna(columnaFact1);
+			tablaFact1.AgregarColumna(columnaFact2);
+			
+			tablaFact2.AgregarColumna(columna6); 
+			tablaFact2.AgregarColumna(columna7); 
+			tablaFact2.AgregarColumna(columna8); 
+			tablaFact2.AgregarColumna(columna9); 
+			tablaFact2.AgregarColumna(columnaFact3); 
+			tablaFact2.AgregarColumna(columnaFact4); 
+
+			tablaLkp1.AgregarColumna(columnaLkp1);
+			tablaLkp2.AgregarColumna(columnaLkp2);
+			tablaLkp3.AgregarColumna(columnaLkp3);
+			tablaLkp4.AgregarColumna(columnaLkp4);
+			tablaLkp5.AgregarColumna(columnaLkp5);
+			tablaLkp6.AgregarColumna(columnaLkp6);
+			tablaLkp5.AgregarColumna(columnaLkp8);
+			tablaLkp6.AgregarColumna(columnaLkp7);
+
+			// Creo el atributo en base a el campo
+
+			Atributo atributo_a = new Atributo("Atributo a",campoLkp_a,tablaLkp1,null);
+			Atributo atributo_b = new Atributo("Atributo b",campoLkp_b,tablaLkp2,null);
+			Atributo atributo_c = new Atributo("Atributo c",campoLkp_c,tablaLkp3,null);
+			Atributo atributo_d = new Atributo("Atributo d",campoLkp_d,tablaLkp4,null);
+			
+			// Creo atributos que tengan como campo_id uno que este en la fact
+			Atributo atributo_e = new Atributo("Atributo e",campoLkp_e,tablaLkp5,null);
+			Atributo atributo_f = new Atributo("Atributo f",campoLkp_f,tablaLkp6,null);
+
+			// Agrego los padres y los hijos.
+
+			atributo_d.Hijo = atributo_e;
+			atributo_c.Hijo = atributo_f;
+
+			atributo_e.AgregarPadre(atributo_d);
+			atributo_f.AgregarPadre(atributo_c);
+
+			// Creo los hechos en base a las campos
+
+			Hecho hecho_a = new Hecho("Hecho a",campo_a);
+			Hecho hecho_b = new Hecho("Hecho b",campo_b);
+			Hecho hecho_c = new Hecho("Hecho c",campo_c);
+			Hecho hecho_d = new Hecho("Hecho d",campo_d);
+			Hecho hecho_e = new Hecho("Hecho e",campo_e);
+			Hecho hecho_j = new Hecho("Hecho j",campo_j);
+
+			// Creo las metricas de esos echos para el reporte
+
+			Metrica metrica_a = new Metrica("Metrica a","sum",hecho_a);
+			Metrica metrica_b = new Metrica("Metrica b","sum",hecho_b);
+			Metrica metrica_c = new Metrica("Metrica c","sum",hecho_c);
+			Metrica metrica_d = new Metrica("Metrica d","sum",hecho_d);
+			Metrica metrica_e = new Metrica("Metrica e","sum",hecho_e);
+			Metrica metrica_j = new Metrica("Metrica j","sum",hecho_j);
+
+			// Agrego las tablas
+			this.tablasFact.Add("Tabla Fact 1",tablaFact1);
+			this.tablasFact.Add("Tabla Fact 2",tablaFact2);
+			this.tablasLkp.Add("Tabla Lkp 1",tablaLkp1);
+			this.tablasLkp.Add("Tabla Lkp 2",tablaLkp2);
+			this.tablasLkp.Add("Tabla Lkp 3",tablaLkp3);
+			this.tablasLkp.Add("Tabla Lkp 4",tablaLkp4);
+			this.tablasLkp.Add("Tabla Lkp 5",tablaLkp5);
+			this.tablasLkp.Add("Tabla Lkp 6",tablaLkp6);
+
+			// Agrego los campos
+			this.campos.Add("campo_a",campo_a);
+			this.campos.Add("campo_b",campo_b);
+			this.campos.Add("campo_c",campo_c);
+			this.campos.Add("campo_d",campo_d);
+			this.campos.Add("campo_e",campo_e);
+			this.campos.Add("campo_j",campo_j);
+			this.campos.Add("campoLkp_a",campoLkp_a);
+			this.campos.Add("campoLkp_b",campoLkp_b);
+			this.campos.Add("campoLkp_c",campoLkp_c);
+			this.campos.Add("campoLkp_d",campoLkp_d);
+			this.campos.Add("campoLkp_e",campoLkp_e);
+			this.campos.Add("campoLkp_f",campoLkp_f);
+
+
+			// Agrego los atributos
+			this.atributos.Add("Atributo a",atributo_a);
+			this.atributos.Add("Atributo b",atributo_b);
+			this.atributos.Add("Atributo c",atributo_c);
+			this.atributos.Add("Atributo d",atributo_d);
+			this.atributos.Add("Atributo e",atributo_e);
+			this.atributos.Add("Atributo f",atributo_f);
+
 
 			// Agrego los hechos
 			this.hechos.Add("Hecho a",hecho_a);

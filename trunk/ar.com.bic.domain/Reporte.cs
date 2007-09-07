@@ -17,6 +17,7 @@ namespace ar.com.bic.domain
 		private IList Atributos = new ArrayList();
 		private IList Metricas = new ArrayList();
 		private IList Filtros = new ArrayList();
+		private TablaReporte tablaReporte;
 
 	
 		#endregion
@@ -48,7 +49,7 @@ namespace ar.com.bic.domain
 
 		public void GeneraConsulta()
 		{
-			IList tablasReporte = new ArrayList();
+			ArrayList tablasReporte = new ArrayList();
 			// Le pido las tablas candidatas a elegir - Son las que tienen todas las metricas
 			ArrayList tablasFactCandidatas = this.DameTablasCandidatas();
 			            
@@ -56,7 +57,7 @@ namespace ar.com.bic.domain
 			{
 				try
 				{
-					//Creo el objeto TablaReporte con la tabala Fact destino y todos sus caminos
+					//Creo el objeto TablaReporte con la tabla Fact destino y todos sus caminos
 					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Atributos));
 
 					// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
@@ -69,8 +70,18 @@ namespace ar.com.bic.domain
 				}
 			}
 
+			// Verifico que aunque sea exista alguna alternativa de reporte
 			if(tablasReporte.Count == 0)
 				throw new ReporteInvalidoException("Imposible generar el reporte, no existe combinacion entre los atributos y las metricas seleccionadas");
+
+			// Ordeno todas las alternativas por el comparador CompareTo
+			// que elige la de menor peso.
+			tablasReporte.Sort();
+			
+			// Tomo la primera y la agrego al reporte.
+			IEnumerator enumerador = tablasReporte.GetEnumerator();
+			enumerador.MoveNext();
+			this.tablaReporte = (TablaReporte)enumerador.Current;
 
 			return;
 
@@ -88,9 +99,9 @@ namespace ar.com.bic.domain
 				{
 					caminos.Add(campo.GeneraCamino(tabla));
 				}
-				// Si me llega una excepcion al no encontrar hijos significa
-				// que no encontro un camino hasta la Fact.
-				// Capturo la Excepcion.
+					// Si me llega una excepcion al no encontrar hijos significa
+					// que no encontro un camino hasta la Fact.
+					// Capturo la Excepcion.
 				catch(NoExisteHijoException nehe)
 				{
 					// Subo de nivel de Excepcion a una excepcion del dominio.
@@ -136,6 +147,11 @@ namespace ar.com.bic.domain
 			
 			// Con esta funcion quito los repetidos
 			return Util.ConvertirSet(tablas);
+		}
+
+		public TablaReporte TablaReporte
+		{
+			get { return this.tablaReporte; }
 		}
 
 
