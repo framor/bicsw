@@ -12,6 +12,7 @@ namespace ar.com.bic.domain.catalogo
 		private string nombre;
 		private string nombreBD;
 		private IList columnas = new ArrayList();
+		private int peso = 0;
 
 		private Tabla() {}
 		
@@ -54,6 +55,12 @@ namespace ar.com.bic.domain.catalogo
 		public void AgregarColumna(Columna col)
 		{
 			this.columnas.Add(col);
+		}
+
+		public int Peso
+		{
+			get {return this.peso; }
+			set {this.peso = value; }
 		}
 
 		/// <summary>
