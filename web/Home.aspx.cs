@@ -43,5 +43,10 @@ namespace bic
 			this.Load += new EventHandler(this.Page_Load);
 		}
 		#endregion
+
+		protected override bool TienePermisosSuficientes()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

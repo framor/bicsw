@@ -158,8 +158,13 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "EdicionUsuario.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "EdicionProyecto.aspx.cs"
-                    DependentUpon = "EdicionProyecto.aspx"
+                    DependentUpon = "EdicionUsuario.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
@@ -167,11 +172,6 @@
                     RelPath = "EdicionProyecto.aspx.resx"
                     DependentUpon = "EdicionProyecto.aspx.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "EdicionUsuario.aspx"
-                    SubType = "Form"
-                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "EdicionUsuario.aspx.cs"

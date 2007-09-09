@@ -81,5 +81,10 @@ namespace bic
 		{
 			Response.Redirect("EdicionAtributo.aspx?id=-1");
 		}
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAAtributos();
+		}
 	}
 }

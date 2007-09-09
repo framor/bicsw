@@ -64,7 +64,7 @@ namespace ar.com.bic.domain
 					// por tener todos los caminos.
 					tablasReporte.Add(tablaReporte);
 				}
-				catch(NoExisteCaminoException nece)
+				catch (NoExisteCaminoException)
 				{
                     
 				}

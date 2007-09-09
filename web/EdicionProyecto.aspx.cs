@@ -1,44 +1,37 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
 using ar.com.bic.domain;
 
 namespace bic
 {
 	/// <summary>
-	/// Descripción breve de EdicionUsuario.
+	/// Descripción breve de EdicionProyecto.
 	/// </summary>
-	public class EdicionProyecto : System.Web.UI.Page
+	public class EdicionProyecto : Page
 	{
-		protected System.Web.UI.WebControls.TextBox txtNombre;
-		protected System.Web.UI.WebControls.TextBox txtDescripcion;
-		protected System.Web.UI.WebControls.TextBox txtServidor;
-		protected System.Web.UI.WebControls.TextBox txtPuerto;
-		protected System.Web.UI.WebControls.TextBox txtEsquema;
-		protected System.Web.UI.WebControls.TextBox txtUsuario;
-		protected System.Web.UI.WebControls.TextBox txtPassword;
+		protected TextBox txtNombre;
+		protected TextBox txtDescripcion;
+		protected TextBox txtServidor;
+		protected TextBox txtPuerto;
+		protected TextBox txtEsquema;
+		protected TextBox txtUsuario;
+		protected TextBox txtPassword;
 		
-		protected System.Web.UI.WebControls.Label lblUsuario;
-		protected System.Web.UI.WebControls.Button btnCancelar;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqNombre;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqDescripcion;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqServidor;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqPuerto;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqEsquema;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqUsuario;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
-		protected System.Web.UI.WebControls.ValidationSummary valSummary;
-		protected System.Web.UI.WebControls.Button btnAceptar;
+		protected Label lblUsuario;
+		protected Button btnCancelar;
+		protected RequiredFieldValidator reqNombre;
+		protected RequiredFieldValidator reqDescripcion;
+		protected RequiredFieldValidator reqServidor;
+		protected RequiredFieldValidator reqPuerto;
+		protected RequiredFieldValidator reqEsquema;
+		protected RequiredFieldValidator reqUsuario;
+		protected RequiredFieldValidator reqPassword;
+		protected ValidationSummary valSummary;
+		protected Button btnAceptar;
 	
-		private void Page_Load(object sender, System.EventArgs e)
+		private void Page_Load(object sender, EventArgs e)
 		{
 			if (!Page.IsPostBack) 
 			{
@@ -76,14 +69,14 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
+			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
+			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+			this.Load += new EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void btnAceptar_Click(object sender, System.EventArgs e)
+		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
 			Proyecto p;
@@ -107,7 +100,7 @@ namespace bic
 			Response.Redirect("ListaProyecto.aspx");
 		}
 
-		private void btnCancelar_Click(object sender, System.EventArgs e)
+		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("ListaProyecto.aspx");
 		}

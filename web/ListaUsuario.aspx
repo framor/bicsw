@@ -1,85 +1,73 @@
 <%@ Page language="c#" Codebehind="ListaUsuario.aspx.cs" AutoEventWireup="false" Inherits="bic.ListaUsuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<HEAD>
-		<TITLE>Usuario</TITLE>
-		<meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
-		<meta name="CODE_LANGUAGE" Content="C#">
-		<meta name="vs_defaultClientScript" content="JavaScript">
-		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
-		<link href="./lib/bic.css" rel="stylesheet" type="text/css" />
-	</HEAD>
-	<body MS_POSITIONING="GridLayout">
-	<FORM id="Form1" method="post" runat="server">
-		<DIV id="container">
-			<div id="header">
-				<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
-					<tr>
-						<td>
-							<img src="./img/logo-small.jpg"/>
-						</td>
-						<td align="right">
-							<h1>&nbsp;</h1>
-							<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx" ><img alt="Cerrar sesión" src="./img/logout.png"/></a></p>
-						</td>
-					</tr>
-				</table>
-			</div>
-		
-			<DIV id="tabs10">
-				<UL>
-					<LI>
-						<A title="Link 1" href="#"><SPAN>Atributos</SPAN></A>
-					<LI>
-						<A title="Link 2" href="#"><SPAN>Hechos</SPAN></A>
-					<LI>
-						<A title="Link 3" href="#"><SPAN>Filtros</SPAN></A>
-					<LI>
-						<A title="Link 4" href="#"><SPAN>Metricas</SPAN></A>
-					<LI>
-						<A title="Link 5" href="#"><SPAN>Relaciones</SPAN></A>
-					<LI>
-						<A title="Link 6" href="#"><SPAN>Reportes</SPAN></A>
-					</LI>
-				</UL>
-			</DIV>
-			<DIV id="container2" style="HEIGHT: 450px">
-				<DIV id="content" style="HEIGHT: 83%">
-					<H2>Atributos</H2>
-					<asp:DataGrid id="dgUsuarios" runat="server" DataKeyField="Id" AutoGenerateColumns="False" CellSpacing="1"
-						CellPadding="1" BorderStyle="None" width="100%">
-						<HeaderStyle Font-Bold="True"></HeaderStyle>
-						<Columns>
-							<asp:BoundColumn DataField="Nombre" HeaderText="Usuario"></asp:BoundColumn>
-							<asp:BoundColumn DataField="Clave" HeaderText="Contraseña"></asp:BoundColumn>
-							<asp:HyperLinkColumn Text="Editar" Target="_self" DataNavigateUrlField="Id" DataNavigateUrlFormatString="EdicionUsuario.aspx?id={0}"></asp:HyperLinkColumn>
-							<asp:ButtonColumn Text="Borrar"></asp:ButtonColumn>
-						</Columns>
-					</asp:DataGrid><BR>
-					<BR>
-					<BR>
-					<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
-						<TR vAlign="bottom">
-							<TD align="right">
-								<asp:Button id="btnNuevo" runat="server" Text="Agregar nuevo"></asp:Button></TD>
-						</TR>
-					</TABLE>
-				</DIV>
-				<DIV id="sidebar">
-					<H2 style="TEXT-ALIGN: right">Ayuda</H2>
-					<P>Los atributos están definidos por una columna id y una descripción. blah blah 
-						bah...</P>
-					<P>Si desea añadir un atributo haga click en el boton Agregar nuevo.</P>
-					<P>Si que desea ir a la pantalla de edicion de un atributo haga click en el boton 
-						Editar.</P>
-					<P>Para eliminar un atributo del proyecto haga click en el boton Borrar.</P>
-				</DIV>
-				<DIV id="footer">
-					<P><A href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</A> | 
-						Copyright © BIC | Design by <A href="#">BIC Design</A></P>
-				</DIV>
-			</DIV>
-		</DIV>
-	</FORM>
+<head>
+	<title>BIC - Business Intelligence Client</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link href="./lib/bic.css" rel="stylesheet" type="text/css" />	
+</head>
+<body>
+	<form id="form1" method="post" runat="server">
+	<div id="container">
+
+	<div id="header">
+		<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<img src="./img/logo-small.jpg"/>
+				</td>
+				<td align="right">
+					<h1>&nbsp;</h1>
+					<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx" ><img alt="Cerrar sesión" src="./img/logout.png"/></a></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="tabs10">
+	</div>
+
+	<div id="container2" style="height:450px">
+
+	<div id="content" style="height:83%">
+	<h2>Proyectos</h2>
+
+		<asp:DataGrid id="dgUsuarios" runat="server" DataKeyField="Id" AutoGenerateColumns="False" CellSpacing="0"
+			CellPadding="1" BorderStyle="None" width="100%">
+			<HeaderStyle Font-Bold="True"></HeaderStyle>
+			<Columns>
+				<asp:BoundColumn DataField="Nombre" HeaderText="Nombre"></asp:BoundColumn>
+				<asp:BoundColumn DataField="NombreRol" HeaderText="Rol"></asp:BoundColumn>
+				<asp:HyperLinkColumn Text="Editar" Target="_self" DataNavigateUrlField="Id" DataNavigateUrlFormatString="EdicionUsuario.aspx?id={0}"></asp:HyperLinkColumn>
+				<asp:ButtonColumn Text="Borrar" CommandName="Borrar"></asp:ButtonColumn>
+			</Columns>
+		</asp:DataGrid><BR>
+
+		<br/><br/><br/>
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr valign="bottom">
+				<td align="right"><asp:Button id="btnNuevo" runat="server" Text="Agregar nuevo"></asp:Button></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="sidebar">
+	<h2 style="text-align:right">Ayuda</h2>
+	<p>¡Bievenido a BIC! <br>Como administrador solo podrá administrar los usuarios.</p>
+	<p>Si desea añadir un usuario haga click en el boton Agregar nuevo.</p>
+	<p>Si que desea ir a la pantalla de edicion de usuario haga click en el boton Editar.</p>
+	<p>Para eliminar un usuario haga click en el boton Borrar.</p>
+	</div>
+
+	<div id="footer">
+	<p>
+	<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a> | Copyright &copy; BIC | Design by <a href="#">BIC Design</a>
+	</p>
+	</div>
+
+	</div>
+
+	</div>
+	</form>
 	</body>
-</HTML>
+</html>
