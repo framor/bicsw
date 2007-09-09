@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
-using ar.com.bic.domain;
-using Spring.Data.NHibernate;
+using ar.com.bic.domain.usuario;
 using Spring.Data.NHibernate.Support;
 
 namespace ar.com.bic.dao

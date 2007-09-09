@@ -17,7 +17,7 @@
 					<img src="./img/logo-small.jpg"/>
 				</td>
 				<td align="right">
-					<h1><asp:Label ID="lblProyecto" Runat="server"></asp:Label></h1>
+					<h1><asp:Label ID="lblProyecto" Runat="server"></asp:Label>&nbsp;<a href="ListaProyecto.aspx" ><img alt="Cerrar proyecto" src="./img/logout.png"/></a></h1>
 					<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx" ><img alt="Cerrar sesión" src="./img/logout.png"/></a></p>
 				</td>
 			</tr>

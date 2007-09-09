@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{7693AA34-CAC8-4954-82B4-EF5392E13784}"
     >
@@ -146,15 +146,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Usuario.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Usuario.hbm.xml"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "catalogo\Catalogo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -206,6 +197,35 @@
                     RelPath = "interfaces\ITablaMapeable.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Administrador.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Arquitecto.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Reportero.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Rol.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Usuario.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "usuario\Usuario.hbm.xml"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

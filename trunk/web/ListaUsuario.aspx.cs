@@ -8,14 +8,16 @@ namespace bic
 	/// <summary>
 	/// Descripción breve de WebForm1.
 	/// </summary>
-	public class ListaUsuario : Page
+	public class ListaUsuario : BasePage
 	{
 		protected Button btnNuevo;
+		protected System.Web.UI.WebControls.Label lblUsuario;
 		protected DataGrid dgUsuarios;
 	
 		private void Page_Load(object sender, EventArgs e)
 		{
-			listUsuarios();
+			BaseLoad();
+			ListarUsuarios();
 		}
 
 		#region Código generado por el Diseñador de Web Forms
@@ -34,9 +36,9 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgUsuarios.ItemCommand += new DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
-			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
-			this.Load += new EventHandler(this.Page_Load);
+			this.dgUsuarios.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
+			this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
@@ -46,10 +48,10 @@ namespace bic
 		{
 			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
 			BICContext.Instance.UsuarioService.Delete(id);
-			listUsuarios();
+			ListarUsuarios();
 		}
 
-		private void listUsuarios()
+		private void ListarUsuarios()
 		{
 			dgUsuarios.DataSource = BICContext.Instance.UsuarioService.Select();
 			dgUsuarios.DataBind();
@@ -58,6 +60,11 @@ namespace bic
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("EdicionUsuario.aspx?id=-1");
+		}
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAUsuarios();
 		}
 	}
 }

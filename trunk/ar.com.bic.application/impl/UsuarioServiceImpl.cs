@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
 using ar.com.bic.dao;
-using ar.com.bic.domain;
+using ar.com.bic.domain.usuario;
 
 namespace ar.com.bic.application.impl
 {

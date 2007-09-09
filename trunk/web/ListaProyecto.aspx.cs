@@ -88,5 +88,10 @@ namespace bic
 		{
 			Response.Redirect("EdicionProyecto.aspx?id=-1");
 		}
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAProyectos();
+		}
 	}
 }

@@ -115,6 +115,10 @@ namespace bic
 		{
 			Response.Redirect("ListaAtributo.aspx");
 		}
-	
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAAtributos();
+		}
 	}
 }

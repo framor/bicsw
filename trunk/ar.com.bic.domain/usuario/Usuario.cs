@@ -1,6 +1,6 @@
 using System;
 
-namespace ar.com.bic.domain
+namespace ar.com.bic.domain.usuario
 {
 	/// <summary>
 	/// Un usuario del sistema.
@@ -10,6 +10,8 @@ namespace ar.com.bic.domain
 		private long id;
 		private String nombre;
 		private String clave;
+		private String eMail;
+		private Rol rol;
 
 		public virtual long Id 
 		{
@@ -27,6 +29,27 @@ namespace ar.com.bic.domain
 		{
 			get { return this.clave; }
 			set { this.clave = value; }
+		}
+
+		public virtual Rol Rol
+		{
+			get
+			{
+				// TODO: arreglar mapeo
+				return Arquitecto.Instance;
+			}
+			set { this.rol = value; }
+		}
+
+		public virtual String EMail
+		{
+			get { return this.eMail; }
+			set { this.eMail = value; }
+		}
+
+		public virtual String NombreRol
+		{
+			get { return this.Rol.Nombre; }
 		}
 
 		public Usuario()

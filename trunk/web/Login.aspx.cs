@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using ar.com.bic.application;
 using ar.com.bic.domain;
+using ar.com.bic.domain.usuario;
 
 namespace bic
 {
@@ -61,7 +62,14 @@ namespace bic
 			if (u != null)
 			{
 				Session["usuario"] = u;
-				Response.Redirect("ListaProyecto.aspx");
+				if (u.Rol.EsAdministrador())
+				{
+					Response.Redirect("ListaUsuario.aspx");					
+				}
+				else
+				{
+					Response.Redirect("ListaProyecto.aspx");
+				}
 			} 
 			else
 			{
