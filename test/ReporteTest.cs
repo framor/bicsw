@@ -446,6 +446,7 @@ namespace test
 			// Creo las tablas
 			Tabla tablaFact1 = new Tabla("Tabla Fact 1","TablaFact1","db");
 			Tabla tablaFact2 = new Tabla("Tabla Fact 2","TablaFact2","db");
+			Tabla tablaFact3 = new Tabla("Tabla Fact 3","TablaFact3","db");
 			Tabla tablaLkp1 = new Tabla("Tabla Lkp 1","TablaLkp1","db");
 			Tabla tablaLkp2 = new Tabla("Tabla Lkp 2","TablaLkp2","db");
 			Tabla tablaLkp3 = new Tabla("Tabla Lkp 3","TablaLkp3","db");
@@ -457,6 +458,7 @@ namespace test
 
 			tablaFact1.Peso = 50;
 			tablaFact2.Peso = 30;
+			tablaFact3.Peso = 10;
 
 			// Creo las columnas
 
@@ -469,6 +471,7 @@ namespace test
 			Columna columna7  = new Columna("campo_b","char",tablaFact2 );
 			Columna columna8  = new Columna("campo_c","char",tablaFact2 );
 			Columna columna9  = new Columna("campo_e","char",tablaFact2 );
+			Columna columna10  = new Columna("campo_a","char",tablaFact3 );
 
 			Columna columnaLkp1  = new Columna("campoLkp_a","char",tablaLkp1 );
 			Columna columnaLkp2  = new Columna("campoLkp_b","char",tablaLkp2 );
@@ -506,6 +509,7 @@ namespace test
 			// Agrego el resto de las columnas a los campos del mismo nombre
 
 			campo_a.AgregarColumnas(columna6);
+			campo_a.AgregarColumnas(columna10);
 			campo_b.AgregarColumnas(columna7);
 			campo_c.AgregarColumnas(columna8);
 			campoLkp_e.AgregarColumnas(columnaFact1);
@@ -531,6 +535,8 @@ namespace test
 			tablaFact2.AgregarColumna(columna9); 
 			tablaFact2.AgregarColumna(columnaFact3); 
 			tablaFact2.AgregarColumna(columnaFact4); 
+
+			tablaFact3.AgregarColumna(columna10);
 
 			tablaLkp1.AgregarColumna(columnaLkp1);
 			tablaLkp2.AgregarColumna(columnaLkp2);
