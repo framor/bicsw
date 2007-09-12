@@ -1,6 +1,7 @@
 using System;
 using Spring.Context;
 using Spring.Context.Support;
+using Spring.Web;
 
 namespace ar.com.bic.application
 {
@@ -9,6 +10,7 @@ namespace ar.com.bic.application
 	/// </summary>
 	public class BICContext
 	{
+
 		private static BICContext instance = new BICContext();
 		public static BICContext Instance 
 		{
@@ -17,8 +19,8 @@ namespace ar.com.bic.application
 
 		private IApplicationContext ctx;
 		private BICContext()
-		{
-			this.ctx = ContextRegistry.GetContext();		
+		{			
+			this.ctx = WebApplicationContext.Current;
 		}
 
 		/// <summary>
@@ -51,6 +53,14 @@ namespace ar.com.bic.application
 		public CatalogoService CatalogoService 
 		{
 			get { return (CatalogoService)ctx["catalogoService"]; }
+		}
+
+		/// <summary>
+		/// Obtiene una implementación de TablaService
+		/// </summary>
+		public TablaService TablaService 
+		{
+			get { return (TablaService)ctx["tablaService"]; }
 		}
 
 	}

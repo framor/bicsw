@@ -7,6 +7,6 @@
         <property name="nombre" column="nombre" type="String" access="field" /> 
         <property name="clave" column="clave" type="String" access="field" /> 
 		<property name="eMail" column="email" type="String" access="field" />
-        <!--property name="rol" column="rol" type="ar.com.bic.dao.usertypes.RolUserType, ar.com.bic.dao" access="field"/-->
+        <property name="rol" column="rol" type="ar.com.bic.dao.usertypes.RolUserType, ar.com.bic.dao" access="field" />
     </class>
 </hibernate-mapping>

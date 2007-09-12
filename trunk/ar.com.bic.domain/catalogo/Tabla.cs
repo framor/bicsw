@@ -13,6 +13,7 @@ namespace ar.com.bic.domain.catalogo
 		private string nombreBD;
 		private IList columnas = new ArrayList();
 		private int peso = 0;
+		private Proyecto proyecto;
 
 		private Tabla() {}
 		
@@ -61,6 +62,12 @@ namespace ar.com.bic.domain.catalogo
 		{
 			get {return this.peso; }
 			set {this.peso = value; }
+		}
+
+		public Proyecto Proyecto
+		{
+			get { return proyecto; }
+			set { proyecto = value; }
 		}
 
 		/// <summary>

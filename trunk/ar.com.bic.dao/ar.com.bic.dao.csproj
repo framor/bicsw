@@ -109,6 +109,11 @@
                     AssemblyName = "MySql.Data"
                     HintPath = "..\libraries\MySql.Data.dll"
                 />
+                <Reference
+                    Name = "NHibernate"
+                    AssemblyName = "NHibernate"
+                    HintPath = "..\libraries\NHibernate.dll"
+                />
             </References>
         </Build>
         <Files>

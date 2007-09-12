@@ -32,6 +32,11 @@ namespace ar.com.bic.domain.usuario
 			return true;
 		}
 
+		public override bool PuedeAccederATablas()
+		{
+			return true;
+		}
+
 		protected override string GetNombre()
 		{
 			return "Arquitecto";

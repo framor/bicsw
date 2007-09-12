@@ -33,6 +33,7 @@ namespace bic
 			if (!TienePermisosSuficientes())
 			{
 				Response.Write("Acción no permitida. Consulte al administrador para que le asgine los permisos necesarios para acceder a la pagina.");
+				Response.Close();
 			}
 		}
 

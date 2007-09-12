@@ -54,5 +54,10 @@ namespace ar.com.bic.domain.usuario
 			return false;
 		}
 
+		public virtual bool PuedeAccederATablas()
+		{
+			return false;
+		}
+
 	}
 }

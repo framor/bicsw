@@ -104,6 +104,11 @@
                     AssemblyName = "Spring.Data.NHibernate"
                     HintPath = "..\libraries\Spring.Data.NHibernate.dll"
                 />
+                <Reference
+                    Name = "Spring.Web"
+                    AssemblyName = "Spring.Web"
+                    HintPath = "..\libraries\Spring.Web.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -134,6 +139,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "TablaService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "UsuarioService.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -150,6 +160,11 @@
                 />
                 <File
                     RelPath = "impl\ProyectoServiceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "impl\TablaServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

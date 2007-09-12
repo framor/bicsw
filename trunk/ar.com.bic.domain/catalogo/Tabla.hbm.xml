@@ -7,6 +7,8 @@
         <property name="nombre" column="nombre" type="String" access="field"/> 
         <property name="alias" column="alias" type="String" access="field"/> 
         <property name="nombreBD" column="nombreBD" type="String" access="field"/> 
+		<many-to-one name="proyecto" class="ar.com.bic.domain.Proyecto, ar.com.bic.domain" 
+			column="proyecto_id" not-null="true" access="field"/>        
 		<!-- columnas -->
     </class>
 </hibernate-mapping>

@@ -91,6 +91,7 @@ namespace ar.com.bic.domain
 
 		public void AgregarTabla(Tabla tbl)
 		{
+			tbl.Proyecto = this;
 			this.tablas.Add(tbl);
 			foreach (Columna col in tbl.Columnas)
 			{
