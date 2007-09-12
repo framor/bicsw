@@ -105,22 +105,9 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "CrystalDecisions.Shared"
-                    AssemblyName = "CrystalDecisions.Shared"
-                    HintPath = "..\..\..\..\..\..\..\Program Files\Common Files\Crystal Decisions\1.1\Managed\CrystalDecisions.Shared.dll"
-                    AssemblyFolderKey = "hklm\crystal.net"
-                />
-                <Reference
-                    Name = "CrystalDecisions.ReportSource"
-                    AssemblyName = "CrystalDecisions.ReportSource"
-                    HintPath = "..\..\..\..\..\..\..\Program Files\Common Files\Crystal Decisions\1.1\Managed\CrystalDecisions.ReportSource.dll"
-                    AssemblyFolderKey = "hklm\crystal.net"
-                />
-                <Reference
-                    Name = "CrystalDecisions.CrystalReports.Engine"
-                    AssemblyName = "CrystalDecisions.CrystalReports.Engine"
-                    HintPath = "..\..\..\..\..\..\..\Program Files\Common Files\Crystal Decisions\1.1\Managed\CrystalDecisions.CrystalReports.Engine.dll"
-                    AssemblyFolderKey = "hklm\crystal.net"
+                    Name = "log4net"
+                    AssemblyName = "log4net"
+                    HintPath = "..\libraries\log4net.dll"
                 />
             </References>
         </Build>
@@ -156,6 +143,22 @@
                     RelPath = "EdicionProyecto.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionTabla.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionTabla.aspx.cs"
+                    DependentUpon = "EdicionTabla.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionTabla.aspx.resx"
+                    DependentUpon = "EdicionTabla.aspx.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "EdicionUsuario.aspx"
@@ -249,6 +252,22 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ListaTabla.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaTabla.aspx.cs"
+                    DependentUpon = "ListaTabla.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaTabla.aspx.resx"
+                    DependentUpon = "ListaTabla.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ListaUsuario.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
@@ -282,10 +301,6 @@
                 />
                 <File
                     RelPath = "Web.config"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "config\log4net.xml"
                     BuildAction = "Content"
                 />
                 <File

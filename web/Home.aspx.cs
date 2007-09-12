@@ -46,7 +46,7 @@ namespace bic
 
 		protected override bool TienePermisosSuficientes()
 		{
-			throw new NotImplementedException();
+			return true;
 		}
 	}
 }

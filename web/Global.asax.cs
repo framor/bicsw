@@ -23,7 +23,9 @@ namespace bic
 		
 		protected void Application_Start(Object sender, EventArgs e)
 		{
-
+			log4net.Config.XmlConfigurator.Configure();
+			log4net.ILog log = log4net.LogManager.GetLogger(typeof(bic.Global));
+			log.Debug("Application started.");
 		}
  
 		protected void Session_Start(Object sender, EventArgs e)

@@ -42,7 +42,7 @@ namespace ar.com.bic.application.impl
 		/// </summary>
 		public ICollection Select(long proyectoId) 
 		{
-			return this.ProyectoDAO.selectAtributos(proyectoId);
+			return this.ProyectoDAO.SelectAtributos(proyectoId);
 		}
 
 		/// <summary>

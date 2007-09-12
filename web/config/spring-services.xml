@@ -56,5 +56,15 @@
 		<property name="mySQLDAO" ref="mySQLDAO"/>			
 	</object>
 
+	<object id="tablaService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.TablaService"/>
+		<property name="target" ref="tablaServiceImpl"/>
+	</object>			
+	<object id="tablaServiceImpl" type="ar.com.bic.application.impl.TablaServiceImpl, ar.com.bic.application">
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="proyectoDAO" ref="proyectoDAO"/>		
+	</object>
+
 </objects>
 
