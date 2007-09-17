@@ -109,6 +109,16 @@
                     AssemblyName = "log4net"
                     HintPath = "..\libraries\log4net.dll"
                 />
+                <Reference
+                    Name = "Spring.Data.NHibernate"
+                    AssemblyName = "Spring.Data.NHibernate"
+                    HintPath = "..\libraries\Spring.Data.NHibernate.dll"
+                />
+                <Reference
+                    Name = "Spring.Data"
+                    AssemblyName = "Spring.Data"
+                    HintPath = "..\libraries\Spring.Data.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -140,18 +150,24 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "EdicionProyecto.aspx"
+                    RelPath = "EdicionHecho.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "EdicionTabla.aspx"
-                    SubType = "Form"
-                    BuildAction = "Content"
+                    RelPath = "EdicionHecho.aspx.cs"
+                    DependentUpon = "EdicionHecho.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionHecho.aspx.resx"
+                    DependentUpon = "EdicionHecho.aspx.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "EdicionTabla.aspx.cs"
-                    DependentUpon = "EdicionTabla.aspx"
+                    DependentUpon = "EdicionHecho.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
@@ -161,13 +177,13 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "EdicionUsuario.aspx"
+                    RelPath = "EdicionProyecto.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
                     RelPath = "EdicionProyecto.aspx.cs"
-                    DependentUpon = "EdicionUsuario.aspx"
+                    DependentUpon = "EdicionProyecto.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
@@ -175,6 +191,16 @@
                     RelPath = "EdicionProyecto.aspx.resx"
                     DependentUpon = "EdicionProyecto.aspx.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "EdicionTabla.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionUsuario.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "EdicionUsuario.aspx.cs"
@@ -236,6 +262,33 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ListaHecho.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaHecho.aspx.cs"
+                    DependentUpon = "ListaHecho.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaHecho.aspx.resx"
+                    DependentUpon = "ListaHecho.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ListaTabla.aspx.cs"
+                    DependentUpon = "ListaHecho.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaTabla.aspx.resx"
+                    DependentUpon = "ListaTabla.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ListaProyecto.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
@@ -255,17 +308,6 @@
                     RelPath = "ListaTabla.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
-                />
-                <File
-                    RelPath = "ListaTabla.aspx.cs"
-                    DependentUpon = "ListaTabla.aspx"
-                    SubType = "ASPXCodeBehind"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ListaTabla.aspx.resx"
-                    DependentUpon = "ListaTabla.aspx.cs"
-                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "ListaUsuario.aspx"

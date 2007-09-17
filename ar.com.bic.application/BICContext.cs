@@ -63,5 +63,12 @@ namespace ar.com.bic.application
 			get { return (TablaService)ctx["tablaService"]; }
 		}
 
+		/// <summary>
+		/// Obtiene una implementación de HechoService
+		/// </summary>
+		public HechoService HechoService 
+		{
+			get { return (HechoService)ctx["hechoService"]; }
+		}
 	}
 }

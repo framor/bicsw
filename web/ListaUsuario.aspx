@@ -30,7 +30,7 @@
 	<div id="container2" style="height:450px">
 
 	<div id="content" style="height:83%">
-	<h2>Proyectos</h2>
+	<h2>Usuarios</h2>
 
 		<asp:DataGrid id="dgUsuarios" runat="server" DataKeyField="Id" AutoGenerateColumns="False" CellSpacing="0"
 			CellPadding="1" BorderStyle="None" width="100%">

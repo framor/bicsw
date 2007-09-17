@@ -1,4 +1,5 @@
 using System.Collections;
+using ar.com.bic.domain.catalogo;
 
 namespace ar.com.bic.domain.interfaces
 {
@@ -8,11 +9,12 @@ namespace ar.com.bic.domain.interfaces
 	public interface ITablaMapeable
 	{
 	
-		IList GetTablas();
+		IList ObtenerTablas();
 
-		Campo GetCampo();
+		Columna Columna
+		{
+			get;
+		}
 		
-		IList GetColumnas();
-
 	}
 }

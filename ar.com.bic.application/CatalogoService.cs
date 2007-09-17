@@ -1,4 +1,6 @@
 using System.Collections;
+using ar.com.bic.domain;
+using ar.com.bic.domain.catalogo;
 
 namespace ar.com.bic.application
 {
@@ -19,7 +21,32 @@ namespace ar.com.bic.application
 		/// </summary>
 		/// <param name="idProyecto">El id del proyecto</param>
 		/// <returns></returns>
-		IList SelectCamposDisponibles(long idProyecto);
+		IList SelectColumnasDisponibles(long idProyecto);
+		
+		/// <summary>
+		/// Intenta una conexion con los datos que se proveen
+		/// </summary>
+		/// <param name="servidor"></param>
+		/// <param name="esquema"></param>
+		/// <param name="usuario"></param>
+		/// <param name="password"></param>
+		/// <returns></returns>
+		string ProbarConexion(string servidor, string esquema, string usuario, string password);
 
+		/// <summary>
+		/// Obtiene una tabla del catalog de la bd configurada para el proyecto
+		/// </summary>
+		/// <param name="nombreTabla"></param>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		Tabla ObtenerTabla(string nombreTabla, long idProyecto);
+
+		/// <summary>
+		/// Obtiene una columna del catalog de la bd configurada para el proyecto
+		/// </summary>
+		/// <param name="nombreColumna"></param>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		Columna ObtenerColumna(string nombreColumna, long idProyecto);
 	}
 }

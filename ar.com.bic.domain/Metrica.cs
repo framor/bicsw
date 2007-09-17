@@ -1,4 +1,5 @@
 using System.Collections;
+using ar.com.bic.domain.catalogo;
 using ar.com.bic.domain.interfaces;
 
 namespace ar.com.bic.domain
@@ -26,21 +27,15 @@ namespace ar.com.bic.domain
 
 		#region Metodos Publicos
 			
-		public IList GetTablas()
+		public IList ObtenerTablas()
 		{
-			return this.hecho.GetTablas();
+			return this.hecho.ObtenerTablas();
 		}
 		
-		public Campo GetCampo()
+		public Columna Columna
 		{
-			return this.hecho.GetCampo();
+			get { return this.hecho.Columna; }
 		}
-
-		public IList GetColumnas()
-		{
-			return this.hecho.GetColumnas();
-		}
-
 
 		#endregion
 

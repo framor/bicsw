@@ -33,11 +33,7 @@ namespace ar.com.bic.domain.usuario
 
 		public virtual Rol Rol
 		{
-			get
-			{
-				// TODO: arreglar mapeo
-				return Arquitecto.Instance;
-			}
+			get { return this.rol;}
 			set { this.rol = value; }
 		}
 

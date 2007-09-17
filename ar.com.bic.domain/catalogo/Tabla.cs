@@ -1,5 +1,6 @@
 using System.Collections;
 using ar.com.bic.domain.interfaces;
+using Iesi.Collections;
 
 namespace ar.com.bic.domain.catalogo
 {
@@ -11,7 +12,6 @@ namespace ar.com.bic.domain.catalogo
 		private string alias;
 		private string nombre;
 		private string nombreBD;
-		private IList columnas = new ArrayList();
 		private int peso = 0;
 		private Proyecto proyecto;
 
@@ -33,7 +33,11 @@ namespace ar.com.bic.domain.catalogo
 
 		public IList Columnas
 		{
-			get {return new ArrayList(this.columnas); }
+			get
+			{
+				// TODO: return mySQLDAO.GetColumnas()
+				return new ArrayList();
+			}
 		}
 		public string Alias
 		{
@@ -53,11 +57,6 @@ namespace ar.com.bic.domain.catalogo
 			set {this.nombreBD = value;}
 		}
 
-		public void AgregarColumna(Columna col)
-		{
-			this.columnas.Add(col);
-		}
-
 		public int Peso
 		{
 			get {return this.peso; }
@@ -67,19 +66,19 @@ namespace ar.com.bic.domain.catalogo
 		public Proyecto Proyecto
 		{
 			get { return proyecto; }
-			set { proyecto = value; }
+			set {proyecto = value; }
 		}
 
 		/// <summary>
-		/// Busca los campos en la lista de columnas.
+		/// Busca si tiene la columna
 		/// </summary>
-		/// <param name="campo"></param>
+		/// <param name="mapeables"></param>
 		/// <returns>True si la tabla tiene todos los campos, sino false.</returns>
-		public bool Tenes(IList campos)
+		public bool Tenes(IList mapeables)
 		{
-			foreach(ITablaMapeable campo in campos)
+			foreach(ITablaMapeable mapeable in mapeables)
 			{
-				if(!this.Tenes(campo))
+				if(!this.Tenes(mapeable))
 					return false;
 			}
 			
@@ -87,24 +86,23 @@ namespace ar.com.bic.domain.catalogo
 		}
 		
 		/// <summary>
-		/// Busca el campo en la lista de columnas.
+		/// Busca la columna en la tabla
 		/// </summary>
-		/// <param name="campo"></param>
-		/// <returns>True si tiene alguna columna con el mismo nombre que
-		/// el campo, sino false.</returns>
-		public bool Tenes(ITablaMapeable campo)
+		/// <param name="mapeable"></param>
+		/// <returns>True si tiene alguna columna con el mismo nombre</returns>
+		public bool Tenes(ITablaMapeable mapeable)
 		{
-			
-			IList columnas = campo.GetColumnas();
-
-			foreach(Columna columna in columnas)
-			{
-				if(this.Columnas.Contains(columna))
-					return true;
-			}
-
-			return false;
+			return Tenes(mapeable.Columna);
 		}
 
+		/// <summary>
+		/// Busca la columna en la tabla
+		/// </summary>
+		/// <param name="col"></param>
+		/// <returns>True si tiene alguna columna con el mismo nombre</returns>
+		public bool Tenes(Columna col)
+		{
+			return this.Columnas.Contains(col);
+		}
 	}
 }

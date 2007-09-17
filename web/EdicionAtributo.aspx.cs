@@ -45,7 +45,7 @@ namespace bic
 
 				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
 				this.ddlTablaLookup.DataBind();
-				IList campos = BICContext.Instance.CatalogoService.SelectCamposDisponibles(Proyecto.Id);
+				IList campos = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);
 				this.ddlCampoDescripcion.DataSource = campos;
 				this.ddlCampoDescripcion.DataBind();
 				this.ddlCampoId.DataSource = campos;

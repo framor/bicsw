@@ -5,7 +5,7 @@
             <generator class="native" /> 
         </id> 
         <property name="nombre" column="nombre" type="String" access="field"/> 
-		<many-to-one name="campoId" class="ar.com.bic.domain.Proyecto, ar.com.bic.domain" column="campo_id" not-null="true" access="field"/>
+		<many-to-one name="columnaId" class="ar.com.bic.domain.catalogo.Columna, ar.com.bic.domain" column="columna_id" not-null="true" access="field"/>
         <!--property name="campoDescripcion" column="campoDescripcion" type="String" access="field"/-->
 		<many-to-one name="tablaLookup" class="ar.com.bic.domain.catalogo.Tabla, ar.com.bic.domain" column="tabla_lookup_id" not-null="true" access="field"/>
 		<many-to-one name="proyecto" class="ar.com.bic.domain.Proyecto, ar.com.bic.domain" column="proyecto_id" not-null="true" access="field"/>
