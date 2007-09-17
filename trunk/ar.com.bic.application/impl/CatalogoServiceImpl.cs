@@ -19,6 +19,13 @@ namespace ar.com.bic.application.impl
 			set { this.mySQLDAO = value; }
 		}
 
+		private ProyectoDAO proyectoDAO;
+		public ProyectoDAO ProyectoDAO 
+		{
+			get { return this.proyectoDAO; }
+			set { this.proyectoDAO = value; }
+		}
+
 		public CatalogoServiceImpl() {}
 
 		/// <summary>
@@ -27,8 +34,6 @@ namespace ar.com.bic.application.impl
 		public IList SelectTablasDisponibles(long idProyecto)
 		{
 			Proyecto p = (Proyecto) this.GenericDAO.Retrieve(typeof(Proyecto), idProyecto);
-			// FIXME: aca en realidad se debéría retornar p.Tablas, 
-			// se esta retornando todo el catalogo para probar
 			Catalogo c = this.mySQLDAO.GetCatalogo(p.Servidor, p.NombreBD, p.Usuario, p.Password);
 			return c.Tablas;
 		}
@@ -36,18 +41,56 @@ namespace ar.com.bic.application.impl
 		/// <summary>
 		/// Implementacion de CatalogoServiceImpl.SelectCamposDisponibles
 		/// </summary>
-		public IList SelectCamposDisponibles(long idProyecto)
+		public IList SelectColumnasDisponibles(long idProyecto)
 		{
-			Proyecto p = (Proyecto) this.GenericDAO.Retrieve(typeof(Proyecto), idProyecto);
-			// FIXME: aca en realidad se debéría retornar p.Campos, 
-			// se esta retornando todo el catalogo para probar
-			Catalogo c = this.mySQLDAO.GetCatalogo(p.Servidor, p.NombreBD, p.Usuario, p.Password);
 			ArrayList ret = new ArrayList();
-			foreach (Tabla t in c.Tablas)
+			IList tablas = this.proyectoDAO.SelectTablas(idProyecto);
+			foreach (Tabla t in tablas)
 			{
 				ret.AddRange(t.Columnas);
 			}
+			// TODO: hacer un hash y evitar duplicados
 			return ret;
+		}
+
+		/// <summary>
+		/// Implementacion de CatalogoService.ProbarConexion
+		/// </summary>
+		public string ProbarConexion(string servidor, string esquema, string usuario, string password)
+		{
+			return this.mySQLDAO.ProbarConexion(servidor, esquema, usuario, password);
+		}
+
+		/// <summary>
+		/// Implementacion CatalogoService.ObtenerTabla
+		/// </summary>
+		public Tabla ObtenerTabla(string nombreTabla, long idProyecto)
+		{
+			IList tablas = SelectTablasDisponibles(idProyecto);
+			foreach (Tabla t in tablas)
+			{
+				if (t.Nombre == nombreTabla)
+				{
+					return t;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// Implementacion CatalogoService.ObtenerColumna
+		/// </summary>
+		public Columna ObtenerColumna(string nombreColumna, long idProyecto)
+		{
+			IList columnas = SelectColumnasDisponibles(idProyecto);
+			foreach (Columna c in columnas)
+			{
+				if (c.Nombre == nombreColumna)
+				{
+					return c;
+				}
+			}
+			return null;
 		}
 	}
 }

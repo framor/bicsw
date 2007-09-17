@@ -9,6 +9,6 @@
         <property name="nombreBD" column="nombreBD" type="String" access="field"/> 
 		<many-to-one name="proyecto" class="ar.com.bic.domain.Proyecto, ar.com.bic.domain" 
 			column="proyecto_id" not-null="true" access="field"/>        
-		<!-- columnas -->
+		<property name="peso" column="peso" type="int" access="field"/> 			
     </class>
 </hibernate-mapping>

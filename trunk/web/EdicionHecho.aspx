@@ -1,4 +1,4 @@
-<%@ Page language="c#" Codebehind="EdicionTabla.aspx.cs" AutoEventWireup="false" Inherits="bic.EdicionTabla" %>
+<%@ Page language="c#" Codebehind="EdicionHecho.aspx.cs" AutoEventWireup="false" Inherits="bic.EdicionHecho" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 	<HEAD>
@@ -35,30 +35,22 @@
 				</div>
 				<div id="container2" style="HEIGHT:450px">
 					<div id="content" style="HEIGHT:83%">
-						<h2>Tablas</h2>
+						<h2>Hechos</h2>
 						<table width="100%" cellspacing="1" cellpadding="0" border="0">
 							<tr>
 								<td><b>Nombre</b></td>
 								<td>
-									<asp:DropDownList id="ddlNombre" runat="server" DataTextField="Nombre" DataValueField="Nombre"></asp:DropDownList>
-									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="ddlNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
+									<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Campo</b></td>
+								<td>
+									<asp:DropDownList id="ddlColumna" runat="server" DataTextField="Nombre" DataValueField="Nombre"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqColumna" Runat="server" ControlToValidate="ddlColumna" ErrorMessage="Por favor complete la Columna.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>						
-							<tr>
-								<td><b>Alias</b></td>
-								<td>
-									<asp:TextBox id="txtAlias" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqAlias" Runat="server" ControlToValidate="txtAlias" ErrorMessage="Por favor complete el Alias.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Peso</b></td>
-								<td>
-									<asp:TextBox id="txtPeso" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqPeso" Runat="server" ControlToValidate="txtPeso"
-										ErrorMessage="Por favor complete el Peso.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
 							<tr>
 								<td colspan="2">
 									<asp:ValidationSummary ID="valSummary" Runat="server"></asp:ValidationSummary>
@@ -80,12 +72,12 @@
 					<div id="sidebar">
 						<h2 style="TEXT-ALIGN:right"><span onclick="toggleHelp();"> Ayuda</span></h2>
 						<div id="helpBody" style="DISPLAY:none">
-							<p>Los atributos están definidos por una columna id y una descripción. blah blah 
+							<p>Los hechos están definidos por una columna. blah blah 
 								bah...</p>
-							<p>Si desea añadir un atributo haga click en el boton Agregar nuevo.</p>
-							<p>Si que desea ir a la pantalla de edicion de un atributo haga click en el boton 
+							<p>Si desea añadir un hecho haga click en el boton Agregar nuevo.</p>
+							<p>Si que desea ir a la pantalla de edicion de un hecho haga click en el boton 
 								Editar.</p>
-							<p>Para eliminar un atributo del proyecto haga click en el boton Borrar.</p>
+							<p>Para eliminar un hecho del proyecto haga click en el boton Borrar.</p>
 						</div>
 					</div>
 					<div id="footer">

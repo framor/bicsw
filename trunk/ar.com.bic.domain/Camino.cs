@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using ar.com.bic.domain.catalogo;
 
@@ -40,7 +39,7 @@ namespace ar.com.bic.domain
         /// <returns></returns>
 		public string DameJoinFact(string aliasFact)
 		{
-			string nombreCampo = this.AtributoFact.CampoId.Nombre;
+			string nombreCampo = this.AtributoFact.ColumnaId.Nombre;
 			string aliasLkp = this.atributoFact.TablaLookup.Nombre + this.id;
 			string sql = aliasFact + "." + nombreCampo + " = " + aliasLkp + "." + nombreCampo;
 			return sql;		
@@ -100,9 +99,9 @@ namespace ar.com.bic.domain
 				// Obtengo la tabla lookup para agregarle los alias
 				Tabla tabla = atributo.TablaLookup;
 				// Armo la comparacion ej: campo2 = lkp2.campo2
-				whereClause += atributo.CampoId.Nombre + "=" 
+				whereClause += atributo.ColumnaId.Nombre + "=" 
 					+ tabla.Nombre + this.id + "."
-					+ atributo.CampoId.Nombre;
+					+ atributo.ColumnaId.Nombre;
 				// Mientras no sea el ultimo agrego el and y el alias de la tabla
 				// ej: and lkp1.
 				if(this.atributos.IndexOf(atributo) < this.atributos.Count - 1)

@@ -43,7 +43,7 @@
 	<object id="atributoServiceImpl" type="ar.com.bic.application.impl.AtributoServiceImpl, ar.com.bic.application">
 		<!-- TODO: setear el genericDAO en un template -->
 		<property name="genericDAO" ref="genericDAO"/>	
-		<property name="proyectoDAO" ref="proyectoDAO"/>			
+		<property name="proyectoDAO" ref="proyectoDAO"/>
 	</object>
 
 	<object id="catalogoService" parent="serviceConfigurationTemplate">
@@ -52,7 +52,8 @@
 	</object>			
 	<object id="catalogoServiceImpl" type="ar.com.bic.application.impl.CatalogoServiceImpl, ar.com.bic.application">
 		<!-- TODO: setear el genericDAO en un template -->
-		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="genericDAO" ref="genericDAO"/>
+		<property name="proyectoDAO" ref="proyectoDAO"/>			
 		<property name="mySQLDAO" ref="mySQLDAO"/>			
 	</object>
 
@@ -61,6 +62,16 @@
 		<property name="target" ref="tablaServiceImpl"/>
 	</object>			
 	<object id="tablaServiceImpl" type="ar.com.bic.application.impl.TablaServiceImpl, ar.com.bic.application">
+		<!-- TODO: setear el genericDAO en un template -->
+		<property name="genericDAO" ref="genericDAO"/>	
+		<property name="proyectoDAO" ref="proyectoDAO"/>		
+	</object>
+
+	<object id="hechoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="ar.com.bic.application.HechoService"/>
+		<property name="target" ref="hechoServiceImpl"/>
+	</object>			
+	<object id="hechoServiceImpl" type="ar.com.bic.application.impl.HechoServiceImpl, ar.com.bic.application">
 		<!-- TODO: setear el genericDAO en un template -->
 		<property name="genericDAO" ref="genericDAO"/>	
 		<property name="proyectoDAO" ref="proyectoDAO"/>		

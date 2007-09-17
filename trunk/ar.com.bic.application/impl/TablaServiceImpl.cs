@@ -29,19 +29,11 @@ namespace ar.com.bic.application.impl
 		{
 		}
 
-		public void Save(Tabla t)
-		{
-			this.GenericDAO.Save(t);
-		}
-
 		/// <summary>
 		/// Implementacion de TablaService.save
 		/// </summary>
-		public void Save(Proyecto p, string nombre, string alias, int peso) 
+		public void Save(Tabla t) 
 		{
-			// obtener tabla del catalogo
-			Tabla t = null;
-			p.AgregarTabla(t);
 			this.GenericDAO.Save(t);
 		}
 

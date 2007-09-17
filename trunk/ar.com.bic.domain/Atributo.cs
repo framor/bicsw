@@ -13,27 +13,26 @@ namespace ar.com.bic.domain
 	{
 		private long id;
 		private string nombre;
-		private Campo campoId;
-		private ArrayList camposDescripciones = new ArrayList();
+		private Columna columnaId;
+		private ArrayList columnasDescripciones = new ArrayList();
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
-		private Atributo hijo;
+		//private Atributo hijo;
 		private IList padres = new ArrayList();
 
 		public Atributo() {}
 
-		public Atributo(string nombre,Campo campoId, Tabla tablaLkp, Proyecto proyecto) 
+		public Atributo(string nombre, Columna columnaId, Tabla tablaLkp, Proyecto proyecto) 
 		{
 			this.Nombre = nombre;
-			this.CampoId = campoId;
+			this.columnaId = columnaId;
 			this.TablaLookup = tablaLkp;
 			this.Proyecto = proyecto;
 		}
 
 		public Atributo Hijo
 		{
-			get { return this.hijo; }
-			set { this.hijo = value; }
+			get { return null; }
 		}
 
 		public void AgregarPadre(Atributo padre)
@@ -54,15 +53,15 @@ namespace ar.com.bic.domain
 			set { nombre = value; }
 		}
 
-		public Campo CampoId
+		public Columna ColumnaId
 		{
-			get { return campoId; }
-			set { campoId = value; }
+			get { return this.columnaId; }
+			set { this.columnaId = value; }
 		}
 
-		public ArrayList CamposDescripciones
+		public ArrayList ColumnasDescripciones
 		{
-			get { return new ArrayList(camposDescripciones); }
+			get { return new ArrayList(columnasDescripciones); }
 		}
 
 		public Tabla TablaLookup
@@ -77,24 +76,19 @@ namespace ar.com.bic.domain
 			set { proyecto = value; }
 		}
 
-		public void AgregarCampoDescripcion(Campo value)
+		public void AgregarColumnaDescripcion(Columna value)
 		{
-			this.camposDescripciones.Add(value);
+			this.columnasDescripciones.Add(value);
 		}
 
-		public IList GetTablas()
+		public IList ObtenerTablas()
 		{
-			return this.campoId.Tablas;
+			return this.columnaId.ObtenerTablas();
 		}
 
-		public Campo GetCampo()
+		public Columna Columna
 		{
-			return this.campoId;
-		}
-
-		public IList GetColumnas()
-		{
-			return this.CampoId.GetColumnas();
+			get { return this.columnaId; }
 		}
 
 		public Camino GeneraCamino(Tabla tabla)
@@ -102,11 +96,11 @@ namespace ar.com.bic.domain
 			Camino camino;
 
             
-			if(!tabla.Tenes(this.CampoId))
+			if(!tabla.Tenes(this.columnaId))
 			{
 				try
 				{
-					camino = this.hijo.GeneraCamino(tabla);
+					camino = this.Hijo.GeneraCamino(tabla);
 					camino.AgregarAtributo(this);
 				}
 					// Si no tiene hijos cancela por referencia nula.

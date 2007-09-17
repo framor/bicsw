@@ -17,7 +17,12 @@ namespace bic
 		private void Page_Load(object sender, EventArgs e)
 		{
 			BaseLoad();
-			ListarUsuarios();
+			if (!Page.IsPostBack) 
+			{
+				this.lblUsuario.Text = Usuario.Nombre;
+				ListarUsuarios();
+			}
+			
 		}
 
 		#region Código generado por el Diseñador de Web Forms

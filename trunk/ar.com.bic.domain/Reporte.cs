@@ -141,7 +141,7 @@ namespace ar.com.bic.domain
 			// Le pido a todos los campos que me den las tablas donde estan presentes
 			foreach(ITablaMapeable campo in campos)
 			{
-				tablas.AddRange(campo.GetTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
+				tablas.AddRange(campo.ObtenerTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
 				
 			};
 			

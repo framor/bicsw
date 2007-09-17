@@ -78,6 +78,12 @@
 								</td>
 							</tr>
 							<tr>
+								<td><asp:Button id="btnProbarConexion" runat="server" Text="Probar conexión"></asp:Button></td>
+								<td>
+									<asp:Label Runat="server" ID="lblEstadoConexion"></asp:Label>
+								</td>
+							</tr>							
+							<tr>
 								<td colspan="2">
 									<asp:ValidationSummary ID="valSummary" Runat="server"></asp:ValidationSummary>
 								</td>

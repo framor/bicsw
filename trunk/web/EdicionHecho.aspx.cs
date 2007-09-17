@@ -15,21 +15,19 @@ using ar.com.bic.domain.catalogo;
 namespace bic
 {
 	/// <summary>
-	/// Descripción breve de EdicionTabla.
+	/// Descripción breve de EdicionHecho.
 	/// </summary>
-	public class EdicionTabla : BasePage
+	public class EdicionHecho : BasePage
 	{
 		protected System.Web.UI.WebControls.Label lblUsuario;
 		protected System.Web.UI.WebControls.Label lblProyecto;
 
-		protected System.Web.UI.WebControls.TextBox txtAlias;
-		protected System.Web.UI.WebControls.TextBox txtPeso;
-		protected System.Web.UI.WebControls.DropDownList ddlNombre;
+		protected System.Web.UI.WebControls.TextBox txtNombre;
+		protected System.Web.UI.WebControls.DropDownList ddlColumna;
 
 		protected System.Web.UI.WebControls.Button btnAceptar;
 		protected System.Web.UI.WebControls.RequiredFieldValidator reqNombre;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqAlias;
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqPeso;
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqColumna;
 		protected System.Web.UI.WebControls.ValidationSummary valSummary;
 		protected System.Web.UI.WebControls.Button btnCancelar;
 
@@ -47,19 +45,18 @@ namespace bic
 				ViewState["id"] = id;
 				if (id != -1)
 				{
-					Tabla t = BICContext.Instance.TablaService.Retrieve(id);
-					this.ddlNombre.SelectedValue = t.Nombre;
-					this.txtAlias.Text = t.Alias;
-					this.txtPeso.Text = t.Peso.ToString();
-					datasource = new Tabla[] {t};
+					Hecho h = BICContext.Instance.HechoService.Retrieve(id);
+					this.ddlColumna.SelectedValue = h.Columna.Nombre;
+					this.txtNombre.Text = h.Nombre;
+					datasource = new Columna[] {h.Columna};
 				} 
 				else 
 				{
-					datasource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
+					datasource = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);
 				}
 
-				this.ddlNombre.DataSource = datasource;
-				this.ddlNombre.DataBind();
+				this.ddlColumna.DataSource = datasource;
+				this.ddlColumna.DataBind();
 
 			}
 
@@ -91,37 +88,34 @@ namespace bic
 		private void btnAceptar_Click(object sender, System.EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			string alias = this.txtAlias.Text;
-			int peso = Int32.Parse(this.txtPeso.Text);
+			string nombre = this.txtNombre.Text;
 
 			if (id == -1)
 			{
-				Tabla t = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlNombre.SelectedValue, Proyecto.Id);
-				t.Alias = alias;
-				t.Peso = peso;
-				t.Proyecto = Proyecto;
-				BICContext.Instance.TablaService.Save(t);
+				Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(this.ddlColumna.SelectedValue, Proyecto.Id);
+				Hecho h = new Hecho(nombre, c);
+				h.Proyecto = Proyecto;
+				BICContext.Instance.HechoService.Save(h);
 			} 
 			else 
 			{
-				Tabla t = BICContext.Instance.TablaService.Retrieve(id);
-				t.Alias = alias;
-				t.Peso = peso;
-				BICContext.Instance.TablaService.Save(t);
+				Hecho h = BICContext.Instance.HechoService.Retrieve(id);
+				h.Nombre = nombre;
+				BICContext.Instance.HechoService.Save(h);
 			}			
 
 			
-			Response.Redirect("ListaTabla.aspx");
+			Response.Redirect("ListaHecho.aspx");
 		}
 
 		private void btnCancelar_Click(object sender, System.EventArgs e)
 		{
-			Response.Redirect("ListaTabla.aspx");
+			Response.Redirect("ListaHecho.aspx");
 		}
 
 		protected override bool TienePermisosSuficientes()
 		{
-			return this.Usuario.Rol.PuedeAccederATablas();
+			return this.Usuario.Rol.PuedeAccederAHechos();
 		}
 	}
 }

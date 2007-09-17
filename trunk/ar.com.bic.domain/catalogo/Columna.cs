@@ -1,23 +1,23 @@
+using System.Collections;
+
 namespace ar.com.bic.domain.catalogo
 {
 	/// <summary>
 	/// Una columna es una representación de una columna de la BD. 
-	/// Tiene un nombre, un tipo y la referencia a la tabla q pertence. 
+	/// Tiene un nombre, un tipo. 
 	/// </summary>
 	public class Columna
 	{
 		private long id;
 		private string nombre;
 		private string tipo;
-		private Tabla tabla;
 
 		private Columna() {}
 
-		public Columna(string nombre, string tipo, Tabla tabla)
+		public Columna(string nombre, string tipo)
 		{
 			this.nombre = nombre;
 			this.tipo = tipo;
-			this.tabla = tabla;
 		}
 
 		public long Id 
@@ -36,9 +36,10 @@ namespace ar.com.bic.domain.catalogo
 			get {return this.tipo; }
 		}
 
-		public Tabla Tabla
+		public IList ObtenerTablas()
 		{
-			get {return this.tabla; }
+			//TODO: retornar todas las tablas de la bd en las que esta la columna
+			return new ArrayList();
 		}
 	}
 }

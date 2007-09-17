@@ -40,5 +40,16 @@ namespace ar.com.bic.dao
 			return ret;
 		}
 
+		/// <summary>
+		/// Obtiene los hechos para un id de proyecto
+		/// </summary>
+		/// <param name="proyectoId">el id de proyecto</param>
+		/// <returns>IList de Hechos</returns>
+		public IList SelectHechos(long proyectoId)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + typeof(Hecho).Name + " a where a.proyecto.id = ?", proyectoId);
+			return ret;
+		}
 	}
 }

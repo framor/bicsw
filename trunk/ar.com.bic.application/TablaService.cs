@@ -9,12 +9,7 @@ namespace ar.com.bic.application
 	/// </summary>
 	public interface TablaService
 	{
-		/// <summary>
-		/// Persiste un tabla
-		/// </summary>
-		/// <param name="unTabla">EL tabla a ser grabado</param>
-		void Save(Proyecto p, string nombre, string alias, int peso); 
-		
+	
 		/// <summary>
 		/// Persiste un tabla
 		/// </summary>

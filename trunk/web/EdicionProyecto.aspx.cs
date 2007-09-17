@@ -29,6 +29,8 @@ namespace bic
 		protected RequiredFieldValidator reqUsuario;
 		protected RequiredFieldValidator reqPassword;
 		protected ValidationSummary valSummary;
+		protected System.Web.UI.WebControls.Button btnProbarConexion;
+		protected System.Web.UI.WebControls.Label lblEstadoConexion;
 		protected Button btnAceptar;
 	
 		private void Page_Load(object sender, EventArgs e)
@@ -69,9 +71,10 @@ namespace bic
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
-			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-			this.Load += new EventHandler(this.Page_Load);
+			this.btnProbarConexion.Click += new System.EventHandler(this.btnProbarConexion_Click);
+			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
@@ -103,6 +106,16 @@ namespace bic
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("ListaProyecto.aspx");
+		}
+
+		private void btnProbarConexion_Click(object sender, System.EventArgs e)
+		{
+			string servidor = this.txtServidor.Text;
+			string nombreBD = this.txtEsquema.Text;
+			string usuario = this.txtUsuario.Text;
+			string password = this.txtPassword.Text;
+			this.lblEstadoConexion.Text = 
+				BICContext.Instance.CatalogoService.ProbarConexion(servidor, nombreBD, usuario, password);
 		}
 	}
 }
