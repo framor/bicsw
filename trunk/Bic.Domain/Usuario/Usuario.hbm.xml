@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="Bic.Domain.Usuario.Usuario, Bic.Domain" table="usuario">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field" /> 
+        <property name="clave" column="clave" type="String" access="field" /> 
+		<property name="eMail" column="email" type="String" access="field" />
+        <property name="rol" column="rol" type="Bic.Domain.Usertypes.RolUserType, Bic.Domain" access="field" />
+    </class>
+</hibernate-mapping>
