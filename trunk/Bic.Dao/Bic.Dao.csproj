@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = 'copy "$(SolutionDir)libraries\MySql.Data.dll" "$(SolutionDir)\web\bin"'
+                PostBuildEvent = 'copy "$(SolutionDir)libraries\MySql.Data.dll" "$(SolutionDir)\Bic.Web\bin"'
                 RootNamespace = "Bic.Dao"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
