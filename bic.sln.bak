@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Application", "Bic.Application\Bic.Application.csproj", "{D0B96E92-A1B6-44AB-8D7B-7F88AB4CB1B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Application", "ar.com.bic.application\Bic.Application.csproj", "{D0B96E92-A1B6-44AB-8D7B-7F88AB4CB1B4}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Domain", "Bic.Domain\Bi
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Dao", "Bic.Dao\Bic.Dao.csproj", "{5DE06520-645F-4B00-A75F-F9562DC90F78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Dao", "ar.com.bic.dao\Bic.Dao.csproj", "{5DE06520-645F-4B00-A75F-F9562DC90F78}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Framework", "Bic.Framew
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Test", "Bic.Test\Bic.Test.csproj", "{56AA0222-5C35-465B-B122-1ABA95EC1C03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bic.Test", "test\Bic.Test.csproj", "{56AA0222-5C35-465B-B122-1ABA95EC1C03}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
