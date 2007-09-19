@@ -1,5 +1,7 @@
 using System.Collections;
 using Bic.Domain;
+using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -8,6 +10,13 @@ namespace Bic.Application.Impl
 	/// </summary>
 	public class ProyectoServiceImpl : BaseService, ProyectoService
 	{
+
+		private IProyectoDAO proyectoDAO;
+		public IProyectoDAO ProyectoDAO 
+		{
+			get { return this.proyectoDAO; }
+			set { this.proyectoDAO = value; }
+		}
 
 		public ProyectoServiceImpl()
 		{
@@ -18,6 +27,11 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Proyecto unProyecto) 
 		{
+			Proyecto p = this.ProyectoDAO.ObtenerByNombre(unProyecto.Nombre);
+			if (p != null) 
+			{
+				throw new ServiceException("No se puede crear el proyecto ya que existe uno con el mismo nombre.");
+			}
 			this.GenericDAO.Save(unProyecto);
 		}
 

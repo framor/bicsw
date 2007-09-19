@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -26,6 +27,7 @@ namespace Bic.Web
 		protected RequiredFieldValidator reqEsquema;
 		protected RequiredFieldValidator reqUsuario;
 		protected RequiredFieldValidator reqPassword;
+		protected CustomValidator valNombre;
 		protected ValidationSummary valSummary;
 		protected Button btnProbarConexion;
 		protected Label lblEstadoConexion;
@@ -95,8 +97,17 @@ namespace Bic.Web
 			p.Usuario = this.txtUsuario.Text;
 			p.Password = this.txtPassword.Text;
 
-			BICContext.Instance.ProyectoService.Save(p);
-			Response.Redirect("ListaProyecto.aspx");
+			try 
+			{
+				BICContext.Instance.ProyectoService.Save(p);
+				Response.Redirect("ListaProyecto.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}
+
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
