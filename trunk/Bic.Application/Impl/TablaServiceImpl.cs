@@ -2,6 +2,7 @@ using System.Collections;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -15,6 +16,13 @@ namespace Bic.Application.Impl
 		{
 			get { return this.proyectoDAO; }
 			set { this.proyectoDAO = value; }
+		}
+
+		private ITablaDAO tablaDAO;
+		public ITablaDAO TablaDAO 
+		{
+			get { return this.tablaDAO; }
+			set { this.tablaDAO = value; }
 		}
 
 		private ICatalogoDAO catalogoDAO;
@@ -31,9 +39,18 @@ namespace Bic.Application.Impl
 		/// <summary>
 		/// Implementacion de TablaService.save
 		/// </summary>
-		public void Save(Tabla t) 
+		public void Save(Tabla unaTabla) 
 		{
-			this.GenericDAO.Save(t);
+			if (unaTabla.Id  == 0) // si es una entidad nueva
+			{
+				// valido que no exista
+				Tabla t = this.TablaDAO.ObtenerByAlias(unaTabla.Proyecto.Id, unaTabla.Alias);
+				if (t != null) 
+				{
+					throw new ServiceException("No se puede crear la tabla ya que existe una con el mismo nombre.");
+				}
+			}
+			this.GenericDAO.Save(unaTabla);
 		}
 
 		/// <summary>
