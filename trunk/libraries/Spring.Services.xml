@@ -1,0 +1,1852 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spring.Services</name>
+    </assembly>
+    <members>
+        <member name="T:Spring.EnterpriseServices.EnterpriseServicesExporter">
+            <summary>
+            Exports specified components as ServicedComponents.
+            </summary>
+            <remarks>
+            <p>
+            This class will create ServicedComponent wrapper for each of the
+            specified components and register them with the Component Services.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: EnterpriseServicesExporter.cs,v 1.1 2006/03/07 23:46:01 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.#ctor">
+            <summary>
+            Creates new enterprise services exporter.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.AfterPropertiesSet">
+            <summary>
+            Called by Spring container after object is configured in order to initialize it.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.Export">
+            <summary>
+            Creates ServicedComponent wrappers for the specified components and registers
+            them with COM+ Component Services.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.GetKeyPair">
+            <summary>
+            Reads key pair from embedded resource.
+            </summary>
+            <returns>Key pair as a byte array.</returns>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.ApplyAssemblyAttributes(System.Reflection.Emit.AssemblyBuilder)">
+            <summary>
+            Applies custom attributes to generated assembly.
+            </summary>
+            <param name="assembly">Dynamic assembly to apply attributes to.</param>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.RefreshRoles">
+            <summary>
+            Replaces roles expressed using string with appropriate SecurityRoleAttribute instance.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.EnterpriseServicesExporter.ParseRole(System.String)">
+            <summary>
+            Parses string representation of SecurityRoleAttribute.
+            </summary>
+            <param name="roleString">Role definition string.</param>
+            <returns>Configured SecurityRoleAttribute instance.</returns>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.ObjectFactory">
+            <summary>
+            Sets object factory instance.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.Components">
+            <summary>
+            Gets or sets list of components to export.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.ApplicationName">
+            <summary>
+            Gets or sets COM+ application name.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.ApplicationId">
+            <summary>
+            Gets or sets application identifier (GUID). Defaults to generated GUID if not specified.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.ActivationMode">
+            <summary>
+            Gets or sets application activation mode, which can be either <b>Server</b> or <b>Library</b> (default).
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.Description">
+            <summary>
+            Gets or sets application description.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.AccessControl">
+            <summary>
+            Gets or sets access control attribute.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.ApplicationQueuing">
+            <summary>
+            Gets or sets application queuing attribute.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.Roles">
+            <summary>
+            Gets or sets application roles.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.EnterpriseServicesExporter.Assembly">
+            <summary>
+            Gets or sets name of the generated assembly that will contain serviced components.
+            </summary>
+        </member>
+        <member name="T:Spring.EnterpriseServices.ServicedComponentExporter">
+            <summary>
+            Encapsulates information necessary to create ServicedComponent
+            wrapper around target class.
+            </summary>
+            <remarks>
+            <p>
+            Instances of this class should be used as elements in the Components
+            list of the <see cref="T:Spring.EnterpriseServices.EnterpriseServicesExporter"/> class, which will 
+            register them with COM+ Services.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: ServicedComponentExporter.cs,v 1.1 2006/03/07 23:46:01 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentExporter.#ctor">
+            <summary>
+            Creates new instance of serviced component definition.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentExporter.CreateWrapperType(System.Reflection.Emit.ModuleBuilder,Spring.Objects.Factory.Support.DefaultListableObjectFactory)">
+            <summary>
+            Creates ServicedComponent wrapper around target class.
+            </summary>
+            <param name="module">Dynamic module builder to use</param>
+            <param name="objectFactory">Object factory to get target from.</param>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentExporter.TargetName">
+            <summary>
+            Gets or sets name of the target object that should be exposed as a serviced component.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentExporter.ObjectName">
+            <summary>
+            Sets object name.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentExporter.ClassAttributes">
+            <summary>
+            Gets a list of custom attributes that should be applied to a proxy class.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentExporter.MethodAttributes">
+            <summary>
+            Gets a map of custom attributes that should be applied to proxy methods.
+            </summary>
+            <remarks>
+            Map key is an expression that methods can be matched against. Value is a list
+            of attributes that should be applied to each method that matches expression.
+            </remarks>
+        </member>
+        <member name="T:Spring.EnterpriseServices.ServicedComponentFactory">
+            <summary>
+            Factory Object that instantiates and configures ServicedComponent.
+            </summary>
+            <remarks>
+            <p>
+            This factory object should be used to instantiate and configure 
+            serviced components created by <see cref="T:Spring.EnterpriseServices.ServicedComponentExporter"/>.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: ServicedComponentFactory.cs,v 1.1 2006/03/07 23:46:01 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentFactory.#ctor">
+            <summary>
+            Creates new instance of serviced component factory.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentFactory.GetObject">
+            <summary>
+            Returns configured instance of the serviced component.
+            </summary>
+            <returns>Configured instance of the serviced component.</returns>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentFactory.AfterPropertiesSet">
+            <summary>
+            Initializes factory object.
+            </summary>
+        </member>
+        <member name="M:Spring.EnterpriseServices.ServicedComponentFactory.CreateInstance">
+            <summary>
+            Creates new instance of serviced component.
+            </summary>
+            <returns>New instance of serviced component.</returns>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.Name">
+            <summary>
+            Gets or sets component name, as registered with COM+ Services.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.Template">
+            <summary>
+            Gets or sets name of the template object definition that should 
+            be used to configure component instance.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.Server">
+            <summary>
+            Gets or sets name of the remote server that COM+ component is registered with.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.ObjectType">
+            <summary>
+            Returns type of serviced component.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.IsSingleton">
+            <summary>
+            Gets or sets whether serviced component should be treated as singleton. Default is <b>false</b>.
+            </summary>
+        </member>
+        <member name="P:Spring.EnterpriseServices.ServicedComponentFactory.ObjectFactory">
+            <summary>
+            Sets object factory to use for component configuration.
+            </summary>
+        </member>
+        <member name="T:Spring.Interop.EjbProxyFactory">
+            <summary>
+            Creates client-side proxy that can be used to access EJBs.
+            </summary>
+            <remarks>
+            <p>
+            This class depends on IIOP.NET, so you will have to reference IIOPChannel.dll
+            from your project if you decide to use it.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: EjbProxyFactory.cs,v 1.3 2006/01/20 10:12:18 aseovic Exp $</version>
+        </member>
+        <member name="M:Spring.Interop.EjbProxyFactory.#cctor">
+            <summary>
+            Static initializer. Creates dynamic assembly and module that will
+            contain proxy types, and initializes IIOP remoting channel.
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.EjbProxyFactory.SaveAssembly">
+            <summary>
+            Saves assembly
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.EjbProxyFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Interop.EjbProxyFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.EjbProxyFactory.GetObject">
+            <summary>
+            Return a singleton instance of the object managed by this factory.
+            </summary>
+            <remarks>
+            <note type="caution">
+            If this method is being called in the context of an enclosing IoC container and
+            returns <see langword="null"/>, the IoC container will consider this factory
+            object as not being fully initialized and throw a corresponding (and most
+            probably fatal) exception.
+            </note>
+            </remarks>
+            <returns>
+            A singleton instance of the object managed by this factory.
+            </returns>
+        </member>
+        <member name="P:Spring.Interop.EjbProxyFactory.ServiceUrl">
+            <summary>
+            Sets the service URI.
+            </summary>
+            <value>The service URI.</value>
+        </member>
+        <member name="P:Spring.Interop.EjbProxyFactory.ServiceInterface">
+            <summary>
+            Sets the service interface.
+            </summary>
+            <value>The service interface.</value>
+        </member>
+        <member name="P:Spring.Interop.EjbProxyFactory.ObjectType">
+            <summary>
+            Return the <see cref="T:System.Type"/> of object that this
+            <see cref="T:Spring.Objects.Factory.IFactoryObject"/> creates.
+            </summary>
+        </member>
+        <member name="P:Spring.Interop.EjbProxyFactory.IsSingleton">
+            <summary>
+            Is the object managed by this factory a singleton or a prototype?
+            </summary>
+        </member>
+        <member name="T:Spring.Interop.RmiProxyFactory">
+            <summary>
+            Creates client-side proxy that can be used to access remote Java object via RMI.
+            </summary>
+            <remarks>
+            <p>
+            This class depends on IIOP.NET, so you will have to reference IIOPChannel.dll
+            from your project if you decide to use it.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: RmiProxyFactory.cs,v 1.4 2006/01/20 10:12:18 aseovic Exp $</version>
+        </member>
+        <member name="M:Spring.Interop.RmiProxyFactory.#cctor">
+            <summary>
+            Static initializer. Creates dynamic assembly and module that will
+            contain proxy types, and initializes IIOP remoting channel.
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.RmiProxyFactory.SaveAssembly">
+            <summary>
+            Saves assembly
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.RmiProxyFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Interop.RmiProxyFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Interop.RmiProxyFactory.GetObject">
+            <summary>
+            Return a singleton instance of the object managed by this factory.
+            </summary>
+            <remarks>
+            <note type="caution">
+            If this method is being called in the context of an enclosing IoC container and
+            returns <see langword="null"/>, the IoC container will consider this factory
+            object as not being fully initialized and throw a corresponding (and most
+            probably fatal) exception.
+            </note>
+            </remarks>
+            <returns>
+            A singleton instance of the object managed by this factory.
+            </returns>
+        </member>
+        <member name="P:Spring.Interop.RmiProxyFactory.ServiceUrl">
+            <summary>
+            Sets the service URI.
+            </summary>
+            <value>The service URI.</value>
+        </member>
+        <member name="P:Spring.Interop.RmiProxyFactory.ServiceInterface">
+            <summary>
+            Sets the service interface.
+            </summary>
+            <value>The service interface.</value>
+        </member>
+        <member name="P:Spring.Interop.RmiProxyFactory.ObjectType">
+            <summary>
+            Return the <see cref="T:Spring.Objects.Factory.IFactoryObject"/> of object that this
+            <see cref="T:System.Type"/> creates, or
+            <see langword="null"/> if not known in advance.
+            </summary>
+        </member>
+        <member name="P:Spring.Interop.RmiProxyFactory.IsSingleton">
+            <summary>
+            Is the object managed by this factory a singleton or a prototype?
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.BaseRemoteObject">
+            <summary>
+            This class extends <see cref="T:System.MarshalByRefObject"/> to allow users
+            to define object lifecycle details by simply setting its properties.
+            </summary>
+            <remarks>
+            <p>
+            <see cref="T:Spring.Remoting.SaoExporter"/> uses this class as a base proxy class
+            in order to support lifecycle configuration when exporting a remote
+            object.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: BaseRemoteObject.cs,v 1.1 2006/01/07 05:18:34 aseovic Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.BaseRemoteObject.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.BaseRemoteObject"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.BaseRemoteObject.InitializeLifetimeService">
+            <summary>
+            Obtains a lifetime service object to control the lifetime policy for this instance.
+            </summary>
+            <remarks>
+            <p>
+            This method uses property values to configure <see cref="T:System.Runtime.Remoting.Lifetime.ILease"/> for this object.
+            </p>
+            <p>
+            It is very much inspired by Ingo Rammer's example in Chapter 6 of "Advanced .NET Remoting",
+            but is modified slightly to make it more "Spring-friendly". Basically, the main difference is that
+            instead of pulling lease configuration from the .NET config file, this implementation relies
+            on Spring DI to get appropriate values injected, which makes it much more flexible.
+            </p>
+            </remarks>
+            <returns>
+            An object of type <see cref="T:System.Runtime.Remoting.Lifetime.ILease"/> used to control the
+            lifetime policy for this instance. This is the current lifetime service object for
+            this instance if one exists; otherwise, a new lifetime service object initialized to the value
+            of the <see cref="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime" qualify="true"/> property.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">The immediate caller does not have infrastructure permission. </exception>
+        </member>
+        <member name="P:Spring.Remoting.BaseRemoteObject.IsInfinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            	<c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.BaseRemoteObject.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.BaseRemoteObject.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease should be 
+            extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.BaseRemoteObject.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager will for this object's
+            sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="T:Spring.Remoting.CaoExporter">
+            <summary>
+            Registers an object type on the server
+            as a Client Activated Object (CAO).
+            </summary>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: CaoExporter.cs,v 1.3 2006/02/11 00:04:56 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Spring.Remoting.CaoExporter"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.AfterPropertiesSet">
+            <summary>
+            Publish the object 
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.Dispose">
+            <summary>
+            Disconnect the remote object from the registered remoting channels.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.TargetName">
+            <summary>
+            Gets or sets the name of the target object definition.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.Infinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.ApplicationContext">
+            <summary>
+            Gets or sets the <see cref="T:Spring.Context.IApplicationContext"/> that this
+            object runs in.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoExporter.ObjectFactory">
+            <summary>
+            Sets object factory to use.
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.ICaoRemoteFactory">
+            <summary>
+            Interface for a CAO based object factory.
+            </summary>
+            <remarks>
+            <p>
+            Provides a well known location for clients to retrieve
+            references to CAO references.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: ICaoRemoteFactory.cs,v 1.2 2006/02/11 00:04:56 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.ICaoRemoteFactory.GetObject">
+            <summary>
+            Returns the CAO proxy.
+            </summary>
+            <returns>The remote object.</returns>
+        </member>
+        <member name="M:Spring.Remoting.ICaoRemoteFactory.GetObject(System.Object[])">
+            <summary>
+            Returns the CAO proxy using the
+            argument list to call the constructor. 
+            </summary>
+            <remarks>
+            The matching of arguments to call the constructor is done
+            by type. The alternative ways, by index and by constructor
+            name are not supported.
+            </remarks>
+            <param name="constructorArguments">Constructor 
+            arguments used to create the object.</param>
+            <returns>The remote object.</returns>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.CaoRemoteFactory.#ctor(System.String,Spring.Objects.Factory.Support.AbstractObjectFactory)">
+            <summary>
+            Create a new instance of the RemoteFactory.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.CaoRemoteFactory.GetObject">
+            <summary>
+            Returns the CAO proxy.
+            </summary>
+            <returns>The remote object.</returns>
+        </member>
+        <member name="M:Spring.Remoting.CaoExporter.CaoRemoteFactory.GetObject(System.Object[])">
+            <summary>
+            Returns the CAO proxy using the
+            argument list to call the constructor. 
+            </summary>
+            <remarks>
+            The matching of arguments to call the constructor is done
+            by type. The alternative ways, by index and by constructor
+            name are not supported.
+            </remarks>
+            <param name="constructorArguments">Constructor 
+            arguments used to create the object.</param>
+            <returns>The remote object.</returns>
+        </member>
+        <member name="T:Spring.Remoting.CaoFactoryObject">
+            <summary>
+            Factory for creating a reference to a 
+            client activated object (CAO).
+            </summary>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: CaoFactoryObject.cs,v 1.2 2006/02/11 00:04:56 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.CaoFactoryObject.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Spring.Remoting.CaoFactoryObject"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.CaoFactoryObject.AfterPropertiesSet">
+            <summary>
+            Callback method called once all factory properties have been set.
+            </summary>
+            <exception cref="T:System.Exception">if an error occured</exception>
+        </member>
+        <member name="M:Spring.Remoting.CaoFactoryObject.GetObject">
+            <summary>
+            Return the CAO proxy.
+            </summary>
+            <returns>the CAO proxy</returns>
+        </member>
+        <member name="P:Spring.Remoting.CaoFactoryObject.RemoteTargetName">
+            <summary>
+            The remote target name to activate.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoFactoryObject.ServiceUrl">
+            <summary>
+            The Uri of the remote type.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoFactoryObject.ConstructorArguments">
+            <summary>
+            Argument list used to call the CAO constructor.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoFactoryObject.IsSingleton">
+            <summary>
+            Always return false.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.CaoFactoryObject.ObjectType">
+            <summary>
+            The type of object to be created.
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.IRemoteFactory">
+            <summary>
+            Interface for a SAO based object factory.
+            </summary>
+            <remarks>
+            <p>
+            Provides a well known location for clients to retrieve
+            references to remoted objects (typically CAO references), by name.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>            <author>Mark Pollack</author>            <version>$Id: IRemoteFactory.cs,v 1.3 2005/11/11 22:25:28 markpollack Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.IRemoteFactory.GetObject(System.String)">
+            <summary>
+            Returns a CAO proxy for the specified name.
+            </summary>
+            <param name="name">Object name</param>
+            <returns>Remote object for the specified name.</returns>
+        </member>
+        <member name="M:Spring.Remoting.IRemoteFactory.GetObject(System.String,System.Object[])">
+            <summary>
+            Returns a CAO proxy for the specified name using the
+            argument list to call the constructor. 
+            </summary>
+            <remarks>
+            The matching of arguments to call the constructor is done
+            by type.  The alternative ways, by index and by constructor
+            name are not supported.
+            </remarks>
+            <param name="name">Object name</param>
+            <param name="constructorArguments">Constructor 
+            arguments used to create the object.</param>
+            <returns>Remote proxy for the specified name</returns>
+        </member>
+        <member name="M:Spring.Remoting.IRemoteFactory.GetSaoObject(System.String)">
+            <summary>
+            Returns a SAO proxy for the specified name.
+            </summary>
+            <remarks>
+            The 
+            </remarks>
+            <param name="name">Object name</param>
+            <returns>Remote proxy for the specified name</returns>
+        </member>
+        <member name="T:Spring.Remoting.MarshalByRefObjectFactory">
+            <summary>
+            Factory for creating MarshalByRefObject wrapper around target class.
+            </summary>
+            <author>Bruno Baia</author>
+            <version>$Id: MarshalByRefObjectFactory.cs,v 1.2 2005/12/07 20:06:56 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create MarshalByRefObject proxy wrapper.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.#ctor">
+            <summary>
+            Creates a new instance of the MarshalByRefObjectFactory.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.AfterPropertiesSet">
+            <summary>
+            Initializes factory object.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.GetObject">
+            <summary>
+            Creates new instance of the remotable target proxy.
+            </summary>
+            <returns>New instance of the remotable target proxy.</returns>
+        </member>
+        <member name="P:Spring.Remoting.MarshalByRefObjectFactory.Target">
+            <summary>
+            Gets or sets the target object.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.MarshalByRefObjectFactory.Interfaces">
+            <summary>
+            Gets or sets the list of interfaces whose methods should be exposed by the wrapper.
+            </summary>
+            <value>The interfaces.</value>
+        </member>
+        <member name="P:Spring.Remoting.MarshalByRefObjectFactory.ObjectType">
+            <summary>
+            Returns type of the remotable target proxy.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.MarshalByRefObjectFactory.IsSingleton">
+            <summary>
+            Always returns false.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.MarshalByRefObjectProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.MarshalByRefObjectFactory.MarshalByRefObjectProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The module builder to use.</param>
+        </member>
+        <member name="M:Spring.Remoting.MarshalByRefObjectFactory.MarshalByRefObjectProxyTypeBuilder.ImplementConstructors(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Implements constructors for the proxy class.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Reflection.Emit.TypeBuilder"/> to use.
+            </param>
+        </member>
+        <member name="T:Spring.Remoting.NamedServiceEntry">
+            <summary>
+            A collection of properties need to integrate SAO lookup with
+            the <see cref="T:Spring.Remoting.IRemoteFactory"/>
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.NamedServiceEntry.#ctor">
+            <summary>
+            Create an instance of a NamedServiceEntry.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.NamedServiceEntry.AfterPropertiesSet">
+            <summary>
+            Invoked by an <see cref="T:Spring.Objects.Factory.IObjectFactory"/>
+            after it has set all object properties supplied
+            </summary>
+            <remarks>
+            <p>
+            Required properties are Name, ServiceInterface, and ServiceUrl
+            </p>
+            </remarks>
+            <exception cref="T:System.Exception">
+            In the event of misconfiguration (such as failure to set an essential
+            property) or if initialization fails.
+            </exception>
+        </member>
+        <member name="P:Spring.Remoting.NamedServiceEntry.Name">
+            <summary>
+            The name used to identify the SAO entry.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.NamedServiceEntry.ServiceType">
+            <summary>
+            The service to export, populated via an object reference.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.NamedServiceEntry.ServiceUrl">
+            <summary>
+            The uri of the well known object
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.RemoteFactory">
+            <summary>
+            Summary description for RemoteFactory.
+            </summary>
+        </member>
+        <member name="F:Spring.Remoting.RemoteFactory.objectFactory">
+            <summary>
+            The object factory where the RemoteFactory was declared.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteFactory.#ctor">
+            <summary>
+            Create a new instance of the RemoteFactory.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteFactory.GetObject(System.String)">
+            <summary>
+            Returns a CAO remote object for the specified name.
+            </summary>
+            <param name="name">Object name.</param>
+            <returns>Remote object for the specified name.</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemoteFactory.GetObject(System.String,System.Object[])">
+            <summary>
+            Returns a CAO proxy for the specified name using the
+            argument list to call the constructor. 
+            </summary>
+            <remarks>
+            The matching of arguments to call the constructor is done
+            by type.  The alternative ways, by index and by constructor
+            name are not supported.
+            </remarks>
+            <param name="name">Object name</param>
+            <param name="constructorArguments">Constructor 
+            arguments used to create the object.</param>
+            <returns>Remote proxy for the specified name</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemoteFactory.GetSaoObject(System.String)">
+            <summary>
+            Returns a SAO proxy for the specified name.
+            </summary>
+            <remarks>
+            The 
+            </remarks>
+            <param name="name">Object name</param>
+            <returns>Remote proxy for the specified name</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemoteFactory.AfterPropertiesSet">
+            <summary>
+            Invoked by an <see cref="T:Spring.Context.IApplicationContextAware"/>
+            after it has set all object properties supplied
+            (and satisfied the
+            <see cref="T:System.Exception"/>
+            and <see cref="T:Spring.Objects.Factory.IObjectFactory"/>
+            interfaces).
+            </summary>
+            <remarks>
+            <p>
+            This method allows the object instance to perform initialization only
+            possible when all object properties have been set and to throw an
+            exception in the event of misconfiguration.
+            </p>
+            </remarks>
+            <exception cref="T:Spring.Objects.Factory.IObjectFactoryAware">
+            In the event of misconfiguration (such as failure to set an essential
+            property) or if initialization fails.
+            </exception>
+        </member>
+        <member name="P:Spring.Remoting.RemoteFactory.ServiceEntries">
+            <summary>
+            The list of named service entry points.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteFactory.ObjectFactory">
+            <summary>
+            Callback that supplies the owning factory to an object instance.
+            </summary>
+            <value>
+            Owning <see cref="T:Spring.Objects.Factory.IObjectFactory"/>
+            (may not be <see langword="null"/>). The object can immediately
+            call methods on the factory.
+            </value>
+            <remarks>
+            <p>
+            Invoked after population of normal object properties but before an init
+            callback like <see cref="T:Spring.Objects.Factory.IInitializingObject"/>'s
+            <see cref="M:Spring.Objects.Factory.IInitializingObject.AfterPropertiesSet"/>
+            method or a custom init-method.
+            </p>
+            </remarks>
+            <exception cref="T:Spring.Objects.ObjectsException">
+            In case of initialization errors.
+            </exception>
+        </member>
+        <member name="T:Spring.Remoting.ActivationType">
+            <summary>
+            Enumerates how a registered object type is activated.
+            </summary>
+        </member>
+        <member name="F:Spring.Remoting.ActivationType.Server">
+            <summary>
+            Registers object as SAO, using RegisterWellKnownServiceType.
+            </summary>
+        </member>
+        <member name="F:Spring.Remoting.ActivationType.Client">
+            <summary>
+            Registers object as CAO, using RegisterActivatedServiceType.
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.RemoteObjectExporter">
+            <summary>
+            Summary description for RemoteObjectExporter.
+            </summary>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: RemoteObjectExporter.cs,v 1.2 2006/01/25 23:24:28 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create MarshalByRefObject proxy wrapper.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.#ctor">
+            <summary>
+            Creates a new instance of the RemoteObjectExporter class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.AfterPropertiesSet">
+            <summary>
+            Publish the object 
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.TargetName">
+            <summary>
+            Gets or sets the name of the target object definition.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ApplicationName">
+            <summary>
+            Gets or sets the name of the remote application.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ServiceName">
+            <summary>
+            Gets or sets the name of the exported remote service.
+            <remarks>
+            The name that will be used in the URI to refer to this service.
+            This will be of the form, tcp://host:port/ServiceName or
+            tcp://host:port/ApplicationName/ServiceName
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ActivationType">
+            <summary>
+            Gets or sets activation type.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ServerActivationMode">
+            <summary>
+            Gets or sets SAO mode.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.IsInfinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.Interfaces">
+            <summary>
+            Gets or sets the list of interfaces whose methods should be exposed as remote services.
+            </summary>
+            <value>The interfaces.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ApplicationContext">
+            <summary>
+            Gets or sets the <see cref="T:Spring.Context.IApplicationContext"/> that this
+            object runs in.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ObjectFactory">
+            <summary>
+            Sets object factory to use.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.ObjectName">
+            <summary>
+            Sets the object name in the <see cref="T:Spring.Objects.Factory.IObjectFactory"/>.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The module builder to use.</param>
+            <param name="applicationContextName"></param>
+            <param name="targetObjectName"></param>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.ImplementConstructors(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Implements constructors for the proxy class.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Reflection.Emit.TypeBuilder"/> to use.
+            </param>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.ImplementInterface(System.Reflection.Emit.TypeBuilder,System.Type,System.Reflection.Emit.FieldBuilder,System.Boolean)">
+            <summary>
+            Implements the specified <paramref name="intf"/> by delegating calls to
+            the target object.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Type"/> builder to use for code generation.
+            </param>
+            <param name="intf">The interface to implement.</param>
+            <param name="targetField">The target field calls should be delegated to.</param>
+            <param name="explicitImplementation">
+            <see langword="true"/> if the supplied <paramref name="intf"/> is to be
+            implemented explicitly.
+            </param>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.DeclareTargetInstanceField(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Deaclares a field that holds the target object instance.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Type"/> builder to use for code generation.
+            </param>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.ObjectName">
+            <summary>
+            Gets or sets the name of the target object definition.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.ContextName">
+            <summary>
+            Gets or sets the name of the application context 
+            that this object runs in.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.IsInfinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectExporter.RemoteObjectProxyTypeBuilder.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="T:Spring.Remoting.RemoteObjectFactory">
+            <summary>
+            Factory for creating MarshalByRefObject wrapper around target class.
+            </summary>
+            <author>Bruno Baia</author>
+            <version>$Id: RemoteObjectFactory.cs,v 1.1 2006/02/05 00:31:51 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create MarshalByRefObject proxy wrapper.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.#ctor">
+            <summary>
+            Creates a new instance of the MarshalByRefObjectFactory.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.AfterPropertiesSet">
+            <summary>
+            Initializes factory object.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.GetObject">
+            <summary>
+            Creates new instance of the remotable target proxy.
+            </summary>
+            <returns>New instance of the remotable target proxy.</returns>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.Target">
+            <summary>
+            Gets or sets the target object.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.Infinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.ObjectType">
+            <summary>
+            Returns type of the remotable target proxy.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.IsSingleton">
+            <summary>
+            Always returns false.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The module builder to use.</param>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.GenerateTypeName">
+            <summary>
+            Generates unique proxy type name
+            </summary>
+            <returns>proxy type name</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.ImplementConstructors(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Implements constructors for the proxy class.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Reflection.Emit.TypeBuilder"/> to use.
+            </param>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.IsInfinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.RemoteObjectFactory.RemoteObjectProxyTypeBuilder.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="T:Spring.Remoting.RemotingConfigParser">
+            <summary>
+            Implementation of the custom configuration parser for remoting definitions.
+            </summary>
+            <author>Bruno Baia</author>
+            <version>$Id: RemotingConfigParser.cs,v 1.1 2006/01/31 21:59:25 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.RemotingConfigParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.RemotingConfigParser"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.RemotingConfigParser.ParseRootElement(System.Xml.XmlElement,Spring.Objects.Factory.Xml.XmlResourceReader)">
+            <summary>
+            Parses the root element of the definition.
+            </summary>
+            <remarks>
+            <p>
+            If the parser is namespace aware it is assumed that the entire
+            contents of the root element will be parsed including child elements.
+            Otherwise the method will return after parsing the attributes
+            such as default-lazy-init etc.
+            </p>
+            </remarks>
+            <param name="root">The element to be parsed.</param>
+            <param name="reader">The resource reader.</param>
+            <returns>
+            Returns the number of object definitons. Parsers that are not
+            namespace aware are likely to return <c>0</c>.
+            </returns>
+        </member>
+        <member name="M:Spring.Remoting.RemotingConfigParser.ParseElement(System.Xml.XmlElement,Spring.Objects.Factory.Xml.XmlResourceReader)">
+            <summary>
+            Parses an element under the root node, typically
+            an object definition or import statement.
+            </summary>
+            <remarks>
+            <p>
+            This method is never invoked if the parser is namespace aware
+            and was called to process the root node.
+            </p>
+            </remarks>
+            <param name="element">The element to be parsed.</param>
+            <param name="reader">The resource reader.</param>
+            <returns>Number of created object definitions.</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemotingConfigParser.ParseRemoting(System.Xml.XmlElement,Spring.Objects.Factory.Xml.XmlResourceReader)">
+            <summary>
+            Parses the remoting definition.
+            </summary>
+            <param name="element">The element to parse.</param>
+            <param name="reader">The resource reader.</param>
+            <returns>Remoting object definition.</returns>
+        </member>
+        <member name="M:Spring.Remoting.RemotingConfigParser.GetTypeName(System.Xml.XmlElement)">
+            <summary>
+            Gets the name of the object type for the specified element.
+            </summary>
+            <param name="element">The element.</param>
+            <returns>The name of the object type.</returns>
+        </member>
+        <member name="T:Spring.Remoting.SaoExporter">
+            <summary>
+            Publishes an instance of an object under
+            a given url as a Server Activated Object (SAO).
+            </summary>
+            <remarks>
+            Object can be exported either as SingleCall or Singleton.
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: SaoExporter.cs,v 1.7 2006/02/02 00:23:04 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create MarshalByRefObject proxy wrapper.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Spring.Remoting.SaoExporter"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.AfterPropertiesSet">
+            <summary>
+            Publish the object 
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.Dispose">
+            <summary>
+            Disconnect the remote object from the registered remoting channels.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.TargetName">
+            <summary>
+            Gets or sets the name of the target object definition.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.ApplicationName">
+            <summary>
+            Gets or sets the name of the remote application.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.ServiceName">
+            <summary>
+            Gets or sets the name of the exported remote service.
+            <remarks>
+            The name that will be used in the URI to refer to this service.
+            This will be of the form, tcp://host:port/ServiceName or
+            tcp://host:port/ApplicationName/ServiceName
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.Infinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.ApplicationContext">
+            <summary>
+            Gets or sets the <see cref="T:Spring.Context.IApplicationContext"/> that this
+            object runs in.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.ObjectFactory">
+            <summary>
+            Sets object factory to use.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The module builder to use.</param>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.GenerateTypeName">
+            <summary>
+            Generates unique proxy type name
+            </summary>
+            <returns>proxy type name</returns>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.ImplementConstructors(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Implements constructors for the proxy class.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Reflection.Emit.TypeBuilder"/> to use.
+            </param>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.ImplementInterface(System.Reflection.Emit.TypeBuilder,System.Type,System.Reflection.Emit.FieldBuilder,System.Boolean)">
+            <summary>
+            Implements the specified <paramref name="intf"/> by delegating calls to
+            the target object.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Type"/> builder to use for code generation.
+            </param>
+            <param name="intf">The interface to implement.</param>
+            <param name="targetField">The target field calls should be delegated to.</param>
+            <param name="explicitImplementation">
+            <see langword="true"/> if the supplied <paramref name="intf"/> is to be
+            implemented explicitly.
+            </param>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.PushTarget(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.FieldBuilder)">
+            <summary>
+            Pushes specified target instance on stack, or the proxy itself if target is <c>null</c>.
+            </summary>
+            <param name="il">The IL generator to use.</param>
+            <param name="targetField">The target field calls should be delegated to.</param>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.DeclareTargetInstanceField(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Deaclares a field that holds the target object instance.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Type"/> builder to use for code generation.
+            </param>
+        </member>
+        <member name="M:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.SetTargetInstance(System.Reflection.Emit.ILGenerator)">
+            <summary>
+            Creates an instance of the target object.
+            </summary>
+            <param name="il">The IL generator to use.</param>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.TargetObjectName">
+            <summary>
+            Gets or sets the name of the target object definition.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.ContextName">
+            <summary>
+            Gets or sets the name of the application context 
+            that this object runs in.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.IsInfinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoExporter.SaoRemoteObjectProxyTypeBuilder.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="T:Spring.Remoting.SaoFactoryObject">
+            <summary>
+            Factory for creating a reference to a 
+            remote server activated object (SAO).
+            </summary>
+            <remarks>
+            This is useful alternative to adminstrative type registration on
+            the client when you would like the client to have only 
+            a reference to the interface that an SAO implements and not the
+            actual SAO implentation. 
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: SaoFactoryObject.cs,v 1.6 2006/01/31 21:59:25 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.SaoFactoryObject.#ctor">
+            <summary>
+            Creates a new instance of the SaoFactoryObject class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoFactoryObject.AfterPropertiesSet">
+            <summary>
+            Callback method called once all factory properties have been set.
+            </summary>
+            <exception cref="T:System.Exception">if an error occured</exception>
+        </member>
+        <member name="M:Spring.Remoting.SaoFactoryObject.GetObject">
+            <summary>
+            Return the SAO proxy.
+            </summary>
+            <returns>the SAO proxy</returns>
+        </member>
+        <member name="P:Spring.Remoting.SaoFactoryObject.ServiceInterface">
+            <summary>
+            The remote service interface.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoFactoryObject.ServiceUrl">
+            <summary>
+            The URI of the well known object
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoFactoryObject.IsSingleton">
+            <summary>
+            Is the object managed by this factory a singleton or a prototype?
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoFactoryObject.ObjectType">
+            <summary>
+            The type of object to be created.
+            </summary>
+        </member>
+        <member name="T:Spring.Remoting.SaoServiceExporter">
+            <summary>
+            Publishes an instance of a MarshalByRef object under a given url as a SAO singleton
+            using RemotingServices.Marshal()
+            This allows you to initialize the state of the remoted object on the server
+            before clients access the object.
+            </summary>
+            <author>Aleksandar Seovic</author>
+            <author>Mark Pollack</author>
+            <author>Bruno Baia</author>
+            <version>$Id: SaoServiceExporter.cs,v 1.8 2006/02/05 00:31:51 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Remoting.SaoServiceExporter.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Spring.Remoting.SaoServiceExporter"/> class.
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoServiceExporter.AfterPropertiesSet">
+            <summary>
+            Publish the object 
+            </summary>
+        </member>
+        <member name="M:Spring.Remoting.SaoServiceExporter.Dispose">
+            <summary>
+            Disconnect the object from the remoting infrastructure.  Stops objects
+            from receiving andy further messages.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.ServiceName">
+            <summary>
+            The name that will be used in the URI to refer to this service.
+            <remarks>
+            This will be of the form, tcp://host:port/ServiceName or
+            tcp://host:port/ApplicationName/ServiceName
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.ApplicationName">
+            <summary>
+            Gets or sets the name of the remote application.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.Service">
+            <summary>
+            The service to export, populated via an object reference.
+            </summary>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.Infinite">
+            <summary>
+            Gets or sets a value indicating whether this instance has infinite lifetime.
+            </summary>
+            <value>
+            <c>true</c> if this instance has infinite lifetime; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.InitialLeaseTime">
+            <summary>
+            Gets or sets the initial lease time in milliseconds.
+            </summary>
+            <value>The initial lease time.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.RenewOnCallTime">
+            <summary>
+            Gets or sets the amount of time lease in milliseconds 
+            should be extended for on each call to this object.
+            </summary>
+            <value>The amount of time lease should be 
+            extended for on each call to this object.</value>
+        </member>
+        <member name="P:Spring.Remoting.SaoServiceExporter.SponsorshipTimeout">
+            <summary>
+            Gets or sets the amount of time lease manager in milliseconds 
+            will for this object's sponsors to respond.
+            </summary>
+            <value>The amount of time lease manager will for this object's
+            sponsors to respond.</value>
+        </member>
+        <member name="T:Spring.Web.Services.WebServiceClientFactory">
+            <summary>
+            Factory Object that dynamically implements service interface for web service.
+            </summary>
+            <remarks>
+            <p>
+            This factory object should be used to obtain reference to a web service
+            that can be safely cast to a service interface, which allows client code to code 
+            against interface, and not directly against the web service.
+            </p>
+            </remarks>
+            <author>Bruno Baia</author>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: WebServiceClientFactory.cs,v 1.2 2006/04/09 22:33:47 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create web services proxy wrappers.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.#ctor">
+            <summary>
+            Creates new instance of web service proxy factory.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.GetObject">
+            <summary>
+            Creates new instance of the web service proxy.
+            </summary>
+            <returns>New instance of the web service proxy.</returns>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.AfterPropertiesSet">
+            <summary>
+            Initializes factory object.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ClientProtocolType">
+            <summary>
+            Gets or sets the BaseType that proxy should inherit.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ServiceUrl">
+            <summary>
+            Gets or sets the URL of the web service.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ServiceInterface">
+            <summary>
+            Gets or sets service interface that proxy should implement.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.Domain">
+            <summary>
+            Gets or sets the domain name to use when connecting 
+            to a server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.Username">
+            <summary>
+            Gets or sets the user name to use when connecting 
+            to a server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.Password">
+            <summary>
+            Gets or sets the password to use when connecting 
+            to a server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ProxyUrl">
+            <summary>
+            Gets or sets url of the proxy server to use for HTTP requests.
+            The default is to use the system proxy setting.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ProxyDomain">
+            <summary>
+            Gets or sets the domain to use when connecting 
+            to a proxy server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ProxyUsername">
+            <summary>
+            Gets or sets the user name to use when connecting 
+            to a proxy server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ProxyPassword">
+            <summary>
+            Gets or sets the password to use when connecting 
+            to a proxy server that requires authentication.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.BindingName">
+            <summary>
+            Gets or sets the web service binding name to use with the proxy.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.MessageBindings">
+            <summary>
+            Controls which methods on the target object 
+            have a specific message binding name.
+            </summary>
+            <remarks>
+            <p>
+            The <c>'key'</c> portion of this mapping is the (case InSenSitiVE)
+            name of the method that is to be exposed; the corresponding entry
+            must be a configured instance of the
+            <see cref="T:System.String"/> class.
+            </p>
+            </remarks>
+            <value>
+            A mapping of exactly which methods on the target object 
+            have a specific message binding name.
+            </value>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.ObjectType">
+            <summary>
+            Returns type of the web service proxy.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceClientFactory.IsSingleton">
+            <summary>
+            Always returns false.
+            </summary>
+        </member>
+        <member name="T:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder">
+            <summary>
+            Proxy builder that can be used to create a proxy for 
+            <see cref="T:System.Web.Services.Protocols.SoapHttpClientProtocol"/> derived classes.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder,System.Type,System.Web.Services.Description.ServiceDescription,System.String,System.Collections.IDictionary)">
+            <summary>
+            Creates a new instance of the <see cref="T:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The <see cref="T:System.Reflection.Emit.ModuleBuilder"/> to use.</param>
+            <param name="serviceInterface">The service interface to implement.</param>
+            <param name="wsDescription">The web service description to use to create the proxy.</param>
+            <param name="bindingName">The web service binding name to use. </param>
+            <param name="messageBindings">Specific message binding name for some methods.</param>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.GenerateTypeName">
+            <summary>
+            Generates unique proxy type name
+            </summary>
+            <returns>proxy type name</returns>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.BuildProxy">
+            <summary>
+            Creates the proxy.
+            </summary>
+            <returns>The generated proxy class.</returns>
+            <exception cref="T:System.ArgumentException">
+            If <see cref="P:Spring.Proxy.CompositionProxyTypeBuilder.TargetInterfaces"/> property is <see langword="null"/> or empty.
+            </exception>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.ImplementConstructors(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Implements constructors for the proxy class.
+            </summary>
+            <param name="builder">
+            The <see cref="T:System.Reflection.Emit.TypeBuilder"/> to use.
+            </param>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.DelegateMethodCall(System.Reflection.Emit.MethodBuilder,System.Reflection.Emit.ILGenerator,System.Reflection.Emit.FieldBuilder,System.Reflection.MethodInfo,System.Reflection.MethodInfo,System.Reflection.Emit.LocalBuilder,System.Boolean)">
+            <summary>
+            Delegates method call.
+            </summary>
+            <param name="mb">Method builder to use.</param>
+            <param name="il">The IL generator to use.</param>
+            <param name="targetField">The target field calls should be delegated to.</param>
+            <param name="targetMethod">The method to delegate to.</param>
+            <param name="interfaceMethod">The interface definition of the method, if applicable.</param>
+            <param name="returnValue">Variable that should be used to store return value of the target method.</param>
+            <param name="targetImplementsInterface">
+                <c>True</c> if target object implements specified interface, <c>False</c> otherwise.</param>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.CreateWebServiceBindingAttribute(System.Web.Services.Description.Binding)">
+            <summary>
+            Creates <see cref="T:System.Web.Services.WebServiceBindingAttribute"/> that should be applied to proxy class.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.CreateWebMethodAttribute(System.Web.Services.Description.OperationBinding)">
+            <summary>
+            Creates <see cref="T:System.Web.Services.WebMethodAttribute"/> that should be applied to proxy method.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.CreateSoapDocumentMethodAttribute(System.Web.Services.Description.OperationBinding)">
+            <summary>
+            Creates <see cref="T:System.Web.Services.Protocols.SoapDocumentMethodAttribute"/> that should be applied to proxy method.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.GetOperationBinding(System.Web.Services.Description.Binding,System.Reflection.MethodInfo)">
+            <summary>
+            Search and returns the OperationBinding corresponding to the specified method.
+            </summary>
+            <param name="binding">The binding to use.</param>
+            <param name="methodInfo">The method to use.</param>
+            <returns>The corresponding operation binding.</returns>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.GetOperation(System.Web.Services.Description.OperationBinding)">
+            <summary>
+            Search and returns the operation that matches the specified OperationBinding.
+            </summary>
+            <param name="operationBinding">The OperationBinding to use.</param>
+            <returns>The corresponding operation.</returns>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceClientFactory.SoapHttpClientProxyTypeBuilder.GetInputMessage(System.Web.Services.Description.Operation)">
+            <summary>
+            Search and returns the input message for an Operation.
+            </summary>
+            <param name="operation">The Operation to use.</param>
+            <returns>The corresponding message.</returns>
+        </member>
+        <member name="T:Spring.Web.Services.WebServiceProxyFactory">
+            <summary>
+            Factory Object that dynamically implements service interface for web service proxy.
+            </summary>
+            <remarks>
+            <p>
+            This factory object should be used to obtain reference to a web service proxy
+            that can be safely cast to a service interface, which allows client code to code 
+            against interface, and not directly against .Net-generated proxy class.
+            </p>
+            </remarks>
+            <author>Aleksandar Seovic</author>
+            <version>$Id: WebServiceProxyFactory.cs,v 1.8 2006/03/08 00:08:33 bbaia Exp $</version>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceProxyFactory.#cctor">
+            <summary>
+            Initializes assembly and module builder that will be used
+            to dynamically create web services proxy wrappers.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceProxyFactory.#ctor">
+            <summary>
+            Creates new instance of web service proxy factory.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceProxyFactory.AfterPropertiesSet">
+            <summary>
+            Initializes factory object.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceProxyFactory.GetObject">
+            <summary>
+            Creates new instance of the web service proxy.
+            </summary>
+            <returns>New instance of the web service proxy.</returns>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceProxyFactory.ProxyClass">
+            <summary>
+            Gets or sets type of the proxy class to wrap.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceProxyFactory.ServiceInterface">
+            <summary>
+            Gets or sets business interface that proxy wrapper should implement.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceProxyFactory.ObjectType">
+            <summary>
+            Returns type of the web service proxy.
+            </summary>
+        </member>
+        <member name="P:Spring.Web.Services.WebServiceProxyFactory.IsSingleton">
+            <summary>
+            Always returns false.
+            </summary>
+        </member>
+        <member name="M:Spring.Web.Services.WebServiceProxyFactory.WebServiceClientProxyTypeBuilder.#ctor(System.Reflection.Emit.ModuleBuilder,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Spring.Web.Services.WebServiceProxyFactory.WebServiceClientProxyTypeBuilder"/> class.
+            </summary>
+            <param name="module">The module builder to use.</param>
+            <param name="serviceInterface">The service interface to implement.</param>
+        </member>
+    </members>
+</doc>
