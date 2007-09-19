@@ -80,21 +80,6 @@
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "Spring.Core"
-                    AssemblyName = "Spring.Core"
-                    HintPath = "..\libraries\Spring.Core.dll"
-                />
-                <Reference
-                    Name = "Spring.Data"
-                    AssemblyName = "Spring.Data"
-                    HintPath = "..\libraries\Spring.Data.dll"
-                />
-                <Reference
-                    Name = "Spring.Data.NHibernate"
-                    AssemblyName = "Spring.Data.NHibernate"
-                    HintPath = "..\libraries\Spring.Data.NHibernate.dll"
-                />
-                <Reference
                     Name = "Spring.Web"
                     AssemblyName = "Spring.Web"
                     HintPath = "..\libraries\Spring.Web.dll"
@@ -103,6 +88,21 @@
                     Name = "Bic.Domain"
                     Project = "{7693AA34-CAC8-4954-82B4-EF5392E13784}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Spring.Data.NHibernate"
+                    AssemblyName = "Spring.Data.NHibernate"
+                    HintPath = "..\libraries\Spring.Data.NHibernate.dll"
+                />
+                <Reference
+                    Name = "Spring.Core"
+                    AssemblyName = "Spring.Core"
+                    HintPath = "..\libraries\Spring.Core.dll"
+                />
+                <Reference
+                    Name = "Spring.Data"
+                    AssemblyName = "Spring.Data"
+                    HintPath = "..\libraries\Spring.Data.dll"
                 />
             </References>
         </Build>

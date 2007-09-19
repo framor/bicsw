@@ -12,7 +12,7 @@
 		<property name="ConfigSections" value="databaseSettings"/>
 	</object>
 	
-	<db:provider id="dbProvider" 
+	<db:dbProvider id="dbProvider" 
                    provider="MySql" 
                    connectionString="Data Source=${db.datasource};Database=${db.database};User ID=${db.user};Password=${db.password};"/>
 
