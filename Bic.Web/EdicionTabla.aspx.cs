@@ -2,6 +2,7 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain.Catalogo;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -20,6 +21,7 @@ namespace Bic.Web
 		protected Button btnAceptar;
 		protected RequiredFieldValidator reqNombre;
 		protected RequiredFieldValidator reqAlias;
+		protected CustomValidator valAlias;
 		protected RequiredFieldValidator reqPeso;
 		protected ValidationSummary valSummary;
 		protected Button btnCancelar;
@@ -46,6 +48,7 @@ namespace Bic.Web
 				} 
 				else 
 				{
+					this.txtPeso.Text = "0";
 					datasource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
 				}
 
@@ -84,25 +87,32 @@ namespace Bic.Web
 			long id = (long) ViewState["id"];
 			string alias = this.txtAlias.Text;
 			int peso = Int32.Parse(this.txtPeso.Text);
-
+			Tabla t = null;
 			if (id == -1)
 			{
-				Tabla t = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlNombre.SelectedValue, Proyecto.Id);
+				t = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlNombre.SelectedValue, Proyecto.Id);
 				t.Alias = alias;
 				t.Peso = peso;
 				t.Proyecto = Proyecto;
-				BICContext.Instance.TablaService.Save(t);
 			} 
 			else 
 			{
-				Tabla t = BICContext.Instance.TablaService.Retrieve(id);
+				t = BICContext.Instance.TablaService.Retrieve(id);
 				t.Alias = alias;
 				t.Peso = peso;
-				BICContext.Instance.TablaService.Save(t);
 			}			
 
+			try 
+			{
+				BICContext.Instance.TablaService.Save(t);
+				Response.Redirect("ListaTabla.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valAlias.IsValid = false;
+				this.valAlias.ErrorMessage = se.Message;
+			}		
 			
-			Response.Redirect("ListaTabla.aspx");
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

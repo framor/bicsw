@@ -32,6 +32,7 @@
 								<td><b>Alias</b></td>
 								<td>
 									<asp:TextBox id="txtAlias" runat="server"></asp:TextBox>
+									<asp:CustomValidator Id="valAlias" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqAlias" Runat="server" ControlToValidate="txtAlias" ErrorMessage="Por favor complete el Alias.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>

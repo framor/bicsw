@@ -59,7 +59,8 @@
 		<property name="target" ref="tablaServiceImpl"/>
 	</object>			
 	<object id="tablaServiceImpl" type="Bic.Application.impl.TablaServiceImpl, Bic.Application" parent="baseServiceTemplate">
-		<property name="proyectoDAO" ref="proyectoDAO"/>		
+		<property name="proyectoDAO" ref="proyectoDAO"/>
+		<property name="tablaDAO" ref="tablaDAO"/>
 	</object>
 
 	<object id="hechoService" parent="serviceConfigurationTemplate">
