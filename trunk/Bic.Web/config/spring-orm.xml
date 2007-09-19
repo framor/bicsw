@@ -13,7 +13,7 @@
 	</object>
 	
 	<db:dbProvider id="dbProvider" 
-                   provider="MySql" 
+                   provider="System.Data.SqlClient" 
                    connectionString="Data Source=${db.datasource};Database=${db.database};User ID=${db.user};Password=${db.password};"/>
 
 	<object id="sessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate">
