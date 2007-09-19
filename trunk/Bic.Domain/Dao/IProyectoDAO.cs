@@ -37,5 +37,12 @@ namespace Bic.Domain.Dao
 		/// <param name="proyectoId">el id de proyecto</param>
 		/// <returns>IList de Hechos</returns>
 		IList SelectHechos(long proyectoId);
+
+		/// <summary>
+		/// Obtiene un proyecto por su nombre
+		/// </summary>
+		/// <param name="nombre">nombre del proyecto</param>
+		/// <returns>el proyecto encontrado o null</returns>
+		Proyecto ObtenerByNombre(string nombre);
 	}
 }

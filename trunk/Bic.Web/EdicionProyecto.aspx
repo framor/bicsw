@@ -32,6 +32,7 @@
 								<td><b>Nombre</b></td>
 								<td>
 									<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
+									<asp:CustomValidator Id="valNombre" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
@@ -64,7 +65,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>Password</b></td>
+								<td><b>Contraseña</b></td>
 								<td>
 									<asp:TextBox id="txtPassword" runat="server"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqPassword" Runat="server" ControlToValidate="txtPassword" ErrorMessage="Por favor complete el Password.">*</asp:RequiredFieldValidator>
