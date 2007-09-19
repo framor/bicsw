@@ -25,7 +25,7 @@ namespace Bic.Domain.Usertypes
 			} 
 			else 
 			{
-				cmd.Parameters[index] = ((Rol) value).Id;
+				((IDataParameter) cmd.Parameters[index]).Value = ((Rol) value).Id;
 			}
 		}
 

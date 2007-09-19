@@ -3,6 +3,7 @@ using System.Collections;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain.Usuario;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -12,6 +13,7 @@ namespace Bic.Web
 	public class EdicionUsuario : BasePage
 	{
 		protected TextBox txtNombre;
+		protected TextBox txtAlias;
 		protected TextBox txtEMail;
 		protected TextBox txtContrasena;
 		protected DropDownList ddlRol;
@@ -20,6 +22,7 @@ namespace Bic.Web
 		protected Button btnCancelar;
 		protected RequiredFieldValidator reqNombre;
 		protected RequiredFieldValidator reqContrasena;
+		protected CustomValidator valAlias;
 		protected ValidationSummary valSummary;
 		protected Button btnAceptar;
 	
@@ -36,7 +39,9 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Usuario u = BICContext.Instance.UsuarioService.Retrieve(id);
+					this.txtAlias.ReadOnly = true;
 					this.txtNombre.Text = u.Nombre;
+					this.txtAlias.Text = u.Alias;
 					this.txtContrasena.Text = u.Clave;
 					this.txtEMail.Text = u.EMail;
 					this.ddlRol.SelectedValue = u.Rol.Id;
@@ -91,12 +96,22 @@ namespace Bic.Web
 				u = BICContext.Instance.UsuarioService.Retrieve(id);
 			}			
 			u.Nombre = this.txtNombre.Text;
+			u.Alias = this.txtAlias.Text;
 			u.Clave = this.txtContrasena.Text;
 			u.EMail = this.txtEMail.Text;
 			u.Rol = Rol.ObtenerRol(this.ddlRol.SelectedValue);
 
-			BICContext.Instance.UsuarioService.Save(u);
-			Response.Redirect("ListaUsuario.aspx");
+			try 
+			{
+				BICContext.Instance.UsuarioService.Save(u);
+				Response.Redirect("ListaUsuario.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valAlias.IsValid = false;
+				this.valAlias.ErrorMessage = se.Message;
+			}
+			
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
