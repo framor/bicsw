@@ -5,6 +5,7 @@
             <generator class="native" /> 
         </id> 
         <property name="nombre" column="nombre" type="String" access="field" /> 
+        <property name="alias" column="alias" type="String" access="field" />         
         <property name="clave" column="clave" type="String" access="field" /> 
 		<property name="eMail" column="email" type="String" access="field" />
         <property name="rol" column="rol" type="Bic.Domain.Usertypes.RolUserType, Bic.Domain" access="field" />

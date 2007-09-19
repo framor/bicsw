@@ -104,6 +104,11 @@
                     AssemblyName = "Spring.Data"
                     HintPath = "..\libraries\Spring.Data.dll"
                 />
+                <Reference
+                    Name = "Bic.Framework"
+                    Project = "{DA2E4D26-4BC4-48AF-8DB2-9C31F5194247}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>

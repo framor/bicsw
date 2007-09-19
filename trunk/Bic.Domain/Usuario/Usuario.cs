@@ -9,6 +9,7 @@ namespace Bic.Domain.Usuario
 	{
 		private long id;
 		private String nombre;
+		private String alias;
 		private String clave;
 		private String eMail;
 		private Rol rol;
@@ -23,6 +24,12 @@ namespace Bic.Domain.Usuario
 		{
 			get { return this.nombre; }
 			set { this.nombre = value; }
+		}
+
+		public virtual String Alias
+		{
+			get { return this.alias; }
+			set { this.alias = value; }
 		}
 
 		public virtual String Clave

@@ -15,12 +15,12 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
-		/// Implementa IUsuarioDAO.getByNombre
+		/// Implementa IUsuarioDAO.ObtenerByAlias
 		/// </summary>
-		public Usuario getByNombre(string nombre)
+		public Usuario ObtenerByAlias(string alias)
 		{
 			IList ret = 
-				HibernateTemplate.Find("from " + typeof(Usuario).Name + " where nombre = ?", nombre);
+				HibernateTemplate.Find("from " + typeof(Usuario).Name + " where alias = ?", alias);
 			if (ret != null && ret.Count > 0)
 			{
 				return (Usuario) ret[0];

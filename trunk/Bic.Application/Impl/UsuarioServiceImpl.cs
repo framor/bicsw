@@ -1,6 +1,7 @@
 using System.Collections;
 using Bic.Domain.Dao;
 using Bic.Domain.Usuario;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -26,6 +27,11 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Usuario unUsuario) 
 		{
+			Usuario u = this.UsuarioDAO.ObtenerByAlias(unUsuario.Alias);
+			if (u != null) 
+			{
+				throw new ServiceException("No se puede crear el usuario ya que existe uno con el mismo nombre.");
+			}
 			this.GenericDAO.Save(unUsuario);
 		}
 
@@ -55,7 +61,7 @@ namespace Bic.Application.Impl
 
 		public Usuario Login(string usuario, string contrasena)
 		{
-			Usuario u = this.usuarioDAO.getByNombre(usuario);
+			Usuario u = this.usuarioDAO.ObtenerByAlias(usuario);
 			if (u != null && u.Clave.Equals(contrasena))
 			{
 				return u;

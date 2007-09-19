@@ -41,12 +41,28 @@ namespace Bic.Web
 		private void InitializeComponent()
 		{    
 			this.dgUsuarios.ItemCommand += new DataGridCommandEventHandler(this.dgUsuarios_ItemCommand);
+			this.dgUsuarios.ItemCreated += new DataGridItemEventHandler(this.dgUsuarios_ItemCreated);
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.Load += new EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
+
+		private void dgUsuarios_ItemCreated(object sender, DataGridItemEventArgs e)
+		{
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				TableCell myTableCell;
+				myTableCell = e.Item.Cells[3];
+				LinkButton myDeleteButton; 
+				myDeleteButton = (LinkButton) myTableCell.Controls[0];
+				myDeleteButton.Attributes.Add("onclick", 
+					"return confirm('¿Está seguro que desea eliminar el usuario?');");
+
+			}
+		}
 
 		private void dgUsuarios_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{

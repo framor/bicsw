@@ -29,12 +29,20 @@
 						<h2>Usuarios</h2>
 						<table width="100%" cellspacing="1" cellpadding="0" border="0">
 							<tr>
-								<td><b>Nombre</b></td>
+								<td><b>Nombre de usuario</b></td>
 								<td>
 									<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
+							<tr>
+								<td><b>Usuario</b></td>
+								<td>
+									<asp:TextBox id="txtAlias" runat="server"></asp:TextBox>
+									<asp:CustomValidator Id="valAlias" runat="server">*</asp:CustomValidator>
+									<asp:RequiredFieldValidator ID="reqAlias" Runat="server" ControlToValidate="txtAlias" ErrorMessage="Por favor complete el Usuario.">*</asp:RequiredFieldValidator>
+								</td>
+							</tr>							
 							<tr>
 								<td><b>Contraseña</b></td>
 								<td>
@@ -43,9 +51,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>EMail</b></td>
+								<td><b>Correo electrónico</b></td>
 								<td>
 									<asp:TextBox id="txtEMail" runat="server"></asp:TextBox>									
+									<asp:RegularExpressionValidator runat="server" id="valEmail" ControlToValidate="txtEMail"
+										ValidationExpression="^[\w-]+@[\w-]+\.(com|net|org|edu|mil)$" errormessage="El formato del correo electrónico es incorrecto." Display="Dynamic">*</asp:RegularExpressionValidator>									
 								</td>
 							</tr>
 							<tr>
@@ -56,7 +66,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2">
+								<td colspan="2">									
 									<asp:ValidationSummary ID="valSummary" Runat="server"></asp:ValidationSummary>
 								</td>
 							</tr>
