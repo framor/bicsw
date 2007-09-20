@@ -83,5 +83,43 @@ namespace Bic.Domain
 			}
 			return ret;
 		}
+
+		public IList Atributos
+		{
+			get 
+			{
+				IProyectoDAO dao = DAOLocator.Instance.ProyectoDAO;
+				return dao.SelectAtributos(Id);
+			}
+		}
+
+		public IList Hechos
+		{
+			get 
+			{
+				IProyectoDAO dao = DAOLocator.Instance.ProyectoDAO;
+				return dao.SelectHechos(Id);
+			}
+		}
+
+		public bool PuedeEliminarTabla(Tabla unaTabla) 
+		{
+			foreach (Atributo a in Atributos)
+			{
+				if (a.UsaTabla(unaTabla)) 
+				{
+					return false;
+				}
+			}
+			foreach (Hecho h in Hechos) 
+			{
+				if (h.UsaTabla(unaTabla)) 
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 }

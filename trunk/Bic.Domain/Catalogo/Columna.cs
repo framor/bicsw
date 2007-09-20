@@ -34,5 +34,15 @@ namespace Bic.Domain.Catalogo
 			get {return this.tipo; }
 		}
 
+		public override bool Equals(object obj)
+		{
+			return this.nombre.Equals(((Columna) obj).nombre);
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode ();
+		}
+		
 	}
 }

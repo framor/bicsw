@@ -123,6 +123,10 @@ namespace Bic.Domain
 			return camino;
 		}
 
+		public bool UsaTabla(Tabla unaTabla)
+		{
+			return this.TablaLookup.Equals(unaTabla);
 
+		}
 	}
 }

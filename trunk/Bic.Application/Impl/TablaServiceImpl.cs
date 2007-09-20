@@ -74,8 +74,17 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Delete(long id)
 		{
-			this.GenericDAO.Delete(typeof(Tabla), id);
-		}
+			Tabla t = (Tabla) this.GenericDAO.Retrieve(typeof(Tabla), id);
+			Proyecto p = t.Proyecto;
+			if (p.PuedeEliminarTabla(t)) 
+			{
+				this.GenericDAO.Delete(typeof(Tabla), id);
+			} 
+			else 
+			{
+				throw new ServiceException("No se puede eliminar la tabla ya que está siendo utilizada.");
+			}
+		}		
 
 		/// <summary>
 		/// Implementacion de TablaServiceImpl.SelectTablasDisponibles

@@ -1,6 +1,7 @@
 using System.Collections;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Interfaces;
+using Bic.Domain.Dao;
 
 namespace Bic.Domain
 {
@@ -57,6 +58,17 @@ namespace Bic.Domain
 			set { this.proyecto = value; }
 		}
 
+		/// <summary>
+		/// Indica si helecho usa la tabla
+		/// </summary>
+		/// <param name="unaTabla"></param>
+		/// <returns></returns>
+		public bool UsaTabla(Tabla unaTabla)
+		{
+			ICatalogoDAO dao = DAOLocator.Instance.CatalogoDAO;
+			IList columnas = dao.ObtenerColumnas(unaTabla);
+			return columnas.Contains(Columna);
+		}
 		#endregion
 
 	}

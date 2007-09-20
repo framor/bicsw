@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -13,6 +14,7 @@ namespace Bic.Web
 		protected Label lblProyecto;
 		protected DataGrid dgTablas;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -66,8 +68,16 @@ namespace Bic.Web
 		private void dgTablas_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgTablas.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.TablaService.Delete(id);
-			ListTablas();
+			try 
+			{
+				BICContext.Instance.TablaService.Delete(id);
+				ListTablas();
+			} 
+			catch (ServiceException se) 
+			{
+				this.valEliminar.IsValid = false;
+				this.valEliminar.ErrorMessage = se.Message;
+			}			
 		}
 
 		private void ListTablas()
