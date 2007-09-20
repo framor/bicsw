@@ -45,6 +45,9 @@
 		</asp:DataGrid>
 		<br/><br/><br/>
 		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<asp:CustomValidator Id="valEliminar" runat="server"></asp:CustomValidator>
+			</tr>
 			<tr valign="bottom">
 				<td align="right"><asp:Button id="btnNuevo" runat="server" Text="Agregar nuevo"></asp:Button></td-->
 			</tr>
