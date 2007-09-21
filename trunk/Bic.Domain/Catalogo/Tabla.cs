@@ -25,6 +25,12 @@ namespace Bic.Domain.Catalogo
 		}
 		public Tabla(string nombre, string nombreBD) : this(nombre, nombre, nombreBD) {}
 
+		public Tabla(string alias, string nombre, string nombreBD, long id, Proyecto pr) : this(alias, nombre, nombreBD) 
+		{
+            this.id = id;
+			this.Proyecto = pr;
+		}
+
 		public long Id 
 		{
 			get { return this.id; }

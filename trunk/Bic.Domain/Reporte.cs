@@ -79,16 +79,19 @@ namespace Bic.Domain
 			tablasReporte.Sort();
 			
 			// Tomo la primera y la agrego al reporte.
-			IEnumerator enumerador = tablasReporte.GetEnumerator();
-			enumerador.MoveNext();
-			this.tablaReporte = (TablaReporte)enumerador.Current;
+			this.tablaReporte = (TablaReporte)tablasReporte[0];
 
 			return;
 
 		}
 		
 
-
+		/// <summary>
+		/// Genera todos los caminos entre los campos y la tabla fact
+		/// </summary>
+		/// <param name="tabla">Tabla Fact destino de caminos</param>
+		/// <param name="campos">Campos de inicio de caminos</param>
+		/// <returns>Devuelve un ArrayList con los caminos</returns>
 		public ArrayList GeneraCaminos(Tabla tabla,IList campos)
 		{
 			ArrayList caminos = new ArrayList();
@@ -105,7 +108,7 @@ namespace Bic.Domain
 				catch(NoExisteHijoException nehe)
 				{
 					// Subo de nivel de Excepcion a una excepcion del dominio.
-					// Mando un excepcion de que no encuentra un camino por lo menos.
+					// Mando un excepcion de que no encuentra por lo menos un camino.
 					throw new NoExisteCaminoException("Por lo menos uno de los atributos no tiene camino hasta la tabla Fact",nehe);
 				}
 			}
