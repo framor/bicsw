@@ -30,7 +30,7 @@ namespace Bic.Domain
 			{
 				return this.tabla.Peso - ((TablaReporte)objeto).Tabla.Peso;
 			}
-			throw new ArgumentException(  "objeto no es una TablaReporte" );
+			throw new ArgumentException(  "El objeto no es una TablaReporte" );
 		}
 
 		public Tabla Tabla
