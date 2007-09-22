@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Web.SessionState;
 
 namespace Bic.Web
 {
@@ -10,10 +11,29 @@ namespace Bic.Web
 	{
 		#region	Constructor
 
-		private ReportManager(DataSet reportCache)
+		private ReportManager(HttpSessionState session)
 		{
-			//TODO : Hacer property que meta en sesion la cache.
-			this.reportCache = reportCache; 
+			this.httpSessionState = session; 
+		}
+
+
+		#endregion
+
+		#region Properties
+
+		private DataSet ReportCache
+		{
+			get
+			{
+				this.reportCache = this.httpSessionState["reportCache"] as DataSet;
+				return this.reportCache;
+			}
+
+			set
+			{
+				this.reportCache = value;
+				this.httpSessionState["reportCache"] = this.reportCache;
+			}
 		}
 
 
@@ -24,12 +44,13 @@ namespace Bic.Web
 		private static ReportManager reportManager;
 		private static object syncRoot = new Object();
         private DataSet reportCache;
+		private HttpSessionState httpSessionState;
 
 		#endregion
 
 		#region Public methods
 
-		public static ReportManager GetInstance(DataSet reportCache)
+		public static ReportManager GetInstance(HttpSessionState session)
 		{
 			if (reportManager == null) 
 			{
@@ -37,7 +58,7 @@ namespace Bic.Web
 				{
 					if (reportManager == null) 
 					{
-						reportManager = new ReportManager(reportCache);
+						reportManager = new ReportManager(session);
 					}
 				}
 			}
@@ -48,5 +69,6 @@ namespace Bic.Web
 
 		#endregion
 		
+		//TODO ; agregar excepcion en caso de que se quiera utilizar el cache y esta este en nula.
 	}
 }
