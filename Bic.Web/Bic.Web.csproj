@@ -404,6 +404,32 @@
                     RelPath = "lib\bic.js"
                     BuildAction = "Content"
                 />
+                <File
+                    RelPath = "Reportes\AdministracionReportes.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\AdministracionReportes.aspx.cs"
+                    DependentUpon = "AdministracionReportes.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\AdministracionReportes.aspx.resx"
+                    DependentUpon = "AdministracionReportes.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\DataSourcerMockProvider.cs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ReportManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
         <StartupServices>

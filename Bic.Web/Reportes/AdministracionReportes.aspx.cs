@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+
 
 namespace Bic.Web
 {
@@ -16,17 +16,18 @@ namespace Bic.Web
 	/// </summary>
 	public class AdministracionReportes : System.Web.UI.Page
 	{
-		protected System.Web.UI.WebControls.DataGrid DataGrid1;
 		#region	Web controls
 
+		protected System.Web.UI.WebControls.DataGrid dtgReport;
 
 		#endregion
 	
 		#region Event handlers
 
 		private void Page_Load(object sender, System.EventArgs e)
-		{
-			string a = "hola";
+		{		
+			this.dtgReport.DataSource = DataSourcerMockProvider.GetDataSource();
+			this.dtgReport.DataBind();			
 		}
 
 
@@ -49,6 +50,7 @@ namespace Bic.Web
 		private void InitializeComponent()
 		{    
 			this.Load += new System.EventHandler(this.Page_Load);
+			
 
 		}
 		#endregion
