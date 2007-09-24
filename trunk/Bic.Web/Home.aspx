@@ -11,19 +11,7 @@
 	<form id="Form1" method="post" runat="server">
 	<div id="container">
 
-	<div id="header">
-		<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
-			<tr>
-				<td>
-					<img src="./img/logo-small.jpg"/>
-				</td>
-				<td align="right">
-					<h1><asp:Label ID="lblProyecto" Runat="server"></asp:Label>&nbsp;<a href="ListaProyecto.aspx" ><img alt="Cerrar proyecto" src="./img/logout.png"/></a></h1>
-					<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx" ><img alt="Cerrar sesión" src="./img/logout.png"/></a></p>
-				</td>
-			</tr>
-		</table>
-	</div>
+	<cc1:Header id="bicHeader" runat="server"></cc1:Header>
 	<cc1:Menu id="bicMenu" runat="server"></cc1:Menu>
 
 	<div id="container2" style="height:450px">

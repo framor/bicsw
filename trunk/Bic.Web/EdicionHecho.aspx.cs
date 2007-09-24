@@ -11,9 +11,6 @@ namespace Bic.Web
 	/// </summary>
 	public class EdicionHecho : BasePage
 	{
-		protected Label lblUsuario;
-		protected Label lblProyecto;
-
 		protected TextBox txtNombre;
 		protected DropDownList ddlColumna;
 
@@ -29,8 +26,6 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Usuario.Nombre;
-				this.lblProyecto.Text = Proyecto.Nombre;
 				object datasource = null;
 				
 				long id = long.Parse(Request.Params["id"]);

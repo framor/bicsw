@@ -421,11 +421,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Reportes\DataSourcerMockProvider.cs.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Reportes\ReportManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

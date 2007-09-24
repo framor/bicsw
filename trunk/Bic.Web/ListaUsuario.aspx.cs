@@ -10,7 +10,6 @@ namespace Bic.Web
 	public class ListaUsuario : BasePage
 	{
 		protected Button btnNuevo;
-		protected Label lblUsuario;
 		protected DataGrid dgUsuarios;
 	
 		private void Page_Load(object sender, EventArgs e)
@@ -18,7 +17,6 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Usuario.Nombre;
 				ListarUsuarios();
 			}
 			

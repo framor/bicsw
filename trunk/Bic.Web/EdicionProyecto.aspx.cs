@@ -1,5 +1,4 @@
 using System;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
@@ -10,7 +9,7 @@ namespace Bic.Web
 	/// <summary>
 	/// Descripción breve de EdicionProyecto.
 	/// </summary>
-	public class EdicionProyecto : Page
+	public class EdicionProyecto : BasePage
 	{
 		protected TextBox txtNombre;
 		protected TextBox txtDescripcion;
@@ -19,7 +18,6 @@ namespace Bic.Web
 		protected TextBox txtUsuario;
 		protected TextBox txtPassword;
 		
-		protected Label lblUsuario;
 		protected Button btnCancelar;
 		protected RequiredFieldValidator reqNombre;
 		protected RequiredFieldValidator reqDescripcion;
@@ -35,10 +33,9 @@ namespace Bic.Web
 	
 		private void Page_Load(object sender, EventArgs e)
 		{
+			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Session["usuario"].ToString();
-
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
 				if (id != -1)
@@ -123,6 +120,11 @@ namespace Bic.Web
 			string password = this.txtPassword.Text;
 			this.lblEstadoConexion.Text = 
 				BICContext.Instance.CatalogoService.ProbarConexion(servidor, nombreBD, usuario, password);
+		}
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAProyectos();
 		}
 	}
 }

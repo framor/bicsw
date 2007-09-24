@@ -9,8 +9,6 @@ namespace Bic.Web
 	/// </summary>
 	public class ListaHecho : BasePage
 	{
-		protected Label lblUsuario;
-		protected Label lblProyecto;
 		protected DataGrid dgHechos;
 		protected Button btnNuevo;
 
@@ -19,8 +17,6 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Usuario.Nombre;
-				this.lblProyecto.Text = Proyecto.Nombre;
 				ListHechos();
 			}
 		}
@@ -58,7 +54,7 @@ namespace Bic.Web
 				LinkButton myDeleteButton; 
 				myDeleteButton = (LinkButton) myTableCell.Controls[0];
 				myDeleteButton.Attributes.Add("onclick", 
-					"return confirm('¿Está seguro que desea eliminar la tabla?');");
+					"return confirm('¿Está seguro que desea eliminar el hecho?');");
 
 			}
 		}

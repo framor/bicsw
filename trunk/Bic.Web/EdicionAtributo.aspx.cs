@@ -11,9 +11,6 @@ namespace Bic.Web
 	/// </summary>
 	public class EdicionAtributo : BasePage
 	{
-		protected Label lblUsuario;
-		protected Label lblProyecto;
-
 		protected TextBox txtNombre;
 		protected DropDownList ddlTablaLookup;
 
@@ -33,9 +30,6 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Usuario.Nombre;
-				this.lblProyecto.Text = Proyecto.Nombre;
-
 				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
 				this.ddlTablaLookup.DataBind();
 				IList columnas = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);

@@ -18,7 +18,6 @@ namespace Bic.Web
 		protected TextBox txtContrasena;
 		protected DropDownList ddlRol;
 		
-		protected Label lblUsuario;
 		protected Button btnCancelar;
 		protected RequiredFieldValidator reqNombre;
 		protected RequiredFieldValidator reqContrasena;
@@ -32,7 +31,6 @@ namespace Bic.Web
 			if (!Page.IsPostBack) 
 			{
 				BindCombo();
-				this.lblUsuario.Text = Usuario.Nombre;
 
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;

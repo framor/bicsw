@@ -26,7 +26,7 @@ namespace Bic.Web
 
 		private void Page_Load(object sender, System.EventArgs e)
 		{		
-			this.dtgReport.DataSource = DataSourcerMockProvider.GetDataSource();
+			//this.dtgReport.DataSource = DataSourcerMockProvider.GetDataSource();
 			this.dtgReport.DataBind();			
 		}
 
