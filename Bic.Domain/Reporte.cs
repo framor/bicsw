@@ -157,6 +157,21 @@ namespace Bic.Domain
 			get { return this.tablaReporte; }
 		}
 
+		public string DameSql()
+		{
+			string listaCampos ="";
+
+			foreach(Atributo atrib in this.Atributos)
+			{
+				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
+				listaCampos += alias + "." + atrib.ColumnaId.Nombre + ",\n";
+
+			}
+			string sql = "select\n" + listaCampos + this.tablaReporte.DameSql() + "Group By\n" + listaCampos + ";";
+
+			return sql;
+		}
+
 
 		#endregion
 

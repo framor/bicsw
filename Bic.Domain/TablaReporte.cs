@@ -78,5 +78,18 @@ namespace Bic.Domain
 
 			return sql;
 		}
+
+		public string GetIdCamino(Atributo atrib)
+		{
+
+			foreach(Camino camino in this.caminos)
+			{
+				if(camino.TenesAtributo(atrib))
+					return camino.Id.ToString();
+			}
+
+			return ""; // TODO arreglar esto porque no puede devolver esto;
+
+		}
 	}
 }
