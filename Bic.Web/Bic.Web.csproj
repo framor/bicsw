@@ -134,6 +134,16 @@
                     Project = "{DA2E4D26-4BC4-48AF-8DB2-9C31F5194247}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "WebChart"
+                    AssemblyName = "WebChart"
+                    HintPath = "..\libraries\WebChart.dll"
+                />
+                <Reference
+                    Name = "itextsharp"
+                    AssemblyName = "itextsharp"
+                    HintPath = "..\libraries\itextsharp.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -377,6 +387,18 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "img\iconExcel.JPG"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\iconNotepad.JPG"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\iconWord.JPG"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "img\logo.jpg"
                     BuildAction = "Content"
                 />
@@ -386,6 +408,10 @@
                 />
                 <File
                     RelPath = "img\logout.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\pdf.jpg"
                     BuildAction = "Content"
                 />
                 <File
@@ -419,6 +445,57 @@
                     RelPath = "Reportes\AdministracionReportes.aspx.resx"
                     DependentUpon = "AdministracionReportes.aspx.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\AreaChartHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\BarChartHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartNotGeneratedException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\DataSourceMockProvider.cs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\GeneradorGraficos.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\GeneradorGraficos.aspx.cs"
+                    DependentUpon = "GeneradorGraficos.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\GeneradorGraficos.aspx.resx"
+                    DependentUpon = "GeneradorGraficos.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\LinesChartHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\PieChartHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Reportes\ReportManager.cs"
