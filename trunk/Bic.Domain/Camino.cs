@@ -17,6 +17,11 @@ namespace Bic.Domain
 			id = this.GetHashCode(); //TODO esto sacarlo cuando se genere en el DAO
 		}
 
+		public long Id
+		{
+			get { return this.id; }
+		}
+
 		public void AgregarAtributo(Atributo atributo)
 		{
 			this.atributos.Add(atributo);
@@ -113,6 +118,20 @@ namespace Bic.Domain
 			}
 
 			return whereClause;
+		}
+
+		/// <summary>
+		/// Se fija en la lista de atributos si figura el pasado por parametro.
+		/// TODO. SE ENCUENTRA HARCODEADO PARA QUE MIRE SOLO EL ULTIMO ELEMENTO QUE ES EL 
+		/// ATRIBUTO ORIGEN DEL CAMINO, SE DEBE IMPLEMENTAR CORRECTAMENTE CUANDO NO SEA UN CAMINO
+		/// POR CADA ATRIBUTO SELECCIONADO.
+		/// </summary>
+		/// <param name="atrib"></param>
+		/// <returns></returns>
+
+		public bool TenesAtributo(Atributo atrib)
+		{
+			return this.atributos[this.atributos.Count - 1].Equals(atrib);
 		}
 	}
 }
