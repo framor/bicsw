@@ -1,6 +1,8 @@
 using System;
-using System.Data;
+using System.Collections;
+using WebChart;
 using System.Web.SessionState;
+using System.Data;
 
 namespace Bic.Web
 {
@@ -9,6 +11,19 @@ namespace Bic.Web
 	/// </summary>
 	public class ReportManager
 	{
+		#region Graph type enum
+
+		public enum GraphTypes
+		{
+			Bars,
+			Pie,
+			Lines,
+			Area
+		}
+
+
+		#endregion
+
 		#region	Constructor
 
 		private ReportManager(HttpSessionState session)
@@ -21,7 +36,7 @@ namespace Bic.Web
 
 		#region Properties
 
-		private DataSet ReportCache
+		public DataSet ReportCache
 		{
 			get
 			{
@@ -37,6 +52,77 @@ namespace Bic.Web
 		}
 
 
+		public GraphTypes GraphType
+		{
+			get
+			{
+				this.graphType = (ReportManager.GraphTypes)this.httpSessionState["graphType"];
+				return this.graphType;
+			}
+
+			set
+			{
+				this.graphType = value;
+				this.httpSessionState["graphType"] = this.graphType;
+			}
+		}
+
+
+		public String DataColumn
+		{
+			get
+			{
+				this.dataColumn = this.httpSessionState["dataColumn"] as String;
+				return this.dataColumn;
+			}
+
+			set
+			{
+				this.dataColumn = value;
+				this.httpSessionState["dataColumn"] = this.dataColumn;
+			}
+		}
+
+		public String DescriptionColumn
+		{
+			get
+			{
+				this.descriptionColumn = this.httpSessionState["descriptionColumn"] as String;
+				return this.descriptionColumn ;
+			}
+
+			set
+			{
+				this.descriptionColumn = value;
+				this.httpSessionState["descriptionColumn"] = this.descriptionColumn;
+			}
+		}
+
+
+		public ChartHelper ChartHelper
+		{
+			get
+			{
+				switch(this.graphType)
+				{
+					case ReportManager.GraphTypes.Bars :
+							return new BarChartHelper();							
+
+					case ReportManager.GraphTypes.Pie :
+							return new PieChartHelper();							
+
+					case ReportManager.GraphTypes.Lines :
+							return new LinesChartHelper();	
+
+					case ReportManager.GraphTypes.Area :
+						return new AreaChartHelper();	
+				}
+				
+				throw new Exception("Tipo de grafico inexistente");				
+			}			
+		}
+
+
 		#endregion
 
 		#region Private members
@@ -45,6 +131,9 @@ namespace Bic.Web
 		private static object syncRoot = new Object();
         private DataSet reportCache;
 		private HttpSessionState httpSessionState;
+		private GraphTypes graphType;
+		private String dataColumn;
+		private String descriptionColumn;
 
 		#endregion
 
@@ -64,6 +153,12 @@ namespace Bic.Web
 			}
 
 			return reportManager;
+		}
+
+
+		public Chart GetChart()
+		{	
+			return this.ChartHelper.GetChart(this.DataColumn , this.DescriptionColumn , this.ReportCache );
 		}
 
 

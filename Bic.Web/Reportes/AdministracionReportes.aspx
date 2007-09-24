@@ -1,26 +1,87 @@
-<%@ Register TagPrefix="cr" Namespace="CrystalDecisions.Web" Assembly="CrystalDecisions.Web, Version=9.1.5000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" %>
 <%@ Page language="c#" Codebehind="AdministracionReportes.aspx.cs" AutoEventWireup="false" Inherits="Bic.Web.AdministracionReportes" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 	<HEAD>
-		<title>AdministracionReportes</title>
-		<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
-		<meta content="C#" name="CODE_LANGUAGE">
-		<meta content="JavaScript" name="vs_defaultClientScript">
-		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<title>BIC - Business Intelligence Client</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link href="../lib/bic.css" rel="stylesheet" type="text/css">
 	</HEAD>
 	<body>
-		<form id="Form1" method="post" runat="server">
+		<form id="form1" method="post" runat="server">
 			<div id="container">
 				<div id="header">
-					<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+					<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
 						<tr>
+							<td>
+								<img src="../img/logo-small.jpg">
+							</td>
 							<td align="right">
-								<asp:DataGrid id="dtgReport" Runat="server"></asp:DataGrid>
+								<h1>&nbsp;</h1>
+								<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx"><img alt="Cerrar sesión" src="../img/logout.png"></a></p>
 							</td>
 						</tr>
 					</table>
+				</div>
+				<div id="tabs10">
+				</div>
+				<div id="container2">
+					<div id="content" style="HEIGHT:83%">
+						<h2>Reporte</h2>
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr valign="bottom">
+								<td align="left">
+									<asp:datagrid id="dtgReport" Runat="server" CellPadding="5" Font-Names="Verdana" Width="100%"
+										UseAccessibleHeader="True">
+										<AlternatingItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="Gainsboro"></AlternatingItemStyle>
+										<ItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="PapayaWhip"></ItemStyle>
+										<HeaderStyle Font-Names="Verdana" ForeColor="Black" BackColor="LightBlue"></HeaderStyle>
+									</asp:datagrid>
+								</td>
+							</tr>
+						</table>
+						<br>
+						<h2>Exportar</h2>
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td>
+									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG"></asp:imagebutton>
+								</td>
+							</tr>
+						</table>
+						<br>
+						<h2>Graficar</h2>
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td>
+									Tipo de gráfico<asp:DropDownList id="ddlTipoGrafico" Runat="server"></asp:DropDownList>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Fuente de datos<asp:DropDownList id="ddlColumna" Runat="server"></asp:DropDownList>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Fuente de descripciones<asp:DropDownList id="ddlDescripciones" Runat="server"></asp:DropDownList>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<asp:Button id="btnContinuar" runat="server" Text="Continuar"></asp:Button>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div id="footer">
+						<p>
+							<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a> | 
+							Copyright © BIC | Design by <a href="#">BIC Design</a>
+						</p>
+					</div>
 				</div>
 			</div>
 		</form>
