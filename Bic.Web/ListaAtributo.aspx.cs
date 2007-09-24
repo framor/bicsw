@@ -9,8 +9,6 @@ namespace Bic.Web
 	/// </summary>
 	public class ListaAtributo : BasePage
 	{
-		protected Label lblUsuario;
-		protected Label lblProyecto;
 		protected DataGrid dgAtributos;
 		protected Button btnNuevo;
 
@@ -19,8 +17,6 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.lblUsuario.Text = Usuario.Nombre;
-				this.lblProyecto.Text = Proyecto.Nombre;
 				ListAtributos();
 			}
 		}

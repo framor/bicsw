@@ -1,5 +1,4 @@
 using System;
-using System.Web.UI.WebControls;
 
 namespace Bic.Web
 {
@@ -9,17 +8,9 @@ namespace Bic.Web
 	public class Home : BasePage
 	{
 
-		protected Label lblUsuario;
-		protected Label lblProyecto;
-
 		private void Page_Load(object sender, EventArgs e)
 		{
 			BaseLoad();
-			if (!Page.IsPostBack) 
-			{
-				this.lblUsuario.Text = Usuario.Nombre;
-				this.lblProyecto.Text = Proyecto.Nombre;
-			}
 		}
 
 		#region Código generado por el Diseñador de Web Forms

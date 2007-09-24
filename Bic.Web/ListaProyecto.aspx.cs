@@ -11,7 +11,6 @@ namespace Bic.Web
 	{
 		protected Button btnNuevo;
 		protected DataGrid dgProyectos;
-		protected Label lblUsuario;
 	
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -19,7 +18,6 @@ namespace Bic.Web
 			if (!Page.IsPostBack)
 			{
 				ListProyectos();
-				this.lblUsuario.Text = Usuario.Nombre;
 			}
 		}
 
