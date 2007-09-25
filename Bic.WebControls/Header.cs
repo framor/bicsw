@@ -54,7 +54,6 @@ namespace Bic.WebControls
 
 		private string GetPageDeep()
 		{
-			//HACK: Sacar el 1º elemento que es 'bic'. 
 			// Evaluar alguna forma mas elegante de hacer esto (GONE)
 			StringBuilder pageFolder = new StringBuilder();
 			
