@@ -1,6 +1,6 @@
 using System;
 using System.Data;
-using System.Data.Odbc; 
+using MySql.Data.MySqlClient;
 
 namespace Bic.Web
 {
@@ -19,18 +19,14 @@ namespace Bic.Web
 
 		public static DataSet GetDataSource()
 		{
-			OdbcConnection odbcConnection;
-			OdbcCommand odbcCommand;
-			OdbcDataAdapter odbcDataAdapter;
+			MySqlConnection odbcConnection;
+			MySqlCommand odbcCommand;
+			MySqlDataAdapter odbcDataAdapter;
 			DataSet dataSet;
 
-			odbcConnection = new OdbcConnection(
-				@"Provider = Foodmart;
-							Driver={MySQL ODBC 3.51 Driver};
-							Server=127.0.0.1;
-							Database=foodmart;
-							UID=foodmart; 
-							PWD=foodmart;");
+			string connStr = String.Format("Server={0};Database={1};Uid={2};Pwd={3}", 
+				new object[]{"localhost", "foodmart", "foodmart", "foodmart"});
+			odbcConnection = new MySqlConnection(connStr);
 			try
 			{
 				if (odbcConnection.State == ConnectionState.Closed)
@@ -39,10 +35,10 @@ namespace Bic.Web
 				}
 
 				//TODO : REfactorizar para hacerlo mas flexible y pegarle a otras tablas.
-				odbcCommand = new OdbcCommand("Select * from account",odbcConnection);
+				odbcCommand = new MySqlCommand("Select * from account",odbcConnection);
 				odbcCommand.CommandType = CommandType.Text;
 			
-				odbcDataAdapter = new OdbcDataAdapter(odbcCommand);
+				odbcDataAdapter = new MySqlDataAdapter(odbcCommand);
  
 				dataSet = new DataSet();
 				odbcDataAdapter.Fill(dataSet,"account");

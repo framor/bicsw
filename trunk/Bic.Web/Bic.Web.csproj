@@ -144,6 +144,11 @@
                     AssemblyName = "itextsharp"
                     HintPath = "..\libraries\itextsharp.dll"
                 />
+                <Reference
+                    Name = "MySql.Data"
+                    AssemblyName = "MySql.Data"
+                    HintPath = "..\libraries\MySql.Data.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -485,22 +490,6 @@
                 <File
                     RelPath = "Reportes\GeneradorGraficos.aspx.resx"
                     DependentUpon = "GeneradorGraficos.aspx.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Reportes\GeneradorGraficosWizard.aspx"
-                    SubType = "Form"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "Reportes\GeneradorGraficosWizard.aspx.cs"
-                    DependentUpon = "GeneradorGraficosWizard.aspx"
-                    SubType = "ASPXCodeBehind"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reportes\GeneradorGraficosWizard.aspx.resx"
-                    DependentUpon = "GeneradorGraficosWizard.aspx.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
