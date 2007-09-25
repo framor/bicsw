@@ -33,6 +33,7 @@ namespace Bic.Web
 
 		}
 
+		//TODO : Ver que tan generico es este metodo para subirlo al base.
 		DataSet GetDataSet(String dataColumn, String descriptionColumn, DataSet reportCache) 
 		{
 			DataSet ds = new DataSet();

@@ -41,6 +41,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgAtributos.ItemCommand += new DataGridCommandEventHandler(this.dgAtributos_ItemCommand);
 			this.dgAtributos.ItemCreated += new DataGridItemEventHandler(this.dgAtributos_ItemCreated);
+			this.Page.PreRender+=new EventHandler(page_PreRenderEventHandler);
 		}
 		#endregion
 

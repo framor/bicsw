@@ -1,27 +1,16 @@
 <%@ Page language="c#" Codebehind="AdministracionReportes.aspx.cs" AutoEventWireup="false" Inherits="Bic.Web.AdministracionReportes" %>
+<%@ Register TagPrefix="cc1" Namespace="Bic.WebControls" Assembly="Bic.WebControls" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
-	<HEAD>
+  <HEAD>
 		<title>BIC - Business Intelligence Client</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<link href="../lib/bic.css" rel="stylesheet" type="text/css">
-	</HEAD>
+  </HEAD>
 	<body>
 		<form id="form1" method="post" runat="server">
 			<div id="container">
-				<div id="header">
-					<table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
-						<tr>
-							<td>
-								<img src="../img/logo-small.jpg">
-							</td>
-							<td align="right">
-								<h1>&nbsp;</h1>
-								<p><asp:Label ID="lblUsuario" Runat="server"></asp:Label>&nbsp;<a href="Login.aspx"><img alt="Cerrar sesión" src="../img/logout.png"></a></p>
-							</td>
-						</tr>
-					</table>
-				</div>
+				<cc1:Header id="bicHeader" runat="server"></cc1:Header>			
 				<div id="tabs10">
 				</div>
 				<div id="container2">
@@ -86,4 +75,4 @@
 			</div>
 		</form>
 	</body>
-</HTML>
+</HTML>

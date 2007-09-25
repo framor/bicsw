@@ -488,6 +488,22 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Reportes\GeneradorGraficosWizard.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\GeneradorGraficosWizard.aspx.cs"
+                    DependentUpon = "GeneradorGraficosWizard.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\GeneradorGraficosWizard.aspx.resx"
+                    DependentUpon = "GeneradorGraficosWizard.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Reportes\LinesChartHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

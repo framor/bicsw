@@ -1,5 +1,5 @@
-<%@ Page language="c#" Codebehind="GeneradorGraficos.aspx.cs" AutoEventWireup="false" Inherits="Bic.Web.Reportes.GeneradorGraficos" %>
 <%@ Register TagPrefix="web" Namespace="WebChart" Assembly="WebChart" %>
+<%@ Page language="c#" Codebehind="GeneradorGraficos.aspx.cs" AutoEventWireup="false" Inherits="Bic.Web.Reportes.GeneradorGraficos" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 	<HEAD>
@@ -29,21 +29,23 @@
 						<table cellSpacing="0" cellPadding="0" width="100%" border="0">
 							<tr vAlign="bottom">
 								<td align="left">
-								
-								<web:chartcontrol id="chartControl" Width="682px" Height="540px" Padding="10" ChartPadding="25" TopPadding="18" runat="server" >
-									<YTitle ForeColor="Black" Font="Tahoma, 8pt"></YTitle>
-									<ChartTitle ForeColor="White" Text="Salary" Font="Tahoma, 10pt, style=Bold"></ChartTitle>
-									<XTitle ForeColor="Black" Font="Tahoma, 8pt"></XTitle>
-									<Background Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="RosyBrown" HatchStyle="Shingle"></Background>
-									<Border EndCap="Flat" DashStyle="Solid" StartCap="Flat" Color="Black" Width="0" LineJoin="Miter"></Border>
-									<PlotBackground Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="White" HatchStyle="Shingle"></PlotBackground>
-									<YAxisFont ForeColor="Black" Font="Tahoma, 8pt"></YAxisFont>
-									<XAxisFont ForeColor="Black" Font="Tahoma, 8pt"></XAxisFont>
-									<Legend Width="80" Font="Tahoma, 8pt">
-										<Border EndCap="Flat" DashStyle="Solid" StartCap="Flat" Color="Brown" Width="1" LineJoin="Miter"></Border>
-										<Background Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="White" HatchStyle="Shingle"></Background>
-									</Legend>
-									
+									<web:chartcontrol id="chartControl" Width="682px" Height="540px" Padding="10" ChartPadding="25" TopPadding="18"
+										runat="server">
+										<YTitle ForeColor="Black" Font="Tahoma, 8pt"></YTitle>
+										<ChartTitle ForeColor="White" Text="Salary" Font="Tahoma, 10pt, style=Bold"></ChartTitle>
+										<XTitle ForeColor="Black" Font="Tahoma, 8pt"></XTitle>
+										<Background Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="RosyBrown"
+											HatchStyle="Shingle"></Background>
+										<Border EndCap="Flat" DashStyle="Solid" StartCap="Flat" Color="Black" Width="0" LineJoin="Miter"></Border>
+										<PlotBackground Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="White"
+											HatchStyle="Shingle"></PlotBackground>
+										<YAxisFont ForeColor="Black" Font="Tahoma, 8pt"></YAxisFont>
+										<XAxisFont ForeColor="Black" Font="Tahoma, 8pt"></XAxisFont>
+										<Legend Width="80" Font="Tahoma, 8pt">
+											<Border EndCap="Flat" DashStyle="Solid" StartCap="Flat" Color="Brown" Width="1" LineJoin="Miter"></Border>
+											<Background Type="Solid" StartPoint="0, 0" ForeColor="Black" EndPoint="100, 100" Color="White"
+												HatchStyle="Shingle"></Background>
+										</Legend>
 									</web:chartcontrol></td>
 							</tr>
 						</table>

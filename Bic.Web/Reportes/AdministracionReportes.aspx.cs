@@ -23,7 +23,7 @@ namespace Bic.Web
 	/// <summary>
 	/// Summary description for AdministracionReportes.
 	/// </summary>
-	public class AdministracionReportes : System.Web.UI.Page
+	public class AdministracionReportes : BasePage 
 	{
 		//TODO : subir al basepage este label
 		protected System.Web.UI.WebControls.Label lblUsuario;
@@ -103,6 +103,7 @@ namespace Bic.Web
 			try
 			{
 				//TODO : comprobar si el archivo existe y eliminarlo
+				//TODO : Manejar adecuadamente las excepciones que se generen durante la exportacion ( para todos los tipos )
 
 				PdfWriter writer = PdfWriter.GetInstance(document, 
 					new FileStream(@"E:\bic\Bic.Web\FileName.pdf", FileMode.Create));
@@ -273,9 +274,16 @@ namespace Bic.Web
 			this.imgBtnText.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnText_Click);
 			this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
 			this.Load += new System.EventHandler(this.Page_Load);
-
 		}
 
-		#endregion				
+		#endregion
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return true;
+		}
+
+
+		
 	}
 }

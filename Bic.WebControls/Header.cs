@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bic.Domain;
 using Bic.Domain.Usuario;
+using System.IO;
 
 namespace Bic.WebControls
 {
@@ -14,6 +15,63 @@ namespace Bic.WebControls
 	ToolboxData("<{0}:Header runat=server></{0}:Header>")]
 	public class Header : WebControl
 	{
+		#region Private members
+
+		private string pagePath;
+
+		#endregion
+
+		#region Properties
+
+		public virtual string PagePath
+		{
+			get
+			{
+				return this.pagePath;
+			}
+
+			set
+			{
+				this.pagePath = value;
+			}
+		}
+
+
+		#endregion
+
+		#region Protected methods
+
+		protected override void OnInit(System.EventArgs e)
+		{
+			this.pagePath = string.Empty;
+			base.OnInit (e);
+		}
+
+
+		#endregion
+
+		#region Private methods
+
+		private string GetPageDeep()
+		{
+			//HACK: Sacar el 1º elemento que es 'bic'. 
+			// Evaluar alguna forma mas elegante de hacer esto (GONE)
+			StringBuilder pageFolder = new StringBuilder();
+			
+			string[] pathSections = Path.GetDirectoryName(this.PagePath).Split(Path.DirectorySeparatorChar);
+
+			//HACK : el 1 y el 2º elemento no van , son : "" y bic"
+			for(int i = 2; i<pathSections.Length; i++)
+			{		
+				pageFolder.Append("..");									
+				pageFolder.Append('/');
+			}
+			
+			return pageFolder.ToString().Length==0?"./":pageFolder.ToString();
+		}
+
+
+		#endregion
 
 		/// <summary> 
 		/// Procesar este control en el parámetro de salida especificado.
@@ -21,6 +79,7 @@ namespace Bic.WebControls
 		/// <param name="output"> Programa de escritura HTML para escribir </param>
 		protected override void Render(HtmlTextWriter output)
 		{
+			string pageFolder = this.GetPageDeep();
 			StringBuilder sb = new StringBuilder();
 
 			Usuario u = (Usuario) this.Page.Session["usuario"];
@@ -30,20 +89,20 @@ namespace Bic.WebControls
 			sb.Append(@"<table height=""100%"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">");
 			sb.Append(@"<tr>");
 			sb.Append(@"<td>");
-			sb.Append(@"<img src=""./img/logo-small.jpg""/>");
+			sb.Append(@"<img src=""" + pageFolder + @"img/logo-small.jpg""/>");
 			sb.Append(@"</td>");
 			sb.Append(@"<td align=""right"">");
 			sb.Append(@"<h1>");
 			if (p != null) 
 			{
-				sb.Append(p.Nombre + @"&nbsp;<a href=""ListaProyecto.aspx"" ><img alt=""Cerrar proyecto"" src=""./img/logout.png""/></a>");
+				sb.Append(p.Nombre + @"&nbsp;<a href=""" + pageFolder + @"ListaProyecto.aspx"" ><img alt=""Cerrar proyecto"" src=""" + pageFolder + @"img/logout.png""/></a>");
 			}
 			else
 			{
 				sb.Append(@"&nbsp;");
 			}
 			sb.Append(@"</h1>");
-			sb.Append(@"<p>" + u.Nombre + @"&nbsp;<a href=""Login.aspx"" ><img alt=""Cerrar sesión"" src=""./img/logout.png""/></a></p>");
+			sb.Append(@"<p>" + u.Nombre + @"&nbsp;<a href=""" + pageFolder + @"Login.aspx"" ><img alt=""Cerrar sesión"" src=""" + pageFolder + @"img/logout.png""/></a></p>");
 			sb.Append(@"</td>");
 			sb.Append(@"</tr>");
 			sb.Append(@"</table>");
