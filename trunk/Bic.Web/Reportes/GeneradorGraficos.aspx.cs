@@ -29,7 +29,7 @@ namespace Bic.Web.Reportes
 		private void Page_Load(object sender, System.EventArgs e)
 		{
 			Chart chart = ReportManager.GetInstance(this.Session).GetChart();
-			chartControl.Charts.Add(chart);
+			//chartControl.Charts.Add(chart);
 
 			ChartEngine chartEngine = new ChartEngine();
 			chartEngine.Size = new Size(500,500);

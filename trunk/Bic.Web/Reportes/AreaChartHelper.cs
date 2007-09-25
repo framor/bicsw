@@ -45,7 +45,7 @@ namespace Bic.Web
 			{
 				DataRow row = table.NewRow();
 				row[descriptionColumn] = reportCache.Tables[0].Rows[i][descriptionColumn].ToString();
-				row[dataColumn] = reportCache.Tables[0].Rows[i][dataColumn].ToString();
+				row[dataColumn] = reportCache.Tables[0].Rows[i][dataColumn].ToString().Length != 0 ? int.Parse( reportCache.Tables[0].Rows[i][dataColumn].ToString()):0;
 				table.Rows.Add(row);
 			}
 			return ds;
