@@ -94,7 +94,8 @@ namespace Bic.Web
 		{
 			//HACK : Como veran, el header siempre tiene que llamarseeeeee (GONE)
 			Bic.WebControls.Header header = FindControlByID(this.Controls,"bicHeader") as Bic.WebControls.Header;
-			header.PagePath = Request.UrlReferrer != null ? Request.UrlReferrer.AbsolutePath:Request.Url.AbsolutePath;
+			//header.PagePath = Request.UrlReferrer != null ? Request.UrlReferrer.AbsolutePath:Request.Url.AbsolutePath;
+			header.PagePath = Request.Url.AbsolutePath;
 		}
 
 
