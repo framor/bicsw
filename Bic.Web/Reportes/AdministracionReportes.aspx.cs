@@ -106,7 +106,7 @@ namespace Bic.Web
 				//TODO : Manejar adecuadamente las excepciones que se generen durante la exportacion ( para todos los tipos )
 
 				PdfWriter writer = PdfWriter.GetInstance(document, 
-					new FileStream(@"E:\bic\Bic.Web\FileName.pdf", FileMode.Create));
+					new FileStream(Request.PhysicalApplicationPath + "/" + "FileName.pdf", FileMode.Create));
 
 				// step 3: we open the document
 				document.Open();
@@ -119,7 +119,7 @@ namespace Bic.Web
 				Response.Clear();       
 				Response.ContentType = "application/octet-stream";
 				Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(@"E:\bic\Bic.Web\FileName.pdf"));
-				Response.TransmitFile(@"E:\bic\Bic.Web\FileName.pdf");
+				Response.WriteFile(Request.PhysicalApplicationPath + "/" + "FileName.pdf");
 				Response.End();
 			}
 			catch (DocumentException de)
