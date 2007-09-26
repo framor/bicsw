@@ -1,5 +1,4 @@
 using System.Collections;
-using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
 using Spring.Data.NHibernate.Support;
@@ -30,5 +29,19 @@ namespace Bic.Dao
 			return null;
 		}
 
+		/// <summary>
+		/// Implementa ITablaDAO.ObtenerByNombre
+		/// </summary>
+		public Tabla ObtenerByNombre(long proyId, string nombre)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + typeof(Tabla).Name + " t where t.proyecto.id = ? and t.nombre = ?", 
+				new object[]{proyId, nombre});
+			if (ret != null && ret.Count > 0)
+			{
+				return (Tabla) ret[0];
+			}
+			return null;
+		}
 	}
 }

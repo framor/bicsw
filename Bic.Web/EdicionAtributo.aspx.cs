@@ -3,6 +3,8 @@ using System.Collections;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
+using Bic.Domain.Catalogo;
+using Bic.WebControls;
 
 namespace Bic.Web
 {
@@ -21,7 +23,9 @@ namespace Bic.Web
 		protected RequiredFieldValidator reqTablaLookup;
 		protected ValidationSummary valSummary;
 		protected DropDownList ddlColumnaId;
-		protected DropDownList ddlColumnaDescripcion;
+		protected ListBox lstDescripciones;
+		protected Header bicHeader;
+		protected Menu bicMenu;
 		protected Button btnCancelar;
 
 
@@ -30,11 +34,11 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				this.ddlTablaLookup.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
+				this.ddlTablaLookup.DataSource = BICContext.Instance.TablaService.Select(Proyecto.Id);
 				this.ddlTablaLookup.DataBind();
+				this.lstDescripciones.DataSource = new ArrayList();
+				this.lstDescripciones.DataBind();
 				IList columnas = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);
-				this.ddlColumnaDescripcion.DataSource = columnas;
-				this.ddlColumnaDescripcion.DataBind();
 				this.ddlColumnaId.DataSource = columnas;
 				this.ddlColumnaId.DataBind();
 
@@ -45,7 +49,14 @@ namespace Bic.Web
 					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 					this.txtNombre.Text = a.Nombre;
 					this.ddlColumnaId.SelectedValue = a.ColumnaId.Nombre;
-					//this.ddlColumnaDescripcion.SelectedValue = a.ColumnasDescripciones
+
+					ddlTablaLookup_SelectedIndexChanged(null, null);
+					foreach (ListItem i in this.lstDescripciones.Items)
+					{
+						// TODO: esto apesta
+						Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(i.Value, Proyecto.Id);
+						i.Selected = a.ColumnasDescripciones.Contains(c);
+					}
 					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Nombre;
 				}
 
@@ -69,6 +80,7 @@ namespace Bic.Web
 		/// </summary>
 		private void InitializeComponent()
 		{    
+			this.ddlTablaLookup.SelectedIndexChanged += new EventHandler(this.ddlTablaLookup_SelectedIndexChanged);
 			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
 			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
 			this.Load += new EventHandler(this.Page_Load);
@@ -90,7 +102,21 @@ namespace Bic.Web
 			}			
 			a.Nombre = this.txtNombre.Text;
 			a.ColumnaId = BICContext.Instance.CatalogoService.ObtenerColumna(this.ddlColumnaId.SelectedValue, Proyecto.Id);
-			//a.CampoDescripcion = this.txtCampoDescripcion.Text;
+			foreach (ListItem i in this.lstDescripciones.Items)
+			{
+				// TODO: esto apesta
+				Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(i.Value, Proyecto.Id);
+
+				if (i.Selected)
+				{
+					a.RemoverColumnaDescripcion(c);
+					a.AgregarColumnaDescripcion(c);
+				}
+				else
+				{
+					a.RemoverColumnaDescripcion(c);
+				}
+			}
 			a.TablaLookup = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlTablaLookup.SelectedValue, Proyecto.Id);
 			a.Proyecto = Proyecto;
 
@@ -106,6 +132,13 @@ namespace Bic.Web
 		protected override bool TienePermisosSuficientes()
 		{
 			return this.Usuario.Rol.PuedeAccederAAtributos();
+		}
+
+		private void ddlTablaLookup_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Tabla t = BICContext.Instance.TablaService.ObtenerTablaPorNombre(this.ddlTablaLookup.SelectedValue, Proyecto.Id);
+			this.lstDescripciones.DataSource = t.Columnas;
+			this.lstDescripciones.DataBind();
 		}
 	}
 }

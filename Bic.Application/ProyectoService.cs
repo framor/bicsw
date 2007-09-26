@@ -32,5 +32,6 @@ namespace Bic.Application
 		/// </summary>
 		/// <param name="id">El id de proyecto</param>
 		void Delete(long id);
+
 	}
 }
