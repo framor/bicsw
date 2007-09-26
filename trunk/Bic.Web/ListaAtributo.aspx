@@ -20,9 +20,8 @@
 							<HeaderStyle Font-Bold="True"></HeaderStyle>
 							<Columns>
 								<asp:BoundColumn DataField="Nombre" HeaderText="Nombre"></asp:BoundColumn>
-								<asp:BoundColumn DataField="ColumnaId" HeaderText="ID"></asp:BoundColumn>
-								<asp:BoundColumn DataField="ColumnaId" HeaderText="DESC"></asp:BoundColumn>
-								<asp:BoundColumn DataField="TablaLookup" HeaderText="LookUp Table"></asp:BoundColumn>
+								<asp:BoundColumn DataField="NombreColumnaId" HeaderText="ID"></asp:BoundColumn>
+								<asp:BoundColumn DataField="NombreTablaLookup" HeaderText="LookUp Table"></asp:BoundColumn>
 								<asp:HyperLinkColumn Text="Editar" Target="_self" DataNavigateUrlField="Id" DataNavigateUrlFormatString="EdicionAtributo.aspx?id={0}"></asp:HyperLinkColumn>
 								<asp:ButtonColumn Text="Borrar" CommandName="Borrar"></asp:ButtonColumn>
 							</Columns>

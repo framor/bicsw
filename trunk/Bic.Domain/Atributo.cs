@@ -60,6 +60,16 @@ namespace Bic.Domain
 			set { this.columnaId = value; }
 		}
 
+		public string NombreColumnaId
+		{
+			get { return this.columnaId.Nombre; }
+		}
+
+		public string NombreTablaLookup
+		{
+			get { return this.tablaLookup.Nombre; }
+		}
+
 		public ArrayList ColumnasDescripciones
 		{
 			get { return new ArrayList(columnasDescripciones); }
@@ -80,6 +90,10 @@ namespace Bic.Domain
 		public void AgregarColumnaDescripcion(Columna value)
 		{
 			this.columnasDescripciones.Add(value);
+		}
+		public void RemoverColumnaDescripcion(Columna value)
+		{
+			this.columnasDescripciones.Remove(value);
 		}
 
 		public IList ObtenerTablas()

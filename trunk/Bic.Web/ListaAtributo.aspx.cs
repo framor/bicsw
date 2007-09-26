@@ -51,7 +51,7 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				TableCell myTableCell;
-				myTableCell = e.Item.Cells[5];
+				myTableCell = e.Item.Cells[4];
 				LinkButton myDeleteButton; 
 				myDeleteButton = (LinkButton) myTableCell.Controls[0];
 				myDeleteButton.Attributes.Add("onclick", 

@@ -1,5 +1,6 @@
 using System.Collections;
 using Bic.Domain;
+using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
 using Bic.Framework.Exception;
 

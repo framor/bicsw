@@ -95,5 +95,13 @@ namespace Bic.Application.Impl
 			Catalogo c = this.catalogoDAO.ObtenerCatalogo(p.Conexion);
 			return c.Tablas;
 		}
+
+		/// <summary>
+		/// Implementacion de TablaServiceImpl.ObtenerTablaPorNombre
+		/// </summary>
+		public Tabla ObtenerTablaPorNombre(string nombreTabla, long idProyecto)
+		{
+			return this.tablaDAO.ObtenerByNombre(idProyecto, nombreTabla);
+		}
 	}
 }

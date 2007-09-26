@@ -41,5 +41,13 @@ namespace Bic.Application
 		/// <param name="idProyecto">El id del proyecto</param>
 		/// <returns></returns>
 		IList SelectTablasDisponibles(long idProyecto);
+
+		/// <summary>
+		/// Obtiene una tabla por su nombre
+		/// </summary>
+		/// <param name="nombreTabla"></param>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		Tabla ObtenerTablaPorNombre(string nombreTabla, long idProyecto);
 	}
 }
