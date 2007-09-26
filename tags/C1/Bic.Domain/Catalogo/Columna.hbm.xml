@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0" namespace="Bic.Domain.Catalogo"
+	assembly="Bic.Domain">
+    <class name="Bic.Domain.Catalogo.Columna, Bic.Domain" table="columna">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/>
+        <property name="tipo" column="tipo" type="String" access="field"/>
+    </class>
+</hibernate-mapping>

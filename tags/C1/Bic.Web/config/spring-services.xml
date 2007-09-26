@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+	<description>
+		Configuracion de los servicios
+	</description>
+
+	<!-- Templates de configuración para todos los servicios -->
+	<object id="serviceConfigurationTemplate" abstract="true"
+          type="Spring.Aop.Framework.ProxyFactoryObject, Spring.Aop">
+    
+	    <property name="InterceptorNames">
+			<list>
+				<value>loggingInterceptor</value>	    
+				<value>transactionInterceptor</value>
+			</list>
+	    </property>
+	</object>
+	<object id="baseServiceTemplate">
+        <property name="genericDAO" ref="genericDAO" />	
+	</object>         
+
+	
+	<object id="usuarioService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.UsuarioService"/>
+		<property name="target" ref="usuarioServiceImpl"/>
+	</object>			
+	<object id="usuarioServiceImpl" type="Bic.Application.impl.UsuarioServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="usuarioDAO" ref="usuarioDAO"/>	
+	</object>
+
+	<object id="proyectoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.ProyectoService"/>
+		<property name="target" ref="proyectoServiceImpl"/>
+	</object>			
+	<object id="proyectoServiceImpl" type="Bic.Application.impl.ProyectoServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>
+	</object>
+
+	<object id="atributoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.AtributoService"/>
+		<property name="target" ref="atributoServiceImpl"/>
+	</object>			
+	<object id="atributoServiceImpl" type="Bic.Application.impl.AtributoServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>
+	</object>
+
+	<object id="catalogoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.CatalogoService"/>
+		<property name="target" ref="catalogoServiceImpl"/>
+	</object>			
+	<object id="catalogoServiceImpl" type="Bic.Application.impl.CatalogoServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>			
+		<property name="catalogoDAO" ref="catalogoDAO"/>			
+	</object>
+
+	<object id="tablaService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.TablaService"/>
+		<property name="target" ref="tablaServiceImpl"/>
+	</object>			
+	<object id="tablaServiceImpl" type="Bic.Application.impl.TablaServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>
+		<property name="tablaDAO" ref="tablaDAO"/>
+	</object>
+
+	<object id="hechoService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.HechoService"/>
+		<property name="target" ref="hechoServiceImpl"/>
+	</object>			
+	<object id="hechoServiceImpl" type="Bic.Application.impl.HechoServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>		
+	</object>
+
+</objects>
+

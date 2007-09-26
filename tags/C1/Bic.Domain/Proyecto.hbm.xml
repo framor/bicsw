@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="Bic.Domain.Proyecto, Bic.Domain" table="proyecto">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/> 
+        <property name="descripcion" column="descripcion" type="String" access="field"/> 
+        <component name="conexion" class="Bic.Domain.Catalogo.Conexion, Bic.Domain" access="field">
+			<property name="server" column="servidor" type="String" access="field"/>
+			<property name="database" column="nombreBD" type="String" access="field"/>
+			<property name="user" column="usuario" type="String" access="field"/>
+			<property name="password" column="password" type="String" access="field"/>
+		</component>
+    </class>
+</hibernate-mapping>
