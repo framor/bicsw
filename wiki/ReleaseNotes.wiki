@@ -1,9 +1,10 @@
-#summary One-sentence summary of this page.
+#summary Mejoras introducidas en las versiones.
 
 = Introduction =
 
 Acá van todos los cambios e implementaciones que se agregaron para cada version
 
+http://bic.dnsalias.com/test/
 
 = C1 =
 
