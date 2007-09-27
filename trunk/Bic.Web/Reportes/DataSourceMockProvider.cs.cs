@@ -35,7 +35,7 @@ namespace Bic.Web
 				}
 
 				//TODO : REfactorizar para hacerlo mas flexible y pegarle a otras tablas.
-				odbcCommand = new MySqlCommand("Select * from account",odbcConnection);
+				odbcCommand = new MySqlCommand("Select * from product",odbcConnection);
 				odbcCommand.CommandType = CommandType.Text;
 			
 				odbcDataAdapter = new MySqlDataAdapter(odbcCommand);

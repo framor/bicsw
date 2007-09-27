@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Web"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{741F2FC7-9F31-4FCE-88DD-6F6E23C289AF}"
     >
@@ -416,10 +416,6 @@
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "img\pdf.jpg"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "img\tableft10.gif"
                     BuildAction = "Content"
                 />
@@ -506,6 +502,22 @@
                     RelPath = "Reportes\ReportManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "test\ReporteTest.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "test\ReporteTest.aspx.cs"
+                    DependentUpon = "ReporteTest.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "test\ReporteTest.aspx.resx"
+                    DependentUpon = "ReporteTest.aspx.cs"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

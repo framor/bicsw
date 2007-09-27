@@ -131,7 +131,12 @@ namespace Bic.Domain
 
 		public bool TenesAtributo(Atributo atrib)
 		{
-			return this.atributos[this.atributos.Count - 1].Equals(atrib);
+			if(this.atributoFact.Equals(atrib))
+				return true;
+			if(this.atributos.Count > 0)
+				return this.atributos[this.atributos.Count - 1].Equals(atrib);
+
+			return false;
 		}
 	}
 }

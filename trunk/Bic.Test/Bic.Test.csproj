@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{56AA0222-5C35-465B-B122-1ABA95EC1C03}"
     >
@@ -80,11 +80,6 @@
                     HintPath = "..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "nunit.framework"
-                    AssemblyName = "nunit.framework"
-                    HintPath = "..\libraries\nunit.framework.dll"
-                />
-                <Reference
                     Name = "Bic.Dao"
                     Project = "{5DE06520-645F-4B00-A75F-F9562DC90F78}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
@@ -93,6 +88,16 @@
                     Name = "Bic.Domain"
                     Project = "{7693AA34-CAC8-4954-82B4-EF5392E13784}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "NUnitAsp"
+                    AssemblyName = "NUnitAsp"
+                    HintPath = "..\libraries\NUnitAsp.dll"
+                />
+                <Reference
+                    Name = "nunit.framework"
+                    AssemblyName = "nunit.framework"
+                    HintPath = "..\libraries\nunit.framework.dll"
                 />
             </References>
         </Build>
@@ -109,9 +114,18 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NUnitAdapter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ReporteTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "config\spring-daos.xml"
+                    BuildAction = "Content"
                 />
             </Include>
         </Files>
