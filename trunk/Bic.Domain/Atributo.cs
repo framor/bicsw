@@ -3,6 +3,7 @@ using System.Collections;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Exception;
 using Bic.Domain.Interfaces;
+using Iesi.Collections;
 
 namespace Bic.Domain
 {
@@ -14,7 +15,7 @@ namespace Bic.Domain
 		private long id;
 		private string nombre;
 		private Columna columnaId;
-		private ArrayList columnasDescripciones = new ArrayList();
+		private ISet columnasDescripciones = new HashedSet();
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
 		private Atributo hijo;
@@ -65,9 +66,9 @@ namespace Bic.Domain
 			get { return this.columnaId.Nombre; }
 		}
 
-		public string NombreTablaLookup
+		public string AliasTablaLookup
 		{
-			get { return this.tablaLookup.Nombre; }
+			get { return this.tablaLookup.Alias; }
 		}
 
 		public ArrayList ColumnasDescripciones

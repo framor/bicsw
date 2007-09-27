@@ -33,7 +33,7 @@
 							<tr>
 								<td><b>LookUp Table</b></td>
 								<td>
-									<asp:DropDownList id="ddlTablaLookup" runat="server" DataTextField="Nombre" DataValueField="Nombre"
+									<asp:DropDownList id="ddlTablaLookup" runat="server" DataTextField="Alias" DataValueField="Id"
 										AutoPostBack="True" Width="150px"></asp:DropDownList>
 									<asp:RequiredFieldValidator ID="reqTablaLookup" Runat="server" ControlToValidate="ddlTablaLookup" ErrorMessage="Por favor complete la Tabla Lookup.">*</asp:RequiredFieldValidator>
 								</td>

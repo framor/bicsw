@@ -36,11 +36,7 @@ namespace Bic.Web
 			{
 				this.ddlTablaLookup.DataSource = BICContext.Instance.TablaService.Select(Proyecto.Id);
 				this.ddlTablaLookup.DataBind();
-				this.lstDescripciones.DataSource = new ArrayList();
-				this.lstDescripciones.DataBind();
-				IList columnas = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);
-				this.ddlColumnaId.DataSource = columnas;
-				this.ddlColumnaId.DataBind();
+				ddlTablaLookup_SelectedIndexChanged(null, null);
 
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
@@ -50,14 +46,14 @@ namespace Bic.Web
 					this.txtNombre.Text = a.Nombre;
 					this.ddlColumnaId.SelectedValue = a.ColumnaId.Nombre;
 
-					ddlTablaLookup_SelectedIndexChanged(null, null);
+					
 					foreach (ListItem i in this.lstDescripciones.Items)
 					{
 						// TODO: esto apesta
 						Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(i.Value, Proyecto.Id);
 						i.Selected = a.ColumnasDescripciones.Contains(c);
 					}
-					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Nombre;
+					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
 				}
 
 			}
@@ -117,7 +113,7 @@ namespace Bic.Web
 					a.RemoverColumnaDescripcion(c);
 				}
 			}
-			a.TablaLookup = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlTablaLookup.SelectedValue, Proyecto.Id);
+			a.TablaLookup = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
 			a.Proyecto = Proyecto;
 
 			BICContext.Instance.AtributoService.Save(a);
@@ -136,8 +132,13 @@ namespace Bic.Web
 
 		private void ddlTablaLookup_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Tabla t = BICContext.Instance.TablaService.ObtenerTablaPorNombre(this.ddlTablaLookup.SelectedValue, Proyecto.Id);
-			this.lstDescripciones.DataSource = t.Columnas;
+			Tabla t = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
+
+			IList columnas = t.Columnas;
+			this.ddlColumnaId.DataSource = columnas;
+			this.ddlColumnaId.DataBind();
+
+			this.lstDescripciones.DataSource = columnas;
 			this.lstDescripciones.DataBind();
 		}
 	}
