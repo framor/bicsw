@@ -33,33 +33,43 @@
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td>
-									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG" style="border:none"></asp:imagebutton>
 								</td>
 							</tr>
 						</table>
 						<br>
 						<h2>Graficar</h2>
-						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+						<table width="70%" cellspacing="0" cellpadding="1" border="0">
 							<tr>
 								<td>
-									Tipo de gráfico<asp:DropDownList id="ddlTipoGrafico" Runat="server"></asp:DropDownList>
+									Tipo de gráfico
+								</td>
+								<td align="right">
+								<asp:DropDownList id="ddlTipoGrafico" Runat="server" style="width:200px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									Fuente de datos<asp:DropDownList id="ddlColumna" Runat="server"></asp:DropDownList>
+									Fuente de datos
+								</td>
+								<td align="right">
+								<asp:DropDownList id="ddlColumna" Runat="server" style="width:200px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									Fuente de descripciones<asp:DropDownList id="ddlDescripciones" Runat="server"></asp:DropDownList>
+									Fuente de descripciones
+								</td>
+								<td align="right">
+								<asp:DropDownList id="ddlDescripciones" Runat="server" style="width:200px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td>&nbsp;</td>
+								<td align="right">
 									<asp:Button id="btnContinuar" runat="server" Text="Continuar"></asp:Button>
 								</td>
 							</tr>
