@@ -13,7 +13,7 @@ namespace Bic.Dao
 	public class MySQLDAO : ICatalogoDAO
 	{
 
-		private static readonly string GET_CATALOGO_SQL = "SELECT table_name, table_schema FROM `information_schema`.`COLUMNS` where table_schema = ?database";
+		private static readonly string GET_CATALOGO_SQL = "SELECT table_name, table_schema FROM `information_schema`.`TABLES` where table_schema = ?database";
 		private static readonly string GET_COLUMNAS_SQL = "SELECT column_name, data_type FROM `information_schema`.`COLUMNS` where table_schema = ?database and table_name= ?tablename";
 
 		public MySQLDAO()
@@ -41,26 +41,13 @@ namespace Bic.Dao
 				MySqlDataAdapter da = new MySqlDataAdapter(cmd);
 				da.Fill(ds);
 
-				string nombreTablaAnterior = string.Empty;
 				Catalogo cat = new Catalogo();
 				Tabla t = null;
 
-				if (ds.Tables.Count != 0 && ds.Tables[0].Rows.Count != 0)
-				{	
-					t = new Tabla(ds.Tables[0].Rows[0].ItemArray[0].ToString(), ds.Tables[0].Rows[0].ItemArray[1].ToString());
-					nombreTablaAnterior = t.Nombre;
-				}
-
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
-					t.Nombre = dr.ItemArray[0].ToString();
-					t.NombreBD = dr.ItemArray[1].ToString();
-					if (!t.Nombre.Equals(nombreTablaAnterior))
-					{
-						cat.AgregarTabla(t);
-						t = new Tabla(t.Nombre, t.NombreBD);
-					}
-					nombreTablaAnterior = t.Nombre;
+					t = new Tabla(dr.ItemArray[0].ToString(), dr.ItemArray[1].ToString());
+					cat.AgregarTabla(t);
 				}
 				con.Close();
 				return cat;

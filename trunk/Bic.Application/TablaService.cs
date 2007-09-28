@@ -42,12 +42,21 @@ namespace Bic.Application
 		/// <returns></returns>
 		IList SelectTablasDisponibles(long idProyecto);
 
+		IList SelectColumnasDisponibles(long idProyecto);
+
 		/// <summary>
 		/// Obtiene una tabla por su nombre
 		/// </summary>
 		/// <param name="nombreTabla"></param>
 		/// <param name="idProyecto"></param>
 		/// <returns></returns>
-		Tabla ObtenerTablaPorNombre(string nombreTabla, long idProyecto);
+		Tabla ObtenerTabla(string nombreTabla, long idProyecto);
+
+		/// <summary>
+		/// Obtiene una columna 
+		/// </summary>
+		/// <param name="idColumna"></param>
+		/// <returns></returns>
+		Columna ObtenerColumna(long idColumna);
 	}
 }

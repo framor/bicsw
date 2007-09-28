@@ -39,13 +39,5 @@ namespace Bic.Application
 		/// <param name="idProyecto"></param>
 		/// <returns></returns>
 		Tabla ObtenerTabla(string nombreTabla, long idProyecto);
-
-		/// <summary>
-		/// Obtiene una columna del catalog de la bd configurada para el proyecto
-		/// </summary>
-		/// <param name="nombreColumna"></param>
-		/// <param name="idProyecto"></param>
-		/// <returns></returns>
-		Columna ObtenerColumna(string nombreColumna, long idProyecto);
 	}
 }

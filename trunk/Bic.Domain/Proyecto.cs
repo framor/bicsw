@@ -74,9 +74,7 @@ namespace Bic.Domain
 			IList tablas = pDao.SelectTablas(Id, col);
 			foreach (Tabla t in tablas)
 			{
-				ICatalogoDAO cDao = DAOLocator.Instance.CatalogoDAO;
-				IList columnasDeLaTabla = cDao.ObtenerColumnas(t);
-				if (columnasDeLaTabla.Contains(col))
+				if (t.Columnas.Contains(col))
 				{
 					ret.Add(t);
 				}

@@ -55,5 +55,6 @@ namespace Bic.Dao
 		{
 			HibernateTemplate.Delete("from " + entityType.Name + " o where o.id =" + id);
 		}
+
 	}
 }

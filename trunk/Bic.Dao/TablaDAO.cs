@@ -43,5 +43,31 @@ namespace Bic.Dao
 			}
 			return null;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		public IList SelectColumnasDisponibles(long idProyecto)
+		{
+			IList tablas = SelectTablasDisponibles(idProyecto);
+			ArrayList ret = new ArrayList();
+			foreach (Tabla t in tablas) 
+			{
+				ret.AddRange(t.Columnas);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		public IList SelectTablasDisponibles(long idProyecto)
+		{			
+			return HibernateTemplate.Find("from " + typeof(Tabla).Name + " t where t.proyecto = ?" , idProyecto);
+		}
 	}
 }

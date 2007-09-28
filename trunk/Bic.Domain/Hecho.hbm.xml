@@ -5,7 +5,7 @@
             <generator class="native" /> 
         </id> 
         <property name="nombre" column="nombre" type="String" access="field"/> 
-		<many-to-one name="columna" class="Bic.Domain.Catalogo.Columna, Bic.Domain" column="columna_id" not-null="true" access="field" insert="true" cascade="all" />
+		<many-to-one name="columna" class="Bic.Domain.Catalogo.Columna, Bic.Domain" column="columna_id" not-null="true" access="field" />
 		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" column="proyecto_id" not-null="true" access="field"/>
     </class>
 </hibernate-mapping>

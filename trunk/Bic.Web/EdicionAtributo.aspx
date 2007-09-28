@@ -26,7 +26,7 @@
 							<tr>
 								<td><b>ID</b></td>
 								<td>
-									<asp:DropDownList id="ddlColumnaId" runat="server" DataTextField="Nombre" DataValueField="Nombre" Width="150px"></asp:DropDownList>
+									<asp:DropDownList id="ddlColumnaId" runat="server" DataTextField="Nombre" DataValueField="Id" Width="150px"></asp:DropDownList>
 									<asp:RequiredFieldValidator ID="reqColumnaId" Runat="server" ControlToValidate="ddlColumnaId" ErrorMessage="Por favor complete la Columna Id.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
@@ -41,7 +41,7 @@
 							<tr>
 								<td><b>DESC</b></td>
 								<td>
-									<asp:ListBox id="lstDescripciones" runat="server" DataTextField="Nombre" DataValueField="Nombre"
+									<asp:ListBox id="lstDescripciones" runat="server" DataTextField="Nombre" DataValueField="Id"
 										Width="150px" Height="100px" SelectionMode="Multiple"></asp:ListBox>
 								</td>
 							</tr>
