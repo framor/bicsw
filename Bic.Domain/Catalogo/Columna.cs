@@ -36,12 +36,12 @@ namespace Bic.Domain.Catalogo
 
 		public override bool Equals(object obj)
 		{
-			return this.nombre.Equals(((Columna) obj).nombre);
+			return this.nombre.Equals(((Columna) obj).Nombre);
 		}
 
 		public override int GetHashCode()
 		{
-			return base.GetHashCode ();
+			return this.nombre.GetHashCode();
 		}
 		
 	}

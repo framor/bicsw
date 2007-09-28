@@ -109,6 +109,11 @@
                     AssemblyName = "Spring.Data"
                     HintPath = "..\libraries\Spring.Data.dll"
                 />
+                <Reference
+                    Name = "Iesi.Collections"
+                    AssemblyName = "Iesi.Collections"
+                    HintPath = "..\libraries\Iesi.Collections.dll"
+                />
             </References>
         </Build>
         <Files>

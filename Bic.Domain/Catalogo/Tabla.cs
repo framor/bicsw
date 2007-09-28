@@ -1,6 +1,7 @@
 using System.Collections;
 using Bic.Domain.Dao;
 using Bic.Domain.Interfaces;
+using Iesi.Collections;
 
 namespace Bic.Domain.Catalogo
 {
@@ -14,6 +15,7 @@ namespace Bic.Domain.Catalogo
 		private string nombreBD;
 		private int peso = 0;
 		private Proyecto proyecto;
+		private ISet columnas = new HashedSet();
 
 		private Tabla() {}
 		
@@ -37,13 +39,13 @@ namespace Bic.Domain.Catalogo
 			set { this.id = value; }
 		}
 
-		public IList Columnas
+		public ISet Columnas
 		{
-			get
-			{
-				ICatalogoDAO dao = DAOLocator.Instance.CatalogoDAO;
-				return dao.ObtenerColumnas(this);
-			}
+			get { return this.columnas; }
+		}
+		public void AgregarColumna(Columna col)
+		{
+			this.columnas.Add(col);
 		}
 		public string Alias
 		{
@@ -108,7 +110,7 @@ namespace Bic.Domain.Catalogo
 		/// <returns>True si tiene alguna columna con el mismo nombre</returns>
 		public bool Tenes(Columna col)
 		{
-			return this.Columnas.Contains(col);
+			return this.columnas.Contains(col);
 		}
 	}
 }

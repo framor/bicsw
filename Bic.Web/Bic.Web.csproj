@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Web"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{741F2FC7-9F31-4FCE-88DD-6F6E23C289AF}"
     >
@@ -148,6 +148,11 @@
                     Name = "MySql.Data"
                     AssemblyName = "MySql.Data"
                     HintPath = "..\libraries\MySql.Data.dll"
+                />
+                <Reference
+                    Name = "Iesi.Collections"
+                    AssemblyName = "Iesi.Collections"
+                    HintPath = "..\libraries\Iesi.Collections.dll"
                 />
             </References>
         </Build>

@@ -26,7 +26,7 @@
 							<tr>
 								<td><b>Campo</b></td>
 								<td>
-									<asp:DropDownList id="ddlColumna" runat="server" DataTextField="Nombre" DataValueField="Nombre"></asp:DropDownList>
+									<asp:DropDownList id="ddlColumna" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
 									<asp:RequiredFieldValidator ID="reqColumna" Runat="server" ControlToValidate="ddlColumna" ErrorMessage="Por favor complete la Columna.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>						

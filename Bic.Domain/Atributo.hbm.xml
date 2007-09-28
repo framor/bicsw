@@ -5,9 +5,9 @@
             <generator class="native" /> 
         </id> 
         <property name="nombre" column="nombre" type="String" access="field"/> 
-		<many-to-one name="columnaId" class="Bic.Domain.Catalogo.Columna, Bic.Domain" column="columna_id" not-null="true" access="field" insert="true" cascade="all"/>
-		<set name="columnasDescripciones">
-			<key column="atributo_id" not-null="true"/>
+		<many-to-one name="columnaId" class="Bic.Domain.Catalogo.Columna, Bic.Domain" column="columna_id" not-null="true" access="field" />
+		<set name="columnasDescripciones" access="field" cascade="none">
+			<key column="atributo_id"/>
 			<one-to-many class="Bic.Domain.Catalogo.Columna, Bic.Domain"/>
 		</set>	
 		<many-to-one name="tablaLookup" class="Bic.Domain.Catalogo.Tabla, Bic.Domain" column="tabla_lookup_id" not-null="true" access="field"/>

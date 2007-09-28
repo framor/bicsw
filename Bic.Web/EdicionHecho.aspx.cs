@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
+using Bic.Framework;
 
 namespace Bic.Web
 {
@@ -33,13 +34,13 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Hecho h = BICContext.Instance.HechoService.Retrieve(id);
-					this.ddlColumna.SelectedValue = h.Columna.Nombre;
+					this.ddlColumna.SelectedValue = h.Columna.Id.ToString();
 					this.txtNombre.Text = h.Nombre;
 					datasource = new Columna[] {h.Columna};
 				} 
 				else 
 				{
-					datasource = BICContext.Instance.CatalogoService.SelectColumnasDisponibles(Proyecto.Id);
+					datasource = Util.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
 				}
 
 				this.ddlColumna.DataSource = datasource;
@@ -79,7 +80,7 @@ namespace Bic.Web
 
 			if (id == -1)
 			{
-				Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(this.ddlColumna.SelectedValue, Proyecto.Id);
+				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumna.SelectedValue));
 				Hecho h = new Hecho(nombre, c);
 				h.Proyecto = Proyecto;
 				BICContext.Instance.HechoService.Save(h);

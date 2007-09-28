@@ -77,21 +77,5 @@ namespace Bic.Application.Impl
 			}
 			return null;
 		}
-
-		/// <summary>
-		/// Implementacion CatalogoService.ObtenerColumna
-		/// </summary>
-		public Columna ObtenerColumna(string nombreColumna, long idProyecto)
-		{
-			IList columnas = SelectColumnasDisponibles(idProyecto);
-			foreach (Columna c in columnas)
-			{
-				if (c.Nombre == nombreColumna)
-				{
-					return c;
-				}
-			}
-			return null;
-		}
 	}
 }

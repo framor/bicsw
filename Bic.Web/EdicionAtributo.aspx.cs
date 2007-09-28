@@ -44,13 +44,13 @@ namespace Bic.Web
 				{
 					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 					this.txtNombre.Text = a.Nombre;
-					this.ddlColumnaId.SelectedValue = a.ColumnaId.Nombre;
+					this.ddlColumnaId.SelectedValue = a.ColumnaId.Id.ToString();
 
 					
 					foreach (ListItem i in this.lstDescripciones.Items)
 					{
 						// TODO: esto apesta
-						Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(i.Value, Proyecto.Id);
+						Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
 						i.Selected = a.ColumnasDescripciones.Contains(c);
 					}
 					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
@@ -97,11 +97,11 @@ namespace Bic.Web
 				a = BICContext.Instance.AtributoService.Retrieve(id);
 			}			
 			a.Nombre = this.txtNombre.Text;
-			a.ColumnaId = BICContext.Instance.CatalogoService.ObtenerColumna(this.ddlColumnaId.SelectedValue, Proyecto.Id);
+			a.ColumnaId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
 			foreach (ListItem i in this.lstDescripciones.Items)
 			{
 				// TODO: esto apesta
-				Columna c = BICContext.Instance.CatalogoService.ObtenerColumna(i.Value, Proyecto.Id);
+				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
 
 				if (i.Selected)
 				{
@@ -134,11 +134,10 @@ namespace Bic.Web
 		{
 			Tabla t = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
 
-			IList columnas = t.Columnas;
-			this.ddlColumnaId.DataSource = columnas;
+			this.ddlColumnaId.DataSource = t.Columnas;
 			this.ddlColumnaId.DataBind();
 
-			this.lstDescripciones.DataSource = columnas;
+			this.lstDescripciones.DataSource = t.Columnas;
 			this.lstDescripciones.DataBind();
 		}
 	}

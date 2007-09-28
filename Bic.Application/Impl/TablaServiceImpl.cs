@@ -49,6 +49,12 @@ namespace Bic.Application.Impl
 				{
 					throw new ServiceException("No se puede crear la tabla ya que existe una con el mismo nombre.");
 				}
+				// la primera vez que grabo obtengo todas las columnas de la tabla
+				IList columnas = this.catalogoDAO.ObtenerColumnas(unaTabla);
+				foreach (Columna col in columnas) 
+				{
+					unaTabla.AgregarColumna(col);
+				}
 			}
 			this.GenericDAO.Save(unaTabla);
 		}
@@ -99,9 +105,22 @@ namespace Bic.Application.Impl
 		/// <summary>
 		/// Implementacion de TablaServiceImpl.ObtenerTablaPorNombre
 		/// </summary>
-		public Tabla ObtenerTablaPorNombre(string nombreTabla, long idProyecto)
+		public Tabla ObtenerTabla(string nombreTabla, long idProyecto)
 		{
 			return this.tablaDAO.ObtenerByNombre(idProyecto, nombreTabla);
+		}
+
+		/// <summary>
+		/// Implementacion CatalogoService.ObtenerColumna
+		/// </summary>
+		public Columna ObtenerColumna(long id)
+		{
+			return (Columna) this.GenericDAO.Retrieve(typeof(Columna), id);
+		}
+
+		public IList SelectColumnasDisponibles(long idProyecto) 
+		{
+			return this.tablaDAO.SelectColumnasDisponibles(idProyecto); 
 		}
 	}
 }

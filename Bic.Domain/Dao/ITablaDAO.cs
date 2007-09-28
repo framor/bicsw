@@ -22,5 +22,9 @@ namespace Bic.Domain.Dao
 		/// <param name="nombre">nombre de la tabla</param>
 		/// <returns>la tabla encontrada o null</returns>
 		Tabla ObtenerByNombre(long idProyecto, string nombre);
+
+		IList SelectColumnasDisponibles(long idProyecto); 
+
+		IList SelectTablasDisponibles(long idProyecto); 
 	}
 }

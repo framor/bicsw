@@ -60,6 +60,7 @@
 	</object>			
 	<object id="tablaServiceImpl" type="Bic.Application.impl.TablaServiceImpl, Bic.Application" parent="baseServiceTemplate">
 		<property name="proyectoDAO" ref="proyectoDAO"/>
+		<property name="catalogoDAO" ref="catalogoDAO"/>
 		<property name="tablaDAO" ref="tablaDAO"/>
 	</object>
 
