@@ -1,10 +1,12 @@
+using System;
+
 namespace Bic.Domain.Catalogo
 {
 	/// <summary>
 	/// Una columna es una representación de una columna de la BD. 
 	/// Tiene un nombre, un tipo. 
 	/// </summary>
-	public class Columna
+	public class Columna : IComparable
 	{
 		private long id;
 		private string nombre;
@@ -44,5 +46,10 @@ namespace Bic.Domain.Catalogo
 			return this.nombre.GetHashCode();
 		}
 		
+		public int CompareTo(object obj)
+		{
+			Columna col = (Columna) obj;
+			return this.nombre.CompareTo(col.Nombre);
+		}
 	}
 }

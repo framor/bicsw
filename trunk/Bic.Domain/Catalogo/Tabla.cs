@@ -2,12 +2,13 @@ using System.Collections;
 using Bic.Domain.Dao;
 using Bic.Domain.Interfaces;
 using Iesi.Collections;
+using System;
 
 namespace Bic.Domain.Catalogo
 {
 	/// Una tabla es una representación de una tabla de la BD. 
 	/// Tiene un nombre y está compuesta por varias columnas. 
-	public class Tabla
+	public class Tabla : IComparable
 	{
 		private long id;
 		private string alias;
@@ -111,6 +112,12 @@ namespace Bic.Domain.Catalogo
 		public bool Tenes(Columna col)
 		{
 			return this.columnas.Contains(col);
+		}
+
+		public int CompareTo(object obj)
+		{
+			Tabla t = (Tabla) obj;
+			return this.nombre.CompareTo(t.Nombre);
 		}
 	}
 }
