@@ -117,7 +117,7 @@ namespace Bic.Domain
 				try
 				{
 					camino = this.Hijo.GeneraCamino(tabla);
-					camino.AgregarAtributo(this);
+					//camino.AgregarAtributo(this);
 				}
 					// Si no tiene hijos cancela por referencia nula.
 					// Capturo la excepcion.
@@ -131,10 +131,10 @@ namespace Bic.Domain
 			else
 			{
 				camino = new Camino();
-				camino.AtributoFact = this;
+				//camino.AgregarAtributo(this);
 			}
 
-
+			camino.AgregarAtributo(this);
 
 			return camino;
 		}

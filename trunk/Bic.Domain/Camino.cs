@@ -9,12 +9,11 @@ namespace Bic.Domain
 	public class Camino
 	{	
 		private long id;
-		private Atributo atributoFact;
 		private IList atributos = new ArrayList();
 
 		public Camino()
 		{
-			id = this.GetHashCode(); //TODO esto sacarlo cuando se genere en el DAO
+			id = this.GetHashCode(); 
 		}
 
 		public long Id
@@ -32,8 +31,7 @@ namespace Bic.Domain
 		/// </summary>
 		public Atributo AtributoFact
 		{
-			get { return this.atributoFact; }
-			set { this.atributoFact = value; }
+			get { return (Atributo)this.atributos[0]; }
 		}
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace Bic.Domain
 		public string DameJoinFact(string aliasFact)
 		{
 			string nombreCampo = this.AtributoFact.ColumnaId.Nombre;
-			string aliasLkp = this.atributoFact.TablaLookup.Nombre + this.id;
+			string aliasLkp = this.AtributoFact.TablaLookup.Nombre + this.id;
 			string sql = aliasFact + "." + nombreCampo + " = " + aliasLkp + "." + nombreCampo;
 			return sql;		
 		}
@@ -58,8 +56,8 @@ namespace Bic.Domain
 
 		public string DameFromClause()
 		{
-			string fromClause = this.atributoFact.TablaLookup.NombreBD + "." 
-				+ this.atributoFact.TablaLookup.Nombre + " as " + this.atributoFact.TablaLookup.Nombre + this.id;
+			string fromClause = this.AtributoFact.TablaLookup.NombreBD + "." 
+				+ this.AtributoFact.TablaLookup.Nombre + " as " + this.AtributoFact.TablaLookup.Nombre + this.id;
 			
 			if(this.atributos.Count != 0)
 				fromClause += ",\n";
@@ -96,7 +94,7 @@ namespace Bic.Domain
 			
             // creo la segunda condicion, que es entre la lkp de primer nivel 
 			// y la de segundo nivel.
-			whereClause += this.atributoFact.TablaLookup.Nombre + this.id + ".";
+			whereClause += this.AtributoFact.TablaLookup.Nombre + this.id + ".";
 
 
 			foreach(Atributo atributo in this.atributos)
@@ -131,12 +129,7 @@ namespace Bic.Domain
 
 		public bool TenesAtributo(Atributo atrib)
 		{
-			if(this.atributoFact.Equals(atrib))
-				return true;
-			if(this.atributos.Count > 0)
 				return this.atributos[this.atributos.Count - 1].Equals(atrib);
-
-			return false;
 		}
 	}
 }
