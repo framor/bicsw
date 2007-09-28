@@ -35,8 +35,7 @@ namespace Bic.Web
 			if (!Page.IsPostBack) 
 			{
 				this.ddlTablaLookup.DataSource = BICContext.Instance.TablaService.Select(Proyecto.Id);
-				this.ddlTablaLookup.DataBind();
-				ddlTablaLookup_SelectedIndexChanged(null, null);
+				this.ddlTablaLookup.DataBind();				
 
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
@@ -44,8 +43,8 @@ namespace Bic.Web
 				{
 					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 					this.txtNombre.Text = a.Nombre;
+					BindColumnas(a.TablaLookup.Id);
 					this.ddlColumnaId.SelectedValue = a.ColumnaId.Id.ToString();
-
 					
 					foreach (ListItem i in this.lstDescripciones.Items)
 					{
@@ -54,6 +53,10 @@ namespace Bic.Web
 						i.Selected = a.ColumnasDescripciones.Contains(c);
 					}
 					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
+				}
+				else
+				{
+					BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
 				}
 
 			}
@@ -132,13 +135,22 @@ namespace Bic.Web
 
 		private void ddlTablaLookup_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Tabla t = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
+			BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+		}
 
-			this.ddlColumnaId.DataSource = t.Columnas;
+		private void BindColumnas(long idTabla)
+		{
+			Tabla t = BICContext.Instance.TablaService.Retrieve(idTabla);
+			ArrayList columnas = new ArrayList(t.Columnas);
+			columnas.Sort();
+
+			this.ddlColumnaId.DataSource = columnas;
 			this.ddlColumnaId.DataBind();
 
-			this.lstDescripciones.DataSource = t.Columnas;
+			this.lstDescripciones.DataSource = columnas;
 			this.lstDescripciones.DataBind();
+
 		}
+
 	}
 }
