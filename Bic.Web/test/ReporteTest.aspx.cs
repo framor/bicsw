@@ -64,18 +64,18 @@ namespace Bic.Web.test
 
 			Columna product_class_id = new Columna("product_class_id","INTEGER");
 
-			Atributo producto = new Atributo("Producto",product_id,new Tabla("Producto LKP","product","foodmart",11,this.proyecto),this.proyecto);
-			Atributo claseProducto = new Atributo("Clase Producto",product_class_id,new Tabla("Clase Producto LKP","product_class","foodmart",12,this.proyecto),this.proyecto);
+			Atributo producto = new Atributo("Producto",product_id,new Tabla("Producto LKP","product","foodmart",1,this.proyecto),this.proyecto);
+			Atributo claseProducto = new Atributo("Clase Producto",product_class_id,new Tabla("Clase Producto LKP","product_class","foodmart",2,this.proyecto),this.proyecto);
 
 			claseProducto.Hijo = producto;
 			producto.AgregarPadre(claseProducto);
 
 			Columna store_cost = new Columna("store_cost","decimal");
-			store_cost.Id = 9;
+			store_cost.Id = 1;
 
 			Hecho costoAlmacen = new Hecho("Costo de Almacen",store_cost);
 
-			costoAlmacen.Id = 5;
+			costoAlmacen.Id = 1;
 			costoAlmacen.Proyecto = this.proyecto;
 
 			Metrica sumaCostoAlmacen = new Metrica("Suma de Costos de Almacen","sum",costoAlmacen);
