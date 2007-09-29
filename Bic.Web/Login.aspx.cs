@@ -21,7 +21,7 @@ namespace Bic.Web
 		{
 			if (!Page.IsPostBack)
 			{
-				Session["usuario"] = null;
+				Session.Clear();
 			}
 		}
 
