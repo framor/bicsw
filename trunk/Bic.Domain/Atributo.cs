@@ -19,7 +19,6 @@ namespace Bic.Domain
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
 		private Atributo hijo;
-		private IList padres = new ArrayList();
 
 		public Atributo() {}
 
@@ -36,12 +35,6 @@ namespace Bic.Domain
 			get { return this.hijo; }
 			set { this.hijo = value; }
 		}
-
-		public void AgregarPadre(Atributo padre)
-		{
-			this.padres.Add(padre);
-		}
-
 
 		public long Id 
 		{

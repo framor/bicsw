@@ -71,7 +71,7 @@ namespace Bic.Web.test
 			Atributo tiempo = new Atributo("Tiempo",time_id,new Tabla("Tiempo LKP","time_by_day","foodmart",5,this.proyecto),this.proyecto);
 
 			claseProducto.Hijo = producto;
-			producto.AgregarPadre(claseProducto);
+			//producto.AgregarPadre(claseProducto);
 
 			Columna store_cost = new Columna("store_cost","decimal");
 			store_cost.Id = 1;

@@ -15,6 +15,7 @@ namespace Bic.Web
 	{
 		protected TextBox txtNombre;
 		protected DropDownList ddlTablaLookup;
+		protected DropDownList ddlHijo;
 
 		protected Button btnAceptar;
 		protected RequiredFieldValidator reqNombre;
@@ -48,7 +49,6 @@ namespace Bic.Web
 					
 					foreach (ListItem i in this.lstDescripciones.Items)
 					{
-						// TODO: esto apesta
 						Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
 						i.Selected = a.ColumnasDescripciones.Contains(c);
 					}
@@ -57,8 +57,32 @@ namespace Bic.Web
 				else
 				{
 					BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+					
 				}
+				BindHijos();
+			}
 
+		}
+
+		private void BindHijos()
+		{
+			Columna colId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
+			ICollection hijos = BICContext.Instance.AtributoService.SelectPosiblesHijos(Proyecto.Id,  colId);
+			if (hijos != null && hijos.Count > 0)
+			{
+				this.ddlHijo.DataSource = hijos;
+				this.ddlHijo.DataBind();
+				ListItem nullItem = new ListItem(string.Empty, "0");
+				this.ddlHijo.Items.Insert(0, nullItem);
+			}
+			long id = (long) ViewState["id"];
+			if (id != -1)
+			{
+				Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
+				this.ddlHijo.SelectedValue = a.Hijo == null ? "0" : a.Hijo.Id.ToString();
+			} else
+			{
+				this.ddlHijo.SelectedValue = "0";
 			}
 
 		}
@@ -80,6 +104,7 @@ namespace Bic.Web
 		private void InitializeComponent()
 		{    
 			this.ddlTablaLookup.SelectedIndexChanged += new EventHandler(this.ddlTablaLookup_SelectedIndexChanged);
+			this.ddlColumnaId.SelectedIndexChanged += new EventHandler(this.ddlColumnaId_SelectedIndexChanged);
 			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
 			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
 			this.Load += new EventHandler(this.Page_Load);
@@ -103,9 +128,7 @@ namespace Bic.Web
 			a.ColumnaId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
 			foreach (ListItem i in this.lstDescripciones.Items)
 			{
-				// TODO: esto apesta
 				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
-
 				if (i.Selected)
 				{
 					a.RemoverColumnaDescripcion(c);
@@ -118,6 +141,8 @@ namespace Bic.Web
 			}
 			a.TablaLookup = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
 			a.Proyecto = Proyecto;
+			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
+				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
 
 			BICContext.Instance.AtributoService.Save(a);
 			Response.Redirect("ListaAtributo.aspx");
@@ -136,6 +161,11 @@ namespace Bic.Web
 		private void ddlTablaLookup_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+		}
+
+		private void ddlColumnaId_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			BindHijos();
 		}
 
 		private void BindColumnas(long idTabla)
