@@ -37,6 +37,11 @@ namespace Bic.Domain
 			get { return this.hecho.Columna; }
 		}
 
+		public string Funcion
+		{
+			get { return this.funcion; }
+		}
+
 		#endregion
 
 	}

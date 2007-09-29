@@ -160,14 +160,31 @@ namespace Bic.Domain
 		public string DameSql()
 		{
 			string listaCampos ="";
+			string listaMetricas = "";
 
 			foreach(Atributo atrib in this.Atributos)
 			{
 				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
-				listaCampos += alias + "." + atrib.ColumnaId.Nombre + ",\n";
+				listaCampos += alias + "." + atrib.ColumnaId.Nombre;
+
+				// Mientras no sea el ultimo agregar la coma y el enter
+				if(this.Atributos.IndexOf(atrib) < this.Atributos.Count - 1)
+					listaCampos += ",\n";
 
 			}
-			string sql = "select\n" + listaCampos + this.tablaReporte.DameSql() + "Group By\n" + listaCampos + ";";
+
+			foreach(Metrica metrica in this.Metricas)
+			{
+				// Le pido el nombre de la tabla Fact a la TablaReporte
+				string alias = this.tablaReporte.Tabla.Nombre;
+				listaMetricas += metrica.Funcion + "(" + alias + "." + metrica.Columna.Nombre + ")";
+				// Mientras no sea el ultimo agregar la coma y el enter
+				if(this.Metricas.IndexOf(metrica) < this.Metricas.Count - 1)
+					listaMetricas += ",\n";
+			}
+
+
+			string sql = "select\n" + listaCampos + ",\n" + listaMetricas + this.tablaReporte.DameSql() + "Group By\n" + listaCampos + ";";
 
 			return sql;
 		}

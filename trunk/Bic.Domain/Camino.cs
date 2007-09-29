@@ -56,11 +56,7 @@ namespace Bic.Domain
 
 		public string DameFromClause()
 		{
-			string fromClause = this.AtributoFact.TablaLookup.NombreBD + "." 
-				+ this.AtributoFact.TablaLookup.Nombre + " as " + this.AtributoFact.TablaLookup.Nombre + this.id;
-			
-			if(this.atributos.Count != 0)
-				fromClause += ",\n";
+			string fromClause = "";
 
 			foreach(Atributo atributo in this.atributos)
 			{
@@ -89,26 +85,32 @@ namespace Bic.Domain
 
 			// Si es un solo atributo en el camino no genero ningun where
 			// Ya que solo joinea con el atributo join de la fact
-			if(this.atributos.Count == 0)
+			if(this.atributos.Count == 1)
 				return whereClause;
 			
             // creo la segunda condicion, que es entre la lkp de primer nivel 
 			// y la de segundo nivel.
-			whereClause += this.AtributoFact.TablaLookup.Nombre + this.id + ".";
-
+			
 
 			foreach(Atributo atributo in this.atributos)
 			{
 				// Obtengo la tabla lookup para agregarle los alias
 				Tabla tabla = atributo.TablaLookup;
 				// Armo la comparacion ej: campo2 = lkp2.campo2
-				whereClause += atributo.ColumnaId.Nombre + "=" 
-					+ tabla.Nombre + this.id + "."
-					+ atributo.ColumnaId.Nombre;
+				if(this.atributos.IndexOf(atributo) > 0)
+					whereClause += atributo.ColumnaId.Nombre + " = " 
+								+ tabla.Nombre + this.id + "."
+								+ atributo.ColumnaId.Nombre ; 
+				
 				// Mientras no sea el ultimo agrego el and y el alias de la tabla
 				// ej: and lkp1.
+
+				if(this.atributos.IndexOf(atributo) > 0 
+					&& this.atributos.IndexOf(atributo) < this.atributos.Count - 1)
+					whereClause += "\nand ";
+
 				if(this.atributos.IndexOf(atributo) < this.atributos.Count - 1)
-					whereClause += "\nand " + tabla.Nombre + this.id + ".";
+					whereClause += tabla.Nombre + this.id + ".";
 
 				// Termina quedando en 3 pasadas
 				// lkp1.campo2 = lkp2.campo2

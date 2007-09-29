@@ -64,8 +64,11 @@ namespace Bic.Web.test
 
 			Columna product_class_id = new Columna("product_class_id","INTEGER");
 
+			Columna time_id = new Columna("time_id","INTEGER");
+
 			Atributo producto = new Atributo("Producto",product_id,new Tabla("Producto LKP","product","foodmart",1,this.proyecto),this.proyecto);
 			Atributo claseProducto = new Atributo("Clase Producto",product_class_id,new Tabla("Clase Producto LKP","product_class","foodmart",2,this.proyecto),this.proyecto);
+			Atributo tiempo = new Atributo("Tiempo",time_id,new Tabla("Tiempo LKP","time_by_day","foodmart",5,this.proyecto),this.proyecto);
 
 			claseProducto.Hijo = producto;
 			producto.AgregarPadre(claseProducto);
@@ -83,6 +86,7 @@ namespace Bic.Web.test
 			this.metricas.Add("sumaCostoAlmacen",sumaCostoAlmacen);
 			this.atributos.Add("claseProducto",claseProducto);
 			this.atributos.Add("producto",producto);
+			this.atributos.Add("tiempo",tiempo);
 		}
 
 		private void LimpiarAmbiente()
@@ -103,6 +107,7 @@ namespace Bic.Web.test
 			this.GeneraAmbiente1();
 			this.reporte.AgregarAtributo((Atributo)this.atributos["claseProducto"]);
 			this.reporte.AgregarAtributo((Atributo)this.atributos["producto"]);
+			this.reporte.AgregarAtributo((Atributo)this.atributos["tiempo"]);
 			this.reporte.AgregarMetrica((Metrica)this.metricas["sumaCostoAlmacen"]);
 
 			this.reporte.GeneraConsulta();

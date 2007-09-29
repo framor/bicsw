@@ -54,17 +54,25 @@ namespace Bic.Domain
 			// o sea las tablas de cada uno de ellos.
 			foreach(Camino camino in this.caminos)
 			{
-				sql += camino.DameFromClause() + ",\n";
+				sql += camino.DameFromClause();
+
+				// Mientras no sea el ultimo le agrego la coma y el enter
+				if (this.caminos.IndexOf(camino) < this.caminos.Count - 1)
+					sql += ",\n";
 			}
 
 			// Agrego la clausula where.
-			sql += "where\n1=1\n";
+			sql += "\nwhere\n";
 
 			// A cada camino le pido que me de el join con la Fact.
 			// O sea la lkp de primer nivel y la fact.
 			foreach(Camino camino in this.caminos)
 			{
-				sql += "and " + camino.DameJoinFact(this.tabla.Nombre) + "\n";
+				// Mientras no sea el primero le agrego el "and " para el proximo where
+				if(this.caminos.IndexOf(camino) > 0)
+					sql += "and ";
+				
+				sql += camino.DameJoinFact(this.tabla.Nombre) + "\n";
 			}
 			
 	
@@ -72,10 +80,12 @@ namespace Bic.Domain
 			// tablas intermedias.
 			foreach(Camino camino in this.caminos)
 			{
-				sql += "and " + camino.DameWhereClause() + "\n";
+				string whereClause = camino.DameWhereClause();
+				
+				if(!whereClause.Equals(""))
+                    sql += "and " + whereClause + "\n";
 			}
-			sql +=";";
-
+			
 			return sql;
 		}
 
