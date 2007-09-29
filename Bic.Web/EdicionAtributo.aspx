@@ -24,14 +24,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>ID</b></td>
-								<td>
-									<asp:DropDownList id="ddlColumnaId" runat="server" DataTextField="Nombre" DataValueField="Id" Width="150px"></asp:DropDownList>
-									<asp:RequiredFieldValidator ID="reqColumnaId" Runat="server" ControlToValidate="ddlColumnaId" ErrorMessage="Por favor complete la Columna Id.">*</asp:RequiredFieldValidator>
-								</td>
-							</tr>
-							<tr>
-								<td><b>LookUp Table</b></td>
+								<td><b>Tabla LookUp</b></td>
 								<td>
 									<asp:DropDownList id="ddlTablaLookup" runat="server" DataTextField="Alias" DataValueField="Id"
 										AutoPostBack="True" Width="150px"></asp:DropDownList>
@@ -39,10 +32,24 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>DESC</b></td>
+								<td><b>Id</b></td>
+								<td>
+									<asp:DropDownList id="ddlColumnaId" runat="server" DataTextField="Nombre" DataValueField="Id" Width="150px" AutoPostBack="True"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqColumnaId" Runat="server" ControlToValidate="ddlColumnaId" ErrorMessage="Por favor complete la Columna Id.">*</asp:RequiredFieldValidator>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Descripciones</b></td>
 								<td>
 									<asp:ListBox id="lstDescripciones" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" Height="100px" SelectionMode="Multiple"></asp:ListBox>
+										Width="150px" SelectionMode="Multiple"></asp:ListBox>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Hijo</b></td>
+								<td>
+									<asp:DropDownList id="ddlHijo" runat="server" DataTextField="Nombre" DataValueField="Id"
+										Width="150px" Height="100px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>

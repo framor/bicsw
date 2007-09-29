@@ -1,5 +1,6 @@
 using System.Collections;
 using Bic.Domain;
+using Bic.Domain.Catalogo;
 
 namespace Bic.Application
 {
@@ -27,6 +28,14 @@ namespace Bic.Application
 		/// <param name="proyectoId">El id de proyecto</param>
 		/// <returns>Una coleccion de atributos</returns>
 		ICollection Select(long proyectoId);
+
+		/// <summary>
+		/// Obtiene todos los atributo que podrían ser hijos
+		/// </summary>
+		/// <param name="proyectoId">Id de proyecto</param>
+		/// <param name="colId">columna id del atributo padre</param>
+		/// <returns></returns>
+		ICollection SelectPosiblesHijos(long proyectoId, Columna colId);
 
 		/// <summary>
 		/// Elimina un atributo

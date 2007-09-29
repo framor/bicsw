@@ -10,6 +10,7 @@
 			<key column="atributo_id"/>
 			<many-to-many column="columna_id" class="Bic.Domain.Catalogo.Columna, Bic.Domain"/>
 		</set>	
+		<many-to-one name="hijo" class="Bic.Domain.Atributo, Bic.Domain" column="hijo_id" access="field"/>		
 		<many-to-one name="tablaLookup" class="Bic.Domain.Catalogo.Tabla, Bic.Domain" column="tabla_lookup_id" not-null="true" access="field"/>
 		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" column="proyecto_id" not-null="true" access="field"/>
     </class>
