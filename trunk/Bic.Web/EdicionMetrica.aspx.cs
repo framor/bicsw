@@ -13,7 +13,7 @@ namespace Bic.Web
 	public class EdicionMetrica : BasePage
 	{
 		protected TextBox txtNombre;
-		protected TextBox txtFuncion;
+		protected DropDownList ddlFuncion;
 		protected DropDownList ddlHecho;
 
 		protected Button btnAceptar;
@@ -38,7 +38,7 @@ namespace Bic.Web
 					Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
 					this.ddlHecho.SelectedValue = m.Hecho.Id.ToString();
 					this.txtNombre.Text = m.Nombre;
-					this.txtFuncion.Text = m.Funcion;
+					this.ddlFuncion.SelectedValue = m.Funcion;
 					datasource = new Hecho[] {m.Hecho};
 				} 
 				else 
@@ -49,6 +49,12 @@ namespace Bic.Web
 				this.ddlHecho.DataSource = datasource;
 				this.ddlHecho.DataBind();
 
+				this.ddlFuncion.Items.Add(new ListItem("Promedio", Metrica.PROMEDIO));
+				this.ddlFuncion.Items.Add(new ListItem("Total de registros", Metrica.CANTIDAD));
+				this.ddlFuncion.Items.Add(new ListItem("Maximo", Metrica.MAXIMO));
+				this.ddlFuncion.Items.Add(new ListItem("Minimo", Metrica.MINIMO));
+				this.ddlFuncion.Items.Add(new ListItem("Sumatoria", Metrica.SUMATORIA));
+				this.ddlFuncion.DataBind();
 			}
 
 		}
@@ -80,7 +86,7 @@ namespace Bic.Web
 		{
 			long id = (long) ViewState["id"];
 			string nombre = this.txtNombre.Text;
-			string funcion = this.txtFuncion.Text;
+			string funcion = this.ddlFuncion.SelectedValue;
 			Hecho h = BICContext.Instance.HechoService.Retrieve(long.Parse(this.ddlHecho.SelectedValue));
 
 			if (id == -1)
