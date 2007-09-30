@@ -33,8 +33,8 @@
 							<tr>
 								<td><b>Funcion</b></td>
 								<td>
-									<asp:TextBox id="txtFuncion" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="reqFuncion" Runat="server" ControlToValidate="txtFuncion" ErrorMessage="Por favor complete la Funcion.">*</asp:RequiredFieldValidator>
+									<asp:DropDownList id="ddlFuncion" runat="server"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="reqFuncion" Runat="server" ControlToValidate="ddlFuncion" ErrorMessage="Por favor complete la Funcion.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>

@@ -10,6 +10,13 @@ namespace Bic.Domain
 	public class Metrica : ITablaMapeable
 	{
 
+		// TODO: esto esta acoplado con mysql. se podría usar un abstract factory para soportar otros motores...
+		public static string PROMEDIO = "AVG({0})";
+		public static string CANTIDAD = "COUNT({0})";
+		public static string MAXIMO = "MAX({0})";
+		public static string MINIMO = "MIN({0})";
+		public static string SUMATORIA = "SUM({0})";
+
 		#region Miembros privados
 		
 		private long id;
@@ -70,6 +77,14 @@ namespace Bic.Domain
 		{
 			get { return this.proyecto; }
 			set { this.proyecto = value; }
+		}
+
+		public string SQLExpression
+		{
+			get
+			{
+				return string.Format(this.funcion, this.Columna.Nombre);	
+			}
 		}
 		#endregion
 
