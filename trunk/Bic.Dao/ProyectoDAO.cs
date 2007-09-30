@@ -70,5 +70,26 @@ namespace Bic.Dao
 				HibernateTemplate.Find("from " + typeof(Hecho).Name + " a where a.proyecto.id = ?", proyectoId);
 			return ret;
 		}
+
+		/// <summary>
+		/// Implementa IProyectoDAO.SelectMetricas
+		/// </summary>
+		public IList SelectMetricas(long proyectoId)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + typeof(Metrica).Name + " a where a.proyecto.id = ?", proyectoId);
+			return ret;
+		}
+
+		/// <summary>
+		/// Implementa IProyectoDAO.SelectFiltros
+		/// </summary>
+		public IList SelectFiltros(long proyectoId)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + typeof(Filtro).Name + " a where a.proyecto.id = ?", proyectoId);
+			return ret;
+		}
+
 	}
 }

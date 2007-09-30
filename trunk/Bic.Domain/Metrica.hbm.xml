@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="Bic.Domain.Metrica, Bic.Domain" table="metrica">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/> 
+        <property name="funcion" column="funcion" type="String" access="field"/> 
+		<many-to-one name="hecho" class="Bic.Domain.Hecho, Bic.Domain" column="hecho_id" access="field"/>		
+		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" column="proyecto_id" not-null="true" access="field"/>
+    </class>
+</hibernate-mapping>

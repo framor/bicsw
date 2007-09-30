@@ -35,14 +35,12 @@ namespace Bic.WebControls
 					sb.Append(@"<li><a href=""ListaAtributo.aspx"" title=""Atributos""><span>Atributos</span></a></li>");
 				if (rolActual.PuedeAccederAHechos())
 					sb.Append(@"<li><a href=""ListaHecho.aspx"" title=""Hechos""><span>Hechos</span></a></li>");
+				if (rolActual.PuedeAccederAFiltros())
+					sb.Append(@"<li><a href=""ListaFiltro.aspx"" title=""Filtros""><span>Filtros</span></a></li>");
+				if (rolActual.PuedeAccederAMetricas())
+					sb.Append(@"<li><a href=""ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>");
 				// TODO: segurizar
 				sb.Append(@"<li><a href=""Reportes/AdministracionReportes.aspx"" title=""Reportes""><span>Reportes</span></a></li>");
-//				if (rolActual.PuedeAccederAFiltros())
-//					sb.Append(@"<li><a href=""ListaFiltro.aspx"" title=""Filtros""><span>Filtros</span></a></li>");
-//				if (rolActual.PuedeAccederAMetricas())
-//					sb.Append(@"<li><a href=""ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>");
-//				if (rolActual.PuedeAccederARelaciones())
-//					sb.Append(@"<li><a href=""ListaRelacion.aspx"" title=""Relaciones""><span>Relaciones</span></a></li>");
 //				if (rolActual.PuedeAccederAReportes())
 //					sb.Append(@"<li><a href=""ListaReporte.aspx"" title=""Reportes""><span>Reportes</span></a></li>");
 				sb.Append("</ul>");

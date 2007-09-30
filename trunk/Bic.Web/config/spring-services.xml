@@ -72,5 +72,20 @@
 		<property name="proyectoDAO" ref="proyectoDAO"/>		
 	</object>
 
+	<object id="metricaService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.MetricaService"/>
+		<property name="target" ref="metricaServiceImpl"/>
+	</object>			
+	<object id="metricaServiceImpl" type="Bic.Application.impl.MetricaServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>		
+	</object>
+	
+	<object id="filtroService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.FiltroService"/>
+		<property name="target" ref="filtroServiceImpl"/>
+	</object>			
+	<object id="filtroServiceImpl" type="Bic.Application.impl.FiltroServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		<property name="proyectoDAO" ref="proyectoDAO"/>		
+	</object>	
 </objects>
 

@@ -1,0 +1,19 @@
+CREATE TABLE `bic`.`metrica` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `funcion` VARCHAR(45) NOT NULL,
+  `hecho_id` INTEGER UNSIGNED NOT NULL,
+  `proyecto_id` INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB;
+CREATE TABLE `bic`.`filtro` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `columna_id` INTEGER UNSIGNED NOT NULL,
+  `operador` VARCHAR(45) NOT NULL,
+  `valor` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB;
+ALTER TABLE `bic`.`filtro` ADD COLUMN `proyecto_id` INTEGER UNSIGNED NOT NULL AFTER `valor`;
