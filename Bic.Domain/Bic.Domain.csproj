@@ -123,6 +123,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Filtro.hbm.xml"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Hecho.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -135,6 +139,10 @@
                     RelPath = "Metrica.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Metrica.hbm.xml"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Proyecto.cs"

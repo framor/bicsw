@@ -185,19 +185,50 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "EdicionFiltro.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionFiltro.aspx.cs"
+                    DependentUpon = "EdicionFiltro.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionFiltro.aspx.resx"
+                    DependentUpon = "EdicionFiltro.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "EdicionHecho.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "EdicionMetrica.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "EdicionHecho.aspx.cs"
-                    DependentUpon = "EdicionHecho.aspx"
+                    DependentUpon = "EdicionMetrica.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "EdicionHecho.aspx.resx"
                     DependentUpon = "EdicionHecho.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "EdicionMetrica.aspx.cs"
+                    DependentUpon = "EdicionMetrica.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionMetrica.aspx.resx"
+                    DependentUpon = "EdicionMetrica.aspx.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -297,19 +328,50 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ListaFiltro.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaFiltro.aspx.cs"
+                    DependentUpon = "ListaFiltro.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaFiltro.aspx.resx"
+                    DependentUpon = "ListaFiltro.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ListaHecho.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "ListaMetrica.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "ListaHecho.aspx.cs"
-                    DependentUpon = "ListaHecho.aspx"
+                    DependentUpon = "ListaMetrica.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "ListaHecho.aspx.resx"
                     DependentUpon = "ListaHecho.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ListaMetrica.aspx.cs"
+                    DependentUpon = "ListaMetrica.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaMetrica.aspx.resx"
+                    DependentUpon = "ListaMetrica.aspx.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

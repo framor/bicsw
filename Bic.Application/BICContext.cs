@@ -68,5 +68,21 @@ namespace Bic.Application
 		{
 			get { return (HechoService)ctx["hechoService"]; }
 		}
+
+		/// <summary>
+		/// Obtiene una implementación de MetricaService
+		/// </summary>
+		public MetricaService MetricaService 
+		{
+			get { return (MetricaService)ctx["metricaService"]; }
+		}
+
+		/// <summary>
+		/// Obtiene una implementación de FiltroService
+		/// </summary>
+		public FiltroService FiltroService 
+		{
+			get { return (FiltroService)ctx["filtroService"]; }
+		}
 	}
 }

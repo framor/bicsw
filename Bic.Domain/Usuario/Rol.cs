@@ -64,5 +64,15 @@ namespace Bic.Domain.Usuario
 			return false;
 		}
 
+		public virtual bool PuedeAccederAMetricas()
+		{
+			return false;
+		}
+
+		public virtual bool PuedeAccederAFiltros()
+		{
+			return false;
+		}
+
 	}
 }

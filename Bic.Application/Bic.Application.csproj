@@ -139,7 +139,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FiltroService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "HechoService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MetricaService.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -169,7 +179,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Impl\FiltroServiceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Impl\HechoServiceImpl.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Impl\MetricaServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

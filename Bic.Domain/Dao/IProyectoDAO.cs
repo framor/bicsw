@@ -39,6 +39,20 @@ namespace Bic.Domain.Dao
 		IList SelectHechos(long proyectoId);
 
 		/// <summary>
+		/// Obtiene las metricas para un id de proyecto
+		/// </summary>
+		/// <param name="proyectoId">el id de proyecto</param>
+		/// <returns>IList de Metricas</returns>
+		IList SelectMetricas(long proyectoId);
+
+		/// <summary>
+		/// Obtiene los filtros para un id de proyecto
+		/// </summary>
+		/// <param name="proyectoId">el id de proyecto</param>
+		/// <returns>IList de Filtros</returns>
+		IList SelectFiltros(long proyectoId);
+
+		/// <summary>
 		/// Obtiene un proyecto por su nombre
 		/// </summary>
 		/// <param name="nombre">nombre del proyecto</param>

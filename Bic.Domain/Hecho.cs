@@ -10,7 +10,7 @@ namespace Bic.Domain
 	/// </summary>
 	public class Hecho : ITablaMapeable
 	{
-		private long id;		
+		private long id;
 		private string nombre;
 		private Columna columna;
 		private Proyecto proyecto;
