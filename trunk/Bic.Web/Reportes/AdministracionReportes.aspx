@@ -44,35 +44,8 @@
 						<h2>Graficar</h2>
 						<table width="70%" cellspacing="0" cellpadding="1" border="0">
 							<tr>
-								<td>
-									Tipo de gráfico
-								</td>
-								<td align="right">
-								<asp:DropDownList id="ddlTipoGrafico" Runat="server" style="width:200px"></asp:DropDownList>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Fuente de datos
-								</td>
-								<td align="right">
-								<asp:DropDownList id="ddlColumna" Runat="server" style="width:200px"></asp:DropDownList>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Fuente de descripciones
-								</td>
-								<td align="right">
-								<asp:DropDownList id="ddlDescripciones" Runat="server" style="width:200px"></asp:DropDownList>
-								</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td align="right">
-									<asp:Button id="btnContinuar" runat="server" Text="Continuar"></asp:Button>
-								</td>
-							</tr>
+								<input type="button"  value="Chart wizard" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=600 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
+							</tr>							
 						</table>
 					</div>
 					<div id="footer">

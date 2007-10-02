@@ -154,6 +154,11 @@
                     AssemblyName = "Iesi.Collections"
                     HintPath = "..\libraries\Iesi.Collections.dll"
                 />
+                <Reference
+                    Name = "Ajax"
+                    AssemblyName = "Ajax"
+                    HintPath = "..\libraries\Ajax.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -459,11 +464,31 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "img\iconAreaChart.PNG"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\iconBarsChart.PNG"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\iconColumnsChart.PNG"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "img\iconExcel.JPG"
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "img\iconLinesChart.PNG"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "img\iconNotepad.JPG"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\iconPieChart.PNG"
                     BuildAction = "Content"
                 />
                 <File
@@ -480,6 +505,10 @@
                 />
                 <File
                     RelPath = "img\logout.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "img\PreviewExample.PNG"
                     BuildAction = "Content"
                 />
                 <File
@@ -515,17 +544,22 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Reportes\AreaChartHelper.cs"
+                    RelPath = "Reportes\AreaChartFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\BarChartHelper.cs"
+                    RelPath = "Reportes\BarsChartFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\ChartHelper.cs"
+                    RelPath = "Reportes\ColumnsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartAbstractFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -535,39 +569,118 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Reportes\ChartRenderPage.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\ChartRenderPage.aspx.cs"
+                    DependentUpon = "ChartRenderPage.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartRenderPage.aspx.resx"
+                    DependentUpon = "ChartRenderPage.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\ChartTypesSelectedManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep1.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep1.aspx.cs"
+                    DependentUpon = "ChartWizardStep1.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep1.aspx.resx"
+                    DependentUpon = "ChartWizardStep1.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep2.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep2.aspx.cs"
+                    DependentUpon = "ChartWizardStep2.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep2.aspx.resx"
+                    DependentUpon = "ChartWizardStep2.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep3.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep3.aspx.cs"
+                    DependentUpon = "ChartWizardStep3.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ChartWizardStep3.aspx.resx"
+                    DependentUpon = "ChartWizardStep3.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Reportes\DataSourceMockProvider.cs.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\GeneradorGraficos.aspx"
+                    RelPath = "Reportes\LinesChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\PieChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\PreviewChartRenderPage.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "Reportes\GeneradorGraficos.aspx.cs"
-                    DependentUpon = "GeneradorGraficos.aspx"
+                    RelPath = "Reportes\PreviewChartRenderPage.aspx.cs"
+                    DependentUpon = "PreviewChartRenderPage.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\GeneradorGraficos.aspx.resx"
-                    DependentUpon = "GeneradorGraficos.aspx.cs"
+                    RelPath = "Reportes\PreviewChartRenderPage.aspx.resx"
+                    DependentUpon = "PreviewChartRenderPage.aspx.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Reportes\LinesChartHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reportes\PieChartHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Reportes\ReportManager.cs"
                     SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\UtilsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\WizardBasePage.cs"
+                    SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
                 <File

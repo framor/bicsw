@@ -3,6 +3,7 @@ using System.Collections;
 using WebChart;
 using System.Web.SessionState;
 using System.Data;
+using Bic.Domain;
 
 namespace Bic.Web
 {
@@ -16,11 +17,22 @@ namespace Bic.Web
 		public enum GraphTypes
 		{
 			Bars,
+			Columns,
 			Pie,
 			Lines,
 			Area
 		}
 
+		#endregion
+
+		#region Graph Filters
+		
+		public enum GraphFilters
+		{
+			Top,
+			Bottom,
+			All
+		}
 
 		#endregion
 
@@ -52,22 +64,6 @@ namespace Bic.Web
 		}
 
 
-		public GraphTypes GraphType
-		{
-			get
-			{
-				this.graphType = (ReportManager.GraphTypes)this.httpSessionState["graphType"];
-				return this.graphType;
-			}
-
-			set
-			{
-				this.graphType = value;
-				this.httpSessionState["graphType"] = this.graphType;
-			}
-		}
-
-
 		public String DataColumn
 		{
 			get
@@ -82,6 +78,7 @@ namespace Bic.Web
 				this.httpSessionState["dataColumn"] = this.dataColumn;
 			}
 		}
+
 
 		public String DescriptionColumn
 		{
@@ -98,28 +95,33 @@ namespace Bic.Web
 			}
 		}
 
-
-		public ChartHelper ChartHelper
+		public string GraphFilter
 		{
 			get
 			{
-				switch(this.graphType)
+				this.graphFilter  = this.httpSessionState["graphFilter"] as string;
+				return this.graphFilter ;
+			}
+
+			set
+			{
+				this.graphFilter = value;
+				this.httpSessionState["graphFilter"] = this.graphFilter;
+			}
+		}
+
+
+		public ChartTypesSelectedManager ChartTypesSelectedManager
+		{
+			get
+			{
+				if(this.chartTypesSelectedManager == null)
 				{
-					case ReportManager.GraphTypes.Bars :
-							return new BarChartHelper();							
-
-					case ReportManager.GraphTypes.Pie :
-							return new PieChartHelper();							
-
-					case ReportManager.GraphTypes.Lines :
-							return new LinesChartHelper();	
-
-					case ReportManager.GraphTypes.Area :
-						return new AreaChartHelper();	
+					this.chartTypesSelectedManager = new ChartTypesSelectedManager();
 				}
-				
-				throw new Exception("Tipo de grafico inexistente");				
-			}			
+
+				return this.chartTypesSelectedManager;
+			}
 		}
 
 
@@ -129,11 +131,15 @@ namespace Bic.Web
 
 		private static ReportManager reportManager;
 		private static object syncRoot = new Object();
-        private DataSet reportCache;
+        
+		private DataSet reportCache;
 		private HttpSessionState httpSessionState;
-		private GraphTypes graphType;
+
 		private String dataColumn;
 		private String descriptionColumn;
+		private string  graphFilter;
+		
+		private ChartTypesSelectedManager chartTypesSelectedManager; 
 
 		#endregion
 
@@ -156,9 +162,77 @@ namespace Bic.Web
 		}
 
 
-		public Chart GetChart()
-		{	
-			return this.ChartHelper.GetChart(this.DataColumn , this.DescriptionColumn , this.ReportCache );
+		public void AddSelectedChart(ReportManager.GraphTypes graphType)
+		{
+			this.ChartTypesSelectedManager.Add(graphType, ChartAbstractFactory.GetFactory(graphType));
+		}
+
+		public ArrayList GetColumnNames()
+		{
+			ArrayList columnNames = new ArrayList();
+
+			foreach(DataColumn column in this.ReportCache.Tables[0].Columns)
+			{
+				columnNames.Add(column.ColumnName);
+			}
+
+			return columnNames;
+		}			
+
+
+		private Chart GetEmptyPreviewChart(ChartEngine chartEngine)
+		{
+			return new UtilsChartFactory().GetPreviewChart(this,chartEngine);
+		}
+
+
+		private Chart GetEmptyChart(ChartEngine chartEngine)
+		{
+			return new UtilsChartFactory().GetChart(this,chartEngine);
+		}
+
+
+		public ChartCollection GetPreviewCharts(ChartEngine chartEngine)
+		{
+			ChartCollection chartCollection = new ChartCollection(chartEngine);
+
+			if( this.chartTypesSelectedManager.GetSelectedCharts().Count == 0)
+			{
+				chartCollection.Add(this.GetEmptyPreviewChart(chartEngine));
+			}
+
+			IEnumerator enumerator = this.chartTypesSelectedManager.GetSelectedCharts().GetEnumerator();
+
+			while(enumerator.MoveNext())
+			{
+				ChartAbstractFactory factory = enumerator.Current as ChartAbstractFactory;
+				Chart chart = factory.GetPreviewChart(this,chartEngine);
+				chartCollection.Add(chart);
+			}
+			
+			return chartCollection;
+		}
+
+
+		public ChartCollection GetCharts(ChartEngine chartEngine)
+		{
+			ChartCollection chartCollection = new ChartCollection(chartEngine);
+
+			if( this.chartTypesSelectedManager.GetSelectedCharts().Count == 0)
+			{
+				chartCollection.Add(this.GetEmptyChart(chartEngine));
+			}
+
+			IEnumerator enumerator = this.chartTypesSelectedManager.GetSelectedCharts().GetEnumerator();
+
+			while(enumerator.MoveNext())
+			{
+				ChartAbstractFactory factory = enumerator.Current as ChartAbstractFactory;
+				Chart chart = factory.GetChart(this,chartEngine);
+				chartCollection.Add(chart);
+			}
+			
+			return chartCollection;
 		}
 
 
