@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP LastOpenVersion = "7.10.3077" >
         <Build>
-            <Settings ReferencePath = "C:\bic\libraries\;C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\libraries\;E:\bic\libraries\" >
+            <Settings ReferencePath = "C:\bic\libraries\;C:\Documents and Settings\Fernando\My Documents\UTN\Proyecto\bic\libraries\;E:\bic\libraries\;D:\BIC\libraries\" >
                 <Config
                     Name = "Debug"
                     EnableASPDebugging = "false"
