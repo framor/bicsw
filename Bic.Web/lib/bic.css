@@ -25,6 +25,23 @@
 	  border-bottom: 2px solid #2763A5;
 	  }
 		
+	input[type="radio"], input[type="checkbox"] {
+		background-color: #FFFFFF;
+		color: #999999;
+		border: 0px solid #2763A5;
+		font-size: 11px;
+		padding: 3px;
+	}
+	
+	select
+	{
+		background-color: #FFFFFF;
+		color: #999999;
+		border: 0px solid #2763A5;
+		font-size: 11px;
+		padding: 3px;
+	}
+	  
 	h1 {
 	  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	  font-weight: normal;
@@ -108,7 +125,7 @@
 	  color: #FFFFFF;
 	  border: 1px solid #2763A5;
 	  font-size: 11px;
-	  }
+	  }	
 
 /**************** header styles ****************/
 	#header {

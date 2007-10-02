@@ -25,32 +25,27 @@ namespace Bic.Web
 	/// </summary>
 	public class AdministracionReportes : BasePage 
 	{
-		//TODO : subir al basepage este label
-		protected System.Web.UI.WebControls.Label lblUsuario;
-		
 		#region	Web controls
 
 		protected System.Web.UI.WebControls.DataGrid dtgReport;
 		protected System.Web.UI.WebControls.ImageButton imgBtnExcel;
 		protected System.Web.UI.WebControls.ImageButton imgBtnWord;
 		protected System.Web.UI.WebControls.ImageButton imgBtnText;
-		protected System.Web.UI.WebControls.DropDownList ddlTipoGrafico;
-		protected System.Web.UI.WebControls.Button btnContinuar;
-		protected System.Web.UI.WebControls.DropDownList ddlColumna;
-		protected System.Web.UI.WebControls.DropDownList ddlDescripciones;
 		protected System.Web.UI.WebControls.ImageButton imgBtnPDF;
+
+		//protected System.Web.UI.WebControls.Button btnLaunchChartWizard;
 
 		#endregion
 	
 		#region Event handlers
 
 		private void Page_Load(object sender, System.EventArgs e)
-		{						
+		{	
+			this.BaseLoad();	
+
 			if (!IsPostBack)
 			{	
 				ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
-
-				this.InitializeComboValues();
 
 				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportCache;
 				this.dtgReport.DataBind();	
@@ -162,31 +157,6 @@ namespace Bic.Web
 		}
 
 
-		private void btnContinuar_Click(object sender, EventArgs e)
-		{
-			ReportManager.GetInstance(this.Session).DataColumn  = this.ddlColumna.SelectedValue;
-			ReportManager.GetInstance(this.Session).DescriptionColumn = this.ddlDescripciones.SelectedValue;
-
-			switch(this.ddlTipoGrafico.SelectedValue)
-			{
-				case "Barras": 
-						ReportManager.GetInstance(this.Session).GraphType  = ReportManager.GraphTypes.Bars;
-						break;
-				case "Torta": 
-						ReportManager.GetInstance(this.Session).GraphType  = ReportManager.GraphTypes.Pie;
-						break;
-				case "Lineas": 
-						ReportManager.GetInstance(this.Session).GraphType  = ReportManager.GraphTypes.Lines;
-						break;
-				case "Area": 
-						ReportManager.GetInstance(this.Session).GraphType  = ReportManager.GraphTypes.Area;
-						break;
-			}						
-
-			Response.Redirect("GeneradorGraficos.aspx");
-		}
-
-
 		#endregion
 
 		#region	Private methods
@@ -218,36 +188,6 @@ namespace Bic.Web
 		}
 
 
-		private void InitializeComboValues()
-		{
-			this.ddlTipoGrafico.Items.Add(new System.Web.UI.WebControls.ListItem("Barras","Barras"));
-			this.ddlTipoGrafico.Items.Add(new System.Web.UI.WebControls.ListItem("Torta","Torta"));
-			this.ddlTipoGrafico.Items.Add(new System.Web.UI.WebControls.ListItem("Lineas","Lineas"));
-			this.ddlTipoGrafico.Items.Add(new System.Web.UI.WebControls.ListItem("Area","Area"));
-
-			foreach ( DataColumn column in ReportManager.GetInstance(this.Session).ReportCache.Tables[0].Columns)
-			{
-				if(column.DataType == typeof (System.Int16) || 
-					column.DataType == typeof (System.Int32) ||
-					column.DataType == typeof (System.Int64) ||
-					column.DataType == typeof (System.UInt64 ) ||
-					column.DataType == typeof (System.UInt32  ) ||
-					column.DataType == typeof (System.UInt16 ) ||
-					column.DataType == typeof (System.Decimal))
-				{
-					this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
-				}
-					//TODO : analizar otros tipos de datos
-				else //if ( column.DataType() == typeof (System.String) || column.DataType() == typeof (System.DateTime))
-				{
-					this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
-				}
-				
-
-			}
-		}
-
-
 		#endregion
 
 		#region Web Form Designer generated code
@@ -272,7 +212,7 @@ namespace Bic.Web
 			this.imgBtnWord.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnWord_Click);
 			this.imgBtnPDF.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnPDF_Click);
 			this.imgBtnText.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnText_Click);
-			this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
+		//this.btnLaunchChartWizard.Attributes.Add("onclick", "JavaScript:window.open('ChartWizardStep1.aspx', 'ChartWizardStep1.aspx', 'width=300,height=400'); return false;");
 			this.Load += new System.EventHandler(this.Page_Load);
 		}
 
@@ -282,7 +222,6 @@ namespace Bic.Web
 		{
 			return true;
 		}
-
 
 		
 	}

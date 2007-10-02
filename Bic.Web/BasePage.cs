@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Text;
+using Bic.WebControls;
 
 namespace Bic.Web
 {
@@ -94,8 +95,14 @@ namespace Bic.Web
 		{
 			//HACK : Como veran, el header siempre tiene que llamarseeeeee (GONE)
 			Bic.WebControls.Header header = FindControlByID(this.Controls,"bicHeader") as Bic.WebControls.Header;
-			//header.PagePath = Request.UrlReferrer != null ? Request.UrlReferrer.AbsolutePath:Request.Url.AbsolutePath;
-			header.PagePath = Request.Url.AbsolutePath;
+			try
+			{
+				header.PagePath = Request.Url.AbsolutePath;
+			}
+			catch(System.NullReferenceException)
+			{
+				throw new UnableToCreateHeaderException(@"El header no está incluido en la pagina, o su id no es 'bicHeader'");
+			}
 		}
 
 
@@ -113,7 +120,7 @@ namespace Bic.Web
 		{
 			if (Usuario == null) // expiro la sesion?
 			{
-				Response.Redirect("Login.aspx");
+				Response.Redirect("~/Login.aspx");
 			}
 			if (!TienePermisosSuficientes())
 			{
