@@ -101,7 +101,7 @@ namespace Bic.Web
 			}
 			catch(System.NullReferenceException)
 			{
-				throw new UnableToCreateHeaderException(@"El header no está incluido en la pagina, o su id no es 'bicHeader'");
+				throw new Exception(@"El header no está incluido en la pagina, o su id no es 'bicHeader'"); //UnableToCreateHeaderException(@"El header no está incluido en la pagina, o su id no es 'bicHeader'");
 			}
 		}
 
