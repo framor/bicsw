@@ -91,7 +91,7 @@ namespace Bic.Web
 				{
 					DataRow row = table.NewRow();
 					row[reportManager.DescriptionColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString().Length != 0 ? Int64.Parse( reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString()):0;
+					row[reportManager.DataColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn];//reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString().Length != 0 ? Int64.Parse( reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString()):0;
 					table.Rows.Add(row);
 				}
 			}

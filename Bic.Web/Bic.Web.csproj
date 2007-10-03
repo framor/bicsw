@@ -210,13 +210,8 @@
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "EdicionMetrica.aspx"
-                    SubType = "Form"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "EdicionHecho.aspx.cs"
-                    DependentUpon = "EdicionMetrica.aspx"
+                    DependentUpon = "EdicionHecho.aspx"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"
                 />
@@ -224,6 +219,11 @@
                     RelPath = "EdicionHecho.aspx.resx"
                     DependentUpon = "EdicionHecho.aspx.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "EdicionMetrica.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "EdicionMetrica.aspx.cs"
@@ -250,6 +250,22 @@
                 <File
                     RelPath = "EdicionProyecto.aspx.resx"
                     DependentUpon = "EdicionProyecto.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "EdicionReporte.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "EdicionReporte.aspx.cs"
+                    DependentUpon = "EdicionReporte.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EdicionReporte.aspx.resx"
+                    DependentUpon = "EdicionReporte.aspx.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -554,11 +570,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\ColumnsChartFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Reportes\ChartAbstractFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -636,6 +647,11 @@
                     RelPath = "Reportes\ChartWizardStep3.aspx.resx"
                     DependentUpon = "ChartWizardStep3.aspx.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\ColumnsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Reportes\DataSourceMockProvider.cs.cs"

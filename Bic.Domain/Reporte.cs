@@ -29,6 +29,7 @@ namespace Bic.Domain
 			//
 		}
 		
+
 		#region Metodos publicos
 
 		public void AgregarAtributo(Atributo atributo)
