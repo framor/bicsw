@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -11,6 +12,7 @@ namespace Bic.Web
 	{
 		protected DataGrid dgHechos;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -62,8 +64,16 @@ namespace Bic.Web
 		private void dgHechos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgHechos.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.HechoService.Delete(id);
-			ListHechos();
+			try
+			{
+				BICContext.Instance.HechoService.Delete(id);
+				ListHechos();
+			}
+			catch (ServiceException se)
+			{
+				this.valEliminar.IsValid = false;
+				this.valEliminar.ErrorMessage = se.Message;
+			}
 		}
 
 		private void ListHechos()
