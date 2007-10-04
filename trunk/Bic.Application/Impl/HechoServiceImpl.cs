@@ -1,6 +1,7 @@
 using System.Collections;
 using Bic.Domain;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -49,7 +50,16 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Delete(long id)
 		{
-			this.GenericDAO.Delete(typeof(Hecho), id);
+			Hecho h = (Hecho) this.GenericDAO.Retrieve(typeof(Hecho), id);
+			Proyecto p = h.Proyecto;
+			if (p.PuedeEliminarHecho(h)) 
+			{
+				this.GenericDAO.Delete(typeof(Hecho), id);
+			} 
+			else 
+			{
+				throw new ServiceException("No se puede eliminar el hecho ya que está siendo utilizado.");
+			}
 		}
 
 	}

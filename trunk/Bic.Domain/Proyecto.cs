@@ -100,6 +100,15 @@ namespace Bic.Domain
 			}
 		}
 
+		public IList Metricas
+		{
+			get
+			{
+				IProyectoDAO dao = DAOLocator.Instance.ProyectoDAO;
+				return dao.SelectMetricas(this.Id);
+			}
+		}
+
 		public bool PuedeEliminarTabla(Tabla unaTabla) 
 		{
 			foreach (Atributo a in Atributos)
@@ -112,6 +121,18 @@ namespace Bic.Domain
 			foreach (Hecho h in Hechos) 
 			{
 				if (h.UsaTabla(unaTabla)) 
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		public bool PuedeEliminarHecho(Hecho unHecho)
+		{
+			foreach(Metrica m in this.Metricas)
+			{
+				if (m.Hecho.Equals(unHecho))
 				{
 					return false;
 				}
