@@ -90,21 +90,23 @@ namespace Bic.Web
 			return found;
 		} 
 
+		private void a()
+		{
+			
+		}
+
 
 		protected virtual void page_PreRenderEventHandler(object sender, EventArgs e)
 		{
 			//HACK : Como veran, el header siempre tiene que llamarseeeeee (GONE)
 			Bic.WebControls.Header header = FindControlByID(this.Controls,"bicHeader") as Bic.WebControls.Header;
-			try
+
+			if (header!=null)
 			{
 				header.PagePath = Request.Url.AbsolutePath;
 			}
-			catch(System.NullReferenceException)
-			{
-				throw new Exception(@"El header no está incluido en la pagina, o su id no es 'bicHeader'"); //UnableToCreateHeaderException(@"El header no está incluido en la pagina, o su id no es 'bicHeader'");
-			}
-		}
 
+		}		
 
 		override protected void OnInit(EventArgs e)
 		{

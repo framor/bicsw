@@ -94,12 +94,17 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Header.cs"
+                    RelPath = "Menu.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Menu.cs"
+                    RelPath = "Header\Header.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Header\UnableToCreateHeaderException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
