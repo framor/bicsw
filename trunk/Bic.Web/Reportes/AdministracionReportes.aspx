@@ -10,7 +10,7 @@
 	<body>
 		<form id="form1" method="post" runat="server">
 			<div id="container">
-				<cc1:Header id="bicHeader" runat="server"></cc1:Header>			
+						
 				<div id="tabs10">
 				</div>
 				<div id="container2">

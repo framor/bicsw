@@ -71,12 +71,11 @@ namespace Bic.WebControls
 
 				return pageFolder.ToString().Length==0?"./":pageFolder.ToString();
 			}
-			catch(UnableToCreateHeaderException)
+			catch(Exception)
 			{
 				throw new UnableToCreateHeaderException("Page path no seteado. El header no puede renderizarse. Checkear si la pagina hereda de basepage.");
 			}
 		}
-
 
 		#endregion
 
@@ -86,36 +85,47 @@ namespace Bic.WebControls
 		/// <param name="output"> Programa de escritura HTML para escribir </param>
 		protected override void Render(HtmlTextWriter output)
 		{
-			string pageFolder = this.GetPageDeep();
 			StringBuilder sb = new StringBuilder();
 
-			Usuario u = (Usuario) this.Page.Session["usuario"];
-			Proyecto p = (Proyecto) this.Page.Session["proyecto"];
-
-			sb.Append(@"<div id=""header"">");
-			sb.Append(@"<table height=""100%"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">");
-			sb.Append(@"<tr>");
-			sb.Append(@"<td>");
-			sb.Append(@"<img src=""" + pageFolder + @"img/logo-small.jpg""/>");			
-			sb.Append(@"</td>");
-			sb.Append(@"<td align=""right"">");
-			sb.Append(@"<h1>");
-			if (p != null) 
+			try
 			{
-				sb.Append(p.Nombre + @"&nbsp;<a href=""" + pageFolder + @"ListaProyecto.aspx"" ><img alt=""Cerrar proyecto"" src=""" + pageFolder + @"img/logout.png""/></a>");
-			}
-			else
-			{
-				sb.Append(@"&nbsp;");
-			}
-			sb.Append(@"</h1>");
-			sb.Append(@"<p>" + u.Nombre + @"&nbsp;<a href=""" + pageFolder + @"Login.aspx"" ><img alt=""Cerrar sesión"" src=""" + pageFolder + @"img/logout.png""/></a></p>");
-			sb.Append(@"</td>");
-			sb.Append(@"</tr>");
-			sb.Append(@"</table>");
-			sb.Append(@"</div>");
+				string pageFolder = this.GetPageDeep();				
 
-			output.Write(sb.ToString());
+				Usuario u = (Usuario) this.Page.Session["usuario"];
+				Proyecto p = (Proyecto) this.Page.Session["proyecto"];
+
+				sb.Append(@"<div id=""header"">");
+				sb.Append(@"<table height=""100%"" width=""100%"" cellspacing=""0"" cellpadding=""0"" border=""0"">");
+				sb.Append(@"<tr>");
+				sb.Append(@"<td>");
+				sb.Append(@"<img src=""" + pageFolder + @"img/logo-small.jpg""/>");			
+				sb.Append(@"</td>");
+				sb.Append(@"<td align=""right"">");
+				sb.Append(@"<h1>");
+				if (p != null) 
+				{
+					sb.Append(p.Nombre + @"&nbsp;<a href=""" + pageFolder + @"ListaProyecto.aspx"" ><img alt=""Cerrar proyecto"" src=""" + pageFolder + @"img/logout.png""/></a>");
+				}
+				else
+				{
+					sb.Append(@"&nbsp;");
+				}
+				sb.Append(@"</h1>");
+				sb.Append(@"<p>" + u.Nombre + @"&nbsp;<a href=""" + pageFolder + @"Login.aspx"" ><img alt=""Cerrar sesión"" src=""" + pageFolder + @"img/logout.png""/></a></p>");
+				sb.Append(@"</td>");
+				sb.Append(@"</tr>");
+				sb.Append(@"</table>");
+				sb.Append(@"</div>");			
+			}
+			catch(UnableToCreateHeaderException)
+			{
+				sb.Append(@"<div id=""header"">");
+				sb.Append(@"</div>");
+			}
+			finally
+			{
+				output.Write(sb.ToString());
+			}
 		}
 	}
 }
