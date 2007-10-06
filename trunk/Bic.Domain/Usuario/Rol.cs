@@ -49,6 +49,11 @@ namespace Bic.Domain.Usuario
 			return false;
 		}
 
+		public virtual bool PuedeEditarProyectos()
+		{
+			return false;
+		}
+
 		public virtual bool PuedeAccederAAtributos()
 		{
 			return false;
