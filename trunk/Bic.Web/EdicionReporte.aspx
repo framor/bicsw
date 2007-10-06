@@ -24,46 +24,24 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="30%" nowrap="nowrap"><b>Atributos disponibles:&nbsp; </b></td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxAttDisponibles" runat="server"></asp:ListBox>
+								<td><b>Atributos</b></td>
+								<td>
+									<asp:ListBox id="lstAtributos" runat="server" DataTextField="Nombre" DataValueField="Id"
+										Width="150px" SelectionMode="Multiple"></asp:ListBox>
 								</td>
-								<td width="40%" nowrap="nowrap">
-									<asp:LinkButton id="lnkBtnAddAttToColumn" Text="Agregar como columna" runat="server" ></asp:LinkButton><br>
-									<asp:LinkButton id="lnkBtnAddAttToRow" Text="Agregar como fila" runat="server" ></asp:LinkButton><br>
-									<asp:LinkButton id="lnkBtnRemoveAtt" Text="Remover" runat="server" ></asp:LinkButton>
-								</td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxAttSeleccionados" runat="server"></asp:ListBox>
-								</td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxAttDescriptions" runat="server"></asp:ListBox>
-								</td>
-							</tr>						
+							</tr>
 							<tr>
-								<td width="30%" nowrap="nowrap"><b>Lista métricas:&nbsp; </b></td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxMetricasDisponibles" runat="server"></asp:ListBox>
+								<td><b>Metricas</b></td>
+								<td>
+									<asp:ListBox id="lstMetricas" runat="server" DataTextField="Nombre" DataValueField="Id"
+										Width="150px" SelectionMode="Multiple"></asp:ListBox>
 								</td>
-								<td width="55%" nowrap="nowrap">
-									<asp:LinkButton id="lnkBtnAddMetrica" Text="Agregar métrica" runat="server" ></asp:LinkButton><br>
-									<asp:LinkButton id="lnkBtnRemoveMetrica" Text="Remover métrica" runat="server" ></asp:LinkButton><br>
-								</td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxMetricasSeleccionadas" runat="server"></asp:ListBox>
-								</td>
-							</tr>							
+							</tr>
 							<tr>
-								<td width="30%" nowrap="nowrap"><b>Lista filtros:&nbsp; </b></td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxFiltrosDisponibles" runat="server"></asp:ListBox>
-								</td>
-								<td width="55%" nowrap="nowrap">
-									<asp:LinkButton id="lnkBtnAddFiltro" Text="Agregar filtro" runat="server" ></asp:LinkButton><br>
-									<asp:LinkButton id="lnkBtnRemoveFiltro" Text="Remover filtro" runat="server" ></asp:LinkButton><br>
-								</td>
-								<td width="10%">
-									<asp:ListBox id="lstBoxFiltrosSeleccionados" runat="server"></asp:ListBox>
+								<td><b>Filtros</b></td>
+								<td>
+									<asp:ListBox id="lstFiltros" runat="server" DataTextField="Nombre" DataValueField="Id"
+										Width="150px" SelectionMode="Multiple"></asp:ListBox>
 								</td>
 							</tr>
 							<tr>

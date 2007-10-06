@@ -16,25 +16,9 @@ namespace Bic.Web
 
 		protected TextBox txtNombreReporte;
 
-		protected ListBox lstBoxAttDisponibles;
-		protected ListBox lstBoxAttSeleccionados;
-		protected ListBox lstBoxAttDescriptions;
-		
-		protected LinkButton lnkBtnAddAttToColumn;
-		protected LinkButton lnkBtnAddAttToRow;
-		protected LinkButton lnkBtnRemoveAtt;
-
-		protected ListBox lstBoxMetricasDisponibles;
-		protected ListBox lstBoxMetricasSeleccionadas;
-
-		protected LinkButton lnkBtnAddMetrica;
-		protected LinkButton lnkBtnRemoveMetrica;
-
-		protected ListBox lstBoxFiltrosDisponibles;
-		protected ListBox lstBoxFiltrosSeleccionados;
-
-		protected LinkButton lnkBtnAddFiltro;
-		protected LinkButton lnkBtnRemoveFiltro;
+		protected ListBox lstAtributos;
+		protected ListBox lstMetricas;
+		protected ListBox lstFiltros;
 
 		protected RequiredFieldValidator reqNombreReporte;
 		protected ValidationSummary valSummary;
@@ -47,64 +31,44 @@ namespace Bic.Web
 
 		private void Page_Load(object sender, EventArgs e)
 		{			  
-			this.BaseLoad();
-
+			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				long id = this.Proyecto.Id;
+				long id = long.Parse(Request.Params["id"]);
+				ViewState["id"] = id;
+				if (id != -1)
+				{
+					Reporte r = BICContext.Instance.ReporteService.Retrieve(id);
+					this.txtNombre.Text = r.Nombre;
 
-				this.lstBoxAttDisponibles.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttDisponibles.DataTextField = "Nombre";
-				this.lstBoxAttDisponibles.DataValueField ="Id";
-				this.lstBoxAttDisponibles.DataBind();
+					this.lstAtributos.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+					this.lstAtributos.DataBind();
 
-				this.lstBoxAttSeleccionados.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttSeleccionados.DataTextField = "Nombre";
-				this.lstBoxAttSeleccionados.DataValueField = "Id";
-				this.lstBoxAttSeleccionados.DataBind();
+					this.lstFiltros.DataSource = BICContext.Instance.FiltroService.Select(Proyecto.Id);
+					this.lstFiltros.DataBind();
 
-				this.lstBoxAttDescriptions.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttDescriptions.DataTextField = "Nombre";
-				this.lstBoxAttDescriptions.DataValueField ="Id";
-				this.lstBoxAttDescriptions.DataBind();
+					this.lstMetricas.DataSource = BICContext.Instance.MetricaService.Select(Proyecto.Id);
+					this.lstMetricas.DataBind();
 
-				this.lstBoxMetricasDisponibles.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxMetricasDisponibles.DataTextField = "Nombre";
-				this.lstBoxMetricasDisponibles.DataValueField ="Id";
-				this.lstBoxMetricasDisponibles.DataBind();
-
-				this.lstBoxAttDescriptions.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttDescriptions.DataTextField = "Nombre";
-				this.lstBoxAttDescriptions.DataValueField ="Id";
-				this.lstBoxAttDescriptions.DataBind();
-
-				this.lstBoxAttDescriptions.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttDescriptions.DataTextField = "Nombre";
-				this.lstBoxAttDescriptions.DataValueField ="Id";
-				this.lstBoxAttDescriptions.DataBind();
-
-				this.lstBoxAttDescriptions.DataSource = BICContext.Instance.AtributoService.Select(id);
-				this.lstBoxAttDescriptions.DataTextField = "Nombre";
-				this.lstBoxAttDescriptions.DataValueField ="Id";
-				this.lstBoxAttDescriptions.DataBind();
+					this.ddlColumnaId.SelectedValue = a.ColumnaId.Id.ToString();
+					
+					foreach (ListItem i in this.lstDescripciones.Items)
+					{
+						Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
+						i.Selected = a.ColumnasDescripciones.Contains(c);
+					}
+					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
+				}
+				else
+				{
+					BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+					
+				}
+				BindHijos();
 			}
 		}
 
-		private void lnkBtnAddAttToColumn_Click(object sender, EventArgs e)
-		{
-			
-		}
-
-		private void lnkBtnAddAttToRow_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void lnkBtnRemoveAtt_Click(object sender, EventArgs e)
-		{
-
-		}
-
+		
 		#endregion
 
 
@@ -167,7 +131,7 @@ namespace Bic.Web
 
 		protected override bool TienePermisosSuficientes()
 		{
-			return this.Usuario.Rol.PuedeAccederAMetricas();
+			return this.Usuario.Rol.PuedeAccederAReportes();
 		}
 
 		
