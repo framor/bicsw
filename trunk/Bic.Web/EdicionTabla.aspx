@@ -19,7 +19,7 @@
 							<tr>
 								<td><b>Alias</b></td>
 								<td>
-									<asp:TextBox id="txtAlias" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtAlias" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:CustomValidator Id="valAlias" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqAlias" Runat="server" ControlToValidate="txtAlias" ErrorMessage="Por favor complete el Alias.">*</asp:RequiredFieldValidator>
 								</td>
@@ -34,7 +34,9 @@
 							<tr>
 								<td><b>Peso</b></td>
 								<td>
-									<asp:TextBox id="txtPeso" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtPeso" runat="server"></asp:TextBox>									
+									<asp:RangeValidator id="RangeValidator1" runat="server" ErrorMessage="El Peso debe ser un número entero entre 0 y 10." 
+										Type="Integer" MaximumValue="10" MinimumValue="0" ControlToValidate="txtPeso">*</asp:RangeValidator>
 									<asp:RequiredFieldValidator ID="reqPeso" Runat="server" ControlToValidate="txtPeso"
 										ErrorMessage="Por favor complete el Peso.">*</asp:RequiredFieldValidator>
 								</td>

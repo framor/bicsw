@@ -32,6 +32,12 @@ namespace Bic.Domain.Usuario
 			return true;
 		}
 
+		public override bool PuedeAccederAReportes()
+		{
+			return true;
+		}
+
+
 		protected override string GetNombre()
 		{
 			return "Reportero";

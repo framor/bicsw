@@ -74,5 +74,10 @@ namespace Bic.Domain.Usuario
 			return false;
 		}
 
+		public virtual bool PuedeAccederAReportes()
+		{
+			return true;
+		}
+
 	}
 }

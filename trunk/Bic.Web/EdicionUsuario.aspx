@@ -20,14 +20,14 @@
 							<tr>
 								<td><b>Nombre de usuario</b></td>
 								<td>
-									<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtNombre" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Usuario</b></td>
 								<td>
-									<asp:TextBox id="txtAlias" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtAlias" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:CustomValidator Id="valAlias" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqAlias" Runat="server" ControlToValidate="txtAlias" ErrorMessage="Por favor complete el Usuario.">*</asp:RequiredFieldValidator>
 								</td>
@@ -35,14 +35,14 @@
 							<tr>
 								<td><b>Contraseña</b></td>
 								<td>
-									<asp:TextBox id="txtContrasena" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtContrasena" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqContrasena" Runat="server" ControlToValidate="txtContrasena" ErrorMessage="Por favor complete la contraseña.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Correo electrónico</b></td>
 								<td>
-									<asp:TextBox id="txtEMail" runat="server"></asp:TextBox>									
+									<asp:TextBox id="txtEMail" runat="server" MaxLength="45"></asp:TextBox>									
 									<asp:RegularExpressionValidator runat="server" id="valEmail" ControlToValidate="txtEMail"
 										ValidationExpression="^[\w-]+@[\w-]+\.(com|net|org|edu|mil)$" errormessage="El formato del correo electrónico es incorrecto." Display="Dynamic">*</asp:RegularExpressionValidator>									
 								</td>

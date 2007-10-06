@@ -55,11 +55,6 @@ namespace Bic.Domain.Usuario
 			get { return this.Rol.Nombre; }
 		}
 
-		public Usuario()
-		{
-			//
-			// TODO: agregar aquí la lógica del constructor
-			//
-		}
+		public Usuario() {}
 	}
 }

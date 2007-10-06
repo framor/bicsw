@@ -20,7 +20,7 @@
 							<tr>
 								<td><b>Nombre</b></td>
 								<td>
-									<asp:TextBox id="txtNombre" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtNombre" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:CustomValidator Id="valNombre" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
@@ -28,35 +28,35 @@
 							<tr>
 								<td><b>Descripcion</b></td>
 								<td>
-									<asp:TextBox id="txtDescripcion" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtDescripcion" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqDescripcion" Runat="server" ControlToValidate="txtDescripcion" ErrorMessage="Por favor complete la Descripcion.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Servidor</b></td>
 								<td>
-									<asp:TextBox id="txtServidor" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtServidor" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqServidor" Runat="server" ControlToValidate="txtServidor" ErrorMessage="Por favor complete el Servidor.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Esquema</b></td>
 								<td>
-									<asp:TextBox id="txtEsquema" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtEsquema" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqEsquema" Runat="server" ControlToValidate="txtEsquema" ErrorMessage="Por favor complete el Esquema.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Usuario</b></td>
 								<td>
-									<asp:TextBox id="txtUsuario" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtUsuario" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqUsuario" Runat="server" ControlToValidate="txtUsuario" ErrorMessage="Por favor complete el Usuario.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Contraseña</b></td>
 								<td>
-									<asp:TextBox id="txtPassword" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtPassword" runat="server" MaxLength="45"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqPassword" Runat="server" ControlToValidate="txtPassword" ErrorMessage="Por favor complete el Password.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>

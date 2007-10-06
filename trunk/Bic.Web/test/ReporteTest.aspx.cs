@@ -27,6 +27,8 @@ namespace Bic.Web.test
 		private Hashtable atributos = new Hashtable();
 		private Hashtable metricas = new Hashtable();
 		protected System.Web.UI.WebControls.Button GeneraConsulta;
+		protected System.Web.UI.WebControls.RangeValidator RangeValidator1;
+		protected System.Web.UI.WebControls.TextBox TextBox1;
 		private Hashtable hechos = new Hashtable();
 	
 		private void Page_Load(object sender, System.EventArgs e)

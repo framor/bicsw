@@ -569,11 +569,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\ColumnsChartFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Reportes\ChartAbstractFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -653,6 +648,11 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Reportes\ColumnsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Reportes\DataSourceMockProvider.cs.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -661,6 +661,21 @@
                     RelPath = "Reportes\LinesChartFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ListaReporte.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\ListaReporte.aspx.cs"
+                    DependentUpon = "ListaReporte.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\ListaReporte.aspx.resx"
+                    DependentUpon = "ListaReporte.aspx.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Reportes\PieChartFactory.cs"

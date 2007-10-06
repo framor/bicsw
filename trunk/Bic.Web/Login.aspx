@@ -41,11 +41,11 @@
 		<table width="100%" cellspacing="0" cellpadding="5" border="0">
 			<tr>
 				<td>Usuario</td>
-				<td><asp:TextBox ID="txtUsuario" Runat="server" Width="150px"></asp:TextBox></td>
+				<td><asp:TextBox ID="txtUsuario" Runat="server" Width="150px" MaxLength="45"></asp:TextBox></td>
 			</tr>
 			<tr>
 				<td>Contraseña</td>
-				<td><asp:TextBox ID="txtContrasena" Runat="server" TextMode="Password" Width="150px"></asp:TextBox></td>
+				<td><asp:TextBox ID="txtContrasena" Runat="server" TextMode="Password" Width="150px" MaxLength="45"></asp:TextBox></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
