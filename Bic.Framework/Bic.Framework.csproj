@@ -94,17 +94,17 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "Util.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Aspects\LoggingAdvice.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Exception\ServiceException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Exception\Util.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
