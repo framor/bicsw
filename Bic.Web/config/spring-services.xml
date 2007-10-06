@@ -94,6 +94,7 @@
 	</object>			
 	<object id="reporteServiceImpl" type="Bic.Application.impl.ReporteServiceImpl, Bic.Application" parent="baseServiceTemplate">
 		<property name="proyectoDAO" ref="proyectoDAO"/>
+		<property name="catalogoDAO" ref="catalogoDAO"/>
 	</object>
 	
 </objects>

@@ -26,6 +26,7 @@
 				<asp:BoundColumn DataField="Nombre" HeaderText="Nombre"></asp:BoundColumn>
  				<asp:HyperLinkColumn Text="Editar" Target="_self" DataNavigateUrlField="Id" DataNavigateUrlFormatString="EdicionReporte.aspx?id={0}"></asp:HyperLinkColumn>
 				<asp:ButtonColumn Text="Borrar" CommandName="Borrar"></asp:ButtonColumn>
+				<asp:ButtonColumn Text="Ejecutar" CommandName="Ejecutar"></asp:ButtonColumn>
 			</Columns>
 		</asp:DataGrid>
 		<br/><br/><br/>

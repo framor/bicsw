@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 using Bic.Domain.Catalogo;
 
 namespace Bic.Domain.Dao
@@ -29,5 +30,6 @@ namespace Bic.Domain.Dao
 		/// <returns>IList de columnas</returns>
 		IList ObtenerColumnas(Tabla t);
 
+		DataSet EjecutarSql(Conexion c, string sql);
 	}
 }

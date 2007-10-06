@@ -1,6 +1,7 @@
 using System;
 using Bic.Domain;
 using System.Collections;
+using System.Data;
 using Bic.Domain.Dao;
 
 namespace Bic.Application.Impl
@@ -13,6 +14,14 @@ namespace Bic.Application.Impl
 			get { return this.proyectoDAO; }
 			set { this.proyectoDAO = value; }
 		}
+		private ICatalogoDAO catalogoDAO;
+		public ICatalogoDAO CatalogoDAO 
+		{
+			get { return this.catalogoDAO; }
+			set { this.catalogoDAO = value; }
+		}
+
+
 		#region Constructor
 
 		public ReporteServiceImpl()
@@ -44,6 +53,15 @@ namespace Bic.Application.Impl
 		public void Delete(long id)
 		{
 			this.GenericDAO.Delete(typeof(Reporte), id);
+		}
+
+		/// <summary>
+		/// Implementacion de ReporteService.Ejecutar
+		/// </summary>
+		public DataSet Ejecutar(long id)
+		{
+			Reporte reporte = Retrieve(id);
+			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
 		}
 
 		#endregion
