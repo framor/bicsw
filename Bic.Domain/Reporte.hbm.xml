@@ -5,17 +5,18 @@
             <generator class="native" /> 
         </id> 
         <property name="nombre" column="nombre" type="String" access="field"/> 
+		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" column="proyecto_id" not-null="true" access="field"/>
 		<set name="atributos" access="field" cascade="none" table="reporte_atributo">
 			<key column="reporte_id"/>
-			<many-to-many column="atributo_id" class="Bic.Domain.Catalogo.Atributo, Bic.Domain"/>
+			<many-to-many column="atributo_id" class="Bic.Domain.Atributo, Bic.Domain"/>
 		</set>	
 		<set name="metricas" access="field" cascade="none" table="reporte_metrica">
 			<key column="reporte_id"/>
-			<many-to-many column="metrica_id" class="Bic.Domain.Catalogo.Metrica, Bic.Domain"/>
+			<many-to-many column="metrica_id" class="Bic.Domain.Metrica, Bic.Domain"/>
 		</set>	
 		<set name="filtros" access="field" cascade="none" table="reporte_filtro">
 			<key column="reporte_id"/>
-			<many-to-many column="filtro_id" class="Bic.Domain.Catalogo.Filtro, Bic.Domain"/>
+			<many-to-many column="filtro_id" class="Bic.Domain.Filtro, Bic.Domain"/>
 		</set>	
     </class>
 </hibernate-mapping>

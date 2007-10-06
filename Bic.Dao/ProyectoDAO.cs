@@ -82,6 +82,16 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
+		/// Implementa IProyectoDAO.SelectReportes
+		/// </summary>
+		public IList SelectReportes(long proyectoId)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + typeof(Reporte).Name + " r where r.proyecto.id = ?", proyectoId);
+			return ret;
+		}
+
+		/// <summary>
 		/// Implementa IProyectoDAO.SelectFiltros
 		/// </summary>
 		public IList SelectFiltros(long proyectoId)

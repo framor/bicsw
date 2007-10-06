@@ -83,7 +83,7 @@ namespace Bic.Domain.Catalogo
 		/// </summary>
 		/// <param name="mapeables"></param>
 		/// <returns>True si la tabla tiene todos los campos, sino false.</returns>
-		public bool Tenes(IList mapeables)
+		public bool Tenes(ICollection mapeables)
 		{
 			foreach(ITablaMapeable mapeable in mapeables)
 			{

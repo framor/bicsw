@@ -3,6 +3,7 @@ using Bic.Domain.Catalogo;
 using Bic.Domain.Exception;
 using Bic.Domain.Interfaces;
 using Bic.Framework;
+using Iesi.Collections;
 
 namespace Bic.Domain
 {
@@ -13,27 +14,79 @@ namespace Bic.Domain
 	{
 		#region Constructor
 
+
 		public Reporte()
 		{
-			//
-			// TODO: agregar aquí la lógica del constructor
-			//
+			this.atributos = new HashedSet();
+			this.metricas = new HashedSet();
+			this.filtros = new HashedSet();
+			this.nombre = string.Empty;
+			this.tablaReporte = null;
+			this.proyecto = null;
 		}
 		
 
 		#endregion
 
-		#region Miembros privados
-	
-		private IList atributos = new ArrayList();
-		private IList metricas = new ArrayList();
-		private IList filtros = new ArrayList();
-		private TablaReporte tablaReporte;
+		#region Properties
 
+		public long Id 
+		{
+			get 
+			{
+				return this.id; 
+			}
+
+			set 
+			{ 
+				this.id = value; 
+			}
+		}
+
+
+		public string Nombre 
+		{
+			get
+			{
+				return this.nombre;
+			}
+
+			set
+			{
+				this.nombre = value;
+			}
+		}
+
+
+		public Proyecto Proyecto 
+		{
+			get
+			{
+				return this.proyecto;
+			}
+
+			set
+			{
+				this.proyecto = value;
+			}
+		}
+
+
+		#endregion
+
+		#region Private members
+	
+		private long id;
+		private Proyecto proyecto;
+		private string nombre;
+		private ISet atributos;
+		private ISet metricas; 
+		private ISet filtros; 
+		private TablaReporte tablaReporte;
 	
 		#endregion		
 
-		#region Metodos publicos
+		#region Public members
 
 		public void AgregarAtributo(Atributo atributo)
 		{
@@ -98,7 +151,7 @@ namespace Bic.Domain
 		/// <param name="tabla">Tabla Fact destino de caminos</param>
 		/// <param name="campos">Campos de inicio de caminos</param>
 		/// <returns>Devuelve un ArrayList con los caminos</returns>
-		public ArrayList GeneraCaminos(Tabla tabla,IList campos)
+		public ArrayList GeneraCaminos(Tabla tabla, ICollection campos)
 		{
 			ArrayList caminos = new ArrayList();
 			//Por cada campo que cumpla con la interfaz TablaMapeable le pido que genere camino
@@ -145,7 +198,7 @@ namespace Bic.Domain
 		}
 
 
-		public IList DameTablas(IList campos)
+		public IList DameTablas(ICollection campos)
 		{
 			
 			ArrayList tablas = new ArrayList();
@@ -172,24 +225,25 @@ namespace Bic.Domain
 			string listaCampos ="";
 			string listaMetricas = "";
 
-			foreach(Atributo atrib in this.atributos)
+			ArrayList ats = new ArrayList(this.atributos);
+			foreach(Atributo atrib in ats)
 			{
 				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
 				listaCampos += alias + "." + atrib.ColumnaId.Nombre;
 
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if(this.atributos.IndexOf(atrib) < this.atributos.Count - 1)
+				if (ats.IndexOf(atrib) < this.atributos.Count - 1)					
 					listaCampos += ",\n";
+			}			
 
-			}
-
-			foreach(Metrica metrica in this.metricas)
+			ArrayList mets = new ArrayList(this.metricas);
+			foreach(Metrica metrica in mets)
 			{
 				// Le pido el nombre de la tabla Fact a la TablaReporte
 				string alias = this.tablaReporte.Tabla.Nombre;
 				listaMetricas += metrica.Funcion + "(" + alias + "." + metrica.Columna.Nombre + ")";
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if(this.metricas.IndexOf(metrica) < this.metricas.Count - 1)
+				if(mets.IndexOf(metrica) < this.metricas.Count - 1)
 					listaMetricas += ",\n";
 			}
 

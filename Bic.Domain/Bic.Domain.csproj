@@ -160,7 +160,7 @@
                 />
                 <File
                     RelPath = "Reporte.hbm.xml"
-                    BuildAction = "Content"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "TablaReporte.cs"

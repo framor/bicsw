@@ -40,7 +40,7 @@ namespace Bic.WebControls
 				if (rolActual.PuedeAccederAMetricas())
 					sb.Append(@"<li><a href=""ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>");
 				if (rolActual.PuedeAccederAReportes())
-					sb.Append(@"<li><a href=""Reportes/ListaReportes.aspx"" title=""Reportes""><span>Reportes</span></a></li>");
+					sb.Append(@"<li><a href=""ListaReporte.aspx"" title=""Reportes""><span>Reportes</span></a></li>");
 				sb.Append("</div>");
 
 			}
