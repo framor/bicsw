@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0">
+    <class name="Bic.Domain.Reporte, Bic.Domain" table="reporte">
+        <id name="id" column="id" type="long" access="field" > 
+            <generator class="native" /> 
+        </id> 
+        <property name="nombre" column="nombre" type="String" access="field"/> 
+		<set name="atributos" access="field" cascade="none" table="reporte_atributo">
+			<key column="reporte_id"/>
+			<many-to-many column="atributo_id" class="Bic.Domain.Catalogo.Atributo, Bic.Domain"/>
+		</set>	
+		<set name="metricas" access="field" cascade="none" table="reporte_metrica">
+			<key column="reporte_id"/>
+			<many-to-many column="metrica_id" class="Bic.Domain.Catalogo.Metrica, Bic.Domain"/>
+		</set>	
+		<set name="filtros" access="field" cascade="none" table="reporte_filtro">
+			<key column="reporte_id"/>
+			<many-to-many column="filtro_id" class="Bic.Domain.Catalogo.Filtro, Bic.Domain"/>
+		</set>	
+    </class>
+</hibernate-mapping>
