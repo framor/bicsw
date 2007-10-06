@@ -104,6 +104,10 @@ namespace Bic.Domain
 		{
 			this.atributos.Add(atributo);
 		}
+		public void RemoverAtributo(Atributo atributo)
+		{
+			this.atributos.Remove(atributo);
+		}
 
 
 		public void AgregarMetrica(Metrica metrica)
@@ -111,10 +115,17 @@ namespace Bic.Domain
 			this.metricas.Add(metrica);
 		}
 
-
+		public void RemoverMetrica(Metrica metrica)
+		{
+			this.metricas.Remove(metrica);
+		}
 		public void AgregarFiltro(Filtro filtro)
 		{
 			this.filtros.Add(filtro);
+		}
+		public void RemoverFiltro(Filtro filtro)
+		{
+			this.filtros.Remove(filtro);
 		}
 
 
