@@ -39,36 +39,47 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Reporte r = BICContext.Instance.ReporteService.Retrieve(id);
-					this.txtNombre.Text = r.Nombre;
+//					this.txtNombre.Text = r.Nombre;
 
-					this.lstAtributos.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
-					this.lstAtributos.DataBind();
+					BindLists();
 
-					this.lstFiltros.DataSource = BICContext.Instance.FiltroService.Select(Proyecto.Id);
-					this.lstFiltros.DataBind();
-
-					this.lstMetricas.DataSource = BICContext.Instance.MetricaService.Select(Proyecto.Id);
-					this.lstMetricas.DataBind();
-
-					this.ddlColumnaId.SelectedValue = a.ColumnaId.Id.ToString();
-					
-					foreach (ListItem i in this.lstDescripciones.Items)
+					foreach (ListItem i in this.lstAtributos.Items)
 					{
-						Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
-						i.Selected = a.ColumnasDescripciones.Contains(c);
+						Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(i.Value));
+						i.Selected = r.Atributos.Contains(a);
 					}
-					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
+					foreach (ListItem i in this.lstMetricas.Items)
+					{
+						Metrica m = BICContext.Instance.MetricaService.Retrieve(long.Parse(i.Value));
+						i.Selected = r.Metricas.Contains(m);
+					}
+					foreach (ListItem i in this.lstFiltros.Items)
+					{
+						Filtro f = BICContext.Instance.FiltroService.Retrieve(long.Parse(i.Value));
+						i.Selected = r.Filtros.Contains(f);
+					}					
 				}
 				else
 				{
-					BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+					//BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
 					
 				}
-				BindHijos();
+				//BindHijos();
 			}
 		}
 
 		
+		private void BindLists() 
+		{
+			this.lstAtributos.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+			this.lstAtributos.DataBind();
+
+			this.lstFiltros.DataSource = BICContext.Instance.FiltroService.Select(Proyecto.Id);
+			this.lstFiltros.DataBind();
+
+			this.lstMetricas.DataSource = BICContext.Instance.MetricaService.Select(Proyecto.Id);
+			this.lstMetricas.DataBind();
+		}
 		#endregion
 
 
@@ -92,41 +103,49 @@ namespace Bic.Web
 			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
 			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
 			this.Load += new EventHandler(this.Page_Load);
-			this.lnkBtnAddAttToColumn.Click+=new EventHandler(lnkBtnAddAttToColumn_Click);
-			this.lnkBtnAddAttToRow.Click +=new EventHandler(lnkBtnAddAttToRow_Click);
-			this.lnkBtnRemoveAtt.Click+=new EventHandler(lnkBtnRemoveAtt_Click);
 
 		}
 		#endregion
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
-			long id = (long) ViewState["id"];
-//			string nombre = this.txtNombre.Text;
-//			string funcion = this.ddlFuncion.SelectedValue;
-//			Hecho h = BICContext.Instance.HechoService.Retrieve(long.Parse(this.ddlHecho.SelectedValue));
-//
+//			long id = (long) ViewState["id"];
+//			Atributo a;
 //			if (id == -1)
 //			{
-//
-//				Metrica m = new Metrica(nombre, funcion, h);
-//				m.Proyecto = Proyecto;
-//				BICContext.Instance.MetricaService.Save(m);
+//				a = new Atributo();
 //			} 
 //			else 
 //			{
-//				Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
-//				m.Nombre = nombre;
-//				m.Funcion = funcion;
-//				m.Hecho = h;
-//				BICContext.Instance.MetricaService.Save(m);
+//				a = BICContext.Instance.AtributoService.Retrieve(id);
 //			}			
-			Response.Redirect("ListaMetrica.aspx");
+//			a.Nombre = this.txtNombre.Text;
+//			a.ColumnaId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
+//			foreach (ListItem i in this.lstDescripciones.Items)
+//			{
+//				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
+//				if (i.Selected)
+//				{
+//					a.RemoverColumnaDescripcion(c);
+//					a.AgregarColumnaDescripcion(c);
+//				}
+//				else
+//				{
+//					a.RemoverColumnaDescripcion(c);
+//				}
+//			}
+//			a.TablaLookup = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
+//			a.Proyecto = Proyecto;
+//			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
+//				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
+//
+//			BICContext.Instance.AtributoService.Save(a);
+//			Response.Redirect("ListaReporte.aspx");
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("ListaMetrica.aspx");
+			Response.Redirect("ListaReporte.aspx");
 		}
 
 		protected override bool TienePermisosSuficientes()

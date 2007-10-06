@@ -71,6 +71,18 @@ namespace Bic.Domain
 			}
 		}
 
+		public IList Atributos 
+		{
+			get { return new ArrayList(this.atributos); }
+		}
+		public IList Metricas
+		{
+			get { return new ArrayList(this.metricas);}
+		}
+		public IList Filtros
+		{
+			get { return new ArrayList(this.filtros); }
+		}
 
 		#endregion
 
