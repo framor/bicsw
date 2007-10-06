@@ -124,7 +124,8 @@ namespace Bic.Web
 
 		protected override bool TienePermisosSuficientes()
 		{
-			return this.Usuario.Rol.PuedeAccederAProyectos();
+			return this.Usuario.Rol.PuedeAccederAProyectos() &&
+				this.Usuario.Rol.PuedeEditarProyectos();
 		}
 	}
 }

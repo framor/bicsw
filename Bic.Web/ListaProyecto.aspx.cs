@@ -11,12 +11,14 @@ namespace Bic.Web
 	{
 		protected Button btnNuevo;
 		protected DataGrid dgProyectos;
+		protected Panel pnlAgregarNuevo;
 	
 		private void Page_Load(object sender, EventArgs e)
 		{
 			BaseLoad();
 			if (!Page.IsPostBack)
 			{
+				this.btnNuevo.Enabled = Usuario.Rol.PuedeEditarProyectos();
 				ListProyectos();
 			}
 		}
@@ -51,12 +53,25 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				TableCell myTableCell;
-				myTableCell = e.Item.Cells[4];
-				LinkButton myDeleteButton; 
-				myDeleteButton = (LinkButton) myTableCell.Controls[0];
-				myDeleteButton.Attributes.Add("onclick", 
-					"return ConfirmarEliminacion();");
 
+				if (!Usuario.Rol.PuedeEditarProyectos())
+				{
+					myTableCell = e.Item.Cells[3];
+					HyperLink myEditButton = (HyperLink) myTableCell.Controls[0];
+					myEditButton.Enabled = false;
+
+					myTableCell = e.Item.Cells[4];
+					LinkButton myDeleteButton = (LinkButton) myTableCell.Controls[0];
+					myDeleteButton.Enabled = false;
+				} 
+				else 
+				{
+					myTableCell = e.Item.Cells[4];
+					LinkButton myDeleteButton; 
+					myDeleteButton = (LinkButton) myTableCell.Controls[0];
+					myDeleteButton.Attributes.Add("onclick", 
+						"return ConfirmarEliminacion();");
+				}
 			}
 		}
 

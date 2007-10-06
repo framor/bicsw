@@ -62,5 +62,11 @@ namespace Bic.Domain.Usuario
 			return "Arquitecto";
 		}
 
+		public override bool PuedeEditarProyectos()
+		{
+			return true;
+		}
+
+
 	}
 }
