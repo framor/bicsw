@@ -159,6 +159,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Reporte.hbm.xml"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "TablaReporte.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

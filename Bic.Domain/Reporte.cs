@@ -11,16 +11,7 @@ namespace Bic.Domain
 	/// </summary>
 	public class Reporte
 	{
-
-		#region Miembros privados
-	
-		private IList Atributos = new ArrayList();
-		private IList Metricas = new ArrayList();
-		private IList Filtros = new ArrayList();
-		private TablaReporte tablaReporte;
-
-	
-		#endregion
+		#region Constructor
 
 		public Reporte()
 		{
@@ -30,21 +21,35 @@ namespace Bic.Domain
 		}
 		
 
+		#endregion
+
+		#region Miembros privados
+	
+		private IList atributos = new ArrayList();
+		private IList metricas = new ArrayList();
+		private IList filtros = new ArrayList();
+		private TablaReporte tablaReporte;
+
+	
+		#endregion		
+
 		#region Metodos publicos
 
 		public void AgregarAtributo(Atributo atributo)
 		{
-			this.Atributos.Add(atributo);
+			this.atributos.Add(atributo);
 		}
+
 
 		public void AgregarMetrica(Metrica metrica)
 		{
-			this.Metricas.Add(metrica);
+			this.metricas.Add(metrica);
 		}
+
 
 		public void AgregarFiltro(Filtro filtro)
 		{
-			this.Filtros.Add(filtro);
+			this.filtros.Add(filtro);
 		}
 
 
@@ -59,7 +64,7 @@ namespace Bic.Domain
 				try
 				{
 					//Creo el objeto TablaReporte con la tabla Fact destino y todos sus caminos
-					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.Atributos));
+					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.atributos));
 
 					// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
 					// por tener todos los caminos.
@@ -117,18 +122,19 @@ namespace Bic.Domain
 			return caminos;
 		}
 
+
 		public ArrayList DameTablasCandidatas()
 		{
 
 			ArrayList tablas = new ArrayList();
 
 			// Le pido las tablas donde estan estas metricas
-			IList tablasFact = this.DameTablas(this.Metricas);
+			IList tablasFact = this.DameTablas(this.metricas);
 			
 			// Itero en la colleccion de Tablas preguntandole si tiene a todas las metricas
 			foreach(Tabla tabla in tablasFact)
 			{
-				if(tabla.Tenes(this.Metricas)) 
+				if(tabla.Tenes(this.metricas)) 
 					tablas.Add(tabla);
 			}
 			
@@ -137,6 +143,7 @@ namespace Bic.Domain
 
 			return tablas;
 		}
+
 
 		public IList DameTablas(IList campos)
 		{
@@ -153,34 +160,36 @@ namespace Bic.Domain
 			return Util.ConvertirSet(tablas);
 		}
 
+
 		public TablaReporte TablaReporte
 		{
 			get { return this.tablaReporte; }
 		}
+
 
 		public string DameSql()
 		{
 			string listaCampos ="";
 			string listaMetricas = "";
 
-			foreach(Atributo atrib in this.Atributos)
+			foreach(Atributo atrib in this.atributos)
 			{
 				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
 				listaCampos += alias + "." + atrib.ColumnaId.Nombre;
 
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if(this.Atributos.IndexOf(atrib) < this.Atributos.Count - 1)
+				if(this.atributos.IndexOf(atrib) < this.atributos.Count - 1)
 					listaCampos += ",\n";
 
 			}
 
-			foreach(Metrica metrica in this.Metricas)
+			foreach(Metrica metrica in this.metricas)
 			{
 				// Le pido el nombre de la tabla Fact a la TablaReporte
 				string alias = this.tablaReporte.Tabla.Nombre;
 				listaMetricas += metrica.Funcion + "(" + alias + "." + metrica.Columna.Nombre + ")";
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if(this.Metricas.IndexOf(metrica) < this.Metricas.Count - 1)
+				if(this.metricas.IndexOf(metrica) < this.metricas.Count - 1)
 					listaMetricas += ",\n";
 			}
 
