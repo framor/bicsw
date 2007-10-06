@@ -39,7 +39,7 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Reporte r = BICContext.Instance.ReporteService.Retrieve(id);
-//					this.txtNombre.Text = r.Nombre;
+					this.txtNombreReporte.Text = r.Nombre;
 
 					BindLists();
 
@@ -61,10 +61,9 @@ namespace Bic.Web
 				}
 				else
 				{
-					//BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+					BindLists();
 					
 				}
-				//BindHijos();
 			}
 		}
 
@@ -109,38 +108,60 @@ namespace Bic.Web
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
-//			long id = (long) ViewState["id"];
-//			Atributo a;
-//			if (id == -1)
-//			{
-//				a = new Atributo();
-//			} 
-//			else 
-//			{
-//				a = BICContext.Instance.AtributoService.Retrieve(id);
-//			}			
-//			a.Nombre = this.txtNombre.Text;
-//			a.ColumnaId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
-//			foreach (ListItem i in this.lstDescripciones.Items)
-//			{
-//				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(i.Value));
-//				if (i.Selected)
-//				{
-//					a.RemoverColumnaDescripcion(c);
-//					a.AgregarColumnaDescripcion(c);
-//				}
-//				else
-//				{
-//					a.RemoverColumnaDescripcion(c);
-//				}
-//			}
-//			a.TablaLookup = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
-//			a.Proyecto = Proyecto;
-//			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
-//				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
-//
-//			BICContext.Instance.AtributoService.Save(a);
-//			Response.Redirect("ListaReporte.aspx");
+			long id = (long) ViewState["id"];
+			Reporte r;
+			if (id == -1)
+			{
+				r = new Reporte();
+			} 
+			else 
+			{
+				r = BICContext.Instance.ReporteService.Retrieve(id);
+			}			
+			r.Nombre = this.txtNombreReporte.Text;
+			r.Proyecto = Proyecto;
+			foreach (ListItem i in this.lstAtributos.Items)
+			{
+				Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(i.Value));
+				if (i.Selected)
+				{
+					r.RemoverAtributo(a);
+					r.AgregarAtributo(a);
+				}
+				else
+				{
+					r.RemoverAtributo(a);
+				}
+			}
+			foreach (ListItem i in this.lstMetricas.Items)
+			{
+				Metrica m = BICContext.Instance.MetricaService.Retrieve(long.Parse(i.Value));
+				if (i.Selected)
+				{
+					r.RemoverMetrica(m);
+					r.AgregarMetrica(m);
+				}
+				else
+				{
+					r.RemoverMetrica(m);
+				}
+			}
+			foreach (ListItem i in this.lstFiltros.Items)
+			{
+				Filtro f = BICContext.Instance.FiltroService.Retrieve(long.Parse(i.Value));
+				if (i.Selected)
+				{
+					r.RemoverFiltro(f);
+					r.AgregarFiltro(f);
+				}
+				else
+				{
+					r.RemoverFiltro(f);
+				}
+			}
+
+			BICContext.Instance.ReporteService.Save(r);
+			Response.Redirect("ListaReporte.aspx");
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
