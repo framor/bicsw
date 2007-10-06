@@ -87,5 +87,14 @@
 	<object id="filtroServiceImpl" type="Bic.Application.impl.FiltroServiceImpl, Bic.Application" parent="baseServiceTemplate">
 		<property name="proyectoDAO" ref="proyectoDAO"/>		
 	</object>	
+	
+	<object id="reporteService" parent="serviceConfigurationTemplate">
+		<property name="proxyInterfaces" value="Bic.Application.ReporteService"/>
+		<property name="target" ref="reporteServiceImpl"/>
+	</object>			
+	<object id="reporteServiceImpl" type="Bic.Application.impl.ReporteServiceImpl, Bic.Application" parent="baseServiceTemplate">
+		
+	</object>
+	
 </objects>
 
