@@ -411,6 +411,21 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "ListaReporte.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ListaReporte.aspx.cs"
+                    DependentUpon = "ListaReporte.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListaReporte.aspx.resx"
+                    DependentUpon = "ListaReporte.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "ListaTabla.aspx"
                     SubType = "Form"
                     BuildAction = "Content"
@@ -661,21 +676,6 @@
                     RelPath = "Reportes\LinesChartFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reportes\ListaReporte.aspx"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "Reportes\ListaReporte.aspx.cs"
-                    DependentUpon = "ListaReporte.aspx"
-                    SubType = "ASPXCodeBehind"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reportes\ListaReporte.aspx.resx"
-                    DependentUpon = "ListaReporte.aspx.cs"
-                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "Reportes\PieChartFactory.cs"

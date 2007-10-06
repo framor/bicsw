@@ -53,6 +53,13 @@ namespace Bic.Domain.Dao
 		IList SelectFiltros(long proyectoId);
 
 		/// <summary>
+		/// Obtiene los reportes para un id de proyecto
+		/// </summary>
+		/// <param name="proyectoId">el id de proyecto</param>
+		/// <returns>IList de Reporte</returns>
+		IList SelectReportes(long proyectoId);
+
+		/// <summary>
 		/// Obtiene un proyecto por su nombre
 		/// </summary>
 		/// <param name="nombre">nombre del proyecto</param>

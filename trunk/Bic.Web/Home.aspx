@@ -11,7 +11,7 @@
 	<form id="Form1" method="post" runat="server">
 	<div id="container">
 
-	
+	<cc1:Header id="bicHeader" runat="server"></cc1:Header>			
 	<cc1:Menu id="bicMenu" runat="server"></cc1:Menu>
 
 	<div id="container2" style="height:450px">

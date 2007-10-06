@@ -84,5 +84,13 @@ namespace Bic.Application
 		{
 			get { return (FiltroService)ctx["filtroService"]; }
 		}
+
+		/// <summary>
+		/// Obtiene una implementación de ReporteService
+		/// </summary>
+		public ReporteService ReporteService
+		{
+			get { return (ReporteService)ctx["reporteService"]; }
+		}
 	}
 }

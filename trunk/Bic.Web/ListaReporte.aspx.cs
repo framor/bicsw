@@ -50,7 +50,7 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				TableCell myTableCell;
-				myTableCell = e.Item.Cells[3];
+				myTableCell = e.Item.Cells[2];
 				LinkButton myDeleteButton; 
 				myDeleteButton = (LinkButton) myTableCell.Controls[0];
 				myDeleteButton.Attributes.Add("onclick", 
@@ -62,13 +62,13 @@ namespace Bic.Web
 		private void dgReportes_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
 			long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
-			//BICContext.Instance.ReporteService.Delete(id);
+			BICContext.Instance.ReporteService.Delete(id);
 			ListReportes();
 		}
 
 		private void ListReportes()
 		{
-			//dgReportes.DataSource = BICContext.Instance.ReporteService.Select(Proyecto.Id);
+			dgReportes.DataSource = BICContext.Instance.ReporteService.Select(Proyecto.Id);
 			dgReportes.DataBind();
 		}
 
