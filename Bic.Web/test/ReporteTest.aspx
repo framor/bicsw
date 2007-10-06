@@ -10,9 +10,14 @@
 	</HEAD>
 	<body MS_POSITIONING="GridLayout">
 		<form id="Form1" method="post" runat="server">
-			<asp:Label ID="consola" Runat="server" style="Z-INDEX: 102; LEFT: 24px; POSITION: absolute; TOP: 240px"></asp:Label>
-			<asp:Button id="GeneraConsulta" style="Z-INDEX: 104; LEFT: 16px; POSITION: absolute; TOP: 24px"
+			<asp:Label ID="consola" Runat="server" style="Z-INDEX: 101; LEFT: 24px; POSITION: absolute; TOP: 240px"></asp:Label>
+			<asp:Button id="GeneraConsulta" style="Z-INDEX: 102; LEFT: 16px; POSITION: absolute; TOP: 24px"
 				runat="server" Width="152px" Text="Genera Consulta"></asp:Button>
+			<asp:RangeValidator id="RangeValidator1" style="Z-INDEX: 103; LEFT: 320px; POSITION: absolute; TOP: 328px"
+				runat="server" ErrorMessage="El Peso debe ser un número entero entre 0 y 10." Type="Integer" MaximumValue="10"
+				MinimumValue="0" ControlToValidate="txtPeso">*</asp:RangeValidator>
+			<asp:TextBox id="TextBox1" style="Z-INDEX: 104; LEFT: 432px; POSITION: absolute; TOP: 160px"
+				runat="server"></asp:TextBox>
 		</form>
 	</body>
 </HTML>

@@ -5,19 +5,19 @@ using Bic.Application;
 namespace Bic.Web
 {
 	/// <summary>
-	/// Descripción breve de WebForm1.
+	/// Descripción breve de ListaReporte.
 	/// </summary>
-	public class ListaProyecto : BasePage
+	public class ListaReporte : BasePage
 	{
+		protected DataGrid dgReportes;
 		protected Button btnNuevo;
-		protected DataGrid dgProyectos;
-	
+
 		private void Page_Load(object sender, EventArgs e)
 		{
 			BaseLoad();
-			if (!Page.IsPostBack)
+			if (!Page.IsPostBack) 
 			{
-				ListProyectos();
+				ListReportes();
 			}
 		}
 
@@ -37,58 +37,49 @@ namespace Bic.Web
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dgProyectos.ItemCommand += new DataGridCommandEventHandler(this.dgProyectos_ItemCommand);
-			this.dgProyectos.ItemCreated += new DataGridItemEventHandler(this.dgProyectos_ItemCreated);
-			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.Load += new EventHandler(this.Page_Load);
-
+			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
+			this.dgReportes.ItemCommand += new DataGridCommandEventHandler(this.dgReportes_ItemCommand);
+			this.dgReportes.ItemCreated += new DataGridItemEventHandler(this.dgReportes_ItemCreated);
 		}
 		#endregion
 
-		private void dgProyectos_ItemCreated(object sender, DataGridItemEventArgs e)
+		private void dgReportes_ItemCreated(object sender, DataGridItemEventArgs e)
 		{
 			if (e.Item.ItemType == ListItemType.Item || 
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				TableCell myTableCell;
-				myTableCell = e.Item.Cells[4];
+				myTableCell = e.Item.Cells[3];
 				LinkButton myDeleteButton; 
 				myDeleteButton = (LinkButton) myTableCell.Controls[0];
 				myDeleteButton.Attributes.Add("onclick", 
-					"return ConfirmarEliminacion();");
+					"return confirm('¿Está seguro que desea eliminar el reporte?');");
 
 			}
 		}
 
-		private void dgProyectos_ItemCommand(object sender, DataGridCommandEventArgs e)
+		private void dgReportes_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgProyectos.DataKeys[e.Item.ItemIndex];
-			if (e.CommandName.Equals("Borrar"))
-			{
-				BICContext.Instance.ProyectoService.Delete(id);
-				ListProyectos();
-			}
-			else if (e.CommandName.Equals("Seleccionar"))
-			{
-				Session["proyecto"] = BICContext.Instance.ProyectoService.Retrieve(id);
-				Response.Redirect("Home.aspx");
-			}
+			long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
+			//BICContext.Instance.ReporteService.Delete(id);
+			ListReportes();
 		}
 
-		private void ListProyectos()
+		private void ListReportes()
 		{
-			dgProyectos.DataSource = BICContext.Instance.ProyectoService.Select();
-			dgProyectos.DataBind();
+			//dgReportes.DataSource = BICContext.Instance.ReporteService.Select(Proyecto.Id);
+			dgReportes.DataBind();
 		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionProyecto.aspx?id=-1");
+			Response.Redirect("EdicionReporte.aspx?id=-1");
 		}
 
 		protected override bool TienePermisosSuficientes()
 		{
-			return this.Usuario.Rol.PuedeAccederAProyectos();
+			return this.Usuario.Rol.PuedeAccederAReportes();
 		}
 	}
 }

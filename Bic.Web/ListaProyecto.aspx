@@ -6,6 +6,16 @@
 	<title>BIC - Business Intelligence Client</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link href="./lib/bic.css" rel="stylesheet" type="text/css" />	
+	<script>
+		function ConfirmarEliminacion() 
+		{
+			if(confirm('¿Está seguro que desea eliminar el proyecto?'))
+			{
+				return confirm('Si elimina el proyecto se eliminarán todos los Tablas, Atributos, Hechos, Filtros, Métricas, Reportes y  que le pertenezcan. ¿Desea continuar?');
+			}
+			return false;				
+		}
+	</script>
 </head>
 <body>
 	<form id="form1" method="post" runat="server">
