@@ -9,17 +9,89 @@ namespace Bic.Web
 	/// </summary>
 	public class ListaReporte : BasePage
 	{
+		#region Web Controls
+
 		protected DataGrid dgReportes;
 		protected Button btnNuevo;
 
+		#endregion
+
+		#region Event handlers
+
 		private void Page_Load(object sender, EventArgs e)
 		{
-			BaseLoad();
+			this.BaseLoad();
+
 			if (!Page.IsPostBack) 
 			{
-				ListReportes();
+				this.ListReportes();
 			}
 		}
+
+
+		private void dgReportes_ItemCreated(object sender, DataGridItemEventArgs e)
+		{
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				TableCell myTableCell;
+				myTableCell = e.Item.Cells[2];
+				LinkButton myDeleteButton; 
+				myDeleteButton = (LinkButton) myTableCell.Controls[0];
+				myDeleteButton.Attributes.Add("onclick", 
+					"return confirm('¿Está seguro que desea eliminar el reporte?');");
+
+			}
+		}
+
+
+		private void dgReportes_ItemCommand(object sender, DataGridCommandEventArgs e)
+		{
+			long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
+
+			if (e.CommandName.Equals("Borrar"))
+			{				
+				BICContext.Instance.ReporteService.Delete(id);
+				
+			}
+			else if(e.CommandName.Equals("Ejecutar"))
+			{				
+				ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
+				Response.Redirect("Reportes/AdministracionReportes.aspx");
+			}
+			
+			this.ListReportes();
+		}
+
+
+		private void btnNuevo_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("EdicionReporte.aspx?id=-1");
+		}
+
+
+		#endregion       
+
+		#region Private methods
+
+		private void ListReportes()
+		{
+			dgReportes.DataSource = BICContext.Instance.ReporteService.Select(Proyecto.Id);
+			dgReportes.DataBind();
+		}
+
+
+		#endregion		
+
+		#region Protected methods
+
+		protected override bool TienePermisosSuficientes()
+		{
+			return this.Usuario.Rol.PuedeAccederAReportes();
+		}
+
+
+		#endregion		
 
 		#region Código generado por el Diseñador de Web Forms
 		override protected void OnInit(EventArgs e)
@@ -43,43 +115,5 @@ namespace Bic.Web
 			this.dgReportes.ItemCreated += new DataGridItemEventHandler(this.dgReportes_ItemCreated);
 		}
 		#endregion
-
-		private void dgReportes_ItemCreated(object sender, DataGridItemEventArgs e)
-		{
-			if (e.Item.ItemType == ListItemType.Item || 
-				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
-			{
-				TableCell myTableCell;
-				myTableCell = e.Item.Cells[2];
-				LinkButton myDeleteButton; 
-				myDeleteButton = (LinkButton) myTableCell.Controls[0];
-				myDeleteButton.Attributes.Add("onclick", 
-					"return confirm('¿Está seguro que desea eliminar el reporte?');");
-
-			}
-		}
-
-		private void dgReportes_ItemCommand(object sender, DataGridCommandEventArgs e)
-		{
-			long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.ReporteService.Delete(id);
-			ListReportes();
-		}
-
-		private void ListReportes()
-		{
-			dgReportes.DataSource = BICContext.Instance.ReporteService.Select(Proyecto.Id);
-			dgReportes.DataBind();
-		}
-
-		private void btnNuevo_Click(object sender, EventArgs e)
-		{
-			Response.Redirect("EdicionReporte.aspx?id=-1");
-		}
-
-		protected override bool TienePermisosSuficientes()
-		{
-			return this.Usuario.Rol.PuedeAccederAReportes();
-		}
 	}
 }

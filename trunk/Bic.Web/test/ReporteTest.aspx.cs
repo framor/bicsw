@@ -29,6 +29,7 @@ namespace Bic.Web.test
 		protected System.Web.UI.WebControls.Button GeneraConsulta;
 		protected System.Web.UI.WebControls.RangeValidator RangeValidator1;
 		protected System.Web.UI.WebControls.TextBox TextBox1;
+		protected System.Web.UI.WebControls.Panel Panel1;
 		private Hashtable hechos = new Hashtable();
 	
 		private void Page_Load(object sender, System.EventArgs e)

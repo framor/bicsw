@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using Bic.Domain;
 using System.Collections;
 
@@ -32,5 +33,12 @@ namespace Bic.Application
 		/// </summary>
 		/// <param name="id">El id del reporte</param>
 		void Delete(long id);
+
+		/// <summary>
+		/// Obtiene el resultado de ejecutar un reporte
+		/// </summary>
+		/// <param name="id">el id del reporte</param>
+		/// <returns></returns>
+		DataSet Ejecutar(long id);
 	}
 }

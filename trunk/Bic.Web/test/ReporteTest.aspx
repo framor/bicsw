@@ -18,6 +18,7 @@
 				MinimumValue="0" ControlToValidate="txtPeso">*</asp:RangeValidator>
 			<asp:TextBox id="TextBox1" style="Z-INDEX: 104; LEFT: 432px; POSITION: absolute; TOP: 160px"
 				runat="server"></asp:TextBox>
+			<asp:Panel id="Panel1" style="Z-INDEX: 105; LEFT: 704px; POSITION: absolute; TOP: 384px" runat="server">Panel</asp:Panel>
 		</form>
 	</body>
 </HTML>

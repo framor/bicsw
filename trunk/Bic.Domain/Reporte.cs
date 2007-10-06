@@ -245,6 +245,8 @@ namespace Bic.Domain
 
 		public string DameSql()
 		{
+			this.GeneraConsulta();
+
 			string listaCampos ="";
 			string listaMetricas = "";
 
@@ -264,7 +266,7 @@ namespace Bic.Domain
 			{
 				// Le pido el nombre de la tabla Fact a la TablaReporte
 				string alias = this.tablaReporte.Tabla.Nombre;
-				listaMetricas += metrica.Funcion + "(" + alias + "." + metrica.Columna.Nombre + ")";
+				listaMetricas += metrica.SQLExpression;
 				// Mientras no sea el ultimo agregar la coma y el enter
 				if(mets.IndexOf(metrica) < this.metricas.Count - 1)
 					listaMetricas += ",\n";

@@ -21,7 +21,7 @@ namespace Bic.Application
 		/// <param name="idProyecto">El id del proyecto</param>
 		/// <returns></returns>
 		IList SelectColumnasDisponibles(long idProyecto);
-		
+
 		/// <summary>
 		/// Intenta una conexion con los datos que se proveen
 		/// </summary>

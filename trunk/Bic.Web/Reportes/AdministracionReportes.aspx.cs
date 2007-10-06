@@ -45,7 +45,7 @@ namespace Bic.Web
 
 			if (!IsPostBack)
 			{	
-				ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
+				//ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
 
 				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportCache;
 				this.dtgReport.DataBind();	

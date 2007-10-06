@@ -118,5 +118,23 @@ namespace Bic.Dao
 			return "Ok";
 		}
 
+		public DataSet EjecutarSql(Conexion c, string sql)
+		{
+			string connStr = String.Format("Server={0};Database={1};Uid={2};Pwd={3}", 
+				new object[]{c.Server, c.Database, c.User, c.Password});
+			MySqlConnection con = new MySqlConnection(connStr);
+
+			using (con)
+			{
+				con.Open();
+
+				DataSet ds = new DataSet();
+				MySqlCommand cmd = new MySqlCommand(sql, con);
+				MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+				da.Fill(ds);
+				con.Close();
+				return ds;
+			}
+		}
 	}
 }
