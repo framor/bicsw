@@ -48,8 +48,16 @@ namespace Bic.Domain
 			string sql = "from\n";
             
 			// Primero agrego la tabla Fact.
-			sql += this.tabla.NombreBD + "." + this.tabla.Nombre + " as " + this.tabla.Nombre + ",\n";
+			sql += this.tabla.NombreBD + "." + this.tabla.Nombre + " as " + this.tabla.Nombre;
 
+			// Si no tiene ningun camino lo retorno.
+			if(this.caminos.Count == 0)
+			{
+				sql += ";";
+				return sql;
+			}
+
+			sql += ",\n";
             // Por cada camino le pido que me de su from,
 			// o sea las tablas de cada uno de ellos.
 			foreach(Camino camino in this.caminos)
@@ -61,6 +69,7 @@ namespace Bic.Domain
 					sql += ",\n";
 			}
 
+			
 			// Agrego la clausula where.
 			sql += "\nwhere\n";
 
