@@ -273,7 +273,18 @@ namespace Bic.Domain
 			}
 
 
-			string sql = "select\n" + listaCampos + ",\n" + listaMetricas + this.tablaReporte.DameSql() + "Group By\n" + listaCampos + ";";
+			string sql = "select\n";
+			string sqlTablaReporte = this.tablaReporte.DameSql();
+
+
+			if(this.Atributos.Count == 0)
+			{
+				sql += listaMetricas + sqlTablaReporte + ";";
+			}
+			else
+			{
+				sql += listaCampos + ",\n" + listaMetricas + "\n" + sqlTablaReporte + "Group By\n" + listaCampos + ";";
+			}
 
 			return sql;
 		}

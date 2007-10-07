@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using Bic.Domain.Exception;
 
 namespace Bic.Web
 {
@@ -13,6 +14,7 @@ namespace Bic.Web
 
 		protected DataGrid dgReportes;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 
 		#endregion
 
@@ -55,9 +57,17 @@ namespace Bic.Web
 				
 			}
 			else if(e.CommandName.Equals("Ejecutar"))
-			{				
-				ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
-				Response.Redirect("Reportes/AdministracionReportes.aspx");
+			{
+				try
+				{
+					ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
+					Response.Redirect("Reportes/AdministracionReportes.aspx");
+				}
+				catch(ReporteInvalidoException rie)
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = rie.Message;
+				}
 			}
 			
 			this.ListReportes();
