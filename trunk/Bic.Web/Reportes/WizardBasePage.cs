@@ -127,6 +127,26 @@ namespace Bic.Web
 		private void Page_Load(object sender, EventArgs e)
 		{
 			this.BaseLoad();
+
+			if(ReportManager.GetInstance(this.Session).ReportCache == null)
+			{
+				//TODO: encontrar alguna manera mas elegante de cerrar la ventana en caso de que el report cache sea null
+				string script = @"
+					<script language=""javascript"">
+					<!--
+					function onLoad(){
+
+						window.opener = top;
+						window.close();
+					}
+
+					window.attachEvent(""onload"", onLoad);
+					// -->
+					</script>";
+
+				Page.RegisterStartupScript("closeWindowScript", script);
+
+			}
 		}
 
 		#endregion		
