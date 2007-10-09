@@ -1,0 +1,1 @@
+ALTER TABLE `bic`.`filtro` ADD COLUMN `atributo_id` INTEGER UNSIGNED NOT NULL AFTER `proyecto_id`;
