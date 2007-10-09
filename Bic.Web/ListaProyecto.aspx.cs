@@ -18,6 +18,7 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack)
 			{
+				this.Session["proyecto"] = null;
 				this.btnNuevo.Enabled = Usuario.Rol.PuedeEditarProyectos();
 				ListProyectos();
 			}
