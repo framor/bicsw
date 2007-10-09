@@ -13,7 +13,8 @@ namespace Bic.Web
 	public class EdicionFiltro : BasePage
 	{
 		protected TextBox txtNombre;
-		protected DropDownList ddlColumna;
+		protected DropDownList ddlAtributo;
+		protected DropDownList ddlDescripcion;
 		protected DropDownList ddlOperador;
 		protected TextBox txtValor;
 
@@ -36,7 +37,8 @@ namespace Bic.Web
 					Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
 					this.txtNombre.Text = f.Nombre;
 					this.txtValor.Text = f.Valor;
-					this.ddlColumna.SelectedValue = f.Columna.Id.ToString();
+					this.ddlDescripcion.SelectedValue = f.Columna.Id.ToString();
+					this.ddlAtributo.SelectedValue = f.Atributo.Id.ToString();
 					this.ddlOperador.SelectedValue = f.Operador;
 					datasource = new Columna[] {f.Columna};
 				} 
@@ -46,8 +48,11 @@ namespace Bic.Web
 					datasource = Util.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
 				}
 
-				this.ddlColumna.DataSource = datasource;
-				this.ddlColumna.DataBind();
+				this.ddlDescripcion.DataSource = datasource;
+				this.ddlDescripcion.DataBind();
+
+				this.ddlAtributo.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+				this.ddlAtributo.DataBind();
 
 				this.ddlOperador.Items.Add(new ListItem("<", "<"));
 				this.ddlOperador.Items.Add(new ListItem("<=", "<="));
@@ -92,7 +97,7 @@ namespace Bic.Web
 
 			if (id == -1)
 			{
-				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumna.SelectedValue));
+				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
 				Filtro f = new Filtro();
 				f.Columna = c;
 				f.Nombre = nombre;

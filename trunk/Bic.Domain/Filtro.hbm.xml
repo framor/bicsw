@@ -8,6 +8,7 @@
         <property name="operador" column="operador" type="String" access="field"/> 
         <property name="valor" column="valor" type="String" access="field"/> 
 		<many-to-one name="columna" class="Bic.Domain.Catalogo.Columna, Bic.Domain" column="columna_id" not-null="true" access="field" />
+		<many-to-one name="atributo" class="Bic.Domain.Atributo, Bic.Domain" column="atributo_id" not-null="true" access="field" />
 		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" column="proyecto_id" not-null="true" access="field"/>
     </class>
 </hibernate-mapping>

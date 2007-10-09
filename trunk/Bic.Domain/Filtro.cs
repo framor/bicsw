@@ -10,6 +10,7 @@ namespace Bic.Domain
 		private long id;
 		private string nombre;
 		private Columna columna;
+		private Atributo atributo;
 		private string operador;
 		private string valor;
 		private Proyecto proyecto;
@@ -40,6 +41,11 @@ namespace Bic.Domain
 		{
 			get { return this.columna; }
 			set { this.columna = value; }
+		}
+		public Atributo Atributo
+		{
+			get { return this.atributo; }
+			set { this.atributo = value; }
 		}
 		public string NombreColumna
 		{
