@@ -28,7 +28,8 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				object datasource = null;
+				this.ddlAtributo.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+				this.ddlAtributo.DataBind();
 				
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
@@ -40,19 +41,11 @@ namespace Bic.Web
 					this.ddlDescripcion.SelectedValue = f.Columna.Id.ToString();
 					this.ddlAtributo.SelectedValue = f.Atributo.Id.ToString();
 					this.ddlOperador.SelectedValue = f.Operador;
-					datasource = new Columna[] {f.Columna};
 				} 
-				else 
-				{
-					// TODO: mostrar solo columnas que son descripciones de atributos
-					datasource = Util.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
-				}
 
-				this.ddlDescripcion.DataSource = datasource;
+				Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
+				this.ddlDescripcion.DataSource = a.TablaLookup.Columnas;
 				this.ddlDescripcion.DataBind();
-
-				this.ddlAtributo.DataSource = BICContext.Instance.AtributoService.Select(Proyecto.Id);
-				this.ddlAtributo.DataBind();
 
 				this.ddlOperador.Items.Add(new ListItem("<", "<"));
 				this.ddlOperador.Items.Add(new ListItem("<=", "<="));
@@ -83,6 +76,7 @@ namespace Bic.Web
 		{    
 			this.btnAceptar.Click += new EventHandler(this.btnAceptar_Click);
 			this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+			this.ddlAtributo.SelectedIndexChanged += new EventHandler(this.ddlAtributo_SelectedIndexChanged);
 			this.Load += new EventHandler(this.Page_Load);
 
 		}
@@ -94,12 +88,14 @@ namespace Bic.Web
 			string nombre = this.txtNombre.Text;
 			string operador = this.ddlOperador.SelectedValue;
 			string valor = this.txtValor.Text;
+			Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
+			Columna desc = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
 
 			if (id == -1)
-			{
-				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
+			{				
 				Filtro f = new Filtro();
-				f.Columna = c;
+				f.Columna = desc;
+				f.Atributo = atributo;
 				f.Nombre = nombre;
 				f.Valor = valor;
 				f.Operador = operador;
@@ -111,6 +107,8 @@ namespace Bic.Web
 				Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
 				f.Nombre = nombre;
 				f.Valor = valor;
+				f.Atributo = atributo;
+				f.Columna = desc;
 				f.Operador = operador;
 				f.Proyecto = Proyecto;
 				BICContext.Instance.FiltroService.Save(f);
@@ -127,6 +125,13 @@ namespace Bic.Web
 		protected override bool TienePermisosSuficientes()
 		{
 			return this.Usuario.Rol.PuedeAccederAFiltros();
+		}
+
+		private void ddlAtributo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
+			this.ddlDescripcion.DataSource = a.TablaLookup.Columnas;
+			this.ddlDescripcion.DataBind();
 		}
 	}
 }

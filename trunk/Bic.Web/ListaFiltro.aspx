@@ -24,7 +24,7 @@
 			<HeaderStyle Font-Bold="True"></HeaderStyle>
 			<Columns>
 				<asp:BoundColumn DataField="Nombre" HeaderText="Nombre"></asp:BoundColumn>
-				<asp:BoundColumn DataField="NombreColumna" HeaderText="Nombre Columna"></asp:BoundColumn>
+				<asp:BoundColumn DataField="NombreColumna" HeaderText="Descripcion"></asp:BoundColumn>
  				<asp:HyperLinkColumn Text="Editar" Target="_self" DataNavigateUrlField="Id" DataNavigateUrlFormatString="EdicionFiltro.aspx?id={0}"></asp:HyperLinkColumn>
 				<asp:ButtonColumn Text="Borrar" CommandName="Borrar"></asp:ButtonColumn>
 			</Columns>
