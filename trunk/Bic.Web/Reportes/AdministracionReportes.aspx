@@ -10,13 +10,23 @@
 	<body>
 		<form id="form1" method="post" runat="server">
 			<div id="container">
-						
+				<cc1:Header id="bicHeader" runat="server"></cc1:Header>
 				<div id="tabs10">
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:83%">
 						<h2>Reporte</h2>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr valign="bottom">
+								<td align="left">
+									Drill down
+									<asp:DropDownList id="ddlDrillDown" runat="server" AutoPostBack="True"></asp:DropDownList>
+								</td>
+								<td align="left">
+									Drill up
+									<asp:DropDownList id="ddlDrillUp" runat="server" AutoPostBack="True"></asp:DropDownList>
+								</td>
+							</tr>
 							<tr valign="bottom">
 								<td align="left">
 									<asp:datagrid id="dtgReport" Runat="server" CellPadding="5" Font-Names="Verdana" Width="100%"

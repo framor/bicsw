@@ -40,5 +40,12 @@ namespace Bic.Application
 		/// <param name="id">el id del reporte</param>
 		/// <returns></returns>
 		DataSet Ejecutar(long id);
+
+		/// <summary>
+		/// Obtiene el resultado de ejecutar un reporte que esta en memoria.
+		/// </summary>
+		/// <param name="reporte">el reporte</param>
+		/// <returns></returns>
+		DataSet Ejecutar(Reporte reporte);
 	}
 }

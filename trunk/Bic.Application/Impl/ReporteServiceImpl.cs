@@ -73,6 +73,11 @@ namespace Bic.Application.Impl
 			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
 		}
 
+		public DataSet Ejecutar(Reporte reporte)
+		{
+			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
+		}
+
 		#endregion
 	}
 }

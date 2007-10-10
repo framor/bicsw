@@ -119,6 +119,11 @@
         <Files>
             <Include>
                 <File
+                    RelPath = "AtributoDAO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GenericDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

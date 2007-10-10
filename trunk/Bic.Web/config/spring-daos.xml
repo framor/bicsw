@@ -23,6 +23,10 @@
 	<object id="tablaDAO" type="Bic.Dao.TablaDAO, Bic.Dao" >
 		<property name="SessionFactory" ref="sessionFactory"/>	
 	</object>
+	
+	<object id="atributoDAO" type="Bic.Dao.AtributoDAO, Bic.Dao" >
+		<property name="SessionFactory" ref="sessionFactory"/>	
+	</object>
 
 	<object id="catalogoDAO" type="Bic.Dao.MySQLDAO, Bic.Dao" >
 	</object>
