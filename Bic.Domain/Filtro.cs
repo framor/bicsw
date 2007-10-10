@@ -68,11 +68,11 @@ namespace Bic.Domain
 			string sql = alias + "." + this.Columna.Nombre + " " + this.Operador + " ";
 			if(this.Columna.Tipo.Equals("varchar") || this.Columna.Tipo.Equals("char"))
 			{
-				sql += "'" + this.Valor + "'";
+				sql += "'" + this.Valor + "' ";
 			}
 			else
 			{
-				sql += this.Valor;
+				sql += this.Valor + " ";
 			}
 
 			return sql;

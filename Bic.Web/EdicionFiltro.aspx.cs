@@ -46,7 +46,7 @@ namespace Bic.Web
 				} 
 
 				Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
-				this.ddlDescripcion.DataSource = a.TablaLookup.Columnas;
+				this.ddlDescripcion.DataSource = a.ColumnasDescripciones;
 				this.ddlDescripcion.DataBind();
 
 				this.ddlOperador.Items.Add(new ListItem("<", "<"));
@@ -139,7 +139,7 @@ namespace Bic.Web
 		private void ddlAtributo_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Atributo a = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
-			this.ddlDescripcion.DataSource = a.TablaLookup.Columnas;
+			this.ddlDescripcion.DataSource = a.ColumnasDescripciones;
 			this.ddlDescripcion.DataBind();
 		}
 	}
