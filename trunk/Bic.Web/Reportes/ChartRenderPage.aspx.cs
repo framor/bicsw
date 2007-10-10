@@ -33,11 +33,7 @@ namespace Bic.Web.Reportes
 
 		private void SetMoreProperties(ChartEngine engine)
 		{
-			// TODO : habria que unificar logica en las paginas de renderizacion de garficos
-			// tambien habria que modificar las caracteristicas del grafico para que se vea con
-			// las descripciones y toda la bola.
-
-			System.Drawing.Font myFont = new System.Drawing.Font("Verdana", 8);
+			System.Drawing.Font myFont = new System.Drawing.Font("Verdana", 8);		
 			
 			engine.Border.EndCap =System.Drawing.Drawing2D.LineCap.Flat;
 			engine.Border.DashStyle=System.Drawing.Drawing2D.DashStyle.Solid;
@@ -53,18 +49,33 @@ namespace Bic.Web.Reportes
 			engine.PlotBackground.Color=Color.White;
 			engine.PlotBackground.HatchStyle= System.Drawing.Drawing2D.HatchStyle.Shingle;
 
+			engine.Legend.Position = LegendPosition.Bottom;
+			engine.Legend.Width = 30;
+			engine.Legend.Font = new System.Drawing.Font("Verdana", 6);
+			engine.Legend.Background.Type = InteriorType.Solid;
+			engine.Legend.Background.StartPoint = new Point(0, 0);
+			engine.Legend.Background.ForeColor = Color.Black;
+			engine.Legend.Background.Type = InteriorType.Solid;
+			engine.Legend.Background.EndPoint = new Point(100, 100);
+			engine.Legend.Background.Color=Color.White;
+			engine.Legend.Background.HatchStyle= System.Drawing.Drawing2D.HatchStyle.Shingle;
+			
+			engine.Legend.Border.EndCap =System.Drawing.Drawing2D.LineCap.Flat;
+			engine.Legend.Border.DashStyle=System.Drawing.Drawing2D.DashStyle.Solid;
+			engine.Legend.Border.StartCap=System.Drawing.Drawing2D.LineCap.Flat;
+			engine.Legend.Border.Color=Color.SteelBlue;
+			engine.Legend.Border.Width=0;
+			engine.Legend.Border.LineJoin= System.Drawing.Drawing2D.LineJoin.Miter;
+
 			engine.Padding =2;
 			engine.ChartPadding = 20;
-			engine.TopPadding = 20;
-			
+			engine.TopPadding = 20;			
 
-			// Es util cuando hay mas de un conjunto de datos (mas de 1 tupla de x,y)
-			engine.HasChartLegend = false;
+			engine.HasChartLegend = true;
 
-	        engine.GridLines = GridLines.Horizontal;
-			
+	        engine.GridLines = GridLines.Horizontal;			
 			engine.ShowYValues = true;
-
+			engine.ShowXValues = true;
 			engine.Background.Color = Color.FromArgb(70, Color.SteelBlue);
 
 			}
