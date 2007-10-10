@@ -26,20 +26,20 @@
 							<tr>
 								<td><b>Atributo</b></td>
 								<td>
-									<asp:DropDownList id="ddlAtributo" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+									<asp:DropDownList id="ddlAtributo" runat="server" DataTextField="Nombre" DataValueField="Id" AutoPostBack="True" Width="150px"></asp:DropDownList>
 								</td>
 							</tr>	
 							<tr>
 								<td><b>Descripcion</b></td>
 								<td>
-									<asp:DropDownList id="ddlDescripcion" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+									<asp:DropDownList id="ddlDescripcion" runat="server" DataTextField="Nombre" DataValueField="Id" Width="150px"></asp:DropDownList>
 									<asp:RequiredFieldValidator ID="reqColumna" Runat="server" ControlToValidate="ddlDescripcion" ErrorMessage="Por favor complete la Descripcion.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
 							<tr>
 								<td><b>Operador</b></td>
 								<td>
-									<asp:DropDownList id="ddlOperador" runat="server" ></asp:DropDownList>
+									<asp:DropDownList id="ddlOperador" runat="server" Width="150px"></asp:DropDownList>
 									<asp:RequiredFieldValidator ID="reqOperador" Runat="server" ControlToValidate="ddlOperador" ErrorMessage="Por favor complete el operador.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>						
