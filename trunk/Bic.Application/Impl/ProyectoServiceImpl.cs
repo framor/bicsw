@@ -30,7 +30,7 @@ namespace Bic.Application.Impl
 		{
 			if (unProyecto.Id  == 0) 
 			{
-				Proyecto p = this.ProyectoDAO.ObtenerByNombre(unProyecto.Nombre);
+				Proyecto p = (Proyecto) this.GenericDAO.SelectByNombre(typeof(Proyecto), unProyecto.Nombre);
 				if (p != null) 
 				{
 					throw new ServiceException("No se puede crear el proyecto ya que existe uno con el mismo nombre.");

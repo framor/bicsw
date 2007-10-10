@@ -32,6 +32,14 @@ namespace Bic.Domain.Dao
 		ICollection Select(Type entityType); 
 
 		/// <summary>
+		/// Obtiene todos los objetos de un tipo de la sesión de NHibernate
+		/// </summary>
+		/// <param name="entityType">El tipo de objeto</param>
+		/// <param name="nombre">el miembro nombre de la entidad</param>
+		/// <returns>Una coleccion de los objetos</returns>
+		object SelectByNombre(Type entityType, string nombre); 
+
+		/// <summary>
 		/// Elimina un objeto de la sesión de Hibernate
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>

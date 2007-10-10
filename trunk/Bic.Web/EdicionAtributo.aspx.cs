@@ -5,6 +5,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.WebControls;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -23,6 +24,7 @@ namespace Bic.Web
 		protected RequiredFieldValidator reqColumnaDescripcion;
 		protected RequiredFieldValidator reqTablaLookup;
 		protected ValidationSummary valSummary;
+		protected CustomValidator valNombre;
 		protected DropDownList ddlColumnaId;
 		protected ListBox lstDescripciones;
 		protected Header bicHeader;
@@ -144,8 +146,16 @@ namespace Bic.Web
 			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
 				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
 
-			BICContext.Instance.AtributoService.Save(a);
-			Response.Redirect("ListaAtributo.aspx");
+			try 
+			{
+				BICContext.Instance.AtributoService.Save(a);
+				Response.Redirect("ListaAtributo.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}	
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

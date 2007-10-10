@@ -1,6 +1,7 @@
 using System.Collections;
 using Bic.Domain;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -25,6 +26,14 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Filtro unFiltro) 
 		{
+			if (unFiltro.Id  == 0) 
+			{
+				Filtro f = (Filtro) this.GenericDAO.SelectByNombre(typeof(Filtro), unFiltro.Nombre);
+				if (f != null) 
+				{
+					throw new ServiceException("No se puede crear el filtro ya que existe uno con el mismo nombre.");
+				}
+			}
 			this.GenericDAO.Save(unFiltro);
 		}
 

@@ -21,6 +21,7 @@
 								<td width="70%" colspan="4">
 									<asp:TextBox id="txtNombreReporte" runat="server"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqNombreReporte" Runat="server" ControlToValidate="txtNombreReporte" ErrorMessage="Por favor complete el Nombre del reporte.">*</asp:RequiredFieldValidator>
+									<asp:CustomValidator Id="valNombre" runat="server">*</asp:CustomValidator>
 								</td>
 							</tr>
 							<tr>

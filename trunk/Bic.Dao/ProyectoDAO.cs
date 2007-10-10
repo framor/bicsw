@@ -15,22 +15,6 @@ namespace Bic.Dao
 		{
 		}
 
-		
-
-		/// <summary>
-		/// Implementa IProyectoDAO.ObtenerByNombre
-		/// </summary>
-		public Proyecto ObtenerByNombre(string nombre)
-		{
-			IList ret = 
-				HibernateTemplate.Find("from " + typeof(Proyecto).Name + " where nombre = ?", nombre);
-			if (ret != null && ret.Count > 0)
-			{
-				return (Proyecto) ret[0];
-			}
-			return null;
-		}
-
 		/// <summary>
 		/// Implementa IProyectoDAO.SelectAtributos
 		/// </summary>

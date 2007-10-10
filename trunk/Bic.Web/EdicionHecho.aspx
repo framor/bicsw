@@ -20,6 +20,7 @@
 								<td><b>Nombre</b></td>
 								<td>
 									<asp:TextBox id="txtNombre" runat="server" MaxLength="45"></asp:TextBox>
+									<asp:CustomValidator Id="valNombre" runat="server">*</asp:CustomValidator>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>
