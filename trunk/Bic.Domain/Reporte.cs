@@ -141,6 +141,7 @@ namespace Bic.Domain
 				{
 					//Creo el objeto TablaReporte con la tabla Fact destino y todos sus caminos
 					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.atributos));
+					tablaReporte.AgregarCaminos(this.GeneraCaminos(tabla,this.filtros));
 
 					// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
 					// por tener todos los caminos.
@@ -249,15 +250,25 @@ namespace Bic.Domain
 
 			string listaCampos ="";
 			string listaMetricas = "";
+			string filtrosWhere = "";
 
 			ArrayList ats = new ArrayList(this.atributos);
 			foreach(Atributo atrib in ats)
 			{
 				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
-				listaCampos += alias + "." + atrib.ColumnaId.Nombre;
+				IList columnasDesc = atrib.ColumnasDescripciones;
+				
+				foreach(Columna col in columnasDesc)
+				{
+					listaCampos += alias + "." + col.Nombre;
 
+					if (columnasDesc.IndexOf(col) < columnasDesc.Count - 1)
+						listaCampos += ",\n";
+
+				}
+				
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if (ats.IndexOf(atrib) < this.atributos.Count - 1)					
+				if (ats.IndexOf(atrib) < ats.Count - 1)					
 					listaCampos += ",\n";
 			}			
 
@@ -268,13 +279,31 @@ namespace Bic.Domain
 				string alias = this.tablaReporte.Tabla.Nombre;
 				listaMetricas += metrica.SQLExpression;
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if(mets.IndexOf(metrica) < this.metricas.Count - 1)
+				if(mets.IndexOf(metrica) < mets.Count - 1)
 					listaMetricas += ",\n";
+			}
+
+			foreach(Filtro filtro in this.Filtros)
+			{
+				Atributo atributoFiltro = filtro.Atributo;
+				string alias = atributoFiltro.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atributoFiltro);
+				filtrosWhere += filtro.GetSql(alias);
+
+				if (this.Filtros.IndexOf(filtro) < this.Filtros.Count - 1)
+				{
+					filtrosWhere += "\nand ";
+				}
+				
 			}
 
 
 			string sql = "select\n";
 			string sqlTablaReporte = this.tablaReporte.DameSql();
+
+			if (this.Filtros.Count > 0)
+			{
+				sqlTablaReporte += "\nand " + filtrosWhere;
+			}
 
 
 			if(this.Atributos.Count == 0)

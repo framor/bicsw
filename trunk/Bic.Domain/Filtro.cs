@@ -1,11 +1,12 @@
 using Bic.Domain.Catalogo;
+using Bic.Domain.Interfaces;
 
 namespace Bic.Domain
 {
 	/// <summary>
 	/// Descripción breve de Filtro.
 	/// </summary>
-	public class Filtro
+	public class Filtro : ICamino
 	{
 		private long id;
 		private string nombre;
@@ -55,6 +56,27 @@ namespace Bic.Domain
 		{
 			get { return this.proyecto; }
 			set { this.proyecto = value; }
+		}
+
+		public Camino GeneraCamino(Tabla tabla)
+		{
+			return this.Atributo.GeneraCamino(tabla);
+		}
+
+		public string GetSql(string alias)
+		{
+			string sql = alias + "." + this.Columna.Nombre + " " + this.Operador + " ";
+			if(this.Columna.Tipo.Equals("varchar") || this.Columna.Tipo.Equals("char"))
+			{
+				sql += "'" + this.Valor + "'";
+			}
+			else
+			{
+				sql += this.Valor;
+			}
+
+			return sql;
+
 		}
 	}
 }
