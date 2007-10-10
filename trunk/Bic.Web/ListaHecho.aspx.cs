@@ -43,6 +43,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgHechos.ItemCommand += new DataGridCommandEventHandler(this.dgHechos_ItemCommand);
 			this.dgHechos.ItemCreated += new DataGridItemEventHandler(this.dgHechos_ItemCreated);
+			this.dgHechos.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgHechos_PageChanger);
 		}
 		#endregion
 
@@ -63,17 +64,28 @@ namespace Bic.Web
 
 		private void dgHechos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgHechos.DataKeys[e.Item.ItemIndex];
-			try
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
-				BICContext.Instance.HechoService.Delete(id);
-				ListHechos();
+
+				long id = (long) this.dgHechos.DataKeys[e.Item.ItemIndex];
+				try
+				{
+					BICContext.Instance.HechoService.Delete(id);
+					ListHechos();
+				}
+				catch (ServiceException se)
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = se.Message;
+				}
 			}
-			catch (ServiceException se)
-			{
-				this.valEliminar.IsValid = false;
-				this.valEliminar.ErrorMessage = se.Message;
-			}
+		}
+
+		private void dgHechos_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgHechos.CurrentPageIndex = e.NewPageIndex;
+			ListHechos();
 		}
 
 		private void ListHechos()
