@@ -26,15 +26,14 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Hecho unHecho) 
 		{
-//			if (unHecho.Id  == 0) // si es una entidad nueva
-//			{
-//				// valido que no exista
-//				Hecho h = this.HechoDAO.ObtenerByNombre(unaHecho.Proyecto.Id, unaHecho.Nombre);
-//				if (t != null) 
-//				{
-//					throw new ServiceException("No se puede el hecho ya que existe una con el mismo nombre.");
-//				}
-//			}
+			if (unHecho.Id  == 0) 
+			{
+				Hecho h = (Hecho) this.GenericDAO.SelectByNombre(typeof(Hecho), unHecho.Nombre);
+				if (h != null) 
+				{
+					throw new ServiceException("No se puede crear el hecho ya que existe uno con el mismo nombre.");
+				}
+			}
 			this.GenericDAO.Save(unHecho);
 		}
 

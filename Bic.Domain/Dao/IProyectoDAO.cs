@@ -59,12 +59,5 @@ namespace Bic.Domain.Dao
 		/// <returns>IList de Reporte</returns>
 		IList SelectReportes(long proyectoId);
 
-		/// <summary>
-		/// Obtiene un proyecto por su nombre
-		/// </summary>
-		/// <param name="nombre">nombre del proyecto</param>
-		/// <returns>el proyecto encontrado o null</returns>
-		Proyecto ObtenerByNombre(string nombre);
-
 	}
 }

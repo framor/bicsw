@@ -4,6 +4,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Framework;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -21,6 +22,7 @@ namespace Bic.Web
 		protected RequiredFieldValidator reqFuncion;
 		protected RequiredFieldValidator reqHecho;
 		protected ValidationSummary valSummary;
+		protected CustomValidator valNombre;
 		protected Button btnCancelar;
 
 
@@ -89,22 +91,30 @@ namespace Bic.Web
 			string funcion = this.ddlFuncion.SelectedValue;
 			Hecho h = BICContext.Instance.HechoService.Retrieve(long.Parse(this.ddlHecho.SelectedValue));
 
-			if (id == -1)
+			try 
 			{
+				if (id == -1)
+				{
 
-				Metrica m = new Metrica(nombre, funcion, h);
-				m.Proyecto = Proyecto;
-				BICContext.Instance.MetricaService.Save(m);
+					Metrica m = new Metrica(nombre, funcion, h);
+					m.Proyecto = Proyecto;
+					BICContext.Instance.MetricaService.Save(m);
+				} 
+				else 
+				{
+					Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
+					m.Nombre = nombre;
+					m.Funcion = funcion;
+					m.Hecho = h;
+					BICContext.Instance.MetricaService.Save(m);
+				}			
+				Response.Redirect("ListaMetrica.aspx");
 			} 
-			else 
+			catch (ServiceException se)
 			{
-				Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
-				m.Nombre = nombre;
-				m.Funcion = funcion;
-				m.Hecho = h;
-				BICContext.Instance.MetricaService.Save(m);
-			}			
-			Response.Redirect("ListaMetrica.aspx");
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}	
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

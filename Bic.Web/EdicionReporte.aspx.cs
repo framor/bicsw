@@ -4,6 +4,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Framework;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -22,6 +23,7 @@ namespace Bic.Web
 
 		protected RequiredFieldValidator reqNombreReporte;
 		protected ValidationSummary valSummary;
+		protected CustomValidator valNombre;
 		protected Button btnAceptar;
 		protected Button btnCancelar;
 
@@ -160,8 +162,16 @@ namespace Bic.Web
 				}
 			}
 
-			BICContext.Instance.ReporteService.Save(r);
-			Response.Redirect("ListaReporte.aspx");
+			try 
+			{
+				BICContext.Instance.ReporteService.Save(r);
+				Response.Redirect("ListaReporte.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}	
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

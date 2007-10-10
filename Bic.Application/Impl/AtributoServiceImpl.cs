@@ -3,6 +3,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -27,6 +28,14 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Atributo unAtributo) 
 		{
+			if (unAtributo.Id  == 0) 
+			{
+				Atributo a = (Atributo) this.GenericDAO.SelectByNombre(typeof(Atributo), unAtributo.Nombre);
+				if (a != null) 
+				{
+					throw new ServiceException("No se puede crear el atributo ya que existe uno con el mismo nombre.");
+				}
+			}
 			this.GenericDAO.Save(unAtributo);
 		}
 

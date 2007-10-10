@@ -3,6 +3,7 @@ using Bic.Domain;
 using System.Collections;
 using System.Data;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -35,6 +36,14 @@ namespace Bic.Application.Impl
 
 		public void Save(Reporte reporte)
 		{
+			if (reporte.Id  == 0) 
+			{
+				Reporte r = (Reporte) this.GenericDAO.SelectByNombre(typeof(Reporte), reporte.Nombre);
+				if (r != null) 
+				{
+					throw new ServiceException("No se puede crear el reporte ya que existe uno con el mismo nombre.");
+				}
+			}
 			this.GenericDAO.Save(reporte);	
 		}
 

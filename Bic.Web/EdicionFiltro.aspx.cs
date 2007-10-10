@@ -4,6 +4,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Framework;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -20,6 +21,7 @@ namespace Bic.Web
 
 		protected Button btnAceptar;
 		protected ValidationSummary valSummary;
+		protected CustomValidator valNombre;
 		protected Button btnCancelar;
 
 
@@ -91,30 +93,37 @@ namespace Bic.Web
 			Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
 			Columna desc = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
 
-			if (id == -1)
-			{				
-				Filtro f = new Filtro();
-				f.Columna = desc;
-				f.Atributo = atributo;
-				f.Nombre = nombre;
-				f.Valor = valor;
-				f.Operador = operador;
-				f.Proyecto = Proyecto;
-				BICContext.Instance.FiltroService.Save(f);
-			} 
-			else 
+			try 
 			{
-				Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
-				f.Nombre = nombre;
-				f.Valor = valor;
-				f.Atributo = atributo;
-				f.Columna = desc;
-				f.Operador = operador;
-				f.Proyecto = Proyecto;
-				BICContext.Instance.FiltroService.Save(f);
-			}
-			
-			Response.Redirect("ListaFiltro.aspx");
+				if (id == -1)
+				{				
+					Filtro f = new Filtro();
+					f.Columna = desc;
+					f.Atributo = atributo;
+					f.Nombre = nombre;
+					f.Valor = valor;
+					f.Operador = operador;
+					f.Proyecto = Proyecto;
+					BICContext.Instance.FiltroService.Save(f);
+				} 
+				else 
+				{
+					Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
+					f.Nombre = nombre;
+					f.Valor = valor;
+					f.Atributo = atributo;
+					f.Columna = desc;
+					f.Operador = operador;
+					f.Proyecto = Proyecto;
+					BICContext.Instance.FiltroService.Save(f);
+				}
+				Response.Redirect("ListaFiltro.aspx");
+			} 
+			catch (ServiceException se)
+			{
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}	
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)

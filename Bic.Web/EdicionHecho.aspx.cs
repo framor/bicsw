@@ -4,6 +4,7 @@ using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Framework;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -19,6 +20,7 @@ namespace Bic.Web
 		protected RequiredFieldValidator reqNombre;
 		protected RequiredFieldValidator reqColumna;
 		protected ValidationSummary valSummary;
+		protected CustomValidator valNombre;
 		protected Button btnCancelar;
 
 
@@ -78,22 +80,28 @@ namespace Bic.Web
 			long id = (long) ViewState["id"];
 			string nombre = this.txtNombre.Text;
 
-			if (id == -1)
+			try 
 			{
-				Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumna.SelectedValue));
-				Hecho h = new Hecho(nombre, c);
-				h.Proyecto = Proyecto;
-				BICContext.Instance.HechoService.Save(h);
+				if (id == -1)
+				{
+					Columna c = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumna.SelectedValue));
+					Hecho h = new Hecho(nombre, c);
+					h.Proyecto = Proyecto;
+					BICContext.Instance.HechoService.Save(h);
+				} 
+				else 
+				{
+					Hecho h = BICContext.Instance.HechoService.Retrieve(id);
+					h.Nombre = nombre;
+					BICContext.Instance.HechoService.Save(h);
+				}			
+				Response.Redirect("ListaHecho.aspx");
 			} 
-			else 
+			catch (ServiceException se)
 			{
-				Hecho h = BICContext.Instance.HechoService.Retrieve(id);
-				h.Nombre = nombre;
-				BICContext.Instance.HechoService.Save(h);
-			}			
-
-			
-			Response.Redirect("ListaHecho.aspx");
+				this.valNombre.IsValid = false;
+				this.valNombre.ErrorMessage = se.Message;
+			}	
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
