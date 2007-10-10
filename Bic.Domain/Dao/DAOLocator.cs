@@ -28,5 +28,10 @@ namespace Bic.Domain.Dao
 		{
 			get { return (IProyectoDAO) ctx["proyectoDAO"]; }
 		}
+
+		public IAtributoDAO AtributoDAO
+		{
+			get { return (IAtributoDAO) ctx["atributoDAO"]; }
+		}
 	}
 }

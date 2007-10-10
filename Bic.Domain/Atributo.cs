@@ -7,11 +7,11 @@ using Iesi.Collections;
 
 namespace Bic.Domain
 {
-	/// <summary>
-	/// Descripción breve de Atributo.
-	/// </summary>
+
 	public class Atributo : ITablaMapeable, ICamino
 	{
+		#region Private methods
+
 		private long id;
 		private string nombre;
 		private Columna columnaId;
@@ -20,7 +20,12 @@ namespace Bic.Domain
 		private Proyecto proyecto;
 		private Atributo hijo;
 
+		#endregion
+
+		#region Constructor
+
 		public Atributo() {}
+
 
 		public Atributo(string nombre, Columna columnaId, Tabla tablaLkp, Proyecto proyecto) 
 		{
@@ -30,11 +35,17 @@ namespace Bic.Domain
 			this.Proyecto = proyecto;
 		}
 
+
+		#endregion
+
+		#region Properties
+
 		public Atributo Hijo
 		{
 			get { return this.hijo; }
 			set { this.hijo = value; }
 		}
+
 
 		public long Id 
 		{
@@ -42,11 +53,13 @@ namespace Bic.Domain
 			set { this.id = value; }
 		}
 
+
 		public string Nombre
 		{
 			get { return nombre; }
 			set { nombre = value; }
 		}
+
 
 		public Columna ColumnaId
 		{
@@ -54,20 +67,24 @@ namespace Bic.Domain
 			set { this.columnaId = value; }
 		}
 
+
 		public string NombreColumnaId
 		{
 			get { return this.columnaId.Nombre; }
 		}
+
 
 		public string AliasTablaLookup
 		{
 			get { return this.tablaLookup.Alias; }
 		}
 
+
 		public ArrayList ColumnasDescripciones
 		{
 			get { return new ArrayList(columnasDescripciones); }
 		}
+
 
 		public Tabla TablaLookup
 		{
@@ -75,30 +92,49 @@ namespace Bic.Domain
 			set { tablaLookup = value; }
 		}
 
+
 		public Proyecto Proyecto
 		{
 			get { return proyecto; }
 			set { proyecto = value; }
 		}
 
+
+		public ICollection AtributosPadres
+		{
+			get
+			{
+				return Dao.DAOLocator.Instance.AtributoDAO.ObtenerPadres(this.id);
+			}
+		}
+
+		#endregion
+
+		#region Public methods
+
 		public void AgregarColumnaDescripcion(Columna value)
 		{
 			this.columnasDescripciones.Add(value);
 		}
+
+
 		public void RemoverColumnaDescripcion(Columna value)
 		{
 			this.columnasDescripciones.Remove(value);
 		}
+
 
 		public IList ObtenerTablas()
 		{
 			return this.proyecto.ObtenerTablas(this.columnaId);
 		}
 
+
 		public Columna Columna
 		{
 			get { return this.columnaId; }
 		}
+
 
 		public Camino GeneraCamino(Tabla tabla)
 		{
@@ -131,10 +167,14 @@ namespace Bic.Domain
 			return camino;
 		}
 
+
 		public bool UsaTabla(Tabla unaTabla)
 		{
 			return this.TablaLookup.Equals(unaTabla);
 
 		}
+
+
+		#endregion
 	}
 }

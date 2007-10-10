@@ -15,6 +15,8 @@ using Table = iTextSharp.text.Table;
 using Color = iTextSharp.text.Color;
 using Rectangle = iTextSharp.text.Rectangle;
 using Font = iTextSharp.text.Font;
+using Bic.Application;
+using Bic.Domain;
 
 
 
@@ -28,6 +30,8 @@ namespace Bic.Web
 		#region	Web controls
 
 		protected System.Web.UI.WebControls.DataGrid dtgReport;
+		protected System.Web.UI.WebControls.DropDownList ddlDrillDown; 
+		protected System.Web.UI.WebControls.DropDownList ddlDrillUp;
 		protected System.Web.UI.WebControls.ImageButton imgBtnExcel;
 		protected System.Web.UI.WebControls.ImageButton imgBtnWord;
 		protected System.Web.UI.WebControls.ImageButton imgBtnText;
@@ -37,18 +41,54 @@ namespace Bic.Web
 
 		#endregion
 	
+		#region
+
+		private Reporte Reporte
+		{
+			get
+			{
+				this.reporte = this.Session["reporte"] as Reporte;
+				return reporte;
+			}
+
+			set
+			{
+				this.reporte = value;
+				this.Session["reporte"] = this.reporte;
+			}
+		}
+
+		#endregion
+
+		#region Private members
+
+		private Reporte reporte;
+
+		#endregion
+
 		#region Event handlers
 
 		private void Page_Load(object sender, System.EventArgs e)
 		{	
 			this.BaseLoad();	
-
+			//ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
 			if (!IsPostBack)
-			{	
-				//ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
+			{
+				long id = long.Parse(Request.Params["id"]);
 
-				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportCache;
-				this.dtgReport.DataBind();	
+				if (id != -1)
+				{
+					this.Reporte = BICContext.Instance.ReporteService.Retrieve(id);
+					
+					this.InitializeComboValues();
+					
+					this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte.Id);
+					this.dtgReport.DataBind();	
+				}
+				else
+				{
+					throw new Exception("Imposible generar el reporte. Id inexistente");
+				}
 			}
 		}
 
@@ -157,6 +197,40 @@ namespace Bic.Web
 		}
 
 
+		private void ddlDrillDown_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.ddlDrillDown.SelectedValue != string.Empty)
+			{
+				Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillDown.SelectedValue));
+				this.Reporte.AgregarAtributo(atributo);
+
+				this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte);
+				this.dtgReport.DataBind();	
+
+				this.InitializeComboValues();
+			}			
+		}
+
+
+		private void ddlDrillUp_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.ddlDrillUp.SelectedValue != string.Empty)
+			{
+				Atributo atributoPadre = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillUp.SelectedValue));				
+
+				this.Reporte.AgregarAtributo(atributoPadre);
+
+				//TODO : VER POR QUE MIERDA NO LO REMUEVE
+				this.Reporte.RemoverAtributo(atributoPadre.Hijo);
+
+				this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte);
+				this.dtgReport.DataBind();	
+
+				this.InitializeComboValues();
+			}
+		}
+
+
 		#endregion
 
 		#region	Private methods
@@ -188,6 +262,49 @@ namespace Bic.Web
 		}
 
 
+		private void InitializeComboValues()
+		{			
+			this.ddlDrillDown.DataSource = this.GetAtributosHijos();			
+			this.ddlDrillDown.DataTextField = "Nombre";
+			this.ddlDrillDown.DataValueField = "Id";
+			this.ddlDrillDown.DataBind();
+			this.ddlDrillDown.Items.Insert(0, new System.Web.UI.WebControls.ListItem(string.Empty,string.Empty));			
+			
+			this.ddlDrillUp.DataSource = this.GetAtributosPadres();			
+			this.ddlDrillUp.DataTextField = "Nombre";
+			this.ddlDrillUp.DataValueField = "Id";
+			this.ddlDrillUp.DataBind();
+			this.ddlDrillUp.Items.Insert(0, new System.Web.UI.WebControls.ListItem(string.Empty,string.Empty));
+		}
+
+		private ICollection GetAtributosHijos()
+		{
+			ArrayList atributosHijos = new ArrayList();
+
+			foreach ( Atributo atributo in this.Reporte.Atributos )
+			{
+				if(atributo.Hijo!= null)
+				{
+					atributosHijos.Add(atributo.Hijo);
+				}
+			}
+
+			return atributosHijos;
+		}
+
+		private ICollection GetAtributosPadres()
+		{
+			ArrayList atributosPadres = new ArrayList();
+
+			foreach ( Atributo atributo in this.Reporte.Atributos )
+			{
+				atributosPadres.AddRange(atributo.AtributosPadres);
+			}
+
+			return atributosPadres;
+		}
+
+
 		#endregion
 
 		#region Web Form Designer generated code
@@ -212,9 +329,11 @@ namespace Bic.Web
 			this.imgBtnWord.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnWord_Click);
 			this.imgBtnPDF.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnPDF_Click);
 			this.imgBtnText.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnText_Click);
-		//this.btnLaunchChartWizard.Attributes.Add("onclick", "JavaScript:window.open('ChartWizardStep1.aspx', 'ChartWizardStep1.aspx', 'width=300,height=400'); return false;");
+			this.ddlDrillDown.SelectedIndexChanged+=new EventHandler(ddlDrillDown_SelectedIndexChanged);
+			this.ddlDrillUp.SelectedIndexChanged+=new EventHandler(ddlDrillUp_SelectedIndexChanged);
 			this.Load += new System.EventHandler(this.Page_Load);
 		}
+
 
 		#endregion
 

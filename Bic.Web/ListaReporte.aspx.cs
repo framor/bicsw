@@ -60,8 +60,8 @@ namespace Bic.Web
 			{
 				try
 				{
-					ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
-					Response.Redirect("Reportes/AdministracionReportes.aspx");
+					//ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
+					Response.Redirect("Reportes/AdministracionReportes.aspx?id="+id);
 				}
 				catch(ReporteInvalidoException rie)
 				{

@@ -201,6 +201,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Dao\IAtributoDAO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Dao\ICatalogoDAO.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
