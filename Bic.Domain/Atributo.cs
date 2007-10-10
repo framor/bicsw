@@ -124,7 +124,6 @@ namespace Bic.Domain
 			else
 			{
 				camino = new Camino();
-				//camino.AgregarAtributo(this);
 			}
 
 			camino.AgregarAtributo(this);

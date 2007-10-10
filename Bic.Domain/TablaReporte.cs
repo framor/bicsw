@@ -10,12 +10,12 @@ namespace Bic.Domain
 	public class TablaReporte : IComparable
 	{
 		private Tabla tabla;
-		private IList caminos;
+		private ArrayList caminos;
 
 		public TablaReporte(Tabla tabla,IList listaCaminos)
 		{
 			this.tabla = tabla;
-			this.caminos = listaCaminos;
+			this.caminos = new ArrayList(listaCaminos);
 		}
 
 		/// <summary>
@@ -109,6 +109,11 @@ namespace Bic.Domain
 
 			return ""; // TODO arreglar esto porque no puede devolver esto;
 
+		}
+
+		public void AgregarCaminos(IList listaCaminos)
+		{
+			this.caminos.AddRange(listaCaminos);
 		}
 	}
 }
