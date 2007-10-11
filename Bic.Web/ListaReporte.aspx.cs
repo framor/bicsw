@@ -58,16 +58,7 @@ namespace Bic.Web
 			}
 			else if(e.CommandName.Equals("Ejecutar"))
 			{
-				try
-				{
-					//ReportManager.GetInstance(this.Session).ReportCache = BICContext.Instance.ReporteService.Ejecutar(id);
-					Response.Redirect("Reportes/AdministracionReportes.aspx?id="+id);
-				}
-				catch(ReporteInvalidoException rie)
-				{
-					this.valEliminar.IsValid = false;
-					this.valEliminar.ErrorMessage = rie.Message;
-				}
+				Response.Redirect("Reportes/AdministracionReportes.aspx?id="+id);
 			}
 			
 			this.ListReportes();
