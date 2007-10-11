@@ -3,6 +3,7 @@ using Bic.Domain;
 using System.Collections;
 using System.Data;
 using Bic.Domain.Dao;
+using Bic.Domain.Exception;
 using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
@@ -43,6 +44,18 @@ namespace Bic.Application.Impl
 				{
 					throw new ServiceException("No se puede crear el reporte ya que existe uno con el mismo nombre.");
 				}
+			}
+			try
+			{
+				reporte.GeneraConsulta();
+			}
+			catch (ReporteInvalidoException rie)
+			{
+				throw new ServiceException(rie.Message);
+			}
+			catch (NoExisteTablaCandidataException netce)
+			{
+				throw new ServiceException(netce.Message);
 			}
 			this.GenericDAO.Save(reporte);	
 		}
