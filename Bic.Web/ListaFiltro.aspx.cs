@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using System.Collections;
 
 namespace Bic.Web
 {
@@ -11,6 +12,7 @@ namespace Bic.Web
 	{
 		protected DataGrid dgFiltros;
 		protected Button btnNuevo;
+		protected CustomValidator valAtributosExistentes;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -74,7 +76,16 @@ namespace Bic.Web
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionFiltro.aspx?id=-1");
+			ICollection ds = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+			if( ds.Count == 0)
+			{
+				this.valAtributosExistentes.IsValid = false;
+				this.valAtributosExistentes.ErrorMessage = "No existe ningun Atributo para filtrar";
+			}
+			else
+			{
+				Response.Redirect("EdicionFiltro.aspx?id=-1");
+			}
 		}
 
 		protected override bool TienePermisosSuficientes()
