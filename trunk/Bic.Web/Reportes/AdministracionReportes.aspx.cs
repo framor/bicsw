@@ -19,12 +19,8 @@ using Bic.Application;
 using Bic.Domain;
 
 
-
 namespace Bic.Web
 {
-	/// <summary>
-	/// Summary description for AdministracionReportes.
-	/// </summary>
 	public class AdministracionReportes : BasePage 
 	{
 		#region	Web controls
@@ -37,65 +33,28 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.ImageButton imgBtnText;
 		protected System.Web.UI.WebControls.ImageButton imgBtnPDF;
 
-		//protected System.Web.UI.WebControls.Button btnLaunchChartWizard;
-
 		#endregion
 	
-		#region
-
-		private Reporte Reporte
-		{
-			get
-			{
-				this.reporte = this.Session["reporte"] as Reporte;
-				return reporte;
-			}
-
-			set
-			{
-				this.reporte = value;
-				this.Session["reporte"] = this.reporte;
-			}
-		}
-
-		#endregion
-
-		#region Private members
-
-		private Reporte reporte;
-
-		#endregion
-
 		#region Event handlers
 
 		private void Page_Load(object sender, System.EventArgs e)
 		{	
 			this.BaseLoad();	
-			//ReportManager.GetInstance(this.Session).ReportCache = DataSourceMockProvider.GetDataSource();
+
 			if (!IsPostBack)
 			{
-				long id = long.Parse(Request.Params["id"]);
-
-				if (id != -1)
+				this.InitializeComboValues();
+					
+				try
 				{
-					this.Reporte = BICContext.Instance.ReporteService.Retrieve(id);
-					
-					this.InitializeComboValues();
-					
-					this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte.Id);
+					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;
 					this.dtgReport.DataBind();	
 				}
-				else
-				{
-					throw new Exception("Imposible generar el reporte. Id inexistente");
+				catch ( Exception )
+				{					
+					Response.Redirect("../Login.aspx");					
 				}
 			}
-		}
-
-
-		private void dtgReport_ItemDataBound(object sender, DataGridItemEventArgs e)
-		{
-			//TODO : aca se puede asignar formato al datagrid.
 		}
 
 
@@ -170,7 +129,7 @@ namespace Bic.Web
 
 		private void imgBtnText_Click(object sender, ImageClickEventArgs e)
 		{
-			DataSet ds = DataSourceMockProvider.GetDataSource();
+			DataSet ds = ReportManager.GetInstance(this.Session).ReportSourceCache;
 			StringBuilder str = new StringBuilder();
 
 			for(int i=0;i<=ds.Tables[0].Rows.Count - 1; i++)
@@ -202,9 +161,9 @@ namespace Bic.Web
 			if (this.ddlDrillDown.SelectedValue != string.Empty)
 			{
 				Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillDown.SelectedValue));
-				this.Reporte.AgregarAtributo(atributo);
+				ReportManager.GetInstance(this.Session).Reporte.AgregarAtributo(atributo);
 
-				this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte);
+				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
 				this.dtgReport.DataBind();	
 
 				this.InitializeComboValues();
@@ -218,12 +177,12 @@ namespace Bic.Web
 			{
 				Atributo atributoPadre = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillUp.SelectedValue));				
 
-				this.Reporte.AgregarAtributo(atributoPadre);
+				ReportManager.GetInstance(this.Session).Reporte.AgregarAtributo(atributoPadre);
 
 				//TODO : VER POR QUE MIERDA NO LO REMUEVE
-				this.Reporte.RemoverAtributo(atributoPadre.Hijo);
+				ReportManager.GetInstance(this.Session).Reporte.RemoverAtributo(atributoPadre.Hijo);
 
-				this.dtgReport.DataSource = BICContext.Instance.ReporteService.Ejecutar(this.Reporte);
+				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
 				this.dtgReport.DataBind();	
 
 				this.InitializeComboValues();
@@ -239,7 +198,7 @@ namespace Bic.Web
 		// tabla y a las celdas en este metodo.
 		private Table GetDataGridTable()
 		{
-			DataSet ds = DataSourceMockProvider.GetDataSource();
+			DataSet ds = ReportManager.GetInstance(this.Session).ReportSourceCache; 
  
 			int filas= ds.Tables[0].Rows.Count; 
 			int columnas  = ds.Tables[0].Columns.Count;
@@ -281,7 +240,7 @@ namespace Bic.Web
 		{
 			ArrayList atributosHijos = new ArrayList();
 
-			foreach ( Atributo atributo in this.Reporte.Atributos )
+			foreach ( Atributo atributo in ReportManager.GetInstance(this.Session).Reporte.Atributos )
 			{
 				if(atributo.Hijo!= null)
 				{
@@ -296,7 +255,7 @@ namespace Bic.Web
 		{
 			ArrayList atributosPadres = new ArrayList();
 
-			foreach ( Atributo atributo in this.Reporte.Atributos )
+			foreach ( Atributo atributo in ReportManager.GetInstance(this.Session).Reporte.Atributos )
 			{
 				atributosPadres.AddRange(atributo.AtributosPadres);
 			}
@@ -324,7 +283,6 @@ namespace Bic.Web
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.dtgReport.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dtgReport_ItemDataBound);
 			this.imgBtnExcel.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnExcel_Click);
 			this.imgBtnWord.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnWord_Click);
 			this.imgBtnPDF.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnPDF_Click);

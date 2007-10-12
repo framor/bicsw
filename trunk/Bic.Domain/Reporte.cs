@@ -14,7 +14,6 @@ namespace Bic.Domain
 	{
 		#region Constructor
 
-
 		public Reporte()
 		{
 			this.atributos = new HashedSet();
@@ -71,18 +70,22 @@ namespace Bic.Domain
 			}
 		}
 
+
 		public IList Atributos 
 		{
 			get { return new ArrayList(this.atributos); }
 		}
+
 		public IList Metricas
 		{
 			get { return new ArrayList(this.metricas);}
 		}
+
 		public IList Filtros
 		{
 			get { return new ArrayList(this.filtros); }
 		}
+
 
 		#endregion
 
@@ -98,12 +101,13 @@ namespace Bic.Domain
 	
 		#endregion		
 
-		#region Public members
+		#region Public methods
 
 		public void AgregarAtributo(Atributo atributo)
 		{
 			this.atributos.Add(atributo);
 		}
+
 		public void RemoverAtributo(Atributo atributo)
 		{
 			this.atributos.Remove(atributo);
@@ -115,14 +119,17 @@ namespace Bic.Domain
 			this.metricas.Add(metrica);
 		}
 
+
 		public void RemoverMetrica(Metrica metrica)
 		{
 			this.metricas.Remove(metrica);
 		}
+
 		public void AgregarFiltro(Filtro filtro)
 		{
 			this.filtros.Add(filtro);
 		}
+
 		public void RemoverFiltro(Filtro filtro)
 		{
 			this.filtros.Remove(filtro);

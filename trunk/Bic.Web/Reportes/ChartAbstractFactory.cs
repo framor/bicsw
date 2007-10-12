@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using WebChart;
+using Bic.Application;
 
 namespace Bic.Web
 {
@@ -77,41 +78,39 @@ namespace Bic.Web
 
 		protected virtual DataSet GetDataSet(ReportManager reportManager) 
 		{
+			DataSet dsSource = reportManager.ReportSourceCache; 
 			DataSet ds = new DataSet();
 			DataTable table = ds.Tables.Add("My Table");
 			table.Columns.Add(new DataColumn(reportManager.DescriptionColumn));
-			table.Columns.Add(new DataColumn(reportManager.DataColumn, reportManager.ReportCache.Tables[0].Columns[reportManager.DataColumn].DataType ));
-
-			//TODO : aca se tienen que hacer casteos al tipo correspondiente. Ver si se puede hacer mediante el tipo de dato de la columna.
-			// Se tiene que hacer uno por uno ? Demonios.
+			table.Columns.Add(new DataColumn(reportManager.DataColumn, dsSource.Tables[0].Columns[reportManager.DataColumn].DataType ));
 
 			if(reportManager.GraphFilter == ReportManager.GraphFilters.Top.ToString() )
 			{
 				for (int i = 0; i < 100; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn];//reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString().Length != 0 ? Int64.Parse( reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString()):0;
+					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
+					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
 					table.Rows.Add(row);
 				}
 			}
 			else if(reportManager.GraphFilter == ReportManager.GraphFilters.Bottom.ToString() )
 			{
-				for (int i = reportManager.ReportCache.Tables[0].Rows.Count - 100; i < reportManager.ReportCache.Tables[0].Rows.Count; i++) 
+				for (int i = dsSource.Tables[0].Rows.Count - 100; i < dsSource.Tables[0].Rows.Count; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString().Length != 0 ? Int64.Parse( reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString()):0;
+					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
+					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
 					table.Rows.Add(row);
 				}
 			}
 			else if(reportManager.GraphFilter == ReportManager.GraphFilters.All.ToString() )
 			{
-				for (int i = 0; i < reportManager.ReportCache.Tables[0].Rows.Count; i++) 
+				for (int i = 0; i < dsSource.Tables[0].Rows.Count; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString().Length != 0 ? Int64.Parse( reportManager.ReportCache.Tables[0].Rows[i][reportManager.DataColumn].ToString()):0;
+					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
+					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
 					table.Rows.Add(row);
 				}
 			}
