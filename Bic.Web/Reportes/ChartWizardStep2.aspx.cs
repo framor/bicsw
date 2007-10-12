@@ -8,6 +8,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using Bic.Application;
 using WebChart;
 
 namespace Bic.Web
@@ -115,7 +116,9 @@ namespace Bic.Web
 
 		private void InitializeComboValues()
 		{
-			foreach ( DataColumn column in ReportManager.GetInstance(this.Session).ReportCache.Tables[0].Columns)
+			DataSet dsSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+
+			foreach ( DataColumn column in dsSource.Tables[0].Columns)
 			{
 				if(column.DataType == typeof (System.Int16) || 
 					column.DataType == typeof (System.Int32) ||

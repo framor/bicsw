@@ -58,7 +58,8 @@ namespace Bic.Web
 			}
 			else if(e.CommandName.Equals("Ejecutar"))
 			{
-				Response.Redirect("Reportes/AdministracionReportes.aspx?id="+id);
+				ReportManager.GetInstance(this.Session).Reporte = BICContext.Instance.ReporteService.Retrieve(id);
+				Response.Redirect("Reportes/AdministracionReportes.aspx");
 			}
 			
 			this.ListReportes();

@@ -11,6 +11,7 @@
 		<form id="form1" method="post" runat="server">
 			<div id="container">
 				<cc1:Header id="bicHeader" runat="server"></cc1:Header>
+				<cc1:Menu id="bicMenu" runat="server"></cc1:Menu>
 				<div id="tabs10">
 				</div>
 				<div id="container2">
@@ -54,7 +55,7 @@
 						<h2>Graficar</h2>
 						<table width="70%" cellspacing="0" cellpadding="1" border="0">
 							<tr>
-								<input type="button"  value="Chart wizard" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=600 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
+								<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=600 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
 							</tr>							
 						</table>
 					</div>

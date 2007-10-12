@@ -118,7 +118,7 @@ namespace Bic.Web
 		}
 
 
-		protected void BaseLoad()
+		protected virtual void BaseLoad()
 		{
 			if (Usuario == null) // expiro la sesion?
 			{

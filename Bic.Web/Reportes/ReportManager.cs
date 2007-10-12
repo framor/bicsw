@@ -4,6 +4,7 @@ using WebChart;
 using System.Web.SessionState;
 using System.Data;
 using Bic.Domain;
+using Bic.Application;
 
 namespace Bic.Web
 {
@@ -48,22 +49,6 @@ namespace Bic.Web
 
 		#region Properties
 
-		public DataSet ReportCache
-		{
-			get
-			{
-				this.reportCache = this.httpSessionState["reportCache"] as DataSet;
-				return this.reportCache;
-			}
-
-			set
-			{
-				this.reportCache = value;
-				this.httpSessionState["reportCache"] = this.reportCache;
-			}
-		}
-
-
 		public String DataColumn
 		{
 			get
@@ -95,6 +80,7 @@ namespace Bic.Web
 			}
 		}
 
+
 		public string GraphFilter
 		{
 			get
@@ -110,6 +96,41 @@ namespace Bic.Web
 			}
 		}
 
+
+		public Reporte Reporte
+		{
+			get
+			{
+				this.reporte = this.httpSessionState["reporte"] as Reporte;
+				return reporte;
+			}
+
+			set
+			{
+				this.reporte = value;
+				this.httpSessionState["reporte"] = this.reporte;
+			}
+		}
+
+
+		public DataSet ReportSourceCache
+		{
+			get
+			{
+				if(this.Reporte!=null)
+				{					
+					//Aca deberia actualizarse solo si cambio el reporte. Preguntarle a fer si existe alguna propeidad de 
+					// hibernate que permita determinar esto.
+					this.reportSourceCache = BICContext.Instance.ReporteService.Ejecutar(this.Reporte.Id);					
+				}
+				else
+				{
+					throw new Exception("Reporte no seteado");
+				}
+
+				return this.reportSourceCache;
+			}
+		}
 
 		public ChartTypesSelectedManager ChartTypesSelectedManager
 		{
@@ -132,11 +153,12 @@ namespace Bic.Web
 		private static ReportManager reportManager;
 		private static object syncRoot = new Object();
         
-		private DataSet reportCache;
+		private Reporte reporte;
 		private HttpSessionState httpSessionState;
 
 		private String dataColumn;
 		private String descriptionColumn;
+		private DataSet reportSourceCache;
 		private string  graphFilter;
 		
 		private ChartTypesSelectedManager chartTypesSelectedManager; 
@@ -167,11 +189,14 @@ namespace Bic.Web
 			this.ChartTypesSelectedManager.Add(graphType, ChartAbstractFactory.GetFactory(graphType));
 		}
 
+
 		public ArrayList GetColumnNames()
 		{
+			DataSet ds = this.ReportSourceCache;
+
 			ArrayList columnNames = new ArrayList();
 
-			foreach(DataColumn column in this.ReportCache.Tables[0].Columns)
+			foreach(DataColumn column in ds.Tables[0].Columns)
 			{
 				columnNames.Add(column.ColumnName);
 			}

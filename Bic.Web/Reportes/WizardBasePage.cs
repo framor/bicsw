@@ -88,7 +88,6 @@ namespace Bic.Web
 			this.btnBack.Click+=new EventHandler(btnBack_Click);
 			this.btnNext.Click+=new EventHandler(btnNext_Click);
 			this.btnCancel.Click+=new EventHandler(btnCancel_Click);
-			Page.Load+=new EventHandler(Page_Load);
 
 			if(this.isFirstPage)
 			{
@@ -124,11 +123,11 @@ namespace Bic.Web
 		}
 
 
-		private void Page_Load(object sender, EventArgs e)
+		protected override void BaseLoad()
 		{
-			this.BaseLoad();
+			base.BaseLoad ();
 
-			if(ReportManager.GetInstance(this.Session).ReportCache == null)
+			if(ReportManager.GetInstance(this.Session).Reporte == null)
 			{
 				//TODO: encontrar alguna manera mas elegante de cerrar la ventana en caso de que el report cache sea null
 				string script = @"
@@ -145,9 +144,9 @@ namespace Bic.Web
 					</script>";
 
 				Page.RegisterStartupScript("closeWindowScript", script);
-
 			}
 		}
+		
 
 		#endregion		
 	}
