@@ -18,14 +18,16 @@ namespace Bic.Web
 
 		public abstract Chart CreateChart();		
 
-		public virtual Chart GetChart(ReportManager reportManager, ChartEngine chartEngine)
+		public virtual Chart GetChart(ReportManager reportManager, ChartEngine chartEngine,DataSourceItem dataSourceItem)
 		{
 			Chart chart = this.CreateChart();
 
 			chart.Engine = chartEngine;
-			chart.DataSource = this.GetDataSet(reportManager).Tables[0].DefaultView;
-			chart.DataXValueField = reportManager.DescriptionColumn;
-			chart.DataYValueField = reportManager.DataColumn;
+			chart.DataSource = this.GetDataSet(reportManager,dataSourceItem).Tables[0].DefaultView;
+			chart.DataXValueField = dataSourceItem.DescriptionField;
+			chart.DataYValueField = dataSourceItem.DataField; 
+			chart.Legend = dataSourceItem.Name; 
+			chart.Fill.Color = reportManager.GetChartColor();
 			chart.DataLabels.Visible = false;
 			chart.DataLabels.ForeColor = System.Drawing.Color.Blue;
 			chart.Shadow.Visible = true;
@@ -38,14 +40,17 @@ namespace Bic.Web
 		}
 
 
-		public virtual Chart GetPreviewChart(ReportManager reportManager, ChartEngine chartEngine)
+		public virtual Chart GetPreviewChart(ReportManager reportManager, ChartEngine chartEngine,DataSourceItem dataSourceItem)
 		{
 			Chart chart = this.CreateChart();
 
 			chart.Engine = chartEngine;
-			chart.DataSource = this.GetDataSet(reportManager).Tables[0].DefaultView;
-			chart.DataXValueField = reportManager.DescriptionColumn;
-			chart.DataYValueField = reportManager.DataColumn;
+			chart.DataSource = this.GetDataSet(reportManager,dataSourceItem).Tables[0].DefaultView;
+			chart.DataXValueField = dataSourceItem.DescriptionField;
+			chart.DataYValueField = dataSourceItem.DataField; 
+			chart.Legend = dataSourceItem.Name; 
+			chart.Fill.Color = reportManager.GetChartColor();
+			chart.LineMarker = new SquareLineMarker(6, chart.Fill.Color, chart.Line.Color);
 			chart.DataLabels.Visible = false;
 			chart.DataLabels.ForeColor = System.Drawing.Color.Blue;
 			chart.Shadow.Visible = true;
@@ -76,31 +81,36 @@ namespace Bic.Web
 
 		#region Protected methods
 
-		protected virtual DataSet GetDataSet(ReportManager reportManager) 
+		protected virtual DataSet GetDataSet(ReportManager reportManager,DataSourceItem dataSourceItem) 
 		{
 			DataSet dsSource = reportManager.ReportSourceCache; 
 			DataSet ds = new DataSet();
 			DataTable table = ds.Tables.Add("My Table");
-			table.Columns.Add(new DataColumn(reportManager.DescriptionColumn));
-			table.Columns.Add(new DataColumn(reportManager.DataColumn, dsSource.Tables[0].Columns[reportManager.DataColumn].DataType ));
+			table.Columns.Add(new DataColumn(dataSourceItem.DescriptionField));
+			table.Columns.Add(new DataColumn(dataSourceItem.DataField, dsSource.Tables[0].Columns[dataSourceItem.DataField].DataType ));
+
 
 			if(reportManager.GraphFilter == ReportManager.GraphFilters.Top.ToString() )
 			{
-				for (int i = 0; i < 100; i++) 
+				int maxRows = dsSource.Tables[0].Rows.Count>100?100:dsSource.Tables[0].Rows.Count; 
+
+				for (int i = 0; i < maxRows; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
+					row[dataSourceItem.DescriptionField] = dsSource.Tables[0].Rows[i][dataSourceItem.DescriptionField].ToString();
+					row[dataSourceItem.DataField] = dsSource.Tables[0].Rows[i][dataSourceItem.DataField];
 					table.Rows.Add(row);
 				}
 			}
 			else if(reportManager.GraphFilter == ReportManager.GraphFilters.Bottom.ToString() )
 			{
-				for (int i = dsSource.Tables[0].Rows.Count - 100; i < dsSource.Tables[0].Rows.Count; i++) 
+				int startRow = dsSource.Tables[0].Rows.Count>100?dsSource.Tables[0].Rows.Count-100:0; 
+
+				for (int i = startRow; i < dsSource.Tables[0].Rows.Count; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
+					row[dataSourceItem.DescriptionField] = dsSource.Tables[0].Rows[i][dataSourceItem.DescriptionField].ToString();
+					row[dataSourceItem.DataField] = dsSource.Tables[0].Rows[i][dataSourceItem.DataField];
 					table.Rows.Add(row);
 				}
 			}
@@ -109,8 +119,8 @@ namespace Bic.Web
 				for (int i = 0; i < dsSource.Tables[0].Rows.Count; i++) 
 				{
 					DataRow row = table.NewRow();
-					row[reportManager.DescriptionColumn] = dsSource.Tables[0].Rows[i][reportManager.DescriptionColumn].ToString();
-					row[reportManager.DataColumn] = dsSource.Tables[0].Rows[i][reportManager.DataColumn];
+					row[dataSourceItem.DescriptionField] = dsSource.Tables[0].Rows[i][dataSourceItem.DescriptionField].ToString();
+					row[dataSourceItem.DataField] = dsSource.Tables[0].Rows[i][dataSourceItem.DataField];
 					table.Rows.Add(row);
 				}
 			}

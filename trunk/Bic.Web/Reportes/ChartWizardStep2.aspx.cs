@@ -21,6 +21,14 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.DropDownList ddlDescripciones;
 		protected System.Web.UI.WebControls.RadioButtonList rdoBtnLstFilterOptions;
 		protected System.Web.UI.WebControls.ImageButton imgPreviewChart;
+		protected System.Web.UI.WebControls.ListBox lstBoxDataSources;		
+		protected System.Web.UI.WebControls.LinkButton lnkAddDataSource;	
+		protected System.Web.UI.WebControls.LinkButton lnkRemoveDataSource;	
+		protected System.Web.UI.WebControls.TextBox txtDataSourceName;	
+
+		protected System.Web.UI.WebControls.RequiredFieldValidator reqDataSourceName;	
+		protected System.Web.UI.WebControls.ValidationSummary valSummary;	
+		protected System.Web.UI.WebControls.CustomValidator valDataSourceName;	
 
 		#endregion
 	
@@ -34,27 +42,9 @@ namespace Bic.Web
 			{
 				this.InitializeComboValues();
 				this.InitializeRadioButtonList();
-
-				ReportManager.GetInstance(this.Session).DataColumn  = this.ddlColumna.SelectedValue;
-				ReportManager.GetInstance(this.Session).DescriptionColumn  = this.ddlDescripciones.SelectedValue;
-				ReportManager.GetInstance(this.Session).GraphFilter  = this.rdoBtnLstFilterOptions.SelectedValue;
-
+				
 				this.PopulateView();
 			}
-		}
-
-
-		private void ddlColumna_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			ReportManager.GetInstance(this.Session).DataColumn  = this.ddlColumna.SelectedValue;
-			this.PopulateView();
-		}
-
-
-		private void ddlDescripciones_SelectedIndexChanged(object sender, EventArgs e)
-		{			
-			ReportManager.GetInstance(this.Session).DescriptionColumn = this.ddlDescripciones.SelectedValue;
-			this.PopulateView();
 		}
 
 
@@ -62,6 +52,38 @@ namespace Bic.Web
 		{
 			ReportManager.GetInstance(this.Session).GraphFilter = this.rdoBtnLstFilterOptions.SelectedValue;			
 			this.PopulateView();
+		}
+
+
+		private void lnkAddDataSource_Click(object sender, EventArgs e)
+		{
+			if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.txtDataSourceName.Text))
+			{
+				DataSourceItem item = new DataSourceItem();
+				item.Name = this.txtDataSourceName.Text;
+				item.DataField = this.ddlColumna.SelectedValue;
+				item.DescriptionField = this.ddlDescripciones.SelectedValue;
+
+				ReportManager.GetInstance(this.Session).DataSources.Add(this.txtDataSourceName.Text,item);
+			}
+			else
+			{
+				this.valDataSourceName.IsValid = false;
+				this.valDataSourceName.ErrorMessage = "Ya existe una fuente de datos con ese nombre.";
+			}			
+
+			this.PopulateView();
+		}
+
+
+		private void lnkRemoveDataSource_Click(object sender, EventArgs e)
+		{
+			if(this.lstBoxDataSources.SelectedIndex != -1)
+			{
+				ReportManager.GetInstance(this.Session).DataSources.Remove(this.lstBoxDataSources.SelectedValue); 
+				this.lstBoxDataSources.Items.RemoveAt(this.lstBoxDataSources.SelectedIndex); 
+				this.PopulateView();
+			}	
 		}
 
 
@@ -132,10 +154,8 @@ namespace Bic.Web
 				{
 					this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
 				}
-				else
-				{
-					this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
-				}
+				
+				this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));				
 				
 			}
 		}
@@ -164,7 +184,48 @@ namespace Bic.Web
 
 
 		protected override void PopulateView()
-		{}
+		{
+			this.ddlDescripciones.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count == 0;
+			this.lnkRemoveDataSource.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0;
+			this.txtDataSourceName.Text = string.Empty;
+
+			this.lstBoxDataSources.Items.Clear();
+			
+			if(ReportManager.GetInstance(this.Session).GraphFilter != null)
+			{
+				ReportManager.GraphFilters filter = (ReportManager.GraphFilters) Enum.Parse(typeof(ReportManager.GraphFilters), ReportManager.GetInstance(this.Session).GraphFilter);
+				switch (filter)
+				{
+					case ReportManager.GraphFilters.All:
+							this.rdoBtnLstFilterOptions.SelectedIndex=2;
+							break;
+					case ReportManager.GraphFilters.Top:
+							this.rdoBtnLstFilterOptions.SelectedIndex=0;
+							break;
+					case ReportManager.GraphFilters.Bottom:
+							this.rdoBtnLstFilterOptions.SelectedIndex=1;
+							break;																	
+				}
+			}
+
+			foreach(String key in ReportManager.GetInstance(this.Session).DataSources.Keys)
+			{
+				DataSourceItem item = ReportManager.GetInstance(this.Session).DataSources[key] as DataSourceItem; 
+				this.lstBoxDataSources.Items.Add(new ListItem(item.Name,item.Name));
+			}
+
+			if(ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0)
+			{
+				ReportManager.GetInstance(this.Session).GraphFilter  = this.rdoBtnLstFilterOptions.SelectedValue;
+
+				this.imgPreviewChart.ImageUrl="PreviewChartRenderPage.aspx";	
+			}
+			else
+			{
+				this.imgPreviewChart.ImageUrl="../img/emptyPreviewChart.png";		
+			}						
+		}
+
 
 		#endregion	
 
@@ -172,26 +233,21 @@ namespace Bic.Web
 
 		override protected void OnInit(EventArgs e)
 		{
-			//
-			// CODEGEN: This call is required by the ASP.NET Web Form Designer.
-			//
 			InitializeComponent();
 			base.OnInit(e);
 		}
 		
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		private void InitializeComponent()
 		{    
 			this.Load += new System.EventHandler(this.Page_Load);	
-			this.ddlColumna.SelectedIndexChanged+=new EventHandler(ddlColumna_SelectedIndexChanged);
-			this.ddlDescripciones.SelectedIndexChanged+=new EventHandler(ddlDescripciones_SelectedIndexChanged);
 			this.rdoBtnLstFilterOptions.SelectedIndexChanged+=new EventHandler(rdoBtnLstFilterOptions_SelectedIndexChanged);
+			this.lnkAddDataSource.Click+=new EventHandler(lnkAddDataSource_Click);
+			this.lnkRemoveDataSource.Click+=new EventHandler(lnkRemoveDataSource_Click);
+			this.imgPreviewChart.CausesValidation=false;
 		}
 
-		#endregion		
+
+		#endregion
 	}
 }

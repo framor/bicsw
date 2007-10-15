@@ -75,9 +75,10 @@ namespace Bic.Web
 
 		private void UpdateChartCompatibility()
 		{
-			//Este metodo agregara o quitara algun grafico seleccionado
-			// en funcion de la compatibilidad entre ellos
-			// por ejemplo, lineas y torta a la vez no se puede
+			if(this.selectedCharts[ReportManager.GraphTypes.Pie.ToString()] != null && this.selectedCharts.Keys.Count != 1)
+			{
+				this.selectedCharts.Remove(ReportManager.GraphTypes.Pie.ToString());
+			}
 		}
 
 
