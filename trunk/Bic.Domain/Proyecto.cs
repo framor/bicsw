@@ -109,6 +109,24 @@ namespace Bic.Domain
 			}
 		}
 
+		public IList Reportes
+		{
+			get
+			{
+				IProyectoDAO dao = DAOLocator.Instance.ProyectoDAO;
+				return dao.SelectReportes(this.Id);
+			}
+		}
+
+		public IList Filtros
+		{
+			get
+			{
+				IProyectoDAO dao = DAOLocator.Instance.ProyectoDAO;
+				return dao.SelectFiltros(this.Id);
+			}
+		}
+
 		public bool PuedeEliminarTabla(Tabla unaTabla) 
 		{
 			foreach (Atributo a in Atributos)
@@ -133,6 +151,25 @@ namespace Bic.Domain
 			foreach(Metrica m in this.Metricas)
 			{
 				if (m.Hecho.Equals(unHecho))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		public bool PuedeEliminarAtributo(Atributo unAtributo)
+		{
+			foreach(Reporte r in this.Reportes)
+			{
+				if (r.Atributos.Contains(unAtributo))
+				{
+					return false;
+				}
+			}
+			foreach(Filtro f in this.Filtros)
+			{
+				if (f.Atributo.Equals(unAtributo))
 				{
 					return false;
 				}
