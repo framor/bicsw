@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -11,6 +12,7 @@ namespace Bic.Web
 	{
 		protected DataGrid dgMetricas;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -66,9 +68,17 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				long id = (long) this.dgMetricas.DataKeys[e.Item.ItemIndex];
-				BICContext.Instance.MetricaService.Delete(id);
-				this.dgMetricas.CurrentPageIndex = 0;
-				ListMetricas();
+				try 
+				{
+					BICContext.Instance.MetricaService.Delete(id);
+					this.dgMetricas.CurrentPageIndex = 0;
+					ListMetricas();
+				}
+				catch (ServiceException se) 
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = se.Message;
+				}			
 			}
 		}
 
