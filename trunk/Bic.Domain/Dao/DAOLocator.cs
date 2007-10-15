@@ -33,5 +33,11 @@ namespace Bic.Domain.Dao
 		{
 			get { return (IAtributoDAO) ctx["atributoDAO"]; }
 		}
+
+		public ITablaDAO TablaDAO
+		{
+			get { return (ITablaDAO) ctx["tablaDAO"]; }
+		}
+
 	}
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Bic.Domain.Dao;
 
 namespace Bic.Domain.Catalogo
 {

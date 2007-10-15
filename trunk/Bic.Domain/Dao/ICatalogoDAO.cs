@@ -30,6 +30,12 @@ namespace Bic.Domain.Dao
 		/// <returns>IList de columnas</returns>
 		IList ObtenerColumnas(Tabla t);
 
+		/// <summary>
+		/// Ejecuta un string de sql en la conexion dada
+		/// </summary>
+		/// <param name="c">parámetros de conexion</param>
+		/// <param name="sql">sql</param>
+		/// <returns>dataset resultante</returns>
 		DataSet EjecutarSql(Conexion c, string sql);
 	}
 }
