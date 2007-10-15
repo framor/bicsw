@@ -76,15 +76,23 @@ namespace Bic.Application.Impl
 		public void Delete(long id)
 		{
 			Atributo at = Retrieve(id);
-			ICollection atributos = Select(at.Proyecto.Id);
-			foreach (Atributo a in atributos)
+			Proyecto p = at.Proyecto;
+			if (p.PuedeEliminarAtributo(at)) 
 			{
-				if (at.Equals(a.Hijo))
+				ICollection atributos = Select(at.Proyecto.Id);
+				foreach (Atributo a in atributos)
 				{
-					a.Hijo = null;
+					if (at.Equals(a.Hijo))
+					{
+						a.Hijo = null;
+					}
 				}
+				this.GenericDAO.Delete(typeof(Atributo), id);
+			} 
+			else 
+			{
+				throw new ServiceException("No se puede eliminar el atributo ya que está siendo utilizado por un filtro y/o un reporte.");
 			}
-			this.GenericDAO.Delete(typeof(Atributo), id);
 		}
 
 	}

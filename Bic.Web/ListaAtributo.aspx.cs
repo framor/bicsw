@@ -1,4 +1,5 @@
 using System;
+using Bic.Framework.Exception;
 using System.Web.UI.WebControls;
 using Bic.Application;
 
@@ -11,6 +12,7 @@ namespace Bic.Web
 	{
 		protected DataGrid dgAtributos;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -67,9 +69,17 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				long id = (long) this.dgAtributos.DataKeys[e.Item.ItemIndex];
-				BICContext.Instance.AtributoService.Delete(id);
-				this.dgAtributos.CurrentPageIndex = 0;
-				ListAtributos();
+				try 
+				{
+					BICContext.Instance.AtributoService.Delete(id);
+					this.dgAtributos.CurrentPageIndex = 0;
+					ListAtributos();
+				}
+				catch (ServiceException se) 
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = se.Message;
+				}	
 			}
 		}
 
