@@ -43,6 +43,7 @@ namespace Bic.Web
 			this.dgProyectos.ItemCommand += new DataGridCommandEventHandler(this.dgProyectos_ItemCommand);
 			this.dgProyectos.ItemCreated += new DataGridItemEventHandler(this.dgProyectos_ItemCreated);
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
+			this.dgProyectos.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgProyectos_PageChanger);
 			this.Load += new EventHandler(this.Page_Load);
 
 		}
@@ -76,19 +77,31 @@ namespace Bic.Web
 			}
 		}
 
+		
 		private void dgProyectos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgProyectos.DataKeys[e.Item.ItemIndex];
-			if (e.CommandName.Equals("Borrar"))
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
-				BICContext.Instance.ProyectoService.Delete(id);
-				ListProyectos();
+				long id = (long) this.dgProyectos.DataKeys[e.Item.ItemIndex];
+				if (e.CommandName.Equals("Borrar"))
+				{
+					BICContext.Instance.ProyectoService.Delete(id);
+					this.dgProyectos.CurrentPageIndex = 0;
+					ListProyectos();
+				}
+				else if (e.CommandName.Equals("Seleccionar"))
+				{
+					Session["proyecto"] = BICContext.Instance.ProyectoService.Retrieve(id);
+					Response.Redirect("Home.aspx");
+				}
 			}
-			else if (e.CommandName.Equals("Seleccionar"))
-			{
-				Session["proyecto"] = BICContext.Instance.ProyectoService.Retrieve(id);
-				Response.Redirect("Home.aspx");
-			}
+		}
+
+		private void dgProyectos_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgProyectos.CurrentPageIndex = e.NewPageIndex;
+			ListProyectos();
 		}
 
 		private void ListProyectos()

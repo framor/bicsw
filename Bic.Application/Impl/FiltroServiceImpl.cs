@@ -26,13 +26,10 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Filtro unFiltro) 
 		{
-			if (unFiltro.Id  == 0) 
+			Filtro f = (Filtro) this.GenericDAO.SelectByNombre(typeof(Filtro), unFiltro.Nombre);
+			if (f != null) 
 			{
-				Filtro f = (Filtro) this.GenericDAO.SelectByNombre(typeof(Filtro), unFiltro.Nombre);
-				if (f != null) 
-				{
-					throw new ServiceException("No se puede crear el filtro ya que existe uno con el mismo nombre.");
-				}
+				throw new ServiceException("No se puede crear el filtro ya que existe uno con el mismo nombre.");
 			}
 			this.GenericDAO.Save(unFiltro);
 		}

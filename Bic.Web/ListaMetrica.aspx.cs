@@ -41,6 +41,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgMetricas.ItemCommand += new DataGridCommandEventHandler(this.dgMetricas_ItemCommand);
 			this.dgMetricas.ItemCreated += new DataGridItemEventHandler(this.dgMetricas_ItemCreated);
+			this.dgMetricas.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgMetricas_PageChanger);
 		}
 		#endregion
 
@@ -61,8 +62,19 @@ namespace Bic.Web
 
 		private void dgMetricas_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgMetricas.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.MetricaService.Delete(id);
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				long id = (long) this.dgMetricas.DataKeys[e.Item.ItemIndex];
+				BICContext.Instance.MetricaService.Delete(id);
+				this.dgMetricas.CurrentPageIndex = 0;
+				ListMetricas();
+			}
+		}
+
+		private void dgMetricas_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgMetricas.CurrentPageIndex = e.NewPageIndex;
 			ListMetricas();
 		}
 

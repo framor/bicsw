@@ -26,13 +26,10 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Metrica unMetrica) 
 		{
-			if (unMetrica.Id  == 0) 
+			Metrica m = (Metrica) this.GenericDAO.SelectByNombre(typeof(Metrica), unMetrica.Nombre);
+			if (m != null) 
 			{
-				Metrica m = (Metrica) this.GenericDAO.SelectByNombre(typeof(Metrica), unMetrica.Nombre);
-				if (m != null) 
-				{
-					throw new ServiceException("No se puede crear la metrica ya que existe una con el mismo nombre.");
-				}
+				throw new ServiceException("No se puede crear la metrica ya que existe una con el mismo nombre.");
 			}
 			this.GenericDAO.Save(unMetrica);
 		}

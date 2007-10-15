@@ -37,14 +37,12 @@ namespace Bic.Application.Impl
 
 		public void Save(Reporte reporte)
 		{
-			if (reporte.Id  == 0) 
+			Reporte r = (Reporte) this.GenericDAO.SelectByNombre(typeof(Reporte), reporte.Nombre);
+			if (r != null) 
 			{
-				Reporte r = (Reporte) this.GenericDAO.SelectByNombre(typeof(Reporte), reporte.Nombre);
-				if (r != null) 
-				{
-					throw new ServiceException("No se puede crear el reporte ya que existe uno con el mismo nombre.");
-				}
+				throw new ServiceException("No se puede crear el reporte ya que existe uno con el mismo nombre.");
 			}
+
 			try
 			{
 				reporte.GeneraConsulta();

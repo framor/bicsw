@@ -41,6 +41,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgAtributos.ItemCommand += new DataGridCommandEventHandler(this.dgAtributos_ItemCommand);
 			this.dgAtributos.ItemCreated += new DataGridItemEventHandler(this.dgAtributos_ItemCreated);
+			this.dgAtributos.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgAtributos_PageChanger);
 			this.Page.PreRender+=new EventHandler(page_PreRenderEventHandler);
 		}
 		#endregion
@@ -62,8 +63,19 @@ namespace Bic.Web
 
 		private void dgAtributos_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgAtributos.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.AtributoService.Delete(id);
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				long id = (long) this.dgAtributos.DataKeys[e.Item.ItemIndex];
+				BICContext.Instance.AtributoService.Delete(id);
+				this.dgAtributos.CurrentPageIndex = 0;
+				ListAtributos();
+			}
+		}
+
+		private void dgAtributos_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgAtributos.CurrentPageIndex = e.NewPageIndex;
 			ListAtributos();
 		}
 

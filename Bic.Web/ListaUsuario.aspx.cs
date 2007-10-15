@@ -42,7 +42,7 @@ namespace Bic.Web
 			this.dgUsuarios.ItemCreated += new DataGridItemEventHandler(this.dgUsuarios_ItemCreated);
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.Load += new EventHandler(this.Page_Load);
-
+			this.dgUsuarios.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgUsuarios_PageChanger);
 		}
 		#endregion
 
@@ -64,8 +64,19 @@ namespace Bic.Web
 
 		private void dgUsuarios_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.UsuarioService.Delete(id);
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				long id = (long) this.dgUsuarios.DataKeys[e.Item.ItemIndex];
+				BICContext.Instance.UsuarioService.Delete(id);
+				this.dgUsuarios.CurrentPageIndex = 0;
+				ListarUsuarios();
+			}
+		}
+
+		private void dgUsuarios_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgUsuarios.CurrentPageIndex = e.NewPageIndex;
 			ListarUsuarios();
 		}
 

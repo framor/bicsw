@@ -49,22 +49,32 @@ namespace Bic.Web
 
 		private void dgReportes_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
-
-			if (e.CommandName.Equals("Borrar"))
-			{				
-				BICContext.Instance.ReporteService.Delete(id);
-				
-			}
-			else if(e.CommandName.Equals("Ejecutar"))
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
-				ReportManager.GetInstance(this.Session).Reporte = BICContext.Instance.ReporteService.Retrieve(id);
-				Response.Redirect("Reportes/AdministracionReportes.aspx");
-			}
+
+				long id = (long) this.dgReportes.DataKeys[e.Item.ItemIndex];
+
+				if (e.CommandName.Equals("Borrar"))
+				{				
+					BICContext.Instance.ReporteService.Delete(id);
+					this.dgReportes.CurrentPageIndex = 0;
+				}
+				else if(e.CommandName.Equals("Ejecutar"))
+				{
+					ReportManager.GetInstance(this.Session).Reporte = BICContext.Instance.ReporteService.Retrieve(id);
+					Response.Redirect("Reportes/AdministracionReportes.aspx");
+				}
 			
-			this.ListReportes();
+				this.ListReportes();
+			}
 		}
 
+		private void dgReportes_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgReportes.CurrentPageIndex = e.NewPageIndex;
+			ListReportes();
+		}
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
@@ -115,6 +125,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgReportes.ItemCommand += new DataGridCommandEventHandler(this.dgReportes_ItemCommand);
 			this.dgReportes.ItemCreated += new DataGridItemEventHandler(this.dgReportes_ItemCreated);
+			this.dgReportes.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgReportes_PageChanger);
 		}
 		#endregion
 	}

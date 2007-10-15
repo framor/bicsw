@@ -22,7 +22,7 @@
 	<h2>Usuarios</h2>
 
 		<asp:DataGrid id="dgUsuarios" runat="server" DataKeyField="Id" AutoGenerateColumns="False" CellSpacing="0"
-			CellPadding="1" BorderStyle="None" width="100%">
+			CellPadding="1" BorderStyle="None" width="100%" AllowPaging="true" PageSize="5" PagerStyle-Mode="NumericPages" PagerStyle-HorizontalAlign="Center">
 			<HeaderStyle Font-Bold="True"></HeaderStyle>
 			<Columns>
 				<asp:BoundColumn DataField="Nombre" HeaderText="Nombre"></asp:BoundColumn>
