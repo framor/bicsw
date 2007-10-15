@@ -83,6 +83,10 @@ namespace Bic.Web
 
 		private void InitializeComponent()
 		{
+			this.btnBack.CausesValidation = false;
+			this.btnNext.CausesValidation = false;
+			this.btnCancel.CausesValidation = false;
+
 			this.btnCancel.Attributes.Add("onclick", "JavaScript:window.close(); return false;");
 
 			this.btnBack.Click+=new EventHandler(btnBack_Click);

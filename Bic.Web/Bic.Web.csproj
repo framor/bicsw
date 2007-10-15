@@ -494,6 +494,10 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "img\emptyPreviewChart.png"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "img\iconAreaChart.PNG"
                     BuildAction = "Content"
                 />
@@ -668,6 +672,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Reportes\DataSourceItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Reportes\DataSourceMockProvider.cs.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -700,11 +709,6 @@
                 />
                 <File
                     RelPath = "Reportes\ReportManager.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reportes\UtilsChartFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

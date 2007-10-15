@@ -16,24 +16,51 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<h2>Paso 1 : determine el origen de datos</h2>
+						<h2>Paso 1: configurando el origen de datos</h2>
 						<table width="100%" cellspacing="0" cellpadding="1" border="0" >
 							<tr>
-								<td>
+								<td width="40%">
 									Fuente de datos
 								</td>
-								<td align="right">
+								<td align="left" width="60%">
 									<asp:DropDownList id="ddlColumna" Runat="server" style="width:200px" AutoPostback ="true" ></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td width="40%">
 									Fuente de descripciones
 								</td>
-								<td align="right">
+								<td align="left" width="60%">
 									<asp:DropDownList id="ddlDescripciones" Runat="server" style="width:200px" AutoPostback ="true" ></asp:DropDownList>
 								</td>
+							</tr>
+							<tr>
+								<td width="30%" >
+									Nombre del origen de datos
+								</td>
+								<td align="left" width="70%" nowrap="nowrap">
+									<asp:TextBox id="txtDataSourceName" runat="server" style="width:190px"></asp:TextBox>
+									<asp:CustomValidator Id="valDataSourceName" runat="server">*</asp:CustomValidator>
+									<asp:RequiredFieldValidator ID="reqDataSourceName" Runat="server" ControlToValidate="txtDataSourceName" ErrorMessage="Se debe especificar un nombre para el origen de datos">*</asp:RequiredFieldValidator>
+									&nbsp;
+									<asp:LinkButton id="lnkAddDataSource" runat="server">Agregar</asp:LinkButton>
+									&nbsp;
+									<asp:LinkButton id="lnkRemoveDataSource" runat="server" CausesValidation="false" >Remover</asp:LinkButton>									
+								</td>								
 							</tr>							
+							<tr>
+								<td width="40%">
+									Origenes de datos
+								</td>
+								<td align="left" width="40%">
+									<asp:ListBox id="lstBoxDataSources" runat="server" style="width:200px" ></asp:ListBox>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<asp:ValidationSummary ID="valSummary" Runat="server"></asp:ValidationSummary>
+								</td>
+							</tr>
 							<tr >
 								<td colspan="2">
 									<asp:RadioButtonList ID="rdoBtnLstFilterOptions" Runat="server" AutoPostback ="true"></asp:RadioButtonList>
@@ -45,7 +72,7 @@
 						<table cellSpacing="0" cellPadding="0" width="100%" border="0">
 							<tr vAlign="bottom">
 								<td align="left">
-									<asp:imagebutton id="imgBtnPreviewChart" Runat="server" ImageUrl="PreviewChartRenderPage.aspx" style="border:none"></asp:imagebutton>
+									<asp:ImageButton id="imgPreviewChart" Runat="server" style="border:none"></asp:ImageButton>
 								</td>
 							</tr>
 						</table>

@@ -16,7 +16,17 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<h2>Paso 3 : visualice gráfico</h2>
+						<table width="100%" >
+							<tr>
+								<td>
+									<h2>Paso 3 : visualice gráfico</h2>			
+								</td>
+								<td align="right">
+									<a href="javascript:window.print();"><img src="../img/icon-print.jpg" /></a>
+								</td>
+							</tr>
+						</table>
+						
 						<table width="100%" cellspacing="0" cellpadding="1" border="0" >
 							<tr>
 								<td>

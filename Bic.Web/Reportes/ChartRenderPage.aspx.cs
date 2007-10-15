@@ -14,7 +14,7 @@ namespace Bic.Web.Reportes
 			ChartEngine chartEngine = new ChartEngine();
 			chartEngine.Size = new Size(720, 340);
 
-			ChartCollection chartCollection = ReportManager.GetInstance(this.Session).GetPreviewCharts(chartEngine);
+			ChartCollection chartCollection = ReportManager.GetInstance(this.Session).GetCharts(chartEngine);
 			chartEngine.Charts = chartCollection;			
 			
 			Bitmap bmp = null;

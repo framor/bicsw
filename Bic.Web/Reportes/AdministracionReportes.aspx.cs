@@ -50,8 +50,10 @@ namespace Bic.Web
 					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;
 					this.dtgReport.DataBind();	
 				}
-				catch ( Exception )
-				{					
+				catch ( Exception ex)
+				{			
+					string a = ex.ToString();
+
 					Response.Redirect("../Login.aspx");					
 				}
 			}

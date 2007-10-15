@@ -49,34 +49,67 @@ namespace Bic.Web
 
 		#region Properties
 
-		public String DataColumn
+		private ArrayList Colors
 		{
 			get
 			{
-				this.dataColumn = this.httpSessionState["dataColumn"] as String;
-				return this.dataColumn;
+				this.colors = this.httpSessionState["colors"] as ArrayList;
+				
+				if(this.colors == null)
+				{
+					this.InitializeColorsCollection();
+				}
+				return this.colors ;
 			}
 
 			set
 			{
-				this.dataColumn = value;
-				this.httpSessionState["dataColumn"] = this.dataColumn;
+				this.colors = value;
+				this.httpSessionState["colors"] = this.colors;
 			}
 		}
 
-
-		public String DescriptionColumn
+		private int ColorCount
 		{
 			get
 			{
-				this.descriptionColumn = this.httpSessionState["descriptionColumn"] as String;
-				return this.descriptionColumn ;
+				this.colorCount = (int)this.httpSessionState["colorCount"];
+				this.colorCount++;
+				this.httpSessionState["colorCount"] = this.colorCount;
+				
+				if(this.colorCount >= this.Colors.Count)
+				{
+					this.colorCount = 0;
+					this.httpSessionState["colorCount"] = 0;
+				}
+
+				return this.colorCount;
 			}
 
 			set
 			{
-				this.descriptionColumn = value;
-				this.httpSessionState["descriptionColumn"] = this.descriptionColumn;
+				this.colorCount = value;
+				this.httpSessionState["colorCount"] = this.colorCount;
+			}
+		}
+
+		public Hashtable DataSources
+		{
+			get
+			{
+				if(this.httpSessionState["dataSources"] == null)
+				{
+					this.httpSessionState["dataSources"] = new Hashtable();
+				}
+
+				this.dataSources = this.httpSessionState["dataSources"] as Hashtable;
+				return this.dataSources ;
+			}
+
+			set
+			{
+				this.dataSources = value;
+				this.httpSessionState["dataSources"] = this.dataSources;
 			}
 		}
 
@@ -119,6 +152,7 @@ namespace Bic.Web
 			{
 				if(this.Reporte!=null)
 				{					
+					//TODO
 					//Aca deberia actualizarse solo si cambio el reporte. Preguntarle a fer si existe alguna propeidad de 
 					// hibernate que permita determinar esto.
 					this.reportSourceCache = BICContext.Instance.ReporteService.Ejecutar(this.Reporte.Id);					
@@ -131,6 +165,7 @@ namespace Bic.Web
 				return this.reportSourceCache;
 			}
 		}
+
 
 		public ChartTypesSelectedManager ChartTypesSelectedManager
 		{
@@ -155,13 +190,13 @@ namespace Bic.Web
         
 		private Reporte reporte;
 		private HttpSessionState httpSessionState;
-
-		private String dataColumn;
-		private String descriptionColumn;
 		private DataSet reportSourceCache;
 		private string  graphFilter;
-		
+		private Hashtable dataSources;
 		private ChartTypesSelectedManager chartTypesSelectedManager; 
+
+		private ArrayList colors;
+		private int colorCount;
 
 		#endregion
 
@@ -205,34 +240,22 @@ namespace Bic.Web
 		}			
 
 
-		private Chart GetEmptyPreviewChart(ChartEngine chartEngine)
-		{
-			return new UtilsChartFactory().GetPreviewChart(this,chartEngine);
-		}
-
-
-		private Chart GetEmptyChart(ChartEngine chartEngine)
-		{
-			return new UtilsChartFactory().GetChart(this,chartEngine);
-		}
-
-
 		public ChartCollection GetPreviewCharts(ChartEngine chartEngine)
 		{
 			ChartCollection chartCollection = new ChartCollection(chartEngine);
-
-			if( this.chartTypesSelectedManager.GetSelectedCharts().Count == 0)
-			{
-				chartCollection.Add(this.GetEmptyPreviewChart(chartEngine));
-			}
 
 			IEnumerator enumerator = this.chartTypesSelectedManager.GetSelectedCharts().GetEnumerator();
 
 			while(enumerator.MoveNext())
 			{
 				ChartAbstractFactory factory = enumerator.Current as ChartAbstractFactory;
-				Chart chart = factory.GetPreviewChart(this,chartEngine);
-				chartCollection.Add(chart);
+
+				foreach(String key in this.DataSources.Keys)
+				{
+					DataSourceItem dataSourceItem = this.DataSources[key] as DataSourceItem; 
+					Chart chart = factory.GetPreviewChart(this,chartEngine,dataSourceItem);
+					chartCollection.Add(chart);
+				}				
 			}
 			
 			return chartCollection;
@@ -243,26 +266,50 @@ namespace Bic.Web
 		{
 			ChartCollection chartCollection = new ChartCollection(chartEngine);
 
-			if( this.chartTypesSelectedManager.GetSelectedCharts().Count == 0)
-			{
-				chartCollection.Add(this.GetEmptyChart(chartEngine));
-			}
-
 			IEnumerator enumerator = this.chartTypesSelectedManager.GetSelectedCharts().GetEnumerator();
 
 			while(enumerator.MoveNext())
 			{
 				ChartAbstractFactory factory = enumerator.Current as ChartAbstractFactory;
-				Chart chart = factory.GetChart(this,chartEngine);
-				chartCollection.Add(chart);
+
+				foreach(String key in this.DataSources.Keys)
+				{
+					DataSourceItem dataSourceItem = this.DataSources[key] as DataSourceItem; 
+					Chart chart = factory.GetChart(this,chartEngine,dataSourceItem);
+					chartCollection.Add(chart);
+				}	
 			}
 			
 			return chartCollection;
 		}
 
 
+		public System.Drawing.Color GetChartColor()
+		{
+			return (System.Drawing.Color) this.Colors[this.ColorCount];
+		}
+
 		#endregion
 		
-		//TODO ; agregar excepcion en caso de que se quiera utilizar el cache y esta este en nula.
+		#region Private methods
+
+		private void InitializeColorsCollection()
+		{
+			this.ColorCount = -1;
+
+			this.Colors = new ArrayList();
+			this.Colors.Add(System.Drawing.Color.Blue);
+			this.Colors.Add(System.Drawing.Color.Brown);
+			this.Colors.Add(System.Drawing.Color.Red);
+			this.Colors.Add(System.Drawing.Color.Orange);
+			this.Colors.Add(System.Drawing.Color.Green);
+			this.Colors.Add(System.Drawing.Color.Gray);
+			this.Colors.Add(System.Drawing.Color.Gold);
+			this.Colors.Add(System.Drawing.Color.Pink);
+			this.Colors.Add(System.Drawing.Color.Yellow);
+			this.Colors.Add(System.Drawing.Color.Violet);
+		}
+
+		#endregion		
 	}
 }

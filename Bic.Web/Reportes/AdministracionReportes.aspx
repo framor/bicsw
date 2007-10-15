@@ -16,6 +16,21 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:83%">
+						<h2>Exportar y graficar</h2>
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td>
+									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG" style="border:none"></asp:imagebutton>
+								</td>
+								<td>
+									<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
+								</td>
+							</tr>
+						</table>
+						<br>
 						<h2>Reporte</h2>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr valign="bottom">
@@ -38,26 +53,7 @@
 									</asp:datagrid>
 								</td>
 							</tr>
-						</table>
-						<br>
-						<h2>Exportar</h2>
-						<table width="100%" cellspacing="0" cellpadding="0" border="0">
-							<tr>
-								<td>
-									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG" style="border:none"></asp:imagebutton>
-								</td>
-							</tr>
-						</table>
-						<br>
-						<h2>Graficar</h2>
-						<table width="70%" cellspacing="0" cellpadding="1" border="0">
-							<tr>
-								<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=600 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
-							</tr>							
-						</table>
+						</table>						
 					</div>
 					<div id="footer">
 						<p>
