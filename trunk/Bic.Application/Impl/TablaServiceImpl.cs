@@ -41,14 +41,14 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Tabla unaTabla) 
 		{
+			// valido que no exista
+			Tabla t = this.TablaDAO.ObtenerByAlias(unaTabla.Proyecto.Id, unaTabla.Alias);
+			if (t != null) 
+			{
+				throw new ServiceException("No se puede crear la tabla ya que existe una con el mismo nombre.");
+			}
 			if (unaTabla.Id  == 0) // si es una entidad nueva
 			{
-				// valido que no exista
-				Tabla t = this.TablaDAO.ObtenerByAlias(unaTabla.Proyecto.Id, unaTabla.Alias);
-				if (t != null) 
-				{
-					throw new ServiceException("No se puede crear la tabla ya que existe una con el mismo nombre.");
-				}
 				// la primera vez que grabo obtengo todas las columnas de la tabla
 				IList columnas = this.catalogoDAO.ObtenerColumnas(unaTabla);
 				foreach (Columna col in columnas) 

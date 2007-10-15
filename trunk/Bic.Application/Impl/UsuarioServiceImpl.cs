@@ -27,13 +27,10 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Usuario unUsuario) 
 		{
-			if (unUsuario.Id  == 0) 
+			Usuario u = this.UsuarioDAO.ObtenerByAlias(unUsuario.Alias);
+			if (u != null) 
 			{
-				Usuario u = this.UsuarioDAO.ObtenerByAlias(unUsuario.Alias);
-				if (u != null) 
-				{
-					throw new ServiceException("No se puede crear el usuario ya que existe uno con el mismo nombre.");
-				}
+				throw new ServiceException("No se puede crear el usuario ya que existe uno con el mismo nombre.");
 			}
 			this.GenericDAO.Save(unUsuario);
 		}

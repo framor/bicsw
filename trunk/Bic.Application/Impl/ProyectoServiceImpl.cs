@@ -28,13 +28,10 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Proyecto unProyecto) 
 		{
-			if (unProyecto.Id  == 0) 
+			Proyecto p = (Proyecto) this.GenericDAO.SelectByNombre(typeof(Proyecto), unProyecto.Nombre);
+			if (p != null) 
 			{
-				Proyecto p = (Proyecto) this.GenericDAO.SelectByNombre(typeof(Proyecto), unProyecto.Nombre);
-				if (p != null) 
-				{
-					throw new ServiceException("No se puede crear el proyecto ya que existe uno con el mismo nombre.");
-				}
+				throw new ServiceException("No se puede crear el proyecto ya que existe uno con el mismo nombre.");
 			}
 			this.GenericDAO.Save(unProyecto);
 		}

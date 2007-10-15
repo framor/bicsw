@@ -43,6 +43,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgFiltros.ItemCommand += new DataGridCommandEventHandler(this.dgFiltros_ItemCommand);
 			this.dgFiltros.ItemCreated += new DataGridItemEventHandler(this.dgFiltros_ItemCreated);
+			this.dgFiltros.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgFiltros_PageChanger);
 		}
 		#endregion
 
@@ -63,8 +64,19 @@ namespace Bic.Web
 
 		private void dgFiltros_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgFiltros.DataKeys[e.Item.ItemIndex];
-			BICContext.Instance.FiltroService.Delete(id);
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+			{
+				long id = (long) this.dgFiltros.DataKeys[e.Item.ItemIndex];
+				BICContext.Instance.FiltroService.Delete(id);
+				this.dgFiltros.CurrentPageIndex = 0;
+				ListFiltros();
+			}
+		}
+
+		private void dgFiltros_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgFiltros.CurrentPageIndex = e.NewPageIndex;
 			ListFiltros();
 		}
 

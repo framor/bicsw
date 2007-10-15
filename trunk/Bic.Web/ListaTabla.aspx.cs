@@ -44,6 +44,7 @@ namespace Bic.Web
 			this.btnNuevo.Click += new EventHandler(this.btnNuevo_Click);
 			this.dgTablas.ItemCommand += new DataGridCommandEventHandler(this.dgTablas_ItemCommand);
 			this.dgTablas.ItemCreated += new DataGridItemEventHandler(this.dgTablas_ItemCreated);
+			this.dgTablas.PageIndexChanged += new DataGridPageChangedEventHandler(this.dgTablas_PageChanger);
 		}
 		#endregion
 
@@ -64,17 +65,28 @@ namespace Bic.Web
 
 		private void dgTablas_ItemCommand(object sender, DataGridCommandEventArgs e)
 		{
-			long id = (long) this.dgTablas.DataKeys[e.Item.ItemIndex];
-			try 
+			if (e.Item.ItemType == ListItemType.Item || 
+				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
-				BICContext.Instance.TablaService.Delete(id);
-				ListTablas();
-			} 
-			catch (ServiceException se) 
-			{
-				this.valEliminar.IsValid = false;
-				this.valEliminar.ErrorMessage = se.Message;
-			}			
+				long id = (long) this.dgTablas.DataKeys[e.Item.ItemIndex];
+				try 
+				{
+					BICContext.Instance.TablaService.Delete(id);
+					this.dgTablas.CurrentPageIndex = 0;
+					ListTablas();
+				} 
+				catch (ServiceException se) 
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = se.Message;
+				}			
+			}
+		}
+
+		private void dgTablas_PageChanger(object source, DataGridPageChangedEventArgs e)
+		{
+			this.dgTablas.CurrentPageIndex = e.NewPageIndex;
+			ListTablas();
 		}
 
 		private void ListTablas()

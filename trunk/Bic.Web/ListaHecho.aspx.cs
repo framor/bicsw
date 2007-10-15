@@ -72,6 +72,7 @@ namespace Bic.Web
 				try
 				{
 					BICContext.Instance.HechoService.Delete(id);
+					this.dgHechos.CurrentPageIndex = 0;
 					ListHechos();
 				}
 				catch (ServiceException se)
