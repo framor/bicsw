@@ -63,7 +63,7 @@ namespace Bic.Application.Impl
 			} 
 			else 
 			{
-				throw new ServiceException("No se puede eliminar el hecho ya que está siendo utilizado.");
+				throw new ServiceException("No se puede eliminar el hecho ya que está siendo utilizado por una métrica.");
 			}
 		}
 
