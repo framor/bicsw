@@ -27,7 +27,7 @@ namespace Bic.Application.Impl
 		public void Save(Metrica unMetrica) 
 		{
 			Metrica m = (Metrica) this.GenericDAO.SelectByNombre(typeof(Metrica), unMetrica.Nombre);
-			if (m != null) 
+			if (m != null && !m.Equals(unMetrica)) 
 			{
 				throw new ServiceException("No se puede crear la metrica ya que existe una con el mismo nombre.");
 			}

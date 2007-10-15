@@ -43,7 +43,7 @@ namespace Bic.Application.Impl
 		{
 			// valido que no exista
 			Tabla t = this.TablaDAO.ObtenerByAlias(unaTabla.Proyecto.Id, unaTabla.Alias);
-			if (t != null) 
+			if (t != null && !t.Equals(unaTabla)) 
 			{
 				throw new ServiceException("No se puede crear la tabla ya que existe una con el mismo nombre.");
 			}

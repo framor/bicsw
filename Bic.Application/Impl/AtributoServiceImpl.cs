@@ -29,7 +29,7 @@ namespace Bic.Application.Impl
 		public void Save(Atributo unAtributo) 
 		{
 			Atributo a = (Atributo) this.GenericDAO.SelectByNombre(typeof(Atributo), unAtributo.Nombre);
-			if (a != null) 
+			if (a != null && !a.Equals(unAtributo)) 
 			{
 				throw new ServiceException("No se puede crear el atributo ya que existe uno con el mismo nombre.");
 			}

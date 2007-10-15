@@ -27,7 +27,7 @@ namespace Bic.Application.Impl
 		public void Save(Hecho unHecho) 
 		{
 			Hecho h = (Hecho) this.GenericDAO.SelectByNombre(typeof(Hecho), unHecho.Nombre);
-			if (h != null) 
+			if (h != null && !h.Equals(unHecho))  
 			{
 				throw new ServiceException("No se puede crear el hecho ya que existe uno con el mismo nombre.");
 			}
