@@ -33,11 +33,13 @@ namespace Bic.Domain.Dao
 
 		/// <summary>
 		/// Obtiene todos los objetos de un tipo de la sesión de NHibernate
+		/// menos el del id pasado
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>
+		/// <param name="id">id</param>
 		/// <param name="nombre">el miembro nombre de la entidad</param>
 		/// <returns>Una coleccion de los objetos</returns>
-		object SelectByNombre(Type entityType, string nombre); 
+		object SelectByNombre(Type entityType, long id, string nombre); 
 
 		/// <summary>
 		/// Elimina un objeto de la sesión de Hibernate

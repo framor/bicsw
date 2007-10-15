@@ -35,6 +35,7 @@
 	</object>			
 	<object id="proyectoServiceImpl" type="Bic.Application.impl.ProyectoServiceImpl, Bic.Application" parent="baseServiceTemplate">
 		<property name="proyectoDAO" ref="proyectoDAO"/>
+		<property name="catalogoDAO" ref="catalogoDAO"/>
 	</object>
 
 	<object id="atributoService" parent="serviceConfigurationTemplate">

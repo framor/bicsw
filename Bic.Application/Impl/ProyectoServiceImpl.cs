@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
@@ -19,6 +20,13 @@ namespace Bic.Application.Impl
 			set { this.proyectoDAO = value; }
 		}
 
+		private ICatalogoDAO catalogoDAO;
+		public ICatalogoDAO CatalogoDAO 
+		{
+			get { return this.catalogoDAO; }
+			set { this.catalogoDAO = value; }
+		}
+
 		public ProyectoServiceImpl()
 		{
 		}
@@ -28,10 +36,18 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Proyecto unProyecto) 
 		{
-			Proyecto p = (Proyecto) this.GenericDAO.SelectByNombre(typeof(Proyecto), unProyecto.Nombre);
+			Proyecto p = (Proyecto) this.GenericDAO.SelectByNombre(typeof(Proyecto), unProyecto.Id, unProyecto.Nombre);
 			if (p != null && !p.Equals(unProyecto)) 
 			{
 				throw new ServiceException("No se puede crear el proyecto ya que existe uno con el mismo nombre.");
+			}
+			try 
+			{
+				this.catalogoDAO.ProbarConexion(unProyecto.Conexion);
+			}
+			catch (DataException de)
+			{
+				throw new ServiceException("No se puede grabar el proyecto con una conexión inválida. Verifique los parámetros de la misma.");
 			}
 			this.GenericDAO.Save(unProyecto);
 		}
