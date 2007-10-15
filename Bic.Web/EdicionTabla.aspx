@@ -27,8 +27,9 @@
 							<tr>
 								<td><b>Nombre</b></td>
 								<td>
-									<asp:DropDownList id="ddlNombre" runat="server" DataTextField="Nombre" DataValueField="Nombre"></asp:DropDownList>
-									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="ddlNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
+									<asp:ListBox id="lstNombre" runat="server" DataTextField="Nombre" DataValueField="Nombre"
+										Width="150px" ></asp:ListBox>
+									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="lstNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>						
 							<tr>

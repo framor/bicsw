@@ -13,7 +13,7 @@ namespace Bic.Web
 	{
 		protected TextBox txtAlias;
 		protected TextBox txtPeso;
-		protected DropDownList ddlNombre;
+		protected ListBox lstNombre;
 
 		protected Button btnAceptar;
 		protected RequiredFieldValidator reqNombre;
@@ -29,26 +29,23 @@ namespace Bic.Web
 			BaseLoad();
 			if (!Page.IsPostBack) 
 			{
-				object datasource = null;
-				
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
 				if (id != -1)
 				{
 					Tabla t = BICContext.Instance.TablaService.Retrieve(id);
-					this.ddlNombre.SelectedValue = t.Nombre;
+					this.lstNombre.SelectedValue = t.Nombre;
+					this.lstNombre.Enabled = false;
 					this.txtAlias.Text = t.Alias;
 					this.txtPeso.Text = t.Peso.ToString();
-					datasource = new Tabla[] {t};
 				} 
 				else 
 				{
 					this.txtPeso.Text = "0";
-					datasource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
 				}
 
-				this.ddlNombre.DataSource = datasource;
-				this.ddlNombre.DataBind();
+				this.lstNombre.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
+				this.lstNombre.DataBind();
 
 			}
 
@@ -85,7 +82,7 @@ namespace Bic.Web
 			Tabla t = null;
 			if (id == -1)
 			{
-				t = BICContext.Instance.CatalogoService.ObtenerTabla(this.ddlNombre.SelectedValue, Proyecto.Id);
+				t = BICContext.Instance.CatalogoService.ObtenerTabla(this.lstNombre.SelectedValue, Proyecto.Id);
 				t.Alias = alias;
 				t.Peso = peso;
 				t.Proyecto = Proyecto;

@@ -37,6 +37,7 @@ namespace Bic.Web
 				{
 					Hecho h = BICContext.Instance.HechoService.Retrieve(id);
 					this.ddlColumna.SelectedValue = h.Columna.Id.ToString();
+					this.ddlColumna.Enabled = false;
 					this.txtNombre.Text = h.Nombre;
 					datasource = new Columna[] {h.Columna};
 				} 
