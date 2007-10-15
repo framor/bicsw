@@ -55,7 +55,16 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Delete(long id)
 		{
-			this.GenericDAO.Delete(typeof(Metrica), id);
+			Metrica met = Retrieve(id);
+			Proyecto p = met.Proyecto;
+			if (p.PuedeEliminarMetrica(met)) 
+			{
+				this.GenericDAO.Delete(typeof(Metrica), id);
+			}
+			else 
+			{
+				throw new ServiceException("No se puede eliminar la métrica ya que está siendo utilizada por un reporte.");
+			}
 		}
 
 	}

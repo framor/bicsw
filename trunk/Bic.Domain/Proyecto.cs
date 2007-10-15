@@ -177,5 +177,17 @@ namespace Bic.Domain
 			return true;
 		}
 
+		public bool PuedeEliminarMetrica(Metrica unMetrica)
+		{
+			foreach(Reporte r in this.Reportes)
+			{
+				if (r.Metricas.Contains(unMetrica))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 }
