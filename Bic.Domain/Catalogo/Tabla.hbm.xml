@@ -11,7 +11,8 @@
 		<many-to-one name="proyecto" class="Bic.Domain.Proyecto, Bic.Domain" 
 			column="proyecto_id" not-null="true" access="field"/>        
 		<property name="peso" column="peso" type="int" access="field"/>
-		<set name="columnas" access="field" cascade="all-delete-orphan">
+		<!-- no se estan borrando las columnas, no se hace cascade para no romper los hechos que referencian -->
+		<set name="columnas" access="field" cascade="save-update">
 			<key column="tabla_id"/>
 			<one-to-many class="Bic.Domain.Catalogo.Columna, Bic.Domain"/>
 		</set>	

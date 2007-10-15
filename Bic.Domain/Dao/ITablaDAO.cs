@@ -25,6 +25,19 @@ namespace Bic.Domain.Dao
 
 		IList SelectColumnasDisponibles(long idProyecto); 
 
+		/// <summary>
+		/// Obtiene todas las tablas que contienen la columna
+		/// </summary>
+		/// <param name="idProyecto">id de proyecto</param>
+		/// <param name="col">columna</param>
+		/// <returns></returns>
+		IList SelectTablasConColumna(long idProyecto, Columna col); 
+
+		/// <summary>
+		/// Obtiene todas las tablas dadas de alta en el proyecto
+		/// </summary>
+		/// <param name="idProyecto">id de proyecto</param>
+		/// <returns></returns>
 		IList SelectTablasDisponibles(long idProyecto); 
 	}
 }

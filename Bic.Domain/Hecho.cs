@@ -59,15 +59,16 @@ namespace Bic.Domain
 		}
 
 		/// <summary>
-		/// Indica si helecho usa la tabla
+		/// Indica si el hecho usa la tabla
 		/// </summary>
 		/// <param name="unaTabla"></param>
 		/// <returns></returns>
 		public bool UsaTabla(Tabla unaTabla)
 		{
-			ICatalogoDAO dao = DAOLocator.Instance.CatalogoDAO;
-			IList columnas = dao.ObtenerColumnas(unaTabla);
-			return columnas.Contains(Columna);
+			ITablaDAO dao = DAOLocator.Instance.TablaDAO;
+			IList tablas = dao.SelectTablasConColumna(proyecto.Id, columna);
+			// si solo hay una tabla mapeada entonces no se puede borrar
+			return (tablas != null && tablas.Count == 1 && tablas.Contains(unaTabla));
 		}
 		#endregion
 

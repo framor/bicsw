@@ -45,10 +45,8 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
-		/// 
+		/// Implementa ITablaDAO.SelectColumnasDisponibles
 		/// </summary>
-		/// <param name="idProyecto"></param>
-		/// <returns></returns>
 		public IList SelectColumnasDisponibles(long idProyecto)
 		{
 			IList tablas = SelectTablasDisponibles(idProyecto);
@@ -61,13 +59,29 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
-		/// 
+		/// Implementa ITablaDAO.SelectTablasDisponibles
 		/// </summary>
-		/// <param name="idProyecto"></param>
-		/// <returns></returns>
 		public IList SelectTablasDisponibles(long idProyecto)
 		{			
 			return HibernateTemplate.Find("from " + typeof(Tabla).Name + " t where t.proyecto = ?" , idProyecto);
+		}
+
+		/// <summary>
+		/// Implementa ITablaDAO.SelectTablasConColumna
+		/// </summary>
+		public IList SelectTablasConColumna(long idProyecto, Columna col)
+		{
+			ArrayList ret = new ArrayList();
+			//TODO: construir query hql
+			IList tablas = SelectTablasDisponibles(idProyecto);
+			foreach (Tabla t in tablas)
+			{
+				if (t.Columnas.Contains(col))
+				{
+					ret.Add(t);
+				}
+			}
+			return ret;
 		}
 	}
 }
