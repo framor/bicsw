@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Data;
 using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
+using Bic.Framework.Exception;
 
 namespace Bic.Application.Impl
 {
@@ -59,7 +61,16 @@ namespace Bic.Application.Impl
 		public string ProbarConexion(string servidor, string esquema, string usuario, string password)
 		{
 			Conexion con = new Conexion(servidor, esquema, usuario, password);
-			return this.catalogoDAO.ProbarConexion(con);
+			string message = string.Empty;
+			try
+			{
+				message = this.catalogoDAO.ProbarConexion(con);
+			}
+			catch (DataException de)
+			{
+				throw new ServiceException(de.Message);
+			}
+			return message;
 		}
 
 		/// <summary>

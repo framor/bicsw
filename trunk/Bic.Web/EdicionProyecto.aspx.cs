@@ -118,8 +118,15 @@ namespace Bic.Web
 			string nombreBD = this.txtEsquema.Text;
 			string usuario = this.txtUsuario.Text;
 			string password = this.txtPassword.Text;
-			this.lblEstadoConexion.Text = 
-				BICContext.Instance.CatalogoService.ProbarConexion(servidor, nombreBD, usuario, password);
+			try 
+			{
+				this.lblEstadoConexion.Text = 
+					BICContext.Instance.CatalogoService.ProbarConexion(servidor, nombreBD, usuario, password);
+			} 
+			catch (ServiceException se)
+			{
+				this.lblEstadoConexion.Text = se.Message;
+			}
 		}
 
 		protected override bool TienePermisosSuficientes()

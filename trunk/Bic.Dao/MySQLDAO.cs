@@ -90,6 +90,7 @@ namespace Bic.Dao
 			}
 		}
 
+		
 		/// <summary>
 		/// Implementacion ICatalogoDAO.ProbarConexion
 		/// </summary>
@@ -109,13 +110,13 @@ namespace Bic.Dao
 			} 
 			catch (Exception ex)
 			{
-				return ex.Message;
+				throw new DataException(ex.Message);
 			}
 			finally
 			{
 				con.Close();
 			}
-			return "Ok";
+			return "Conexión exitosa";
 		}
 
 		public DataSet EjecutarSql(Conexion c, string sql)

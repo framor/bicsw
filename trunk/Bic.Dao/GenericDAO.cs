@@ -49,10 +49,10 @@ namespace Bic.Dao
 		/// <summary>
 		/// Implementa IGenericDAO.SelectByNombre
 		/// </summary>
-		public Object SelectByNombre(Type entityType, string nombre)
+		public Object SelectByNombre(Type entityType, long id, string nombre)
 		{
 			IList ret = 
-				HibernateTemplate.Find("from " + entityType.Name + " where nombre = ?", nombre);
+				HibernateTemplate.Find("from " + entityType.Name + " where nombre = ? and id != ?", new object[]{nombre, id});
 			if (ret != null && ret.Count > 0)
 			{
 				return ret[0];
