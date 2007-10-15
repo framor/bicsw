@@ -37,6 +37,15 @@ namespace Bic.Domain.Usuario
 			return true;
 		}
 
+		public override bool PuedeAccederAMetricas()
+		{
+			return true;
+		}
+
+		public override bool PuedeAccederAFiltros()
+		{
+			return true;
+		}
 
 		protected override string GetNombre()
 		{
