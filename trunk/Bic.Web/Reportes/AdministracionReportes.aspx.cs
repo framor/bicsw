@@ -16,6 +16,7 @@ using Color = iTextSharp.text.Color;
 using Rectangle = iTextSharp.text.Rectangle;
 using Font = iTextSharp.text.Font;
 using Bic.Application;
+using Bic.Application.DTO;
 using Bic.Domain;
 
 
@@ -45,17 +46,8 @@ namespace Bic.Web
 			{
 				this.InitializeComboValues();
 					
-				try
-				{
-					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;
-					this.dtgReport.DataBind();	
-				}
-				catch ( Exception ex)
-				{			
-					string a = ex.ToString();
-
-					Response.Redirect("../Login.aspx");					
-				}
+				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;
+				this.dtgReport.DataBind();					
 			}
 		}
 
@@ -163,7 +155,7 @@ namespace Bic.Web
 			if (this.ddlDrillDown.SelectedValue != string.Empty)
 			{
 				Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillDown.SelectedValue));
-				ReportManager.GetInstance(this.Session).Reporte.AgregarAtributo(atributo);
+				ReportManager.GetInstance(this.Session).Reporte.Atributos.Add(atributo);
 
 				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
 				this.dtgReport.DataBind();	
@@ -179,10 +171,10 @@ namespace Bic.Web
 			{
 				Atributo atributoPadre = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillUp.SelectedValue));				
 
-				ReportManager.GetInstance(this.Session).Reporte.AgregarAtributo(atributoPadre);
+				ReportManager.GetInstance(this.Session).Reporte.Atributos.Add(atributoPadre);
 
 				//TODO : VER POR QUE MIERDA NO LO REMUEVE
-				ReportManager.GetInstance(this.Session).Reporte.RemoverAtributo(atributoPadre.Hijo);
+				ReportManager.GetInstance(this.Session).Reporte.Atributos.Remove(atributoPadre.Hijo);
 
 				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
 				this.dtgReport.DataBind();	
@@ -241,10 +233,11 @@ namespace Bic.Web
 		private ICollection GetAtributosHijos()
 		{
 			ArrayList atributosHijos = new ArrayList();
+			ReporteDTO repDTO = ReportManager.GetInstance(this.Session).Reporte;
 
-			foreach ( Atributo atributo in ReportManager.GetInstance(this.Session).Reporte.Atributos )
+			foreach ( Atributo atributo in repDTO.Atributos )
 			{
-				if(atributo.Hijo!= null)
+				if(atributo.Hijo!= null && !repDTO.Atributos.Contains(atributo.Hijo))
 				{
 					atributosHijos.Add(atributo.Hijo);
 				}
@@ -256,12 +249,18 @@ namespace Bic.Web
 		private ICollection GetAtributosPadres()
 		{
 			ArrayList atributosPadres = new ArrayList();
+			ReporteDTO repDTO = ReportManager.GetInstance(this.Session).Reporte;
 
-			foreach ( Atributo atributo in ReportManager.GetInstance(this.Session).Reporte.Atributos )
+			foreach ( Atributo atributo in repDTO.Atributos )
 			{
-				atributosPadres.AddRange(atributo.AtributosPadres);
+				foreach (Atributo atPadre in atributo.AtributosPadres)
+				{
+					if(atPadre!= null && !repDTO.Atributos.Contains(atPadre))
+					{
+						atributosPadres.Add(atPadre);
+					}
+				}				
 			}
-
 			return atributosPadres;
 		}
 
@@ -279,10 +278,6 @@ namespace Bic.Web
 			base.OnInit(e);
 		}
 		
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		private void InitializeComponent()
 		{    
 			this.imgBtnExcel.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnExcel_Click);

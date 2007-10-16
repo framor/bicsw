@@ -24,7 +24,12 @@ namespace Bic.Domain
 			this.proyecto = null;
 		}
 		
-
+		public Reporte(IList atributos, IList metricas, IList filtros)
+		{
+			this.atributos = new HashedSet(atributos);
+			this.metricas = new HashedSet(metricas);
+			this.filtros = new HashedSet(filtros);
+		}
 		#endregion
 
 		#region Properties

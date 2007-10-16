@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using Bic.Domain;
+using Bic.Application.DTO;
 using System.Collections;
 
 
@@ -46,6 +47,6 @@ namespace Bic.Application
 		/// </summary>
 		/// <param name="reporte">el reporte</param>
 		/// <returns></returns>
-		DataSet Ejecutar(Reporte reporte);
+		DataSet Ejecutar(ReporteDTO reporte);
 	}
 }

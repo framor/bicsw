@@ -69,6 +69,11 @@ namespace Bic.Web
 		}
 
 
+		public void Clear()
+		{
+			this.selectedCharts.Clear();
+		}
+
 		#endregion
 
 		#region Private methods
@@ -78,6 +83,19 @@ namespace Bic.Web
 			if(this.selectedCharts[ReportManager.GraphTypes.Pie.ToString()] != null && this.selectedCharts.Keys.Count != 1)
 			{
 				this.selectedCharts.Remove(ReportManager.GraphTypes.Pie.ToString());
+			}
+
+			if(this.selectedCharts[ReportManager.GraphTypes.Bars.ToString()] != null && this.selectedCharts.Keys.Count != 1)
+			{
+				if(this.selectedCharts[ReportManager.GraphTypes.Columns.ToString()] != null)
+				{
+					this.selectedCharts.Remove(ReportManager.GraphTypes.Columns.ToString());
+				}				
+
+				if(this.selectedCharts[ReportManager.GraphTypes.Pie.ToString()] != null)
+				{
+					this.selectedCharts.Remove(ReportManager.GraphTypes.Pie.ToString());
+				}
 			}
 		}
 

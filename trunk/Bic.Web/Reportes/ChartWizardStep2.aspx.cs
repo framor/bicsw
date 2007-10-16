@@ -219,10 +219,12 @@ namespace Bic.Web
 				ReportManager.GetInstance(this.Session).GraphFilter  = this.rdoBtnLstFilterOptions.SelectedValue;
 
 				this.imgPreviewChart.ImageUrl="PreviewChartRenderPage.aspx";	
+				this.btnNext.Enabled = true;
 			}
 			else
 			{
 				this.imgPreviewChart.ImageUrl="../img/emptyPreviewChart.png";		
+				this.btnNext.Enabled = false;
 			}						
 		}
 

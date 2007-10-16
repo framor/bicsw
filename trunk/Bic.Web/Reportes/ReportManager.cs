@@ -5,6 +5,7 @@ using System.Web.SessionState;
 using System.Data;
 using Bic.Domain;
 using Bic.Application;
+using Bic.Application.DTO;
 
 namespace Bic.Web
 {
@@ -69,6 +70,7 @@ namespace Bic.Web
 			}
 		}
 
+
 		private int ColorCount
 		{
 			get
@@ -92,6 +94,7 @@ namespace Bic.Web
 				this.httpSessionState["colorCount"] = this.colorCount;
 			}
 		}
+
 
 		public Hashtable DataSources
 		{
@@ -130,11 +133,11 @@ namespace Bic.Web
 		}
 
 
-		public Reporte Reporte
+		public ReporteDTO Reporte
 		{
 			get
 			{
-				this.reporte = this.httpSessionState["reporte"] as Reporte;
+				this.reporte = this.httpSessionState["reporte"] as ReporteDTO;
 				return reporte;
 			}
 
@@ -155,7 +158,7 @@ namespace Bic.Web
 					//TODO
 					//Aca deberia actualizarse solo si cambio el reporte. Preguntarle a fer si existe alguna propeidad de 
 					// hibernate que permita determinar esto.
-					this.reportSourceCache = BICContext.Instance.ReporteService.Ejecutar(this.Reporte.Id);					
+					this.reportSourceCache = BICContext.Instance.ReporteService.Ejecutar(this.Reporte);					
 				}
 				else
 				{
@@ -163,6 +166,11 @@ namespace Bic.Web
 				}
 
 				return this.reportSourceCache;
+			}
+
+			set
+			{
+				this.reportSourceCache = value;
 			}
 		}
 
@@ -188,7 +196,7 @@ namespace Bic.Web
 		private static ReportManager reportManager;
 		private static object syncRoot = new Object();
         
-		private Reporte reporte;
+		private ReporteDTO reporte;
 		private HttpSessionState httpSessionState;
 		private DataSet reportSourceCache;
 		private string  graphFilter;
@@ -288,6 +296,16 @@ namespace Bic.Web
 		{
 			return (System.Drawing.Color) this.Colors[this.ColorCount];
 		}
+
+
+		public void Clear()
+		{
+			this.ColorCount = -1;
+			this.Reporte = null;
+			this.DataSources.Clear();
+			this.ReportSourceCache = null;
+			this.ChartTypesSelectedManager.Clear();
+		}	
 
 		#endregion
 		

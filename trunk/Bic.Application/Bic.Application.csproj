@@ -174,6 +174,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "DTO\ReporteDTO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Impl\AtributoServiceImpl.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
