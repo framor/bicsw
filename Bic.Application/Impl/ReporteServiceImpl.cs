@@ -5,6 +5,7 @@ using System.Data;
 using Bic.Domain.Dao;
 using Bic.Domain.Exception;
 using Bic.Framework.Exception;
+using Bic.Application.DTO;
 
 namespace Bic.Application.Impl
 {
@@ -84,9 +85,11 @@ namespace Bic.Application.Impl
 			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
 		}
 
-		public DataSet Ejecutar(Reporte reporte)
+		public DataSet Ejecutar(ReporteDTO reporte)
 		{
-			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
+			// TODO: no quedo muy lindo esto
+			Reporte r = new Reporte(reporte.Atributos, reporte.Metricas, reporte.Filtros);
+			return this.catalogoDAO.EjecutarSql(reporte.Conexion, r.DameSql());
 		}
 
 		#endregion

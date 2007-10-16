@@ -1,7 +1,10 @@
 using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
+using Bic.Application.DTO;
 using Bic.Domain.Exception;
+using Bic.Domain;
+
 
 namespace Bic.Web
 {
@@ -62,7 +65,9 @@ namespace Bic.Web
 				}
 				else if(e.CommandName.Equals("Ejecutar"))
 				{
-					ReportManager.GetInstance(this.Session).Reporte = BICContext.Instance.ReporteService.Retrieve(id);
+					ReportManager.GetInstance(this.Session).Clear();
+					Reporte rep = BICContext.Instance.ReporteService.Retrieve(id);
+					ReportManager.GetInstance(this.Session).Reporte = new ReporteDTO(rep);
 					Response.Redirect("Reportes/AdministracionReportes.aspx");
 				}
 			
@@ -130,3 +135,5 @@ namespace Bic.Web
 		#endregion
 	}
 }
+
+
