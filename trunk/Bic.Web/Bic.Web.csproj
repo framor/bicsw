@@ -526,6 +526,10 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "img\icon-print.jpg"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "img\iconWord.JPG"
                     BuildAction = "Content"
                 />
