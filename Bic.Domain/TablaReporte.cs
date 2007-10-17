@@ -115,5 +115,23 @@ namespace Bic.Domain
 		{
 			this.caminos.AddRange(listaCaminos);
 		}
+
+		public void MergeCaminos()
+		{
+			ArrayList caminos1 = new ArrayList(this.caminos);
+			foreach(Camino camino1 in caminos1)
+			{
+				ArrayList caminos2 = new ArrayList(this.caminos);
+				foreach(Camino camino2 in caminos2)
+				{
+					if(camino2.TenesAtributo(camino1.AtributoOrigen) && !camino2.Equals(camino1) )
+					{
+						this.caminos.Remove(camino1);
+						break;
+					}
+				}
+			}
+		}
+
 	}
 }

@@ -108,6 +108,14 @@ namespace Bic.Domain
 			}
 		}
 
+		public string AliasSql
+		{
+			get
+			{
+				return this.TablaLookup.Nombre + this.id;
+			}
+		}
+
 		#endregion
 
 		#region Public methods

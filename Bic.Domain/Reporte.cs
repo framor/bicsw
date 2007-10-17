@@ -176,6 +176,8 @@ namespace Bic.Domain
 			// Tomo la primera y la agrego al reporte.
 			this.tablaReporte = (TablaReporte)tablasReporte[0];
 
+			this.tablaReporte.MergeCaminos();
+
 			return;
 
 		}
@@ -267,7 +269,9 @@ namespace Bic.Domain
 			ArrayList ats = new ArrayList(this.atributos);
 			foreach(Atributo atrib in ats)
 			{
-				string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
+				//string alias = atrib.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atrib);
+				//string alias = atrib.AliasSql;
+				string alias = atrib.AliasSql + this.tablaReporte.GetIdCamino(atrib);
 				IList columnasDesc = atrib.ColumnasDescripciones;
 				
 				foreach(Columna col in columnasDesc)
@@ -298,7 +302,9 @@ namespace Bic.Domain
 			foreach(Filtro filtro in this.Filtros)
 			{
 				Atributo atributoFiltro = filtro.Atributo;
-				string alias = atributoFiltro.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atributoFiltro);
+				//string alias = atributoFiltro.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atributoFiltro);
+				//string alias = atributoFiltro.AliasSql;
+				string alias = atributoFiltro.AliasSql + this.tablaReporte.GetIdCamino(atributoFiltro);
 				filtrosWhere += filtro.GetSql(alias);
 
 				if (this.Filtros.IndexOf(filtro) < this.Filtros.Count - 1)
