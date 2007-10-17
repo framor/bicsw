@@ -100,12 +100,10 @@ namespace Bic.Web
 		{
 			//HACK : Como veran, el header siempre tiene que llamarseeeeee (GONE)
 			Bic.WebControls.Header header = FindControlByID(this.Controls,"bicHeader") as Bic.WebControls.Header;
+			Bic.WebControls.Menu menu = FindControlByID(this.Controls,"bicMenu") as Bic.WebControls.Menu;
 
-			if (header!=null)
-			{
-				header.PagePath = Request.Url.AbsolutePath;
-			}
-
+			if (header!= null) header.PagePath = Request.Url.AbsolutePath;
+			if (menu != null) menu.PagePath = Request.Url.AbsolutePath;
 		}		
 
 		override protected void OnInit(EventArgs e)

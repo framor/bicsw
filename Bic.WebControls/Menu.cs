@@ -3,6 +3,8 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bic.Domain.Usuario;
+using System.IO;
+using System;
 
 namespace Bic.WebControls
 {
@@ -13,6 +15,61 @@ namespace Bic.WebControls
 		ToolboxData("<{0}:Menu runat=server></{0}:Menu>")]
 	public class Menu : WebControl
 	{
+
+		#region Private members
+
+		private string pagePath;
+
+		#endregion
+
+		#region Properties
+
+		public virtual string PagePath
+		{
+			get
+			{
+				return this.pagePath;
+			}
+
+			set
+			{
+				this.pagePath = value;
+			}
+		}
+
+
+		#endregion
+
+		protected override void OnInit(System.EventArgs e)
+		{
+			this.pagePath = string.Empty;
+			base.OnInit (e);
+		}
+
+		// TODO: es un copy paste de Header, mover!
+		private string GetPageDeep()
+		{
+			try
+			{
+				// Evaluar alguna forma mas elegante de hacer esto (GONE)
+				StringBuilder pageFolder = new StringBuilder();
+			
+				string[] pathSections = Path.GetDirectoryName(this.PagePath).Split(Path.DirectorySeparatorChar);
+
+				//HACK : el 1 y el 2º elemento no van , son : "" y bic"
+				for(int i = 2; i<pathSections.Length; i++)
+				{		
+					pageFolder.Append("..");									
+					pageFolder.Append('/');
+				}
+
+				return pageFolder.ToString().Length==0?"./":pageFolder.ToString();
+			}
+			catch (Exception)
+			{
+				throw new ApplicationException("Page path no seteado. El header no puede renderizarse. Checkear si la pagina hereda de basepage.");
+			}
+		}
 
 		/// <summary> 
 		/// Procesar este control en el parámetro de salida especificado.
@@ -26,21 +83,22 @@ namespace Bic.WebControls
 			if (u != null)
 			{
 				Rol rolActual = u.Rol;
+				string basePath = this.GetPageDeep();
 
 				sb.Append(@"<div id=""tabs10"">");
 				sb.Append(@"<ul>");
 				if (rolActual.PuedeAccederATablas())
-					sb.Append(@"<li><a href=""ListaTabla.aspx"" title=""Tablas""><span>Tablas</span></a></li>");	  
+					sb.Append(string.Format(@"<li><a href=""{0}ListaTabla.aspx"" title=""Tablas""><span>Tablas</span></a></li>", basePath));	  
 				if (rolActual.PuedeAccederAAtributos())
-					sb.Append(@"<li><a href=""ListaAtributo.aspx"" title=""Atributos""><span>Atributos</span></a></li>");
+					sb.Append(string.Format(@"<li><a href=""{0}ListaAtributo.aspx"" title=""Atributos""><span>Atributos</span></a></li>", basePath));
 				if (rolActual.PuedeAccederAHechos())
-					sb.Append(@"<li><a href=""ListaHecho.aspx"" title=""Hechos""><span>Hechos</span></a></li>");
+					sb.Append(string.Format(@"<li><a href=""{0}ListaHecho.aspx"" title=""Hechos""><span>Hechos</span></a></li>", basePath));
 				if (rolActual.PuedeAccederAFiltros())
-					sb.Append(@"<li><a href=""ListaFiltro.aspx"" title=""Filtros""><span>Filtros</span></a></li>");
+					sb.Append(string.Format(@"<li><a href=""{0}ListaFiltro.aspx"" title=""Filtros""><span>Filtros</span></a></li>", basePath));
 				if (rolActual.PuedeAccederAMetricas())
-					sb.Append(@"<li><a href=""ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>");
+					sb.Append(string.Format(@"<li><a href=""{0}ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>", basePath));
 				if (rolActual.PuedeAccederAReportes())
-					sb.Append(@"<li><a href=""ListaReporte.aspx"" title=""Reportes""><span>Reportes</span></a></li>");
+					sb.Append(string.Format(@"<li><a href=""{0}ListaReporte.aspx"" title=""Reportes""><span>Reportes</span></a></li>", basePath));
 				sb.Append("</div>");
 
 			}

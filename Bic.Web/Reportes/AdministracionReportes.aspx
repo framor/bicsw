@@ -12,48 +12,46 @@
 			<div id="container">
 				<cc1:Header id="bicHeader" runat="server"></cc1:Header>
 				<cc1:Menu id="bicMenu" runat="server"></cc1:Menu>
-				<div id="tabs10">
-				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:83%">
-						<h2>Exportar y graficar</h2>
-						<table width="100%" cellspacing="0" cellpadding="0" border="0">
-							<tr>
-								<td>
-									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg" style="border:none"></asp:imagebutton>
-									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG" style="border:none"></asp:imagebutton>
-								</td>
-								<td>
-									<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
-								</td>
-								<td>
-									<input type="button"  value="Ver SQL" onClick="window.open('VerSQL.aspx' , 'Ver SQL' , 'width= 800 ,height=400 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
-								</td>
-							</tr>
-						</table>
-						<br>
 						<h2>Reporte</h2>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr valign="bottom">
 								<td align="left">
 									Drill down
-									<asp:DropDownList id="ddlDrillDown" runat="server" AutoPostBack="True"></asp:DropDownList>
+									<asp:DropDownList id="ddlDrillDown" runat="server" AutoPostBack="True" Width="200px"></asp:DropDownList>
 								</td>
 								<td align="left">
 									Drill up
-									<asp:DropDownList id="ddlDrillUp" runat="server" AutoPostBack="True"></asp:DropDownList>
+									<asp:DropDownList id="ddlDrillUp" runat="server" AutoPostBack="True" Width="200px"></asp:DropDownList>
+								</td>
+								<td align="right" nowrap="nowrap">
+									<asp:imagebutton id="imgBtnExcel" Runat="server" ImageUrl="../img/iconExcel.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnWord" Runat="server" ImageUrl="../img/iconWord.JPG" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnPDF" Runat="server" ImageUrl="../img/iconPDF.jpg" style="border:none"></asp:imagebutton>
+									<asp:imagebutton id="imgBtnText" Runat="server" ImageUrl="../img/iconNotepad.JPG" style="border:none"></asp:imagebutton>
 								</td>
 							</tr>
+							<tr><td>&nbsp;</td></tr>
 							<tr valign="bottom">
-								<td align="left">
+								<td align="left" colspan="3">
+									<div style="width:730px;height:250px;overflow-x:auto;">
 									<asp:datagrid id="dtgReport" Runat="server" CellPadding="5" Font-Names="Verdana" Width="100%"
 										UseAccessibleHeader="True">
 										<AlternatingItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="Gainsboro"></AlternatingItemStyle>
 										<ItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="PapayaWhip"></ItemStyle>
 										<HeaderStyle Font-Names="Verdana" ForeColor="Black" BackColor="LightBlue"></HeaderStyle>
 									</asp:datagrid>
+									</div>
+								</td>
+							</tr>
+							<tr><td>&nbsp;</td></tr>														
+							<tr>
+								<td colspan="2" align="right">
+									<input type="button" value="Ver SQL" onClick="window.open('VerSQL.aspx' , 'SQL' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
+								</td>							
+								<td align="right" >
+									<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
 								</td>
 							</tr>
 						</table>						

@@ -36,8 +36,8 @@
 								<tr valign="bottom">
 									<td align="left">
 										<asp:Button ID="btnCancel" Runat="server" Text ="Cancelar"></asp:Button>
-										<asp:Button ID="btnBack" Runat="server" Text ="Anterior"></asp:Button>
-										<asp:Button ID="btnNext" Runat="server" Text ="Siguiente"></asp:Button>
+										<asp:Button ID="btnBack" Runat="server" Text ="&lt; Anterior"></asp:Button>
+										<asp:Button ID="btnNext" Runat="server" Text ="Siguiente &gt;"></asp:Button>
 									</td>
 								</tr>
 						</table>			
