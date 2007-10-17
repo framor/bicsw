@@ -717,6 +717,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Reportes\VerSQL.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Reportes\VerSQL.aspx.cs"
+                    DependentUpon = "VerSQL.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Reportes\VerSQL.aspx.resx"
+                    DependentUpon = "VerSQL.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Reportes\WizardBasePage.cs"
                     SubType = "ASPXCodeBehind"
                     BuildAction = "Compile"

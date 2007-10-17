@@ -28,6 +28,9 @@
 								<td>
 									<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
 								</td>
+								<td>
+									<input type="button"  value="Ver SQL" onClick="window.open('VerSQL.aspx' , 'Ver SQL' , 'width= 800 ,height=400 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
+								</td>
 							</tr>
 						</table>
 						<br>
