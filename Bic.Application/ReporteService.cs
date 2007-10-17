@@ -48,5 +48,12 @@ namespace Bic.Application
 		/// <param name="reporte">el reporte</param>
 		/// <returns></returns>
 		DataSet Ejecutar(ReporteDTO reporte);
+
+		/// <summary>
+		/// No me caben ni un poco estos comentarios. Para mi estan re al pedo.
+		/// </summary>
+		/// <param name="reporte"></param>
+		/// <returns></returns>
+		String GetReportSQL(ReporteDTO reporte);
 	}
 }
