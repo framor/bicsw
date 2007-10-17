@@ -35,6 +35,14 @@ namespace Bic.Domain
 		}
 
         /// <summary>
+        /// Atributo que origino el Camino
+        /// </summary>
+		public Atributo AtributoOrigen
+		{
+			get { return (Atributo)this.atributos[this.atributos.Count - 1]; }
+		}
+
+        /// <summary>
         /// Devuelve la condicion where de join entre el atributo de primer nivel
         /// y la tabla de join.
         /// </summary>
@@ -43,7 +51,8 @@ namespace Bic.Domain
 		public string DameJoinFact(string aliasFact)
 		{
 			string nombreCampo = this.AtributoFact.ColumnaId.Nombre;
-			string aliasLkp = this.AtributoFact.TablaLookup.Nombre + this.id;
+			//string aliasLkp = this.AtributoFact.AliasSql;
+			string aliasLkp = this.AtributoFact.AliasSql + this.Id;
 			string sql = aliasFact + "." + nombreCampo + " = " + aliasLkp + "." + nombreCampo;
 			return sql;		
 		}
@@ -65,7 +74,8 @@ namespace Bic.Domain
 				// Le agrego el nombre de la tabla y un alias generado con el nombre
 				// de la tabla y el id del camino, para que no se repita con todos 
 				// los caminos que conforman un reporte.
-				fromClause += tabla.NombreBD + "." + tabla.Nombre + " as " + tabla.Nombre + this.id;
+				//fromClause += tabla.NombreBD + "." + tabla.Nombre + " as " + atributo.AliasSql;
+				fromClause += tabla.NombreBD + "." + tabla.Nombre + " as " + atributo.AliasSql + this.Id;
 				// Si no es el ultimo elemento le agrego una coma, si es el ultimo no se
 				// le agrega.
 				if(this.atributos.IndexOf(atributo) < this.atributos.Count - 1)
@@ -99,7 +109,9 @@ namespace Bic.Domain
 				// Armo la comparacion ej: campo2 = lkp2.campo2
 				if(this.atributos.IndexOf(atributo) > 0)
 					whereClause += atributo.ColumnaId.Nombre + " = " 
-								+ tabla.Nombre + this.id + "."
+								//+ tabla.Nombre + this.id + "."
+								//+ atributo.AliasSql + "." 
+								+ atributo.AliasSql + this.Id + "." 
 								+ atributo.ColumnaId.Nombre ; 
 				
 				// Mientras no sea el ultimo agrego el and y el alias de la tabla
@@ -110,7 +122,9 @@ namespace Bic.Domain
 					whereClause += "\nand ";
 
 				if(this.atributos.IndexOf(atributo) < this.atributos.Count - 1)
-					whereClause += tabla.Nombre + this.id + ".";
+					//whereClause += tabla.Nombre + this.id + ".";
+					//whereClause += atributo.AliasSql + ".";
+					whereClause += atributo.AliasSql + this.Id + ".";
 
 				// Termina quedando en 3 pasadas
 				// lkp1.campo2 = lkp2.campo2
@@ -131,7 +145,14 @@ namespace Bic.Domain
 
 		public bool TenesAtributo(Atributo atrib)
 		{
-				return this.atributos[this.atributos.Count - 1].Equals(atrib);
+			foreach(Atributo atributo in this.atributos)
+			{
+				if(atributo.Equals(atrib))
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }
