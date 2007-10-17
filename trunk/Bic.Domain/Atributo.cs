@@ -174,7 +174,17 @@ namespace Bic.Domain
 
 		}
 
+		public override bool Equals(object obj)
+		{
+			if (obj == null) return false;
+			if (!(obj is Atributo)) return false; 
+			return this.id.Equals(((Atributo) obj).Id);
+		}
 
+		public override int GetHashCode()
+		{
+			return this.Id.GetHashCode();
+		}
 		#endregion
 	}
 }

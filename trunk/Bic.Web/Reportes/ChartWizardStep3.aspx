@@ -16,7 +16,7 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<table width="100%" >
+						<table width="720px" >
 							<tr>
 								<td>
 									<h2>Paso 3 : visualice gráfico</h2>			
@@ -39,8 +39,8 @@
 								<tr valign="bottom">
 									<td align="left">
 										<asp:Button ID="btnCancel" Runat="server" Text ="Cancelar"></asp:Button>
-										<asp:Button ID="btnBack" Runat="server" Text ="Anterior"></asp:Button>
-										<asp:Button ID="btnNext" Runat="server" Text ="Siguiente"></asp:Button>
+										<asp:Button ID="btnBack" Runat="server" Text ="&lt; Anterior"></asp:Button>
+										<asp:Button ID="btnNext" Runat="server" Text ="Siguiente &gt;"></asp:Button>
 									</td>
 								</tr>
 						</table>			

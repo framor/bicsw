@@ -89,7 +89,7 @@ namespace Bic.WebControls
 
 			try
 			{
-				string pageFolder = this.GetPageDeep();				
+				string pageFolder = this.GetPageDeep();
 
 				Usuario u = (Usuario) this.Page.Session["usuario"];
 				Proyecto p = (Proyecto) this.Page.Session["proyecto"];

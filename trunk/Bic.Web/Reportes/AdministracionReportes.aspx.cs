@@ -172,8 +172,6 @@ namespace Bic.Web
 				Atributo atributoPadre = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillUp.SelectedValue));				
 
 				ReportManager.GetInstance(this.Session).Reporte.Atributos.Add(atributoPadre);
-
-				//TODO : VER POR QUE MIERDA NO LO REMUEVE
 				ReportManager.GetInstance(this.Session).Reporte.Atributos.Remove(atributoPadre.Hijo);
 
 				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 

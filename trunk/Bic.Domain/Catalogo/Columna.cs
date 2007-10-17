@@ -40,6 +40,8 @@ namespace Bic.Domain.Catalogo
 
 		public override bool Equals(object obj)
 		{
+			if (obj == null) return false;
+			if (!(obj is Columna)) return false; 
 			return this.nombre.Equals(((Columna) obj).Nombre);
 		}
 

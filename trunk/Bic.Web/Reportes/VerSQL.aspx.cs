@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using Bic.Application;
 
 namespace Bic.Web
 {
@@ -38,7 +39,14 @@ namespace Bic.Web
 
 		protected override void PopulateView()
 		{
-			this.lblSQLString.Text = ReportManager.GetInstance(this.Session).ChartTypesSelectedManager.GetSelectedChartsStringDescription();			
+			string sql = BICContext.Instance.ReporteService.GetReportSQL(ReportManager.GetInstance(this.Session).Reporte);
+			sql = sql.Replace("\n", "<br>");
+			sql = sql.Replace("select", "<span style='color:blue'><b>select</b></span>");
+			sql = sql.Replace("from", "<span style='color:blue'><b>from</b></span>");
+			sql = sql.Replace("where", "<span style='color:blue'><b>where</b></span>");
+			sql = sql.Replace("and ", "<span style='color:blue'><b>and </b></span>");
+			sql = sql.Replace("Group By", "<span style='color:blue'><b>group by</b></span>");
+			this.lblSQLString.Text = sql.Replace("\n", "<br>");
 		}
 		
 		protected override String NextPage

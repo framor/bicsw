@@ -28,6 +28,8 @@
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">							
 								<tr valign="bottom">
 									<td align="left">
+										<asp:Button ID="btnBack" Runat="server" Text ="&lt; Anterior"></asp:Button>
+										<asp:Button ID="btnNext" Runat="server" Text ="Siguiente &gt;"></asp:Button>
 										<asp:Button ID="btnCancel" Runat="server" Text ="Cerrar"></asp:Button>
 									</td>
 								</tr>
