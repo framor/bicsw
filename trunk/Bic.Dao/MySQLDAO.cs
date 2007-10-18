@@ -4,6 +4,7 @@ using System.Data;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
 using MySql.Data.MySqlClient;
+using log4net;
 
 namespace Bic.Dao
 {
@@ -12,6 +13,8 @@ namespace Bic.Dao
 	/// </summary>
 	public class MySQLDAO : ICatalogoDAO
 	{
+
+		private static readonly ILog LOG = LogManager.GetLogger(typeof(MySQLDAO));
 
 		private static readonly string GET_CATALOGO_SQL = "SELECT table_name, table_schema FROM `information_schema`.`TABLES` where table_schema = ?database";
 		private static readonly string GET_COLUMNAS_SQL = "SELECT column_name, data_type FROM `information_schema`.`COLUMNS` where table_schema = ?database and table_name= ?tablename";
@@ -31,26 +34,33 @@ namespace Bic.Dao
 
 			using (con)
 			{
-				con.Open();
-
-				DataSet ds = new DataSet();
-
-				MySqlCommand cmd = new MySqlCommand(GET_CATALOGO_SQL, con);
-				cmd.Parameters.Add("?database", conexion.Database);
-
-				MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-				da.Fill(ds);
-
-				Catalogo cat = new Catalogo();
-				Tabla t = null;
-
-				foreach (DataRow dr in ds.Tables[0].Rows)
+				try 
 				{
-					t = new Tabla(dr.ItemArray[0].ToString(), dr.ItemArray[1].ToString());
-					cat.AgregarTabla(t);
+					con.Open();
+
+					DataSet ds = new DataSet();
+
+					MySqlCommand cmd = new MySqlCommand(GET_CATALOGO_SQL, con);
+					cmd.Parameters.Add("?database", conexion.Database);
+
+					MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+					da.Fill(ds);
+
+					Catalogo cat = new Catalogo();
+					Tabla t = null;
+
+					foreach (DataRow dr in ds.Tables[0].Rows)
+					{
+						t = new Tabla(dr.ItemArray[0].ToString(), dr.ItemArray[1].ToString());
+						cat.AgregarTabla(t);
+					}
+					con.Close();
+					return cat;
+				} 
+				catch (MySqlException mse) 
+				{
+					throw new DataException(mse.Message);
 				}
-				con.Close();
-				return cat;
 			}
 		}
 
@@ -121,6 +131,8 @@ namespace Bic.Dao
 
 		public DataSet EjecutarSql(Conexion c, string sql)
 		{
+			LOG.InfoFormat("Executing sql: {0}", sql);
+
 			string connStr = String.Format("Server={0};Database={1};Uid={2};Pwd={3}", 
 				new object[]{c.Server, c.Database, c.User, c.Password});
 			MySqlConnection con = new MySqlConnection(connStr);

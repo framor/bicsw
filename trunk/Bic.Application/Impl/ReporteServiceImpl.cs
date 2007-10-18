@@ -11,6 +11,8 @@ namespace Bic.Application.Impl
 {
 	public class ReporteServiceImpl: BaseService, ReporteService 
 	{
+		
+
 		private IProyectoDAO proyectoDAO;
 		public IProyectoDAO ProyectoDAO 
 		{

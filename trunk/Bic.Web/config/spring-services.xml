@@ -12,6 +12,7 @@
 	    <property name="InterceptorNames">
 			<list>
 				<value>loggingInterceptor</value>	    
+				<value>exceptionInterceptor</value>	    
 				<value>transactionInterceptor</value>
 			</list>
 	    </property>

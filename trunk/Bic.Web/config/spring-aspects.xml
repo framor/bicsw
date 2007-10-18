@@ -13,5 +13,7 @@
 	<object id="loggingInterceptor" type="Bic.Framework.Aspects.LoggingAdvice, Bic.Framework">
 		<property name="Level" value="Info" />
 	</object>
+	<object id="exceptionInterceptor" type="Bic.Framework.Aspects.ExceptionAdvice, Bic.Framework">
+	</object>
   
 </objects>
