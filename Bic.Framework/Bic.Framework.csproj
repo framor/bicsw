@@ -99,6 +99,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Aspects\ExceptionAdvice.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Aspects\LoggingAdvice.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
