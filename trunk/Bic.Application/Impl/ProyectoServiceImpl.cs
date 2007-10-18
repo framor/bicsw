@@ -45,7 +45,7 @@ namespace Bic.Application.Impl
 			{
 				this.catalogoDAO.ProbarConexion(unProyecto.Conexion);
 			}
-			catch (DataException de)
+			catch (DataException)
 			{
 				throw new ServiceException("No se puede grabar el proyecto con una conexión inválida. Verifique los parámetros de la misma.");
 			}
