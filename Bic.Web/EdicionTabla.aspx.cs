@@ -44,8 +44,15 @@ namespace Bic.Web
 					this.txtPeso.Text = "0";
 				}
 
-				this.lstNombre.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
-				this.lstNombre.DataBind();
+				try 
+				{
+					this.lstNombre.DataSource = BICContext.Instance.CatalogoService.SelectTablasDisponibles(Proyecto.Id);
+					this.lstNombre.DataBind();
+				} 
+				catch (ServiceException se)
+				{					
+					Page.RegisterStartupScript("errorCatalgo", string.Format(@"<script>alert('No se pudo obtener la información del catálogo de datos. Causa: {0}');</script>", se.Message));
+				}
 
 			}
 

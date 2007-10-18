@@ -3,6 +3,7 @@
 using System;
 using AopAlliance.Intercept;
 using log4net;
+using Bic.Framework.Exception;
 
 #endregion
 
@@ -16,7 +17,6 @@ namespace Bic.Framework.Aspects
 
 		#endregion
 
-
 		#region IMethodInterceptor Members
 
 		public object Invoke(IMethodInvocation invocation)
@@ -28,7 +28,7 @@ namespace Bic.Framework.Aspects
 			catch (System.Exception ex)
 			{
 				LOG.Error(ex.Message);
-				throw ex;
+				throw new ServiceException(ex.Message);
 			}
 		}
 
