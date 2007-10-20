@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain.Usuario;
+using Bic.Framework;
 
 namespace Bic.Web
 {
@@ -41,15 +42,16 @@ namespace Bic.Web
 		/// </summary>
 		private void InitializeComponent()
 		{    
-			this.Load += new EventHandler(this.Page_Load);
-			this.btnIniciar.Click += new EventHandler(this.btnIniciar_Click);
+			this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+			this.Load += new System.EventHandler(this.Page_Load);
+
 		}
 		#endregion
 
 		private void btnIniciar_Click(object sender, EventArgs e)
 		{
-			string usuario = this.txtUsuario.Text;
-			string contrasena = this.txtContrasena.Text;
+			string usuario = StringUtils.TrimSpecialCharacters(this.txtUsuario.Text);
+			string contrasena = StringUtils.TrimSpecialCharacters(this.txtContrasena.Text);
 			Usuario u = BICContext.Instance.UsuarioService.Login(usuario, contrasena);
 			if (u != null)
 			{

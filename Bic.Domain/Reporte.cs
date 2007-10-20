@@ -248,7 +248,7 @@ namespace Bic.Domain
 			};
 			
 			// Con esta funcion quito los repetidos
-			return Util.ConvertirSet(tablas);
+			return CollectionUtils.ConvertirSet(tablas);
 		}
 
 

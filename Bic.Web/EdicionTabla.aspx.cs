@@ -2,6 +2,7 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain.Catalogo;
+using Bic.Framework;
 using Bic.Framework.Exception;
 
 namespace Bic.Web
@@ -84,7 +85,7 @@ namespace Bic.Web
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			string alias = this.txtAlias.Text;
+			string alias = StringUtils.TrimSpecialCharacters(this.txtAlias.Text);
 			int peso = Int32.Parse(this.txtPeso.Text);
 			Tabla t = null;
 			if (id == -1)

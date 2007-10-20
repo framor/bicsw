@@ -2,6 +2,7 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
+using Bic.Framework;
 using Bic.Framework.Exception;
 
 namespace Bic.Web
@@ -41,12 +42,12 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Proyecto p = BICContext.Instance.ProyectoService.Retrieve(id);
-					this.txtNombre.Text = p.Nombre;
-					this.txtDescripcion.Text = p.Descripcion;
-					this.txtServidor.Text = p.Servidor;
-					this.txtEsquema.Text = p.NombreBD;
-					this.txtUsuario.Text = p.Usuario;
-					this.txtPassword.Text = p.Password;
+					this.txtNombre.Text = Server.HtmlDecode(p.Nombre);
+					this.txtDescripcion.Text = Server.HtmlDecode(p.Descripcion);
+					this.txtServidor.Text = Server.HtmlDecode(p.Servidor);
+					this.txtEsquema.Text = Server.HtmlDecode(p.NombreBD);
+					this.txtUsuario.Text = Server.HtmlDecode(p.Usuario);
+					this.txtPassword.Text = Server.HtmlDecode(p.Password);
 				}
 			}
 		}
@@ -87,12 +88,12 @@ namespace Bic.Web
 			{
 				p = BICContext.Instance.ProyectoService.Retrieve(id);
 			}			
-			p.Nombre = this.txtNombre.Text;
-			p.Descripcion = this.txtDescripcion.Text;
-			p.Servidor = this.txtServidor.Text;
-			p.NombreBD = this.txtEsquema.Text;
-			p.Usuario = this.txtUsuario.Text;
-			p.Password = this.txtPassword.Text;
+			p.Nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
+			p.Descripcion = StringUtils.TrimSpecialCharacters(this.txtDescripcion.Text);
+			p.Servidor = StringUtils.TrimSpecialCharacters(this.txtServidor.Text);
+			p.NombreBD = StringUtils.TrimSpecialCharacters(this.txtEsquema.Text);
+			p.Usuario = StringUtils.TrimSpecialCharacters(this.txtUsuario.Text);
+			p.Password = StringUtils.TrimSpecialCharacters(this.txtPassword.Text);
 
 			try 
 			{
