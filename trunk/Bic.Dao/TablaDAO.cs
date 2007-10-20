@@ -45,7 +45,12 @@ namespace Bic.Dao
 			return null;
 		}
 
-		private IList SelectTablasParaHechos(long idProyecto)
+		/// <summary>
+		/// Implementa ITablaDAO.ObtenerByNombre
+		/// </summary>
+		/// <param name="idProyecto"></param>
+		/// <returns></returns>
+		public IList SelectTablasParaHechos(long idProyecto)
 		{			
 			string hql = string.Format(
 				@"select t from {0} t

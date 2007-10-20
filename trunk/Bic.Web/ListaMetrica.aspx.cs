@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Framework.Exception;
@@ -13,6 +14,7 @@ namespace Bic.Web
 		protected DataGrid dgMetricas;
 		protected Button btnNuevo;
 		protected CustomValidator valEliminar;
+		protected CustomValidator valHechos;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -96,7 +98,16 @@ namespace Bic.Web
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionMetrica.aspx?id=-1");
+			ICollection ds = BICContext.Instance.HechoService.Select(Proyecto.Id);
+			if( ds.Count == 0)
+			{
+				this.valHechos.IsValid = false;
+				this.valHechos.ErrorMessage = "No existen Hechos sobre los cuales se pueden crear Métricas.";
+			}
+			else
+			{
+				Response.Redirect("EdicionMetrica.aspx?id=-1");
+			}
 		}
 
 		protected override bool TienePermisosSuficientes()

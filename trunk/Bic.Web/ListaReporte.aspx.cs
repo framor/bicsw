@@ -1,10 +1,9 @@
 using System;
+using System.Collections;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Application.DTO;
-using Bic.Domain.Exception;
 using Bic.Domain;
-
 
 namespace Bic.Web
 {
@@ -18,6 +17,7 @@ namespace Bic.Web
 		protected DataGrid dgReportes;
 		protected Button btnNuevo;
 		protected CustomValidator valEliminar;
+		protected CustomValidator valNuevo;
 
 		#endregion
 
@@ -83,7 +83,17 @@ namespace Bic.Web
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionReporte.aspx?id=-1");
+			ICollection at = BICContext.Instance.AtributoService.Select(Proyecto.Id);
+			ICollection mt = BICContext.Instance.MetricaService.Select(Proyecto.Id);
+			if( at.Count == 0 || mt.Count == 0)
+			{
+				this.valNuevo.IsValid = false;
+				this.valNuevo.ErrorMessage = "No existen Atributos y/o Metricas sobre los cuales crear el reporte.";
+			}
+			else
+			{
+				Response.Redirect("EdicionReporte.aspx?id=-1");
+			}
 		}
 
 

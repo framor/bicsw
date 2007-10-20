@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Bic.Framework.Exception;
 using System.Web.UI.WebControls;
 using Bic.Application;
@@ -13,6 +14,7 @@ namespace Bic.Web
 		protected DataGrid dgAtributos;
 		protected Button btnNuevo;
 		protected CustomValidator valEliminar;
+		protected CustomValidator valTablas;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -97,7 +99,16 @@ namespace Bic.Web
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionAtributo.aspx?id=-1");
+			ICollection ds = BICContext.Instance.TablaService.Select(Proyecto.Id);
+			if( ds.Count == 0)
+			{
+				this.valTablas.IsValid = false;
+				this.valTablas.ErrorMessage = "No existen Tablas sobre las cuales crear Atributos.";
+			}
+			else
+			{
+				Response.Redirect("EdicionAtributo.aspx?id=-1");
+			}
 		}
 
 		protected override bool TienePermisosSuficientes()

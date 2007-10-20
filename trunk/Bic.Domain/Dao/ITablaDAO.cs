@@ -32,6 +32,14 @@ namespace Bic.Domain.Dao
 		IList SelectColumnasParaHecho(long idProyecto); 
 
 		/// <summary>
+		/// Obtiene todas las tablas que pueden ser un hecho, es decir que no
+		/// pertenecen a una tabla de atributos
+		/// </summary>
+		/// <param name="idProyecto">id de proyecto</param>
+		/// <returns>lista de tabls</returns>
+		public IList SelectTablasParaHechos(long idProyecto);
+
+		/// <summary>
 		/// Obtiene todas las tablas que contienen la columna
 		/// </summary>
 		/// <param name="idProyecto">id de proyecto</param>
