@@ -307,6 +307,7 @@ namespace Bic.Web
 			this.ChartTypesSelectedManager.Clear();
 		}	
 
+
 		#endregion
 		
 		#region Private methods

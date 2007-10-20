@@ -21,6 +21,13 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.ImageButton imgBtnIconAreaChart;
 		protected System.Web.UI.WebControls.ImageButton imgBtnIconPieChart;
 		protected System.Web.UI.WebControls.ImageButton imgBtnIconLinesChart;
+
+		protected System.Web.UI.WebControls.Panel pnlBars;
+		protected System.Web.UI.WebControls.Panel pnlColumns;
+		protected System.Web.UI.WebControls.Panel pnlArea;
+		protected System.Web.UI.WebControls.Panel pnlPie;
+		protected System.Web.UI.WebControls.Panel pnlLines;
+
 		protected System.Web.UI.WebControls.Label lblChartTypeSelected;		
 
 		#endregion
@@ -99,11 +106,110 @@ namespace Bic.Web
 		protected override void PopulateView()
 		{
 			this.lblChartTypeSelected.Text = ReportManager.GetInstance(this.Session).ChartTypesSelectedManager.GetSelectedChartsStringDescription();			
-			this.btnNext.Enabled = this.lblChartTypeSelected.Text.Length != 0;
+
+			this.imgBtnIconAreaChart.ImageUrl = this.GetImageURL(ReportManager.GraphTypes.Area);
+			this.imgBtnIconBarsChart.ImageUrl = this.GetImageURL(ReportManager.GraphTypes.Bars);
+			this.imgBtnIconColumnsChart.ImageUrl = this.GetImageURL(ReportManager.GraphTypes.Columns);
+			this.imgBtnIconLinesChart.ImageUrl = this.GetImageURL(ReportManager.GraphTypes.Lines);
+			this.imgBtnIconPieChart.ImageUrl = this.GetImageURL(ReportManager.GraphTypes.Pie);
+
+			this.btnNext.Enabled = ReportManager.GetInstance(this.Session).ChartTypesSelectedManager.GetSelectedCharts().Count !=0;
 		
 		}
 
-				
+
+		private string GetImageURL(ReportManager.GraphTypes graphType)
+		{
+			if(ReportManager.GetInstance(this.Session).ChartTypesSelectedManager.IsSelectedGraphType(graphType))
+			{
+				return this.GetSelectedImage(graphType);
+			}
+			else if (ReportManager.GetInstance(this.Session).ChartTypesSelectedManager.IsCompatibleGraphType(graphType))
+			{
+				return this.GetEnabledImage(graphType);
+			}
+			else
+			{
+				return this.GetDisabledImage(graphType);
+			}
+		}
+		
+
+		private string GetSelectedImage (ReportManager.GraphTypes graphType)
+		{
+			switch(graphType)
+			{
+				case ReportManager.GraphTypes.Area:
+					this.pnlArea.Enabled = true;					
+					return "../img/iconAreaChartSelected.PNG";
+				case ReportManager.GraphTypes.Bars:
+					this.pnlBars.Enabled = true;
+					return "../img/iconBarsChartSelected.PNG";
+				case ReportManager.GraphTypes.Columns:
+					this.pnlColumns.Enabled = true;
+					return "../img/iconColumnsChartSelected.PNG";
+				case ReportManager.GraphTypes.Lines:
+					this.pnlLines.Enabled = true;
+					return "../img/iconLinesChartSelected.PNG";
+				case ReportManager.GraphTypes.Pie:
+					this.pnlPie.Enabled = true;
+					return "../img/iconPieChartSelected.PNG";
+				default:
+					return string.Empty;
+			}
+		}
+
+
+		private string GetEnabledImage (ReportManager.GraphTypes graphType)
+		{
+			switch(graphType)
+			{
+				case ReportManager.GraphTypes.Area:
+					this.pnlArea.Enabled = true;
+					return "../img/iconAreaChart.PNG";
+				case ReportManager.GraphTypes.Bars:
+					this.pnlBars.Enabled = true;
+					return "../img/iconBarsChart.PNG";
+				case ReportManager.GraphTypes.Columns:
+					this.pnlColumns.Enabled = true;
+					return "../img/iconColumnsChart.PNG";
+				case ReportManager.GraphTypes.Lines:
+					this.pnlLines.Enabled = true;
+					return "../img/iconLinesChart.PNG";
+				case ReportManager.GraphTypes.Pie:
+					this.pnlPie.Enabled = true;
+					return "../img/iconPieChart.PNG";
+				default:
+					return string.Empty;
+			}
+		}
+
+
+		private string GetDisabledImage (ReportManager.GraphTypes graphType)
+		{
+			switch(graphType)
+			{
+				case ReportManager.GraphTypes.Area:
+					this.pnlArea.Enabled = false;
+					return "../img/iconAreaChartDisabled.PNG";
+				case ReportManager.GraphTypes.Bars:
+					this.pnlBars.Enabled = false;
+					return "../img/iconBarsChartDisabled.PNG";
+				case ReportManager.GraphTypes.Columns:
+					this.pnlColumns.Enabled = false;
+					return "../img/iconColumnsChartDisabled.PNG";
+				case ReportManager.GraphTypes.Lines:
+					this.pnlLines.Enabled = false;
+					return "../img/iconLinesChartDisabled.PNG";
+				case ReportManager.GraphTypes.Pie:
+					this.pnlPie.Enabled = false;
+					return "../img/iconPieChartDisabled.PNG";
+				default:
+					return string.Empty;
+			}
+		}
+
+
 		#endregion	
 
 		#region Web Form Designer generated code
@@ -118,21 +224,26 @@ namespace Bic.Web
 		}
 		
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		private void InitializeComponent()
 		{    
 			this.Load += new System.EventHandler(this.Page_Load);
+
 			this.imgBtnIconAreaChart.Click+=new ImageClickEventHandler(imgBtnIconAreaChart_Click);
 			this.imgBtnIconBarsChart.Click+=new ImageClickEventHandler(imgBtnIconBarsChart_Click);
 			this.imgBtnIconColumnsChart.Click+=new ImageClickEventHandler(imgBtnIconColumnsChart_Click);
 			this.imgBtnIconLinesChart.Click+=new ImageClickEventHandler(imgBtnIconLinesChart_Click);
 			this.imgBtnIconPieChart.Click +=new ImageClickEventHandler(imgBtnIconPieChart_Click);
 
+			this.pnlArea.Controls.Add(this.imgBtnIconAreaChart);
+			this.pnlBars.Controls.Add(this.imgBtnIconBarsChart);
+			this.pnlColumns.Controls.Add(this.imgBtnIconColumnsChart);
+			this.pnlLines.Controls.Add(this.imgBtnIconLinesChart);
+			this.pnlPie.Controls.Add(this.imgBtnIconPieChart);
+
+
 			this.IsFirstPage = true;
 		}
+
 
 		#endregion
 	}
