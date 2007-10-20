@@ -126,7 +126,7 @@ namespace Bic.Web
 			{
 				a = BICContext.Instance.AtributoService.Retrieve(id);
 			}			
-			a.Nombre = this.txtNombre.Text;
+			
 			a.ColumnaId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
 			foreach (ListItem i in this.lstDescripciones.Items)
 			{
@@ -145,9 +145,14 @@ namespace Bic.Web
 			a.Proyecto = Proyecto;
 			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
 				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
-
 			try 
 			{
+				Atributo atrib = Proyecto.GetAtributoByName(this.txtNombre.Text);
+				if(atrib != null)
+				{
+					throw new ServiceException("No se puede crear el atributo ya que existe uno con el mismo nombre.");
+				}
+				a.Nombre = this.txtNombre.Text;
 				BICContext.Instance.AtributoService.Save(a);
 				Response.Redirect("ListaAtributo.aspx");
 			} 

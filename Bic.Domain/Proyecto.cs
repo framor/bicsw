@@ -189,5 +189,53 @@ namespace Bic.Domain
 			return true;
 		}
 
+		public Atributo GetAtributoByName(string nombreAtributo)
+		{
+			foreach(Atributo atributo in this.Atributos)
+			{
+				if(atributo.Nombre.Equals(nombreAtributo))
+				{
+					return atributo;
+				}
+			}
+			return null;
+		}
+
+		public Filtro GetFiltroByName(string nombreFiltro)
+		{
+			foreach(Filtro filtro in this.Filtros)
+			{
+				if(filtro.Nombre.Equals(nombreFiltro))
+				{
+					return filtro;
+				}
+			}
+			return null;
+		}
+
+		public Hecho GetHechoByName(string nombreHecho)
+		{
+			foreach(Hecho hecho in this.Hechos)
+			{
+				if(hecho.Nombre.Equals(nombreHecho))
+				{
+					return hecho;
+				}
+			}
+			return null;
+		}
+		
+		public Metrica GetMetricaByName(string nombreMetrica)
+		{
+			foreach(Metrica metrica in this.Metricas)
+			{
+				if(metrica.Nombre.Equals(nombreMetrica))
+				{
+					return metrica;
+				}
+			}
+			return null;
+		}
+
 	}
 }

@@ -26,11 +26,6 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Metrica unMetrica) 
 		{
-			IList metricas = this.ProyectoDAO.SelectMetricas(unMetrica.Proyecto.Id);
-			if (metricas.Contains(unMetrica)) 
-			{
-				throw new ServiceException("No se puede crear la metrica ya que existe una con el mismo nombre.");
-			}
 			this.GenericDAO.Save(unMetrica);
 		}
 
