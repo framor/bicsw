@@ -57,15 +57,10 @@
 						</table>
 					</div>
 					<div id="sidebar">
-						<h2 style="TEXT-ALIGN:right"><span onclick="toggleHelp();"> Ayuda</span></h2>
-						<div id="helpBody" style="DISPLAY:none">
-							<p>Los Metricas están definidos por una columna. blah blah 
-								bah...</p>
-							<p>Si desea añadir un metrica haga click en el boton Agregar nuevo.</p>
-							<p>Si que desea ir a la pantalla de edicion de un metrica haga click en el boton 
-								Editar.</p>
-							<p>Para eliminar un metrica del proyecto haga click en el boton Borrar.</p>
-						</div>
+					<h2 style="text-align:right">Ayuda</h2>
+					<p>Seleccione el hecho y la función que se le aplicará.</p>
+					<p>Para guardar los cambios haga click en Aceptar.</p>
+					<p>Para cancelar los cambios haga click en Cancelar.</p>					
 					</div>
 					<div id="footer">
 						<p>

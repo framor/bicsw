@@ -23,7 +23,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>Aquí encontrará todo lo correspondiente al proyecto seleccionado.</p>
 	<p>Para crear o ejecutar un reporte haga click en Reportes.</p>
-	<p>Para salir del proyecto haga click en quien sabe donde.</p>
+	<p>Para salir del proyecto haga click en botón al lado del nombre del proyecto.</p>
 	</div>
 
 	<div id="footer">
