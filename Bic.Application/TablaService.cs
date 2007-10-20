@@ -30,6 +30,14 @@ namespace Bic.Application
 		ICollection Select(long proyectoId);
 
 		/// <summary>
+		/// Obtiene todas las tablas que pueden ser un hecho, es decir que no
+		/// pertenecen a una tabla de atributos
+		/// </summary>
+		/// <param name="proyectoId"></param>
+		/// <returns></returns>
+		ICollection SelectTablasParaHechos(long proyectoId); 
+
+		/// <summary>
 		/// Elimina un tabla
 		/// </summary>
 		/// <param name="id">El id de tabla</param>

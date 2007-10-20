@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Framework.Exception;
@@ -13,6 +14,7 @@ namespace Bic.Web
 		protected DataGrid dgHechos;
 		protected Button btnNuevo;
 		protected CustomValidator valEliminar;
+		protected CustomValidator valTablas;
 
 		private void Page_Load(object sender, EventArgs e)
 		{
@@ -97,7 +99,16 @@ namespace Bic.Web
 
 		private void btnNuevo_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("EdicionHecho.aspx?id=-1");
+			ICollection ds = BICContext.Instance.TablaService.SelectTablasParaHechos(Proyecto.Id);
+			if( ds.Count == 0)
+			{
+				this.valTablas.IsValid = false;
+				this.valTablas.ErrorMessage = "No existen Tablas sobre las cuales se puede crear un Hecho.";
+			}
+			else
+			{
+				Response.Redirect("EdicionHecho.aspx?id=-1");
+			}
 		}
 
 		protected override bool TienePermisosSuficientes()

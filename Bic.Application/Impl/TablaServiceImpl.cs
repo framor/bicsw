@@ -32,9 +32,7 @@ namespace Bic.Application.Impl
 			set { this.catalogoDAO = value; }
 		}
 
-		public TablaServiceImpl()
-		{
-		}
+		public TablaServiceImpl() {}
 
 		/// <summary>
 		/// Implementacion de TablaService.save
@@ -73,6 +71,14 @@ namespace Bic.Application.Impl
 		public ICollection Select(long proyectoId) 
 		{
 			return this.ProyectoDAO.SelectTablas(proyectoId);
+		}
+
+		/// <summary>
+		/// Implementacion de TablaService.SelectTablasParaHechos
+		/// </summary>
+		public ICollection SelectTablasParaHechos(long proyectoId) 
+		{
+			return this.TablaDAO.SelectTablasParaHechos(proyectoId);
 		}
 
 		/// <summary>
