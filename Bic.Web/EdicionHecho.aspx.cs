@@ -43,7 +43,7 @@ namespace Bic.Web
 				} 
 				else 
 				{
-					datasource = CollectionUtils.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
+					datasource = CollectionUtils.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasParaHecho(Proyecto.Id));
 				}
 
 				this.ddlColumna.DataSource = datasource;

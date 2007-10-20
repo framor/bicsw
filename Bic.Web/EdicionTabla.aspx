@@ -25,10 +25,10 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>Nombre</b></td>
+								<td valign="top"><b>Nombre</b></td>
 								<td>
 									<asp:ListBox id="lstNombre" runat="server" DataTextField="Nombre" DataValueField="Nombre"
-										Width="150px" ></asp:ListBox>
+										Width="150px" Height="150px"></asp:ListBox>
 									<asp:RequiredFieldValidator ID="reqNombre" Runat="server" ControlToValidate="lstNombre" ErrorMessage="Por favor complete el Nombre.">*</asp:RequiredFieldValidator>
 								</td>
 							</tr>						

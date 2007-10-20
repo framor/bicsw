@@ -1,4 +1,5 @@
 using System.Collections;
+using Bic.Domain;
 using Bic.Domain.Catalogo;
 using Bic.Domain.Dao;
 using Spring.Data.NHibernate.Support;
@@ -44,12 +45,21 @@ namespace Bic.Dao
 			return null;
 		}
 
+		private IList SelectTablasParaHechos(long idProyecto)
+		{			
+			string hql = string.Format(
+				@"select t from {0} t
+					where t.proyecto = ? and t not in (select a.tablaLookup from {1} a where a.proyecto = ?)",
+				typeof(Tabla).Name, typeof(Atributo).Name);
+			return HibernateTemplate.Find(hql, new object[]{idProyecto, idProyecto});
+		}
+
 		/// <summary>
 		/// Implementa ITablaDAO.SelectColumnasDisponibles
 		/// </summary>
-		public IList SelectColumnasDisponibles(long idProyecto)
+		public IList SelectColumnasParaHecho(long idProyecto)
 		{
-			IList tablas = SelectTablasDisponibles(idProyecto);
+			IList tablas = SelectTablasParaHechos(idProyecto);
 			ArrayList ret = new ArrayList();
 			foreach (Tabla t in tablas) 
 			{

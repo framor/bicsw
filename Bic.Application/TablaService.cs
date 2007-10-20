@@ -42,7 +42,13 @@ namespace Bic.Application
 		/// <returns></returns>
 		IList SelectTablasDisponibles(long idProyecto);
 
-		IList SelectColumnasDisponibles(long idProyecto);
+		/// <summary>
+		/// Obtiene todas la columnas que pueden ser un hecho, es decir que no
+		/// pertenecen a una tabla de atributos
+		/// </summary>
+		/// <param name="idProyecto">id del proyecto</param>
+		/// <returns>lista de columnas</returns>
+		IList SelectColumnasParaHecho(long idProyecto);
 
 		/// <summary>
 		/// Obtiene una tabla por su nombre
