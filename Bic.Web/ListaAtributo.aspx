@@ -41,8 +41,7 @@
 					</div>
 					<div id="sidebar">
 						<h2 style="TEXT-ALIGN:right">Ayuda</h2>
-						<p>Los atributos están definidos por una columna id y una descripción. blah blah 
-							bah...</p>
+						<p>Los atributos son las entidades visibles para la creacion de reportes.</p>
 						<p>Si desea añadir un atributo haga click en el boton Agregar nuevo.</p>
 						<p>Si que desea ir a la pantalla de edicion de un atributo haga click en el boton 
 							Editar.</p>
