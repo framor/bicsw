@@ -104,11 +104,6 @@ namespace Bic.Web
 					Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
 					m.Funcion = funcion;
 					m.Hecho = h;
-					Metrica metrica = Proyecto.GetMetricaByName(nombre);
-					if(metrica != null)
-					{
-						throw new ServiceException("No se puede crear la metrica ya que existe una con el mismo nombre.");
-					}
 					m.Nombre = nombre;
 					BICContext.Instance.MetricaService.Save(m);
 				}			
