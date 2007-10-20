@@ -6,7 +6,7 @@ namespace Bic.Framework
 	/// <summary>
 	/// Descripción breve de Util.
 	/// </summary>
-	public class Util
+	public class CollectionUtils
 	{	
 
 		static public IList ConvertirSet(IList coleccion)

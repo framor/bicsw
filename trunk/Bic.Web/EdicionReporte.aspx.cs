@@ -2,7 +2,6 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
-using Bic.Domain.Catalogo;
 using Bic.Framework;
 using Bic.Framework.Exception;
 
@@ -41,7 +40,7 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Reporte r = BICContext.Instance.ReporteService.Retrieve(id);
-					this.txtNombreReporte.Text = r.Nombre;
+					this.txtNombreReporte.Text = Server.HtmlDecode(r.Nombre);
 
 					BindLists();
 
@@ -120,7 +119,7 @@ namespace Bic.Web
 			{
 				r = BICContext.Instance.ReporteService.Retrieve(id);
 			}			
-			r.Nombre = this.txtNombreReporte.Text;
+			r.Nombre = StringUtils.TrimSpecialCharacters(this.txtNombreReporte.Text);
 			r.Proyecto = Proyecto;
 			foreach (ListItem i in this.lstAtributos.Items)
 			{

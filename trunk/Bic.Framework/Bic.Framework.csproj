@@ -94,7 +94,12 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "Util.cs"
+                    RelPath = "CollectionUtils.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StringUtils.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

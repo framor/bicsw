@@ -38,8 +38,8 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
-					this.txtNombre.Text = f.Nombre;
-					this.txtValor.Text = f.Valor;
+					this.txtNombre.Text = Server.HtmlDecode(f.Nombre);
+					this.txtValor.Text = Server.HtmlDecode(f.Valor);
 					this.ddlDescripcion.SelectedValue = f.Columna.Id.ToString();
 					this.ddlAtributo.SelectedValue = f.Atributo.Id.ToString();
 					this.ddlOperador.SelectedValue = f.Operador;
@@ -87,9 +87,9 @@ namespace Bic.Web
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			string nombre = this.txtNombre.Text;
+			string nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
 			string operador = this.ddlOperador.SelectedValue;
-			string valor = this.txtValor.Text;
+			string valor = StringUtils.TrimSpecialCharacters(this.txtValor.Text);
 			Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
 			Columna desc = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
 

@@ -43,7 +43,7 @@ namespace Bic.Web
 				} 
 				else 
 				{
-					datasource = Util.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
+					datasource = CollectionUtils.ConvertirSet(BICContext.Instance.TablaService.SelectColumnasDisponibles(Proyecto.Id));
 				}
 
 				this.ddlColumna.DataSource = datasource;
@@ -79,7 +79,7 @@ namespace Bic.Web
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			string nombre = this.txtNombre.Text;
+			string nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
 
 			try 
 			{

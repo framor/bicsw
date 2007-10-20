@@ -2,7 +2,6 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
-using Bic.Domain.Catalogo;
 using Bic.Framework;
 using Bic.Framework.Exception;
 
@@ -39,7 +38,7 @@ namespace Bic.Web
 				{
 					Metrica m = BICContext.Instance.MetricaService.Retrieve(id);
 					this.ddlHecho.SelectedValue = m.Hecho.Id.ToString();
-					this.txtNombre.Text = m.Nombre;
+					this.txtNombre.Text = Server.HtmlDecode(m.Nombre);
 					this.ddlFuncion.SelectedValue = m.Funcion;
 					datasource = new Hecho[] {m.Hecho};
 				} 
@@ -87,7 +86,7 @@ namespace Bic.Web
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
 			long id = (long) ViewState["id"];
-			string nombre = this.txtNombre.Text;
+			string nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
 			string funcion = this.ddlFuncion.SelectedValue;
 			Hecho h = BICContext.Instance.HechoService.Retrieve(long.Parse(this.ddlHecho.SelectedValue));
 
