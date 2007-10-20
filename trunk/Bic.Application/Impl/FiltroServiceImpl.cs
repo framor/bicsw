@@ -56,7 +56,16 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Delete(long id)
 		{
-			this.GenericDAO.Delete(typeof(Filtro), id);
+			Filtro f = Retrieve(id);
+			Proyecto p = f.Proyecto;
+			if (p.PuedeEliminarFiltro(f)) 
+			{
+				this.GenericDAO.Delete(typeof(Filtro), id);
+			}
+			else 
+			{
+				throw new ServiceException("No se puede eliminar el filtro ya que está siendo utilizado por un reporte.");
+			}
 		}
 
 	}

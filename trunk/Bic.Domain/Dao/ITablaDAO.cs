@@ -37,7 +37,7 @@ namespace Bic.Domain.Dao
 		/// </summary>
 		/// <param name="idProyecto">id de proyecto</param>
 		/// <returns>lista de tabls</returns>
-		public IList SelectTablasParaHechos(long idProyecto);
+		IList SelectTablasParaHechos(long idProyecto);
 
 		/// <summary>
 		/// Obtiene todas las tablas que contienen la columna

@@ -2,6 +2,7 @@ using System;
 using System.Web.UI.WebControls;
 using Bic.Application;
 using System.Collections;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -12,6 +13,7 @@ namespace Bic.Web
 	{
 		protected DataGrid dgFiltros;
 		protected Button btnNuevo;
+		protected CustomValidator valEliminar;
 		protected CustomValidator valAtributosExistentes;
 
 		private void Page_Load(object sender, EventArgs e)
@@ -68,9 +70,17 @@ namespace Bic.Web
 				e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
 			{
 				long id = (long) this.dgFiltros.DataKeys[e.Item.ItemIndex];
-				BICContext.Instance.FiltroService.Delete(id);
-				this.dgFiltros.CurrentPageIndex = 0;
-				ListFiltros();
+				try
+				{
+					BICContext.Instance.FiltroService.Delete(id);
+					this.dgFiltros.CurrentPageIndex = 0;
+					ListFiltros();
+				}
+				catch (ServiceException se)
+				{
+					this.valEliminar.IsValid = false;
+					this.valEliminar.ErrorMessage = se.Message;
+				}
 			}
 		}
 

@@ -188,5 +188,18 @@ namespace Bic.Domain
 			}
 			return true;
 		}
+
+		public bool PuedeEliminarFiltro(Filtro unFiltro)
+		{
+			foreach(Reporte r in this.Reportes)
+			{
+				if (r.Filtros.Contains(unFiltro))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 }
