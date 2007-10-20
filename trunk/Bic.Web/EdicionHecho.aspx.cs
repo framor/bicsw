@@ -93,6 +93,11 @@ namespace Bic.Web
 				else 
 				{
 					Hecho h = BICContext.Instance.HechoService.Retrieve(id);
+					Hecho hecho = Proyecto.GetHechoByName(nombre);
+					if(hecho != null)
+					{
+						throw new ServiceException("No se puede crear el hecho ya que existe uno con el mismo nombre.");
+					}
 					h.Nombre = nombre;
 					BICContext.Instance.HechoService.Save(h);
 				}			

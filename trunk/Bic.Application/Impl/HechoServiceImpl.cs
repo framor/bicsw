@@ -26,11 +26,6 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Hecho unHecho) 
 		{
-			IList hechos = this.ProyectoDAO.SelectHechos(unHecho.Proyecto.Id);
-			if (hechos.Contains(unHecho))  
-			{
-				throw new ServiceException("No se puede crear el hecho ya que existe uno con el mismo nombre.");
-			}
 			this.GenericDAO.Save(unHecho);
 		}
 
