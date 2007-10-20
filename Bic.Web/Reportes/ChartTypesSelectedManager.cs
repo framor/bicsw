@@ -57,7 +57,33 @@ namespace Bic.Web
 			
 			foreach (Object key in this.selectedCharts.Keys)
 			{
-				sb.Append (key.ToString() + " - ");
+				string graphName = String.Empty;
+
+				ReportManager.GraphTypes  graphType = (ReportManager.GraphTypes) Enum.Parse(typeof(ReportManager.GraphTypes), key.ToString());
+
+				switch(graphType)
+				{
+					case ReportManager.GraphTypes.Area:
+							graphName = "Area";
+							break;
+					case ReportManager.GraphTypes.Bars:
+							graphName = "Barras";
+							break;
+					case ReportManager.GraphTypes.Columns:
+							graphName = "Columnas";
+							break;
+					case ReportManager.GraphTypes.Lines:
+							graphName = "Lineas";
+							break;
+					case ReportManager.GraphTypes.Pie:
+							graphName = "Torta";
+							break;
+					default:
+							break;
+							
+				}
+
+				sb.Append (graphName + " - ");
 			}
 
 			if(sb.Length != 0)
@@ -74,9 +100,142 @@ namespace Bic.Web
 			this.selectedCharts.Clear();
 		}
 
+
+		public bool IsSelectedGraphType(ReportManager.GraphTypes graphType)
+		{
+			return this.selectedCharts.ContainsKey(graphType.ToString());
+		}
+
+		public bool IsCompatibleGraphType(ReportManager.GraphTypes graphType)
+		{
+			bool isCompatible = true;
+
+			foreach(string key in this.selectedCharts.Keys)
+			{
+				if (!this.CompatibleCharts(key,graphType.ToString()))
+				{
+					isCompatible = false;
+					break;
+				}
+			}
+
+			return isCompatible;
+		}
+
 		#endregion
 
 		#region Private methods
+
+		private bool CompatibleCharts(string chatTypeA,string chatTypeB)
+		{
+			if(chatTypeA.Equals(ReportManager.GraphTypes.Area.ToString()))
+			{
+				if(chatTypeB.Equals(ReportManager.GraphTypes.Bars.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Columns.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Lines.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Pie.ToString()))
+				{
+					return false;
+				}
+
+				return false;
+			}
+			else if (chatTypeA.Equals(ReportManager.GraphTypes.Bars.ToString()))
+			{
+				if(chatTypeB.Equals(ReportManager.GraphTypes.Area.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Columns.ToString()))
+				{
+					return false;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Lines.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Pie.ToString()))
+				{
+					return false;
+				}
+
+				return false;
+			}
+			else if(chatTypeA.Equals(ReportManager.GraphTypes.Columns.ToString()))
+			{
+				if(chatTypeB.Equals(ReportManager.GraphTypes.Bars.ToString()))
+				{
+					return false;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Area.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Lines.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Pie.ToString()))
+				{
+					return false;
+				}
+
+				return false;
+			}
+			else if(chatTypeA.Equals(ReportManager.GraphTypes.Lines.ToString()))
+			{
+				if(chatTypeB.Equals(ReportManager.GraphTypes.Bars.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Area.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Columns.ToString()))
+				{
+					return true;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Pie.ToString()))
+				{
+					return false;
+				}
+
+				return false;
+			}
+			else if(chatTypeA.Equals(ReportManager.GraphTypes.Pie.ToString()))
+			{
+				if(chatTypeB.Equals(ReportManager.GraphTypes.Bars.ToString()))
+				{
+					return false;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Area.ToString()))
+				{
+					return false;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Columns.ToString()))
+				{
+					return false;
+				}
+				else if (chatTypeB.Equals(ReportManager.GraphTypes.Lines.ToString()))
+				{
+					return false;
+				}
+
+				return false;
+			}
+
+			return false;
+		}
 
 		private void UpdateChartCompatibility()
 		{

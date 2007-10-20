@@ -15,17 +15,24 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<h2>Paso 1 : elija el tipo de gráfico</h2>
+						<h2>1 - Escoja el estilo de su gráfico</h2>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr>
-								<td width="80%">
-									<asp:ImageButton id="imgBtnIconBarsChart"  ImageUrl="../img/iconBarsChart.PNG" Runat="server" style="border:none"></asp:ImageButton>
-									<asp:ImageButton id="imgBtnIconColumnsChart"  ImageUrl="../img/iconColumnsChart.PNG" Runat="server" style="border:none"></asp:ImageButton>
-									<asp:ImageButton id="imgBtnIconAreaChart"  ImageUrl="../img/iconAreaChart.PNG" Runat="server" style="border:none"></asp:ImageButton>
-									<asp:ImageButton id="imgBtnIconPieChart" ImageUrl="../img/iconPieChart.PNG" Runat="server" style="border:none"></asp:ImageButton>
-									<asp:ImageButton id="imgBtnIconLinesChart" ImageUrl="../img/iconLinesChart.PNG" Runat="server" style="border:none"></asp:ImageButton>
+								<td width="60%">
+									<asp:Panel id="pnlBars" runat="server"></asp:Panel>
+									<asp:Panel id="pnlColumns" runat="server"></asp:Panel>
+									<asp:Panel id="pnlArea" runat="server"></asp:Panel>
+									<asp:Panel id="pnlPie" runat="server"></asp:Panel>
+									<asp:Panel id="pnlLines" runat="server"></asp:Panel>
+							
+							<!--<asp:ImageButton id="imgBtnIconBarsChart" Runat="server" style="border:none"></asp:ImageButton>
+									<asp:ImageButton id="imgBtnIconColumnsChart"  Runat="server" style="border:none"></asp:ImageButton>
+									<asp:ImageButton id="imgBtnIconAreaChart"  Runat="server" style="border:none"></asp:ImageButton>
+									<asp:ImageButton id="imgBtnIconPieChart" Runat="server" style="border:none"></asp:ImageButton>
+									<asp:ImageButton id="imgBtnIconLinesChart" Runat="server" style="border:none"></asp:ImageButton> -->
 								</td>
 								<td align="left" >
+								
 									<asp:Label id="lblChartTypeSelected" Runat="server" style=:"align:left" ></asp:Label>
 								</td>								
 							</tr>
@@ -68,5 +75,6 @@
 		</form>
 	</body>
 </html>
+
 
 
