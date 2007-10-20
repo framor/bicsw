@@ -103,7 +103,7 @@ namespace Bic.Application.Impl
 		}
 
 		/// <summary>
-		/// Implementacion de TablaServiceImpl.ObtenerTablaPorNombre
+		/// Implementacion de TablaService.ObtenerTablaPorNombre
 		/// </summary>
 		public Tabla ObtenerTabla(string nombreTabla, long idProyecto)
 		{
@@ -111,16 +111,19 @@ namespace Bic.Application.Impl
 		}
 
 		/// <summary>
-		/// Implementacion CatalogoService.ObtenerColumna
+		/// Implementacion TablaService.ObtenerColumna
 		/// </summary>
 		public Columna ObtenerColumna(long id)
 		{
 			return (Columna) this.GenericDAO.Retrieve(typeof(Columna), id);
 		}
 
-		public IList SelectColumnasDisponibles(long idProyecto) 
+		/// <summary>
+		/// Implementacion TablaService.SelectColumnasParaHecho
+		/// </summary>
+		public IList SelectColumnasParaHecho(long idProyecto) 
 		{
-			return this.tablaDAO.SelectColumnasDisponibles(idProyecto); 
+			return this.tablaDAO.SelectColumnasParaHecho(idProyecto); 
 		}
 	}
 }

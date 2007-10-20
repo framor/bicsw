@@ -23,7 +23,13 @@ namespace Bic.Domain.Dao
 		/// <returns>la tabla encontrada o null</returns>
 		Tabla ObtenerByNombre(long idProyecto, string nombre);
 
-		IList SelectColumnasDisponibles(long idProyecto); 
+		/// <summary>
+		/// Obtiene todas la columnas que pueden ser un hecho, es decir que no
+		/// pertenecen a una tabla de atributos
+		/// </summary>
+		/// <param name="idProyecto">id de proyecto</param>
+		/// <returns>lista de columnas</returns>
+		IList SelectColumnasParaHecho(long idProyecto); 
 
 		/// <summary>
 		/// Obtiene todas las tablas que contienen la columna

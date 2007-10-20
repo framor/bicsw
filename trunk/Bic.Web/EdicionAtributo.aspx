@@ -40,10 +40,10 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>Descripciones</b></td>
+								<td valign="top"><b>Descripciones</b></td>
 								<td>
 									<asp:ListBox id="lstDescripciones" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" SelectionMode="Multiple"></asp:ListBox>
+										Width="150px" SelectionMode="Multiple" Height="150px"></asp:ListBox>
 									<asp:RequiredFieldValidator ID="reqDescripciones" Runat="server" ControlToValidate="lstDescripciones" ErrorMessage="Por favor seleccione una o más descripciones.">*</asp:RequiredFieldValidator>										
 								</td>
 							</tr>
