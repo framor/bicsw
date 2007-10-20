@@ -94,7 +94,7 @@ namespace Bic.Application.Impl
 			} 
 			else 
 			{
-				throw new ServiceException("No se puede eliminar la tabla ya que está siendo por un atributo y/o un hecho.");
+				throw new ServiceException("No se puede eliminar la tabla ya que está siendo utilizada por un atributo y/o un hecho.");
 			}
 		}		
 

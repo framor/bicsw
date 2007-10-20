@@ -55,6 +55,8 @@ namespace Bic.Web
 						i.Selected = a.ColumnasDescripciones.Contains(c);
 					}
 					this.ddlTablaLookup.SelectedValue = a.TablaLookup.Id.ToString();
+					this.ddlTablaLookup.Enabled = false;
+					this.ddlColumnaId.Enabled = false;
 				}
 				else
 				{
