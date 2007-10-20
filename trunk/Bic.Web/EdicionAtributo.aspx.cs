@@ -4,7 +4,6 @@ using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
-using Bic.Framework;
 using Bic.WebControls;
 using Bic.Framework.Exception;
 
@@ -46,7 +45,7 @@ namespace Bic.Web
 				if (id != -1)
 				{
 					Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
-					this.txtNombre.Text = Server.HtmlDecode(a.Nombre);
+					this.txtNombre.Text = a.Nombre;
 					BindColumnas(a.TablaLookup.Id);
 					this.ddlColumnaId.SelectedValue = a.ColumnaId.Id.ToString();
 					
@@ -144,16 +143,11 @@ namespace Bic.Web
 			}
 			a.TablaLookup = BICContext.Instance.TablaService.Retrieve(long.Parse(this.ddlTablaLookup.SelectedValue));
 			a.Proyecto = Proyecto;
+			a.Nombre = this.txtNombre.Text;
 			a.Hijo = this.ddlHijo.SelectedValue == string.Empty ? 
 				null : BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlHijo.SelectedValue));
 			try 
 			{
-				Atributo atrib = Proyecto.GetAtributoByName(this.txtNombre.Text);
-				if(atrib != null)
-				{
-					throw new ServiceException("No se puede crear el atributo ya que existe uno con el mismo nombre.");
-				}
-				a.Nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
 				BICContext.Instance.AtributoService.Save(a);
 				Response.Redirect("ListaAtributo.aspx");
 			} 

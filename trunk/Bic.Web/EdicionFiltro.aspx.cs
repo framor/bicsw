@@ -114,11 +114,6 @@ namespace Bic.Web
 					f.Columna = desc;
 					f.Operador = operador;
 					f.Proyecto = Proyecto;
-					Filtro filtro = Proyecto.GetFiltroByName(nombre);
-					if(filtro != null)
-					{
-						throw new ServiceException("No se puede crear el filtro ya que existe uno con el mismo nombre.");
-					}
 					f.Nombre = nombre;
 					BICContext.Instance.FiltroService.Save(f);
 				}
