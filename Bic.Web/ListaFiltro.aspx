@@ -32,6 +32,7 @@
 		<br/><br/><br/>
 		<table width="100%" cellspacing="0" cellpadding="0" border="0">
 			<tr>
+				<asp:CustomValidator Id="valEliminar" runat="server"></asp:CustomValidator>
 				<asp:CustomValidator Id="valAtributosExistentes" runat="server"></asp:CustomValidator>
 			</tr>
 			<tr valign="bottom">
