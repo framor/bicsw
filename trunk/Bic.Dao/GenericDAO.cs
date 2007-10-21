@@ -74,6 +74,20 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
+		/// Implementa IGenericDAO.SelectByNombre
+		/// </summary>
+		public Object SelectByNombre(Type entityType, long id, string nombre, long proyecto_id)
+		{
+			IList ret = 
+				HibernateTemplate.Find("from " + entityType.Name + " where nombre = ? and id != ? and proyecto_id = ?", new object[]{nombre, id, proyecto_id});
+			if (ret != null && ret.Count > 0)
+			{
+				return ret[0];
+			}
+			return null;
+		}
+
+		/// <summary>
 		/// Elimina un objeto de la sesión de Hibernate
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>

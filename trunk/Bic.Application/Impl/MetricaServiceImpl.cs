@@ -26,7 +26,7 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Metrica unMetrica) 
 		{
-			Metrica metrica = (Metrica) this.GenericDAO.SelectByNombre(typeof(Metrica),unMetrica.Id,unMetrica.Nombre);
+			Metrica metrica = (Metrica) this.GenericDAO.SelectByNombre(typeof(Metrica),unMetrica.Id,unMetrica.Nombre,unMetrica.Proyecto.Id);
 
 			if(metrica != null)
 			{

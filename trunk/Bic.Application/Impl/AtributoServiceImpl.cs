@@ -28,7 +28,7 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Atributo unAtributo) 
 		{
-			Atributo atr = (Atributo) this.GenericDAO.SelectByNombre(typeof(Atributo),unAtributo.Id,unAtributo.Nombre);
+			Atributo atr = (Atributo) this.GenericDAO.SelectByNombre(typeof(Atributo),unAtributo.Id,unAtributo.Nombre,unAtributo.Proyecto.Id);
 
 			if(atr != null)
 			{
