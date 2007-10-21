@@ -23,6 +23,13 @@ namespace Bic.Application
 		Reporte Retrieve(long id);
 
 		/// <summary>
+		/// Obtiene un reporte liberado de la session de NHIBERNATE a través de su id.
+		/// </summary>
+		/// <param name="id">El id de reporte</param>
+		/// <returns>El reporte correspondiente</returns>
+		Reporte RetrieveEvicted(long id);
+
+		/// <summary>
 		/// Obtiene todos los reportes
 		/// </summary>
 		/// <param name="proyectoId">El id de proyecto</param>

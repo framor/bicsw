@@ -54,10 +54,10 @@ namespace Bic.Application.Impl
 			{
 				throw new ServiceException(rie.Message);
 			}
-			catch (NoExisteTablaCandidataException netce)
-			{
-				throw new ServiceException(netce.Message);
-			}
+//			catch (NoExisteTablaCandidataException netce)
+//			{
+//				throw new ServiceException(netce.Message);
+//			}
 			this.GenericDAO.Save(reporte);	
 		}
 
@@ -65,6 +65,12 @@ namespace Bic.Application.Impl
 		public Reporte Retrieve(long id)
 		{
 			return this.GenericDAO.Retrieve(typeof(Reporte), id) as Reporte;
+		}
+
+		public Reporte RetrieveEvicted(long id)
+		{
+			Reporte reporte = (Reporte) this.GenericDAO.RetrieveEvicted(typeof(Reporte), id);
+			return reporte;
 		}
 
 		
