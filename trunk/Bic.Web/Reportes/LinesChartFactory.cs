@@ -1,6 +1,7 @@
 using System;
 using WebChart;
 using System.Data;
+using System.Drawing;
 
 namespace Bic.Web
 {
@@ -18,8 +19,17 @@ namespace Bic.Web
 
 		public override Chart CreateChart()
 		{
-			return new LineChart();
+			return new LineChart();			
 		}
+
+		protected override void CustomChart(Chart chart, ReportManager reportManager)
+		{
+			base.CustomChart(chart);
+
+			chart.LineMarker = new XLineMarker(10, Color.Black, Color.LightGray);			
+			chart.Line.Color = reportManager.GetChartColor();
+		}
+
 
 		#endregion
 

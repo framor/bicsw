@@ -27,7 +27,6 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.LinkButton lnkRemoveDataSource;	
 		protected System.Web.UI.WebControls.TextBox txtDataSourceName;	
 
-		//protected System.Web.UI.WebControls.RequiredFieldValidator reqDataSourceName;	
 		protected System.Web.UI.WebControls.ValidationSummary valSummary;	
 		protected System.Web.UI.WebControls.CustomValidator valDataSourceName;	
 
@@ -232,9 +231,6 @@ namespace Bic.Web
 			foreach(String key in ReportManager.GetInstance(this.Session).DataSources.Keys)
 			{
 				DataSourceItem item = ReportManager.GetInstance(this.Session).DataSources[key] as DataSourceItem; 
-//TODO ELIMINAR SI ANDA LO D ABAJO
-				//this.lstBoxDataSources.Items.Add(new ListItem(item.Name,item.Name));
-
 				this.lstBoxDataSources.Items.Add(new ListItem(item.DataSourceName ,item.DataField));
 			}
 

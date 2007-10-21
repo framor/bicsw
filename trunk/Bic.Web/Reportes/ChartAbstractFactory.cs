@@ -12,6 +12,7 @@ namespace Bic.Web
 		public ChartAbstractFactory()
 		{}
 
+
 		#endregion
 
 		#region Public methods
@@ -33,7 +34,7 @@ namespace Bic.Web
 			chart.DataLabels.ForeColor = System.Drawing.Color.Blue;
 			chart.Shadow.Visible = true;
 
-			this.CustomChart(chart);
+			this.CustomChart(chart,reportManager);
 
 			chart.DataBind();
 		
@@ -78,6 +79,7 @@ namespace Bic.Web
 				default: return null;
 			}
 		}
+
 
 		#endregion 
 
@@ -138,7 +140,16 @@ namespace Bic.Web
 
 
 		protected virtual void CustomChart(Chart chart)
-		{}
+		{
+			chart.Engine.Legend.Position = LegendPosition.Bottom;
+			chart.Engine.Legend.Width = 30;
+		}
+
+		protected virtual void CustomChart(Chart chart,ReportManager reportManager)
+		{
+			chart.Engine.Legend.Position = LegendPosition.Bottom;
+			chart.Engine.Legend.Width = 30;
+		}
 
 
 		#endregion
