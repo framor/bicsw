@@ -117,7 +117,7 @@ namespace Bic.Web
 			} 
 			else 
 			{
-				r = BICContext.Instance.ReporteService.Retrieve(id);
+				r = BICContext.Instance.ReporteService.RetrieveEvicted(id);
 			}			
 			r.Nombre = StringUtils.TrimSpecialCharacters(this.txtNombreReporte.Text);
 			r.Proyecto = Proyecto;

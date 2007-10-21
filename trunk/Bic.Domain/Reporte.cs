@@ -144,8 +144,17 @@ namespace Bic.Domain
 		public void GeneraConsulta()
 		{
 			ArrayList tablasReporte = new ArrayList();
+			ArrayList tablasFactCandidatas;
 			// Le pido las tablas candidatas a elegir - Son las que tienen todas las metricas
-			ArrayList tablasFactCandidatas = this.DameTablasCandidatas();
+			try
+			{
+				tablasFactCandidatas = this.DameTablasCandidatas();
+			} // Si no existe tabla Fact candidata Subo de Nivel la Excepcion y lanzo la de ReporteInvalido
+			catch (NoExisteTablaCandidataException)
+			{
+				throw new ReporteInvalidoException("Imposible generar el reporte, no existe combinacion entre los atributos y las metricas seleccionadas");
+			}
+
 			            
 			foreach(Tabla tabla in tablasFactCandidatas)
 			{

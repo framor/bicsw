@@ -37,6 +37,19 @@ namespace Bic.Dao
 		}
 
 		/// <summary>
+		/// Obtiene un objeto de la session de NHibernate. Y luego lo libera de la sesion
+		/// </summary>
+		/// <param name="entityType">El tipo de objeto</param>
+		/// <param name="id">El id de objeto</param>
+		/// <returns>El objeto obtenido</returns>
+		public Object RetrieveEvicted(Type entityType, long id) 
+		{			
+			Object objeto = HibernateTemplate.Get(entityType, id);
+			HibernateTemplate.Evict(objeto);
+			return objeto;
+		}
+
+		/// <summary>
 		/// Obtiene todos los objetos de un tipo de la sesión de NHibernate
 		/// </summary>
 		/// <param name="entityType">El tipo de objeto</param>
