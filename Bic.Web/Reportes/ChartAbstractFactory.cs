@@ -26,7 +26,8 @@ namespace Bic.Web
 			chart.DataSource = this.GetDataSet(reportManager,dataSourceItem).Tables[0].DefaultView;
 			chart.DataXValueField = dataSourceItem.DescriptionField;
 			chart.DataYValueField = dataSourceItem.DataField; 
-			chart.Legend = dataSourceItem.Name; 
+			chart.Legend = dataSourceItem.DataSourceName; 
+
 			chart.Fill.Color = reportManager.GetChartColor();
 			chart.DataLabels.Visible = false;
 			chart.DataLabels.ForeColor = System.Drawing.Color.Blue;
@@ -48,7 +49,8 @@ namespace Bic.Web
 			chart.DataSource = this.GetDataSet(reportManager,dataSourceItem).Tables[0].DefaultView;
 			chart.DataXValueField = dataSourceItem.DescriptionField;
 			chart.DataYValueField = dataSourceItem.DataField; 
-			chart.Legend = dataSourceItem.Name; 
+			chart.Legend = dataSourceItem.DataSourceName; 
+			
 			chart.Fill.Color = reportManager.GetChartColor();
 			chart.LineMarker = new SquareLineMarker(6, chart.Fill.Color, chart.Line.Color);
 			chart.DataLabels.Visible = false;

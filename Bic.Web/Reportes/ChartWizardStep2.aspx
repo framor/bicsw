@@ -36,12 +36,10 @@
 							</tr>
 							<tr>
 								<td width="30%" >
-									Nombre del origen de datos
+									Alias del origen de datos
 								</td>
 								<td align="left" width="70%" nowrap="nowrap">
-									<asp:TextBox id="txtDataSourceName" runat="server" style="width:190px"></asp:TextBox>
-									<asp:CustomValidator Id="valDataSourceName" runat="server">*</asp:CustomValidator>
-									<asp:RequiredFieldValidator ID="reqDataSourceName" Runat="server" ControlToValidate="txtDataSourceName" ErrorMessage="Se debe especificar un nombre para el origen de datos">*</asp:RequiredFieldValidator>
+									<asp:TextBox id="txtDataSourceName" runat="server" style="width:190px"></asp:TextBox>									
 									&nbsp;
 									<asp:LinkButton id="lnkAddDataSource" runat="server">Agregar</asp:LinkButton>
 									&nbsp;
@@ -54,6 +52,7 @@
 								</td>
 								<td align="left" width="40%">
 									<asp:ListBox id="lstBoxDataSources" runat="server" style="width:200px" ></asp:ListBox>
+									<asp:CustomValidator Id="valDataSourceName" runat="server">*</asp:CustomValidator>
 								</td>
 							</tr>
 							<tr>
