@@ -26,7 +26,7 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Hecho unHecho) 
 		{
-			Hecho hecho = (Hecho) this.GenericDAO.SelectByNombre(typeof(Hecho),unHecho.Id,unHecho.Nombre);
+			Hecho hecho = (Hecho) this.GenericDAO.SelectByNombre(typeof(Hecho),unHecho.Id,unHecho.Nombre,unHecho.Proyecto.Id);
 
 			if(hecho != null)
 			{

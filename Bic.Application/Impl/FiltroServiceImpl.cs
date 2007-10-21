@@ -26,7 +26,7 @@ namespace Bic.Application.Impl
 		/// </summary>
 		public void Save(Filtro unFiltro) 
 		{
-			Filtro fil = (Filtro) this.GenericDAO.SelectByNombre(typeof(Filtro),unFiltro.Id,unFiltro.Nombre);
+			Filtro fil = (Filtro) this.GenericDAO.SelectByNombre(typeof(Filtro),unFiltro.Id,unFiltro.Nombre,unFiltro.Proyecto.Id);
 
 			if(fil != null)
 			{
