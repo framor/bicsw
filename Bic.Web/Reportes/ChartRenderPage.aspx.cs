@@ -49,8 +49,6 @@ namespace Bic.Web.Reportes
 			engine.PlotBackground.Color=Color.White;
 			engine.PlotBackground.HatchStyle= System.Drawing.Drawing2D.HatchStyle.Shingle;
 
-			engine.Legend.Position = LegendPosition.Bottom;
-			engine.Legend.Width = 30;
 			engine.Legend.Font = new System.Drawing.Font("Verdana", 6);
 			engine.Legend.Background.Type = InteriorType.Solid;
 			engine.Legend.Background.StartPoint = new Point(0, 0);

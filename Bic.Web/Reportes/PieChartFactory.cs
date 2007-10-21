@@ -21,6 +21,26 @@ namespace Bic.Web
 			return new PieChart();
 		}
 
+		protected override void CustomChart(Chart chart)
+		{
+			base.CustomChart (chart);
+			chart.Engine.Legend.Position = LegendPosition.Right;
+			chart.Engine.Legend.Background.Type = WebChart.InteriorType.Hatch;
+			chart.Engine.Legend.Background.StartPoint = new System.Drawing.Point(0,0);
+			chart.Engine.Legend.Background.EndPoint  = new System.Drawing.Point(100,100);
+			chart.Engine.Legend.Width = 100;
+		}
+
+		protected override void CustomChart(Chart chart,ReportManager reportManager)
+		{
+			base.CustomChart(chart);
+			chart.Engine.Legend.Position = LegendPosition.Right;
+			chart.Engine.Legend.Background.Type = WebChart.InteriorType.Hatch;
+			chart.Engine.Legend.Background.StartPoint = new System.Drawing.Point(0,0);
+			chart.Engine.Legend.Background.EndPoint  = new System.Drawing.Point(100,100);
+			chart.Engine.Legend.Width = 100;
+		}
+
 		#endregion
 	}
 }
