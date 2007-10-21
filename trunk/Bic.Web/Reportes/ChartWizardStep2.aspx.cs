@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Bic.Application;
+using Bic.Domain;
 using WebChart;
 
 namespace Bic.Web
@@ -26,7 +27,7 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.LinkButton lnkRemoveDataSource;	
 		protected System.Web.UI.WebControls.TextBox txtDataSourceName;	
 
-		protected System.Web.UI.WebControls.RequiredFieldValidator reqDataSourceName;	
+		//protected System.Web.UI.WebControls.RequiredFieldValidator reqDataSourceName;	
 		protected System.Web.UI.WebControls.ValidationSummary valSummary;	
 		protected System.Web.UI.WebControls.CustomValidator valDataSourceName;	
 
@@ -57,14 +58,15 @@ namespace Bic.Web
 
 		private void lnkAddDataSource_Click(object sender, EventArgs e)
 		{
-			if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.txtDataSourceName.Text))
+			//if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.txtDataSourceName.Text))
+			if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.ddlColumna.SelectedValue))
 			{
 				DataSourceItem item = new DataSourceItem();
 				item.Name = this.txtDataSourceName.Text;
 				item.DataField = this.ddlColumna.SelectedValue;
 				item.DescriptionField = this.ddlDescripciones.SelectedValue;
 
-				ReportManager.GetInstance(this.Session).DataSources.Add(this.txtDataSourceName.Text,item);
+				ReportManager.GetInstance(this.Session).DataSources.Add(this.ddlColumna.SelectedValue,item);
 			}
 			else
 			{
@@ -142,20 +144,39 @@ namespace Bic.Web
 
 			foreach ( DataColumn column in dsSource.Tables[0].Columns)
 			{
-				if(column.DataType == typeof (System.Int16) || 
-					column.DataType == typeof (System.Int32) ||
-					column.DataType == typeof (System.Int64) ||
-					column.DataType == typeof (System.UInt64 ) ||
-					column.DataType == typeof (System.UInt32  ) ||
-					column.DataType == typeof (System.UInt16 ) ||
-					column.DataType == typeof (System.Double ) ||
-					column.DataType == typeof (System.SByte ) ||
-					column.DataType == typeof (System.Decimal))
+				foreach(Atributo atributo in ReportManager.GetInstance(this.Session).Reporte.Atributos)
 				{
-					this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
+					foreach(Bic.Domain.Catalogo.Columna columna in atributo.ColumnasDescripciones)
+					{
+						if (columna.Nombre==column.ColumnName)
+						{
+							this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));	
+						}
+					}
 				}
-				
-				this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));				
+
+				foreach( Metrica metrica in ReportManager.GetInstance(this.Session).Reporte.Metricas)
+				{
+					if (metrica.Nombre == column.ColumnName)
+					{
+						this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
+					}
+				}
+
+//				if(column.DataType == typeof (System.Int16) || 
+//					column.DataType == typeof (System.Int32) ||
+//					column.DataType == typeof (System.Int64) ||
+//					column.DataType == typeof (System.UInt64 ) ||
+//					column.DataType == typeof (System.UInt32  ) ||
+//					column.DataType == typeof (System.UInt16 ) ||
+//					column.DataType == typeof (System.Double ) ||
+//					column.DataType == typeof (System.SByte ) ||
+//					column.DataType == typeof (System.Decimal))
+//				{
+//					this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
+//				}
+//				
+//				this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));				
 				
 			}
 		}
@@ -211,7 +232,10 @@ namespace Bic.Web
 			foreach(String key in ReportManager.GetInstance(this.Session).DataSources.Keys)
 			{
 				DataSourceItem item = ReportManager.GetInstance(this.Session).DataSources[key] as DataSourceItem; 
-				this.lstBoxDataSources.Items.Add(new ListItem(item.Name,item.Name));
+//TODO ELIMINAR SI ANDA LO D ABAJO
+				//this.lstBoxDataSources.Items.Add(new ListItem(item.Name,item.Name));
+
+				this.lstBoxDataSources.Items.Add(new ListItem(item.DataSourceName ,item.DataField));
 			}
 
 			if(ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0)

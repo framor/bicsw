@@ -34,6 +34,7 @@ namespace Bic.Web
 			}
 		}
 
+
 		public String DescriptionField
 		{
 			get
@@ -47,6 +48,7 @@ namespace Bic.Web
 			}
 		}
 
+
 		public String DataField
 		{
 			get
@@ -57,6 +59,15 @@ namespace Bic.Web
 			set
 			{
 				this.dataField = value;
+			}
+		}
+
+
+		public String DataSourceName
+		{
+			get
+			{
+				return this.Name!=null&&this.Name.Length!=0 ? this.Name : this.DataField;
 			}
 		}
 
