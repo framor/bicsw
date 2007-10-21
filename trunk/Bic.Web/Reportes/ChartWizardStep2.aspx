@@ -23,7 +23,7 @@
 									Fuente de datos
 								</td>
 								<td align="left" width="60%">
-									<asp:DropDownList id="ddlColumna" Runat="server" style="width:200px" AutoPostback ="true" ></asp:DropDownList>
+									<asp:DropDownList id="ddlColumna" Runat="server" style="width:200px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
@@ -31,7 +31,7 @@
 									Fuente de descripciones
 								</td>
 								<td align="left" width="60%">
-									<asp:DropDownList id="ddlDescripciones" Runat="server" style="width:200px" AutoPostback ="true" ></asp:DropDownList>
+									<asp:DropDownList id="ddlDescripciones" Runat="server" style="width:200px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
