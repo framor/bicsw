@@ -10,7 +10,7 @@ namespace Bic.Domain
 
 	public class Atributo : ITablaMapeable, ICamino
 	{
-		#region Private methods
+		#region Private members
 
 		private long id;
 		private string nombre;

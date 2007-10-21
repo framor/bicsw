@@ -46,8 +46,8 @@ namespace Bic.Web
 			{
 				this.InitializeComboValues();
 					
-				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;
-				this.dtgReport.DataBind();					
+				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;				 
+				this.dtgReport.DataBind();	
 			}
 		}
 
@@ -181,7 +181,6 @@ namespace Bic.Web
 			}
 		}
 
-
 		#endregion
 
 		#region	Private methods
@@ -276,6 +275,7 @@ namespace Bic.Web
 			base.OnInit(e);
 		}
 		
+
 		private void InitializeComponent()
 		{    
 			this.imgBtnExcel.Click += new System.Web.UI.ImageClickEventHandler(this.imgBtnExcel_Click);

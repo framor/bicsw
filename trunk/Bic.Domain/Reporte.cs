@@ -271,6 +271,7 @@ namespace Bic.Domain
 		{
 			this.GeneraConsulta();
 
+			string listaCamposConAlias ="";
 			string listaCampos ="";
 			string listaMetricas = "";
 			string filtrosWhere = "";
@@ -283,8 +284,15 @@ namespace Bic.Domain
 				string alias = atrib.AliasSql + this.tablaReporte.GetIdCamino(atrib);
 				IList columnasDesc = atrib.ColumnasDescripciones;
 				
+
 				foreach(Columna col in columnasDesc)
 				{
+					// TODO : para cambiar el nombre de columna de los atributos, modificar esta lineas
+					listaCamposConAlias += alias + "." + col.Nombre; //+ " AS '" + ALGO +"' ";
+
+					if (columnasDesc.IndexOf(col) < columnasDesc.Count - 1)
+						listaCamposConAlias+= ",\n";
+
 					listaCampos += alias + "." + col.Nombre;
 
 					if (columnasDesc.IndexOf(col) < columnasDesc.Count - 1)
@@ -293,8 +301,11 @@ namespace Bic.Domain
 				}
 				
 				// Mientras no sea el ultimo agregar la coma y el enter
-				if (ats.IndexOf(atrib) < ats.Count - 1)					
+				if (ats.IndexOf(atrib) < ats.Count - 1)	
+				{
 					listaCampos += ",\n";
+					listaCamposConAlias+= ",\n";
+				}
 			}			
 
 			ArrayList mets = new ArrayList(this.metricas);
@@ -302,7 +313,7 @@ namespace Bic.Domain
 			{
 				// Le pido el nombre de la tabla Fact a la TablaReporte
 				string alias = this.tablaReporte.Tabla.Nombre;
-				listaMetricas += metrica.SQLExpression;
+				listaMetricas += metrica.SQLExpression + " AS '" + metrica.Nombre +"' ";
 				// Mientras no sea el ultimo agregar la coma y el enter
 				if(mets.IndexOf(metrica) < mets.Count - 1)
 					listaMetricas += ",\n";
@@ -339,12 +350,11 @@ namespace Bic.Domain
 			}
 			else
 			{
-				sql += listaCampos + ",\n" + listaMetricas + "\n" + sqlTablaReporte + "Group By\n" + listaCampos + ";";
+				sql += listaCamposConAlias + ",\n" + listaMetricas + "\n" + sqlTablaReporte + "Group By\n" + listaCampos + ";";
 			}
 
 			return sql;
 		}
-
 
 		#endregion
 
