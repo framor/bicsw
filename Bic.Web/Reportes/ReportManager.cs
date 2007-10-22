@@ -137,6 +137,11 @@ namespace Bic.Web
 		{
 			get
 			{
+				if(this.httpSessionState["rowCount"]==null)
+				{
+					this.httpSessionState["rowCount"]=1;
+				}
+
 				this.rowCount = (int)this.httpSessionState["rowCount"];
 				return this.rowCount;
 			}
