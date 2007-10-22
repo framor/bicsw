@@ -91,7 +91,7 @@ namespace Bic.Web
 
 		private void lstBoxRows_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue );
+			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue ) -1;
 		}
 
 		#endregion
@@ -208,10 +208,7 @@ namespace Bic.Web
 			this.lstBoxRows.SelectionMode = ListSelectionMode.Single;
 			this.lstBoxRows.DataSource = numbers;
 			this.lstBoxRows.DataBind();
-
 			this.lstBoxRows.SelectedIndex = this.lstBoxRows.Items.Count-1;
-			ReportManager.GetInstance(this.Session).RowCount = this.lstBoxRows.Items.Count-1;
-
 		}
 
 
@@ -221,6 +218,7 @@ namespace Bic.Web
 			this.ddlDescripciones.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count == 0;
 			this.lnkRemoveDataSource.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0;
 			this.txtDataSourceName.Text = string.Empty;
+			this.lstBoxRows.Enabled = false;
 			
 			this.lstBoxDataSources.Items.Clear();			
 			
