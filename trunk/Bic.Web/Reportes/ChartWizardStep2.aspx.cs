@@ -30,6 +30,8 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.ValidationSummary valSummary;	
 		protected System.Web.UI.WebControls.CustomValidator valDataSourceName;	
 
+		protected System.Web.UI.WebControls.ListBox lstBoxRows;
+
 		#endregion
 	
 		#region Event handlers
@@ -57,7 +59,6 @@ namespace Bic.Web
 
 		private void lnkAddDataSource_Click(object sender, EventArgs e)
 		{
-			//if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.txtDataSourceName.Text))
 			if(! ReportManager.GetInstance(this.Session).DataSources.ContainsKey(this.ddlColumna.SelectedValue))
 			{
 				DataSourceItem item = new DataSourceItem();
@@ -88,6 +89,11 @@ namespace Bic.Web
 		}
 
 
+		private void lstBoxRows_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue );
+		}
+
 		#endregion
 
 		#region Private methods
@@ -105,10 +111,10 @@ namespace Bic.Web
 			DataRow row3 = table.NewRow();
 			
 
-			row1["Text"] = "Los primeros 100";
+			row1["Text"] = "Primeros";
 			row1["Value"] = ReportManager.GraphFilters.Top.ToString();
 
-			row2["Text"] = "Los últimos 100";
+			row2["Text"] = "Ultimos";
 			row2["Value"] = ReportManager.GraphFilters.Bottom.ToString();
 
 			row3["Text"] = "Todos";
@@ -161,22 +167,6 @@ namespace Bic.Web
 						this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
 					}
 				}
-
-//				if(column.DataType == typeof (System.Int16) || 
-//					column.DataType == typeof (System.Int32) ||
-//					column.DataType == typeof (System.Int64) ||
-//					column.DataType == typeof (System.UInt64 ) ||
-//					column.DataType == typeof (System.UInt32  ) ||
-//					column.DataType == typeof (System.UInt16 ) ||
-//					column.DataType == typeof (System.Double ) ||
-//					column.DataType == typeof (System.SByte ) ||
-//					column.DataType == typeof (System.Decimal))
-//				{
-//					this.ddlColumna.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));
-//				}
-//				
-//				this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));				
-				
 			}
 		}
 
@@ -203,13 +193,36 @@ namespace Bic.Web
 		}
 
 
+		private void InitializeListBoxRows()
+		{
+			ArrayList numbers = new ArrayList();
+
+			DataSet dataset = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+			int rowCount = dataset.Tables[0].Rows.Count;
+
+			for(int i =1; i<rowCount; i++)
+			{
+				numbers.Add(i);
+			}
+			
+			this.lstBoxRows.SelectionMode = ListSelectionMode.Single;
+			this.lstBoxRows.DataSource = numbers;
+			this.lstBoxRows.DataBind();
+
+			this.lstBoxRows.SelectedIndex = this.lstBoxRows.Items.Count-1;
+			ReportManager.GetInstance(this.Session).RowCount = this.lstBoxRows.Items.Count-1;
+
+		}
+
+
 		protected override void PopulateView()
 		{
+			this.InitializeListBoxRows();
 			this.ddlDescripciones.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count == 0;
 			this.lnkRemoveDataSource.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0;
 			this.txtDataSourceName.Text = string.Empty;
-
-			this.lstBoxDataSources.Items.Clear();
+			
+			this.lstBoxDataSources.Items.Clear();			
 			
 			if(ReportManager.GetInstance(this.Session).GraphFilter != null)
 			{
@@ -218,15 +231,21 @@ namespace Bic.Web
 				{
 					case ReportManager.GraphFilters.All:
 							this.rdoBtnLstFilterOptions.SelectedIndex=2;
+							this.lstBoxRows.SelectedIndex = this.lstBoxRows.Items.Count-1;
+							this.lstBoxRows.Enabled = false;
 							break;
 					case ReportManager.GraphFilters.Top:
 							this.rdoBtnLstFilterOptions.SelectedIndex=0;
+							this.lstBoxRows.Enabled = true;
+							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount;
 							break;
 					case ReportManager.GraphFilters.Bottom:
+							this.lstBoxRows.Enabled = true;
+							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount;
 							this.rdoBtnLstFilterOptions.SelectedIndex=1;
 							break;																	
 				}
-			}
+			}					
 
 			foreach(String key in ReportManager.GetInstance(this.Session).DataSources.Keys)
 			{
@@ -266,10 +285,11 @@ namespace Bic.Web
 			this.rdoBtnLstFilterOptions.SelectedIndexChanged+=new EventHandler(rdoBtnLstFilterOptions_SelectedIndexChanged);
 			this.lnkAddDataSource.Click+=new EventHandler(lnkAddDataSource_Click);
 			this.lnkRemoveDataSource.Click+=new EventHandler(lnkRemoveDataSource_Click);
+			this.lstBoxRows.SelectedIndexChanged+=new EventHandler(lstBoxRows_SelectedIndexChanged);
 			this.imgPreviewChart.CausesValidation=false;
 		}
 
 
-		#endregion
+		#endregion		
 	}
 }

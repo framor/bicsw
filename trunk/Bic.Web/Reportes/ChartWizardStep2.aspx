@@ -63,6 +63,7 @@
 							<tr >
 								<td colspan="2">
 									<asp:RadioButtonList ID="rdoBtnLstFilterOptions" Runat="server" AutoPostback ="true"></asp:RadioButtonList>
+									<asp:ListBox id="lstBoxRows" runat="server" style="width:200px;height:25px" AutoPostBack="true"></asp:ListBox>									
 								</td>
 							</tr>
 						</table> 

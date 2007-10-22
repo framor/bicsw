@@ -133,6 +133,22 @@ namespace Bic.Web
 		}
 
 
+		public int RowCount
+		{
+			get
+			{
+				this.rowCount = (int)this.httpSessionState["rowCount"];
+				return this.rowCount;
+			}
+
+			set
+			{
+				this.rowCount = value;
+				this.httpSessionState["rowCount"] = this.rowCount;
+			}
+		}
+
+
 		public ReporteDTO Reporte
 		{
 			get
@@ -200,6 +216,7 @@ namespace Bic.Web
 		private HttpSessionState httpSessionState;
 		private DataSet reportSourceCache;
 		private string  graphFilter;
+		private int rowCount;
 		private Hashtable dataSources;
 		private ChartTypesSelectedManager chartTypesSelectedManager; 
 

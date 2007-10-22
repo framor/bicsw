@@ -96,7 +96,7 @@ namespace Bic.Web
 
 			if(reportManager.GraphFilter == ReportManager.GraphFilters.Top.ToString() )
 			{
-				int maxRows = dsSource.Tables[0].Rows.Count>100?100:dsSource.Tables[0].Rows.Count; 
+				int maxRows = dsSource.Tables[0].Rows.Count>reportManager.RowCount?reportManager.RowCount:dsSource.Tables[0].Rows.Count; 
 
 				for (int i = 0; i < maxRows; i++) 
 				{
@@ -108,7 +108,7 @@ namespace Bic.Web
 			}
 			else if(reportManager.GraphFilter == ReportManager.GraphFilters.Bottom.ToString() )
 			{
-				int startRow = dsSource.Tables[0].Rows.Count>100?dsSource.Tables[0].Rows.Count-100:0; 
+				int startRow = dsSource.Tables[0].Rows.Count>reportManager.RowCount?dsSource.Tables[0].Rows.Count-reportManager.RowCount:0; 
 
 				for (int i = startRow; i < dsSource.Tables[0].Rows.Count; i++) 
 				{
