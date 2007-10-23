@@ -38,8 +38,8 @@ namespace Bic.Web
 			if (!Page.IsPostBack) 
 			{
 				this.ddlTablaLookup.DataSource = BICContext.Instance.TablaService.Select(Proyecto.Id);
-				this.ddlTablaLookup.DataBind();				
-
+				this.ddlTablaLookup.DataBind();
+				
 				long id = long.Parse(Request.Params["id"]);
 				ViewState["id"] = id;
 				if (id != -1)
@@ -69,20 +69,31 @@ namespace Bic.Web
 		}
 
 		private void BindHijos()
-		{
+		{	
+			// Subi esto aca arriba para poder obtener el atributo y luego eliminarlo de los posibles hijos
+			// ya que si es hijo de si mismo entra en un bucle infinito.
+			long id = (long) ViewState["id"];
+			Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
+
 			Columna colId = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlColumnaId.SelectedValue));
-			ICollection hijos = BICContext.Instance.AtributoService.SelectPosiblesHijos(Proyecto.Id,  colId);
+			IList hijos = new ArrayList(BICContext.Instance.AtributoService.SelectPosiblesHijos(Proyecto.Id,  colId));
 			if (hijos != null && hijos.Count > 0)
 			{
+				hijos.Remove(a);
 				this.ddlHijo.DataSource = hijos;
 				this.ddlHijo.DataBind();
 				ListItem nullItem = new ListItem(string.Empty, "0");
 				this.ddlHijo.Items.Insert(0, nullItem);
+			} 
+			else
+			{
+				this.ddlHijo.DataSource = new ArrayList();
+				this.ddlHijo.DataBind();
 			}
-			long id = (long) ViewState["id"];
+
+			
 			if (id != -1)
 			{
-				Atributo a = BICContext.Instance.AtributoService.Retrieve(id);
 				this.ddlHijo.SelectedValue = a.Hijo == null ? "0" : a.Hijo.Id.ToString();
 			} else
 			{
@@ -173,6 +184,7 @@ namespace Bic.Web
 		private void ddlTablaLookup_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			BindColumnas(long.Parse(this.ddlTablaLookup.SelectedValue));
+			BindHijos();
 		}
 
 		private void ddlColumnaId_SelectedIndexChanged(object sender, EventArgs e)
