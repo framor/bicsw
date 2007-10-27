@@ -79,12 +79,10 @@ namespace Bic.Domain
 			set { this.proyecto = value; }
 		}
 
-		public string SQLExpression
+		public string SQLExpression(string aliasFact)
 		{
-			get
-			{
-				return string.Format(this.funcion, this.Columna.Nombre);	
-			}
+			return string.Format(this.funcion, aliasFact + '.' + this.Columna.Nombre);	
+
 		}
 		#endregion
 
