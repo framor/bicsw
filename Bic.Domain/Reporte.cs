@@ -313,7 +313,7 @@ namespace Bic.Domain
 			{
 				// Le pido el nombre de la tabla Fact a la TablaReporte
 				string alias = this.tablaReporte.Tabla.Nombre;
-				listaMetricas += metrica.SQLExpression + " AS '" + metrica.Nombre +"' ";
+				listaMetricas += metrica.SQLExpression(TablaReporte.Tabla.Nombre) + " AS '" + metrica.Nombre +"' ";
 				// Mientras no sea el ultimo agregar la coma y el enter
 				if(mets.IndexOf(metrica) < mets.Count - 1)
 					listaMetricas += ",\n";
@@ -322,14 +322,13 @@ namespace Bic.Domain
 			foreach(Filtro filtro in this.Filtros)
 			{
 				Atributo atributoFiltro = filtro.Atributo;
-				//string alias = atributoFiltro.TablaLookup.Nombre + this.tablaReporte.GetIdCamino(atributoFiltro);
-				//string alias = atributoFiltro.AliasSql;
+
 				string alias = atributoFiltro.AliasSql + this.tablaReporte.GetIdCamino(atributoFiltro);
-				filtrosWhere += filtro.GetSql(alias);
+				filtrosWhere += filtro.GetSql(alias) + "\n";
 
 				if (this.Filtros.IndexOf(filtro) < this.Filtros.Count - 1)
 				{
-					filtrosWhere += "\nand ";
+					filtrosWhere += "and ";
 				}
 				
 			}
@@ -340,7 +339,7 @@ namespace Bic.Domain
 
 			if (this.Filtros.Count > 0)
 			{
-				sqlTablaReporte += "\nand " + filtrosWhere;
+				sqlTablaReporte += "and " + filtrosWhere;
 			}
 
 
