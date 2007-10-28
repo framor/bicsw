@@ -1,5 +1,6 @@
 using Bic.Domain.Catalogo;
 using Bic.Domain.Interfaces;
+using Bic.Domain.Exception;
 
 namespace Bic.Domain
 {
@@ -31,7 +32,17 @@ namespace Bic.Domain
 		public string Operador
 		{
 			get { return this.operador; }
-			set { this.operador = value; }
+			set
+			{
+				if((value.Equals("Empieza con") || value.Equals("Termina con") || value.Equals("Contiene")) 
+					&& !this.Columna.Tipo.Equals("varchar") && !this.Columna.Tipo.Equals("char"))
+				{
+					throw new OperadorInvalidoException("El operador Seleccionado no se puede aplicar al tipo de dato del filtro");
+				}
+					this.operador = value; 
+			}
+
+			
 		}
 		public string Valor
 		{
@@ -65,16 +76,25 @@ namespace Bic.Domain
 
 		public string GetSql(string alias)
 		{
-			string sql = alias + "." + this.Columna.Nombre + " " + this.Operador + " ";
-			if(this.Columna.Tipo.Equals("varchar") || this.Columna.Tipo.Equals("char"))
+			string sql = alias + "." + this.Columna.Nombre + " ";
+			
+			if (this.Operador.Equals("Empieza con"))
 			{
-				sql += "'" + this.Valor + "' ";
+				sql += "LIKE " + "'" + this.Valor + "%'";
+			}
+			else if (this.Operador.Equals("Termina con"))
+			{
+				sql += "LIKE " + "'%" + this.Valor + "'";
+			}
+			else if (this.Operador.Equals("Contiene"))
+			{
+				sql += "LIKE " + "'%" + this.Valor + "%'";
 			}
 			else
 			{
-				sql += this.Valor + " ";
-			}
+				sql += this.Operador + " " + this.Valor + " ";
 
+			}
 			return sql;
 
 		}
