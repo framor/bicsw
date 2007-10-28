@@ -87,7 +87,7 @@ namespace Bic.Web
 			else 
 			{
 				p = BICContext.Instance.ProyectoService.Retrieve(id);
-			}			
+			}
 			p.Nombre = StringUtils.TrimSpecialCharacters(this.txtNombre.Text);
 			p.Descripcion = StringUtils.TrimSpecialCharacters(this.txtDescripcion.Text);
 			p.Servidor = StringUtils.TrimSpecialCharacters(this.txtServidor.Text);
