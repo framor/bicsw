@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using Bic.Application;
 using Bic.Domain;
 using Bic.Domain.Catalogo;
+using Bic.Domain.Exception;
 using Bic.Framework;
 using Bic.Framework.Exception;
 
@@ -54,7 +55,9 @@ namespace Bic.Web
 				this.ddlOperador.Items.Add(new ListItem("=", "="));
 				this.ddlOperador.Items.Add(new ListItem(">", ">"));
 				this.ddlOperador.Items.Add(new ListItem(">=", ">="));
-				this.ddlOperador.Items.Add(new ListItem("LIKE", "LIKE"));
+				this.ddlOperador.Items.Add(new ListItem("Empieza con", "Empieza con"));
+				this.ddlOperador.Items.Add(new ListItem("Termina con", "Termina con"));
+				this.ddlOperador.Items.Add(new ListItem("Contiene", "Contiene"));
 				this.ddlOperador.DataBind();
 			}
 
@@ -109,7 +112,14 @@ namespace Bic.Web
 				f.Atributo = atributo;
 				f.Nombre = nombre;
 				f.Valor = valor;
-				f.Operador = operador;
+				try
+				{
+					f.Operador = operador;
+				}
+				catch (OperadorInvalidoException oie)
+				{
+					throw new ServiceException(oie.Message);
+				}
 				f.Proyecto = Proyecto;
 				BICContext.Instance.FiltroService.Save(f);
 				Response.Redirect("ListaFiltro.aspx");
