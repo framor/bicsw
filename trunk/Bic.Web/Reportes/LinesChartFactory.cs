@@ -27,7 +27,7 @@ namespace Bic.Web
 			base.CustomChart(chart);
 
 			chart.LineMarker = new XLineMarker(10, Color.Black, Color.LightGray);			
-			chart.Line.Color = reportManager.GetChartColor();
+			chart.Line.Color = chart.Fill.Color;
 		}
 
 
