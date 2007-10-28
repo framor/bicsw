@@ -92,31 +92,26 @@ namespace Bic.Web
 			string valor = StringUtils.TrimSpecialCharacters(this.txtValor.Text);
 			Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse(this.ddlAtributo.SelectedValue));
 			Columna desc = BICContext.Instance.TablaService.ObtenerColumna(long.Parse(this.ddlDescripcion.SelectedValue));
+			Filtro f;
 
 			try 
 			{
 				if (id == -1)
 				{				
-					Filtro f = new Filtro();
-					f.Columna = desc;
-					f.Atributo = atributo;
-					f.Nombre = nombre;
-					f.Valor = valor;
-					f.Operador = operador;
-					f.Proyecto = Proyecto;
-					BICContext.Instance.FiltroService.Save(f);
+					f = new Filtro();
 				} 
 				else 
 				{
-					Filtro f = BICContext.Instance.FiltroService.Retrieve(id);
-					f.Valor = valor;
-					f.Atributo = atributo;
-					f.Columna = desc;
-					f.Operador = operador;
-					f.Proyecto = Proyecto;
-					f.Nombre = nombre;
-					BICContext.Instance.FiltroService.Save(f);
+					f = BICContext.Instance.FiltroService.Retrieve(id);
 				}
+
+				f.Columna = desc;
+				f.Atributo = atributo;
+				f.Nombre = nombre;
+				f.Valor = valor;
+				f.Operador = operador;
+				f.Proyecto = Proyecto;
+				BICContext.Instance.FiltroService.Save(f);
 				Response.Redirect("ListaFiltro.aspx");
 			} 
 			catch (ServiceException se)
