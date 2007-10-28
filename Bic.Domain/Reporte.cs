@@ -203,7 +203,7 @@ namespace Bic.Domain
 			ArrayList caminos = new ArrayList();
 			//Por cada campo que cumpla con la interfaz TablaMapeable le pido que genere camino
 			foreach(ICamino campo in campos)
-			{	//TODO aca me llegaria la exepcion de que no hay camino desde el atributo
+			{	
 				try
 				{
 					caminos.Add(campo.GeneraCamino(tabla));
@@ -252,7 +252,7 @@ namespace Bic.Domain
 			// Le pido a todos los campos que me den las tablas donde estan presentes
 			foreach(ITablaMapeable campo in campos)
 			{
-				tablas.AddRange(campo.ObtenerTablas());//TODO todas las clases que tengan tablas pueden aparecer aca
+				tablas.AddRange(campo.ObtenerTablas());
 				
 			};
 			
@@ -287,8 +287,7 @@ namespace Bic.Domain
 
 				foreach(Columna col in columnasDesc)
 				{
-					// TODO : para cambiar el nombre de columna de los atributos, modificar esta lineas
-					listaCamposConAlias += alias + "." + col.Nombre; //+ " AS '" + ALGO +"' ";
+					listaCamposConAlias += alias + "." + col.Nombre + " AS '" + atrib.Nombre + "." + col.Nombre +"' ";
 
 					if (columnasDesc.IndexOf(col) < columnasDesc.Count - 1)
 						listaCamposConAlias+= ",\n";
