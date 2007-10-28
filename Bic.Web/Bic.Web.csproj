@@ -592,6 +592,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Reportes\ColumnsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Reportes\ChartAbstractFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -669,11 +674,6 @@
                     RelPath = "Reportes\ChartWizardStep3.aspx.resx"
                     DependentUpon = "ChartWizardStep3.aspx.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Reportes\ColumnsChartFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Reportes\DataSourceItem.cs"

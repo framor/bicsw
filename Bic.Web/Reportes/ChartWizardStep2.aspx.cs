@@ -94,6 +94,7 @@ namespace Bic.Web
 			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue ) -1;
 		}
 
+
 		#endregion
 
 		#region Private methods

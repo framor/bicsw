@@ -32,6 +32,12 @@ namespace Bic.Web
 			base.CustomPreviewChart (chart);
 			chart.Engine.RenderHorizontally = true;
 		}
+		
+		protected override void CustomChart(Chart chart, ReportManager reportManager)
+		{
+			base.CustomChart (chart, reportManager);
+			chart.Engine.RenderHorizontally = true;
+		}
 
 
 
