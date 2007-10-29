@@ -377,20 +377,20 @@ namespace Bic.Domain
 			// Si no tiene Atributos es un reporte de solo metricas
 			if (this.Atributos.Count == 0)
 			{
-				sql += listaMetricas + "\n" + fromTablaReporte;
-				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += listaMetricas + "\n" + fromTablaReporte + "\n";
+				sql += !whereTablaReporte.Equals(string.Empty) ? "where\n" + whereTablaReporte : string.Empty;
 				sql += ";";
 			} // Si no tiene metricas es un reporte de solo atributos
 			else if (this.Metricas.Count == 0)
 			{
-				sql += listaCamposConAlias + "\n" + fromTablaReporte;
-				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += listaCamposConAlias + "\n" + fromTablaReporte + "\n";
+				sql += !whereTablaReporte.Equals(string.Empty) ? "where\n" + whereTablaReporte : string.Empty;
 				sql += "Group By\n" + listaCampos + ";";
 			}
 			else
 			{
-				sql += listaCamposConAlias + ",\n" + listaMetricas + "\n" + fromTablaReporte;
-				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += listaCamposConAlias + ",\n" + listaMetricas + "\n" + fromTablaReporte + "\n";
+				sql += !whereTablaReporte.Equals(string.Empty) ? "where\n" + whereTablaReporte : string.Empty;
 				sql += "Group By\n" + listaCampos + ";";
 			}
 
