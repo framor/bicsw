@@ -19,6 +19,8 @@ namespace Bic.Domain
 		private Tabla tablaLookup;
 		private Proyecto proyecto;
 		private Atributo hijo;
+		// Para controlar las referencias circulares
+		private bool flagCircular = false;
 
 		#endregion
 
@@ -148,7 +150,15 @@ namespace Bic.Domain
 		{
 			Camino camino;
 
-            
+			// Si el Flag de referencia circular es true lanzamos una excepcion de referencia circular.
+			if (this.flagCircular)
+			{
+				throw new ReferenciaCircularException("El Atributo: " + "\"" + this.Nombre + "\" tiene una referencia circular.");
+			}
+			
+			// Seteo que ya pase por aca por la referencia circular.
+			this.flagCircular = true;
+
 			if(!tabla.Tenes(this.columnaId))
 			{
 				try
@@ -159,6 +169,8 @@ namespace Bic.Domain
 					// Capturo la excepcion.
 				catch(NullReferenceException nre)
 				{	
+					// Antes de tirar la excepcion seteo a false la referencia circular
+					this.flagCircular = false;
 					// Subo de nivel de Excepcion a una excepcion del dominio.
 					// Mando un excepcion de hijo inexistente.
 					throw new NoExisteHijoException("El atributo no tiene hijos, es el ultimo en la jerarquia",nre);
@@ -171,14 +183,23 @@ namespace Bic.Domain
 
 			camino.AgregarAtributo(this);
 
+			this.flagCircular = false;
+
 			return camino;
 		}
 
 		public Camino GeneraCamino()
 		{
 			Camino camino;
+			// Si el Flag de referencia circular es true lanzamos una excepcion de referencia circular.
+			if (this.flagCircular)
+			{
+				throw new ReferenciaCircularException("El Atributo: " + "\"" + this.Nombre + "\" tiene una referencia circular.");
+			}
 
-            
+			// Seteo que ya pase por aca por la referencia circular.
+			this.flagCircular = true;
+
 			try
 			{
 				camino = this.Hijo.GeneraCamino();
@@ -192,6 +213,8 @@ namespace Bic.Domain
 			}
 			
 			camino.AgregarAtributo(this);
+
+			this.flagCircular = false;
 
 			return camino;
 		}
