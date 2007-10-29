@@ -154,7 +154,7 @@ namespace Bic.Web
 				{
 					foreach(Bic.Domain.Catalogo.Columna columna in atributo.ColumnasDescripciones)
 					{
-						if (columna.Nombre==column.ColumnName)
+						if ((atributo.Nombre + "." + columna.Nombre) == column.ColumnName)
 						{
 							this.ddlDescripciones.Items.Add(new System.Web.UI.WebControls.ListItem(column.Caption,column.Caption));	
 						}
