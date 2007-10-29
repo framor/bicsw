@@ -45,7 +45,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>Los Hechos son los que contienen la iformación a ser agregada por las Métricas.</p>
 	<p>Si desea añadir un Hecho haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de un Hecho haga click en el boton Editar.</p>
+	<p>Si desea ir a la pantalla de edicion de un Hecho haga click en el boton Editar.</p>
 	<p>Para eliminar un Hecho del proyecto haga click en el boton Borrar.</p>
 	</div>
 

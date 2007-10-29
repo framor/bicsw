@@ -45,7 +45,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>Los Filtros permiten acotar la información obtenida en un reporte.</p>
 	<p>Si desea añadir un Filtro haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de un Filtro haga click en el boton Editar.</p>
+	<p>Si desea ir a la pantalla de edicion de un Filtro haga click en el boton Editar.</p>
 	<p>Para eliminar un Filtro del proyecto haga click en el boton Borrar.</p>
 	</div>
 

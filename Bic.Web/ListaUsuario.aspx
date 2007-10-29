@@ -44,7 +44,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>¡Bievenido a BIC! <br>Como administrador solo podrá administrar los usuarios.</p>
 	<p>Si desea añadir un usuario haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de usuario haga click en el boton Editar.</p>
+	<p>Si desea ir a la pantalla de edicion de usuario haga click en el boton Editar.</p>
 	<p>Para eliminar un usuario haga click en el boton Borrar.</p>
 	</div>
 

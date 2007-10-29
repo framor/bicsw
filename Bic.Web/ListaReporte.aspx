@@ -45,7 +45,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>Los Reportes permiten visualizar consultas de manera gráfica.</p>
 	<p>Si desea añadir un Reporte haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de un Reporte haga click en el boton Editar.</p>
+	<p>Si desea ir a la pantalla de edicion de un Reporte haga click en el boton Editar.</p>
 	<p>Para eliminar un Reporte del proyecto haga click en el boton Borrar.</p>
 	</div>
 

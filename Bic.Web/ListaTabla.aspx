@@ -44,9 +44,9 @@
 	<div id="sidebar">
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>En primera instancia debe dar de altas las tablas que utlizará el proyecto.</p>
-	<p>Si desea añadir un Tabla haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de un Tabla haga click en el boton Editar.</p>
-	<p>Para eliminar un Tabla del proyecto haga click en el boton Borrar.</p>
+	<p>Si desea añadir una Tabla haga click en el boton Agregar nuevo.</p>
+	<p>Si desea ir a la pantalla de edicion de una Tabla haga click en el boton Editar.</p>
+	<p>Para eliminar una Tabla del proyecto haga click en el boton Borrar.</p>
 	</div>
 
 	<div id="footer">

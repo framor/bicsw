@@ -99,6 +99,7 @@ namespace Bic.WebControls
 					sb.Append(string.Format(@"<li><a href=""{0}ListaMetrica.aspx"" title=""Metricas""><span>Metricas</span></a></li>", basePath));
 				if (rolActual.PuedeAccederAReportes())
 					sb.Append(string.Format(@"<li><a href=""{0}ListaReporte.aspx"" title=""Reportes""><span>Reportes</span></a></li>", basePath));
+				sb.Append(string.Format(@"<li><a href=""#"" onclick=""javascript:window.open('{0}/ayuda/index.html' , 'Ayuda' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no');return false;"" title=""Ayuda""><span>Ayuda</span></a></li>", basePath));
 				sb.Append("</div>");
 
 			}

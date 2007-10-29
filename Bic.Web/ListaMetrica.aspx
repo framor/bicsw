@@ -44,9 +44,9 @@
 	<div id="sidebar">
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>Los Metricas son funciones de agregación aplicadas a los hechos.</p>
-	<p>Si desea añadir un Metrica haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de un Metrica haga click en el boton Editar.</p>
-	<p>Para eliminar un Metrica del proyecto haga click en el boton Borrar.</p>
+	<p>Si desea añadir una Metrica haga click en el boton Agregar nuevo.</p>
+	<p>Si desea ir a la pantalla de edicion de una Metrica haga click en el boton Editar.</p>
+	<p>Para eliminar una Metrica del proyecto haga click en el boton Borrar.</p>
 	</div>
 
 	<div id="footer">
