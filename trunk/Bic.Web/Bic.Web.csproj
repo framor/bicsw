@@ -478,6 +478,346 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "ayuda\atributos.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\atributos2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\ayuda.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\bicmariano_content.js"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\bicmariano_kwindex.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\caracteristicasgenerales.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\caracteristicastécnicas.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\caracteristicastécnicas3.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\cicon1.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\cicon2.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\cicon9.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0001.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0002.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0003.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0004.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0005.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0006.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0007.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0008.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0009.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0010.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0011.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0012.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0013.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0014.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0015.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0016.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0016a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0017.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0017a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0018a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0019.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0019a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0020a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0021.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0021a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0022.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0022a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0023.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0023a.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0024.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0026.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0027.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0028.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0029.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0030.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0031.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0032.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0033.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0034.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0036.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0037.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0038.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0039.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0040.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0041.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0042.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0043.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0044.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0045.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\clip0046.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\comenzandoautilizarbic.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\configuracióndereporte.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\filtros.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\filtros2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\generalidades.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\hechos.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\hechos2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\index.html"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\iniciosesión.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\instalación.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\introducción.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\introducción2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\metricas.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\metricas2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\modeloestrella.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\perfilesdeusuarios2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\proyecto.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\proyecto2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\reportes.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\reportes2.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\seguridad.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\tablas1.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\tablas12.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ayuda\visualizacióndereportes.htm"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "config\spring-aspects.xml"
                     BuildAction = "Content"
                 />
@@ -592,11 +932,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Reportes\ColumnsChartFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Reportes\ChartAbstractFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -674,6 +1009,11 @@
                     RelPath = "Reportes\ChartWizardStep3.aspx.resx"
                     DependentUpon = "ChartWizardStep3.aspx.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Reportes\ColumnsChartFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Reportes\DataSourceItem.cs"

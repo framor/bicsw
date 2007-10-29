@@ -55,7 +55,7 @@
 	<h2 style="text-align:right">Ayuda</h2>
 	<p>¡Bievenido a BIC! <br>Para poder usar BIC primero debe seleccionar el proyecto sobre el que desea trabajar.</p>
 	<p>Si desea añadir un proyecto haga click en el boton Agregar nuevo.</p>
-	<p>Si que desea ir a la pantalla de edicion de proyecto haga click en el boton Editar.</p>
+	<p>Si desea ir a la pantalla de edicion de proyecto haga click en el boton Editar.</p>
 	<p>Para eliminar un proyecto haga click en el boton Borrar.</p>
 	</div>
 

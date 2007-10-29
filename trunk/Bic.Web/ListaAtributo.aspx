@@ -43,7 +43,7 @@
 						<h2 style="TEXT-ALIGN:right">Ayuda</h2>
 						<p>Los atributos son las entidades visibles para la creacion de reportes.</p>
 						<p>Si desea añadir un atributo haga click en el boton Agregar nuevo.</p>
-						<p>Si que desea ir a la pantalla de edicion de un atributo haga click en el boton 
+						<p>Si desea ir a la pantalla de edicion de un atributo haga click en el boton 
 							Editar.</p>
 						<p>Para eliminar un atributo del proyecto haga click en el boton Borrar.</p>
 					</div>
