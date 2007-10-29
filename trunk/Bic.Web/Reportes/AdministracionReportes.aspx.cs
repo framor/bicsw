@@ -18,6 +18,7 @@ using Font = iTextSharp.text.Font;
 using Bic.Application;
 using Bic.Application.DTO;
 using Bic.Domain;
+using Bic.Framework.Exception;
 
 
 namespace Bic.Web
@@ -44,10 +45,16 @@ namespace Bic.Web
 
 			if (!IsPostBack)
 			{
-				this.InitializeComboValues();
-					
-				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;				 
-				this.dtgReport.DataBind();	
+				try
+				{
+					this.InitializeComboValues();
+					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;				 
+					this.dtgReport.DataBind();	
+				}
+				catch (ServiceException se)
+				{
+					//TODO Aca hacer algo para mostrar el mensaje de error
+				}
 			}
 		}
 
