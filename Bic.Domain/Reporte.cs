@@ -144,34 +144,50 @@ namespace Bic.Domain
 		public void GeneraConsulta()
 		{
 			ArrayList tablasReporte = new ArrayList();
-			ArrayList tablasFactCandidatas;
+			ArrayList tablasFactCandidatas = new ArrayList();
+
+			if (this.Metricas.Count == 0 && this.Atributos.Count == 0)
+			{
+				throw new ReporteInvalidoException("Por favor seleccione por lo menos un atributo o una metrica");
+			}
 			// Le pido las tablas candidatas a elegir - Son las que tienen todas las metricas
 			try
 			{
-				tablasFactCandidatas = this.DameTablasCandidatas();
+				if (this.Metricas.Count != 0)
+				{
+					tablasFactCandidatas = this.DameTablasCandidatas();
+				}
 			} // Si no existe tabla Fact candidata Subo de Nivel la Excepcion y lanzo la de ReporteInvalido
 			catch (NoExisteTablaCandidataException)
 			{
 				throw new ReporteInvalidoException("Imposible generar el reporte, no existe combinacion entre los atributos y las metricas seleccionadas");
 			}
 
-			            
-			foreach(Tabla tabla in tablasFactCandidatas)
+			if (this.Metricas.Count != 0)
 			{
-				try
+				foreach(Tabla tabla in tablasFactCandidatas)
 				{
-					//Creo el objeto TablaReporte con la tabla Fact destino y todos sus caminos
-					TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.atributos));
-					tablaReporte.AgregarCaminos(this.GeneraCaminos(tabla,this.filtros));
+					try
+					{
+						//Creo el objeto TablaReporte con la tabla Fact destino y todos sus caminos
+						TablaReporte tablaReporte = new TablaReporte(tabla,this.GeneraCaminos(tabla,this.atributos));
+						tablaReporte.AgregarCaminos(this.GeneraCaminos(tabla,this.filtros));
 
-					// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
-					// por tener todos los caminos.
-					tablasReporte.Add(tablaReporte);
-				}
-				catch (NoExisteCaminoException)
-				{
+						// La agrego a la coleccion de tablasReporte, para ser tenidas en cuenta
+						// por tener todos los caminos.
+						tablasReporte.Add(tablaReporte);
+					}
+					catch (NoExisteCaminoException)
+					{
                     
+					}
 				}
+			}
+			else
+			{
+				TablaReporte tablaReporte = new TablaReporte(null,this.GeneraCaminos(null,this.atributos));
+				tablaReporte.AgregarCaminos(this.GeneraCaminos(null,this.filtros));
+				tablasReporte.Add(tablaReporte);
 			}
 
 			// Verifico que aunque sea exista alguna alternativa de reporte
@@ -186,6 +202,11 @@ namespace Bic.Domain
 			this.tablaReporte = (TablaReporte)tablasReporte[0];
 
 			this.tablaReporte.MergeCaminos();
+
+			if (this.Metricas.Count == 0 && this.tablaReporte.Caminos.Count > 1)
+			{
+				throw new ReporteInvalidoException("Imposible generar el reporte, los atributos y/o los filtros seleccionados no pertenecen a la misma dimension");
+			}
 
 			return;
 
@@ -206,7 +227,14 @@ namespace Bic.Domain
 			{	
 				try
 				{
-					caminos.Add(campo.GeneraCamino(tabla));
+					if (this.Metricas.Count != 0)
+					{
+						caminos.Add(campo.GeneraCamino(tabla));
+					}
+					else
+					{
+						caminos.Add(campo.GeneraCamino());
+					}
 				}
 					// Si me llega una excepcion al no encontrar hijos significa
 					// que no encontro un camino hasta la Fact.
@@ -334,21 +362,36 @@ namespace Bic.Domain
 
 
 			string sql = "select\n";
-			string sqlTablaReporte = this.tablaReporte.DameSql();
+			string fromTablaReporte = "from\n" + this.tablaReporte.DameFrom();
+			string whereTablaReporte = this.tablaReporte.DameWhere();
 
-			if (this.Filtros.Count > 0)
+			whereTablaReporte += !whereTablaReporte.Equals(string.Empty) && !filtrosWhere.Equals(string.Empty) ? "and " : string.Empty;
+
+			whereTablaReporte += filtrosWhere;
+
+//			if (this.Filtros.Count > 0)
+//			{
+//				fromTablaReporte += "and " + filtrosWhere;
+//			}
+
+			// Si no tiene Atributos es un reporte de solo metricas
+			if (this.Atributos.Count == 0)
 			{
-				sqlTablaReporte += "and " + filtrosWhere;
-			}
-
-
-			if(this.Atributos.Count == 0)
+				sql += listaMetricas + "\n" + fromTablaReporte;
+				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += ";";
+			} // Si no tiene metricas es un reporte de solo atributos
+			else if (this.Metricas.Count == 0)
 			{
-				sql += listaMetricas + sqlTablaReporte + ";";
+				sql += listaCamposConAlias + "\n" + fromTablaReporte;
+				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += "Group By\n" + listaCampos + ";";
 			}
 			else
 			{
-				sql += listaCamposConAlias + ",\n" + listaMetricas + "\n" + sqlTablaReporte + "Group By\n" + listaCampos + ";";
+				sql += listaCamposConAlias + ",\n" + listaMetricas + "\n" + fromTablaReporte;
+				sql += !whereTablaReporte.Equals(string.Empty) ? "\nwhere\n" + whereTablaReporte : string.Empty;
+				sql += "Group By\n" + listaCampos + ";";
 			}
 
 			return sql;

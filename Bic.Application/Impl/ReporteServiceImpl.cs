@@ -54,10 +54,6 @@ namespace Bic.Application.Impl
 			{
 				throw new ServiceException(rie.Message);
 			}
-//			catch (NoExisteTablaCandidataException netce)
-//			{
-//				throw new ServiceException(netce.Message);
-//			}
 			this.GenericDAO.Save(reporte);	
 		}
 

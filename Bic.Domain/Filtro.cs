@@ -74,6 +74,11 @@ namespace Bic.Domain
 			return this.Atributo.GeneraCamino(tabla);
 		}
 
+		public Camino GeneraCamino()
+		{
+			return this.Atributo.GeneraCamino();
+		}
+
 		public string GetSql(string alias)
 		{
 			string sql = alias + "." + this.Columna.Nombre + " ";
@@ -89,6 +94,10 @@ namespace Bic.Domain
 			else if (this.Operador.Equals("Contiene"))
 			{
 				sql += "LIKE " + "'%" + this.Valor + "%'";
+			}
+			else if (this.Columna.Tipo.Equals("varchar") || this.Columna.Tipo.Equals("char"))
+			{
+				sql += this.Operador + " '" + this.Valor + "' ";
 			}
 			else
 			{

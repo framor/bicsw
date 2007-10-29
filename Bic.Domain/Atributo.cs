@@ -154,7 +154,6 @@ namespace Bic.Domain
 				try
 				{
 					camino = this.Hijo.GeneraCamino(tabla);
-					//camino.AgregarAtributo(this);
 				}
 					// Si no tiene hijos cancela por referencia nula.
 					// Capturo la excepcion.
@@ -170,6 +169,28 @@ namespace Bic.Domain
 				camino = new Camino();
 			}
 
+			camino.AgregarAtributo(this);
+
+			return camino;
+		}
+
+		public Camino GeneraCamino()
+		{
+			Camino camino;
+
+            
+			try
+			{
+				camino = this.Hijo.GeneraCamino();
+			}
+			// Si no tiene hijos cancela por referencia nula.
+			// Capturo la excepcion.
+			catch(NullReferenceException)
+			{
+				// Arranco el Camino porque es el ultimo de la jerarquia.
+				camino = new Camino();
+			}
+			
 			camino.AgregarAtributo(this);
 
 			return camino;
