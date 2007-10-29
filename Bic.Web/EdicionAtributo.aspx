@@ -51,7 +51,7 @@
 								<td><b>Hijo</b></td>
 								<td>
 									<asp:DropDownList id="ddlHijo" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" Height="100px"></asp:DropDownList>
+										Width="150px"></asp:DropDownList>
 								</td>
 							</tr>
 							<tr>
