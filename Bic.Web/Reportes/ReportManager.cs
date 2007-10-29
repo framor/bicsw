@@ -139,7 +139,7 @@ namespace Bic.Web
 			{
 				if(this.httpSessionState["rowCount"]==null)
 				{
-					this.httpSessionState["rowCount"]=1;
+					this.httpSessionState["rowCount"]=-1;
 				}
 
 				this.rowCount = (int)this.httpSessionState["rowCount"];
@@ -323,6 +323,8 @@ namespace Bic.Web
 		public void Clear()
 		{
 			this.ColorCount = -1;
+			this.RowCount = -1;
+			this.GraphFilter = null;
 			this.Reporte = null;
 			this.DataSources.Clear();
 			this.ReportSourceCache = null;
