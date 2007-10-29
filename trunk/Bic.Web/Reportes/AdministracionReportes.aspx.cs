@@ -53,7 +53,7 @@ namespace Bic.Web
 				}
 				catch (ServiceException se)
 				{
-					//TODO Aca hacer algo para mostrar el mensaje de error
+					Page.RegisterStartupScript("errorscript", "<script>alert('Error de ejecución en el reporte. Contactarse con el arquitecto para verificar el problema.');history.back()</script>");
 				}
 			}
 		}
