@@ -37,7 +37,11 @@ namespace Bic.Domain
 		{
 			get { return this.tabla; }
 		}
-
+		
+		public IList Caminos
+		{
+			get { return new ArrayList(this.caminos); }
+		}
 		/// <summary>
 		/// Genera el SQL necesario para ejecutar.
 		/// Compuesto por el from y el where
@@ -45,59 +49,171 @@ namespace Bic.Domain
 		/// <returns></returns>
 		public string DameSql()
 		{
-			string sql = "from\n";
+			string from = "from\n";
             
 			// Primero agrego la tabla Fact.
-			sql += this.tabla.NombreBD + "." + this.tabla.Nombre + " as " + this.tabla.Nombre;
+			if (this.Tabla != null)
+			{
+				from += this.tabla.NombreBD + "." + this.tabla.Nombre + " as " + this.tabla.Nombre;
+			}
 
 			// Si no tiene ningun camino lo retorno.
 			if(this.caminos.Count == 0)
 			{
-				sql += ";";
-				return sql;
+				from += ";";
+				return from;
 			}
 
-			sql += ",\n";
+			if (this.Tabla != null)
+			{
+				from += ",\n";
+			}
+
             // Por cada camino le pido que me de su from,
 			// o sea las tablas de cada uno de ellos.
 			foreach(Camino camino in this.caminos)
 			{
-				sql += camino.DameFromClause();
+				from += camino.DameFromClause();
 
 				// Mientras no sea el ultimo le agrego la coma y el enter
 				if (this.caminos.IndexOf(camino) < this.caminos.Count - 1)
-					sql += ",\n";
+					from += ",\n";
 			}
 
 			
 			// Agrego la clausula where.
-			sql += "\nwhere\n";
+			string whereFact = string.Empty;
 
-			// A cada camino le pido que me de el join con la Fact.
-			// O sea la lkp de primer nivel y la fact.
-			foreach(Camino camino in this.caminos)
+			// Si es un reporte con fact le pido los join.
+			if (this.Tabla != null)
 			{
-				// Mientras no sea el primero le agrego el "and " para el proximo where
-				if(this.caminos.IndexOf(camino) > 0)
-					sql += "and ";
+				// A cada camino le pido que me de el join con la Fact.
+				// O sea la lkp de primer nivel y la fact.
+				foreach(Camino camino in this.caminos)
+				{
+					// Mientras no sea el primero le agrego el "and " para el proximo where
+					if(this.caminos.IndexOf(camino) > 0)
+						whereFact += "and ";
 				
-				sql += camino.DameJoinFact(this.tabla.Nombre) + "\n";
+					whereFact += camino.DameJoinFact(this.tabla.Nombre) + "\n";
+				}
 			}
 			
 	
             // Devuelve el resto de las condiciones de join entre las 
 			// tablas intermedias.
+
+			string whereCaminos = string.Empty;
+
 			foreach(Camino camino in this.caminos)
 			{
 				string whereClause = camino.DameWhereClause();
 				
-				if(!whereClause.Equals(""))
-                    sql += "and " + whereClause + "\n";
+				if (!whereClause.Equals(string.Empty) && this.caminos.IndexOf(camino) > 0)
+				{
+					whereCaminos += "and ";
+				}
+				
+				if (!whereClause.Equals(string.Empty))
+				{
+					whereCaminos += whereClause + "\n";
+				}
 			}
+
+			string sql = from;
+			sql += !whereFact.Equals(string.Empty) && !whereCaminos.Equals(string.Empty) ? "\nwhere\n" + whereFact : string.Empty;
+			sql += !whereFact.Equals(string.Empty) && !whereCaminos.Equals(string.Empty) ? "and " : string.Empty;
+			sql += whereCaminos;
 			
 			return sql;
 		}
 
+		public string DameFrom()
+		{
+			string from = string.Empty;
+            
+			// Primero agrego la tabla Fact.
+			if (this.Tabla != null)
+			{
+				from += this.tabla.NombreBD + "." + this.tabla.Nombre + " as " + this.tabla.Nombre;
+			}
+
+			// Si no tiene ningun camino lo retorno.
+			if(this.caminos.Count == 0)
+			{
+				from += ";";
+				return from;
+			}
+
+			if (this.Tabla != null)
+			{
+				from += ",\n";
+			}
+
+			// Por cada camino le pido que me de su from,
+			// o sea las tablas de cada uno de ellos.
+			foreach(Camino camino in this.caminos)
+			{
+				from += camino.DameFromClause();
+
+				// Mientras no sea el ultimo le agrego la coma y el enter
+				if (this.caminos.IndexOf(camino) < this.caminos.Count - 1)
+					from += ",\n";
+			}
+
+			return from;
+		}
+
+		public string DameWhere()
+		{
+			
+			// Agrego la clausula where.
+			string whereFact = string.Empty;
+
+			// Si es un reporte con fact le pido los join.
+			if (this.Tabla != null)
+			{
+				// A cada camino le pido que me de el join con la Fact.
+				// O sea la lkp de primer nivel y la fact.
+				foreach(Camino camino in this.caminos)
+				{
+					// Mientras no sea el primero le agrego el "and " para el proximo where
+					if(this.caminos.IndexOf(camino) > 0)
+						whereFact += "and ";
+				
+					whereFact += camino.DameJoinFact(this.tabla.Nombre) + "\n";
+				}
+			}
+			
+	
+			// Devuelve el resto de las condiciones de join entre las 
+			// tablas intermedias.
+
+			string whereCaminos = string.Empty;
+
+			foreach(Camino camino in this.caminos)
+			{
+				string whereClause = camino.DameWhereClause();
+				
+				if (!whereClause.Equals(string.Empty) && !whereCaminos.Equals(string.Empty))
+				{
+					whereCaminos += "and ";
+				}
+				
+				if (!whereClause.Equals(string.Empty))
+				{
+					whereCaminos += whereClause + "\n";
+				}
+			}
+
+			string sql = whereFact;
+			sql += !whereFact.Equals(string.Empty) && !whereCaminos.Equals(string.Empty) ? "and " : string.Empty;
+			sql += whereCaminos;
+			
+			return sql;
+		}
+
+		
 		public string GetIdCamino(Atributo atrib)
 		{
 
