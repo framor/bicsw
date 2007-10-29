@@ -54,6 +54,10 @@ namespace Bic.Application.Impl
 			{
 				throw new ServiceException(rie.Message);
 			}
+			catch (StackOverflowException soe)
+			{
+				throw new ServiceException("El mapeo contiene una referencia circular. Contactarse con el arquitecto para verificar el problema.");
+			}
 			this.GenericDAO.Save(reporte);	
 		}
 
