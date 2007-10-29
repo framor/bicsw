@@ -44,7 +44,8 @@ namespace Bic.Web
 			{
 				this.InitializeComboValues();
 				this.InitializeRadioButtonList();
-				
+				this.InitializeListBoxRows();
+
 				this.PopulateView();
 			}
 		}
@@ -91,7 +92,7 @@ namespace Bic.Web
 
 		private void lstBoxRows_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue ) -1;
+			ReportManager.GetInstance(this.Session).RowCount = int.Parse( this.lstBoxRows.SelectedValue );
 		}
 
 
@@ -201,7 +202,7 @@ namespace Bic.Web
 			DataSet dataset = ReportManager.GetInstance(this.Session).ReportSourceCache; 
 			int rowCount = dataset.Tables[0].Rows.Count;
 
-			for(int i =1; i<rowCount; i++)
+			for(int i =1; i<=rowCount; i++)
 			{
 				numbers.Add(i);
 			}
@@ -210,12 +211,17 @@ namespace Bic.Web
 			this.lstBoxRows.DataSource = numbers;
 			this.lstBoxRows.DataBind();
 			this.lstBoxRows.SelectedIndex = this.lstBoxRows.Items.Count-1;
+
+			if(ReportManager.GetInstance(this.Session).RowCount == -1)
+			{	
+				ReportManager.GetInstance(this.Session).RowCount = this.lstBoxRows.Items.Count;
+			}
 		}
 
 
 		protected override void PopulateView()
 		{
-			this.InitializeListBoxRows();
+
 			this.ddlDescripciones.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count == 0;
 			this.lnkRemoveDataSource.Enabled = ReportManager.GetInstance(this.Session).DataSources.Keys.Count != 0;
 			this.txtDataSourceName.Text = string.Empty;
@@ -230,17 +236,17 @@ namespace Bic.Web
 				{
 					case ReportManager.GraphFilters.All:
 							this.rdoBtnLstFilterOptions.SelectedIndex=2;
-							this.lstBoxRows.SelectedIndex = this.lstBoxRows.Items.Count-1;
+							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount-1;
 							this.lstBoxRows.Enabled = false;
 							break;
 					case ReportManager.GraphFilters.Top:
 							this.rdoBtnLstFilterOptions.SelectedIndex=0;
 							this.lstBoxRows.Enabled = true;
-							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount;
+							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount-1;
 							break;
 					case ReportManager.GraphFilters.Bottom:
 							this.lstBoxRows.Enabled = true;
-							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount;
+							this.lstBoxRows.SelectedIndex = ReportManager.GetInstance(this.Session).RowCount-1;
 							this.rdoBtnLstFilterOptions.SelectedIndex=1;
 							break;																	
 				}
