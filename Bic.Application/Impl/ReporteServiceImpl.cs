@@ -86,7 +86,16 @@ namespace Bic.Application.Impl
 		public DataSet Ejecutar(long id)
 		{
 			Reporte reporte = Retrieve(id);
-			return this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
+			DataSet ds;
+			try
+			{
+				ds = this.catalogoDAO.EjecutarSql(reporte.Proyecto.Conexion, reporte.DameSql());
+			}
+			catch(Exception e)
+			{
+				throw new ServiceException(e.Message);
+			}
+			return ds;
 		}
 
 
