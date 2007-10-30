@@ -34,7 +34,7 @@ CREATE TABLE `atributo` (
   `proyecto_id` int(10) unsigned NOT NULL,
   `hijo_id` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `atributo`
@@ -42,31 +42,39 @@ CREATE TABLE `atributo` (
 
 /*!40000 ALTER TABLE `atributo` DISABLE KEYS */;
 INSERT INTO `atributo` (`id`,`nombre`,`columna_id`,`tabla_lookup_id`,`proyecto_id`,`hijo_id`) VALUES 
- (40,'Almacen  - ID',325,39,7,NULL),
- (41,'Clase Almacen - ID',319,38,7,40),
- (42,'Almacen - Nombre',325,39,7,NULL),
- (43,'Almacen - Otros Datos',325,39,7,NULL),
+ (40,'Almacen  - Nombre',325,39,7,NULL),
+ (43,'Almacen - Otros Datos',325,39,7,40),
  (44,'Clase Almacen - Descipcion',319,38,7,40),
  (45,'Tiempo - Fecha',316,37,7,NULL),
- (46,'Producto - ID',346,40,7,NULL),
- (47,'Clase Producto - ID',355,41,7,46),
- (48,'Clase Producto - Categoria',355,41,7,46),
+ (46,'Producto - Nombre',346,40,7,NULL),
+ (47,'Clase Producto - Categoria',355,41,7,46),
  (49,'Clase Producto - Otros Datos',355,41,7,46),
- (50,'Comercio - ID',371,42,7,NULL),
- (51,'Comercio - Nombre, Numero',371,42,7,NULL),
- (52,'Comercio - Otros Datos',371,42,7,NULL),
+ (50,'Comercio - Nombre, Numero',371,42,7,NULL),
+ (52,'Comercio - Otros Datos',371,42,7,50),
  (54,'Region Comercio - Nombre',383,43,7,50),
  (55,'Region Comercio - Otros Datos',383,43,7,50),
- (56,'Cuenta - ID',389,44,7,NULL),
- (57,'Cuenta - Descripcion, Tipo',389,44,7,NULL),
+ (56,'Cuenta - Descripcion y Tipo',389,44,7,NULL),
  (58,'Moneda - Nombre, Tipo de Cambio',431,48,7,NULL),
  (59,'Categoria - Descripcion',393,45,7,NULL),
  (60,'Promocion - Nombre, Costo',402,46,7,NULL),
- (61,'Cliente - ID',407,47,7,NULL),
- (62,'Cliente - Nombre, Apellido',407,47,7,NULL),
- (63,'Cliente - Otros Datos',407,47,7,NULL),
+ (61,'Cliente - Nombre y Apellido',407,47,7,NULL),
+ (63,'Cliente - Otros Datos',407,47,7,61),
  (64,'Region Cliente - Nombre',383,43,7,61),
- (65,'Region Cliente - Otros Datos',383,43,7,61);
+ (65,'Region Cliente - Otros Datos',383,43,7,61),
+ (67,'Cliente - Nombre, Apellido',485,56,8,NULL),
+ (68,'Ciudad Cliente',492,57,8,67),
+ (69,'Ingresos Cliente',498,60,8,67),
+ (70,'Provincia Cliente',493,58,8,68),
+ (71,'Region Cliente',496,59,8,70),
+ (72,'Empleado - Nombre, Apellido',509,61,8,NULL),
+ (73,'Emlpeado - Salario',509,61,8,NULL),
+ (74,'Call Center',513,62,8,72),
+ (75,'Gerente',521,63,8,74),
+ (76,'Region Call Center',525,64,8,74),
+ (77,'Pais Region',530,66,8,76),
+ (78,'Pais Centro de Distribucion',530,66,8,79),
+ (79,'Centro de Distribucion',527,65,8,74),
+ (80,'Producto - Otros Datos',346,40,7,46);
 /*!40000 ALTER TABLE `atributo` ENABLE KEYS */;
 
 
@@ -86,9 +94,6 @@ CREATE TABLE `atributo_columna` (
 
 /*!40000 ALTER TABLE `atributo_columna` DISABLE KEYS */;
 INSERT INTO `atributo_columna` (`atributo_id`,`columna_id`) VALUES 
- (40,325),
- (41,319),
- (42,329),
  (43,335),
  (43,331),
  (43,321),
@@ -97,15 +102,9 @@ INSERT INTO `atributo_columna` (`atributo_id`,`columna_id`) VALUES
  (43,330),
  (44,320),
  (45,311),
- (46,346),
- (47,355),
- (48,353),
  (49,351),
  (49,352),
  (49,354),
- (50,371),
- (51,379),
- (51,370),
  (52,363),
  (52,356),
  (52,376),
@@ -115,17 +114,11 @@ INSERT INTO `atributo_columna` (`atributo_id`,`columna_id`) VALUES
  (55,382),
  (55,384),
  (55,385),
- (56,389),
- (57,387),
- (57,390),
  (58,432),
  (58,430),
  (59,394),
  (60,398),
  (60,401),
- (61,407),
- (62,404),
- (62,408),
  (63,415),
  (63,420),
  (63,427),
@@ -134,7 +127,36 @@ INSERT INTO `atributo_columna` (`atributo_id`,`columna_id`) VALUES
  (65,380),
  (65,382),
  (65,384),
- (65,385);
+ (65,385),
+ (67,488),
+ (67,486),
+ (68,490),
+ (69,499),
+ (70,495),
+ (71,497),
+ (72,510),
+ (72,505),
+ (73,506),
+ (74,515),
+ (75,518),
+ (75,520),
+ (75,523),
+ (76,526),
+ (77,531),
+ (78,531),
+ (79,528),
+ (40,329),
+ (46,348),
+ (80,344),
+ (80,345),
+ (80,343),
+ (47,353),
+ (50,379),
+ (50,370),
+ (56,387),
+ (56,390),
+ (61,408),
+ (61,404);
 /*!40000 ALTER TABLE `atributo_columna` ENABLE KEYS */;
 
 
@@ -150,7 +172,7 @@ CREATE TABLE `columna` (
   `atributo_id` int(10) unsigned default NULL,
   `tabla_id` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=433 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=537 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `columna`
@@ -307,7 +329,63 @@ INSERT INTO `columna` (`id`,`nombre`,`tipo`,`atributo_id`,`tabla_id`) VALUES
  (429,'date','date',NULL,48),
  (430,'currency','varchar',NULL,48),
  (431,'currency_id','int',NULL,48),
- (432,'conversion_ratio','decimal',NULL,48);
+ (432,'conversion_ratio','decimal',NULL,48),
+ (481,'EMAIL','varchar',NULL,56),
+ (482,'CUST_BIRTHDATE','datetime',NULL,56),
+ (483,'INCOME_ID','tinyint',NULL,56),
+ (484,'ADDRESS','varchar',NULL,56),
+ (485,'CUSTOMER_ID','smallint',NULL,56),
+ (486,'CUST_LAST_NAME','varchar',NULL,56),
+ (487,'ZIPCODE','varchar',NULL,56),
+ (488,'CUST_FIRST_NAME','varchar',NULL,56),
+ (489,'CUST_CITY_ID','smallint',NULL,56),
+ (490,'CUST_CITY_NAME','varchar',NULL,57),
+ (491,'CUST_STATE_ID','tinyint',NULL,57),
+ (492,'CUST_CITY_ID','smallint',NULL,57),
+ (493,'CUST_STATE_ID','tinyint',NULL,58),
+ (494,'CUST_REGION_ID','tinyint',NULL,58),
+ (495,'CUST_STATE_NAME','varchar',NULL,58),
+ (496,'CUST_REGION_ID','tinyint',NULL,59),
+ (497,'CUST_REGION_NAME','varchar',NULL,59),
+ (498,'INCOME_ID','tinyint',NULL,60),
+ (499,'BRACKET_DESC','varchar',NULL,60),
+ (500,'HIRE_DATE','datetime',NULL,61),
+ (501,'CALL_CTR_ID','tinyint',NULL,61),
+ (502,'MANAGER_ID','tinyint',NULL,61),
+ (503,'COUNTRY_ID','tinyint',NULL,61),
+ (504,'EMP_SSN','varchar',NULL,61),
+ (505,'EMP_LAST_NAME','varchar',NULL,61),
+ (506,'SALARY','int',NULL,61),
+ (507,'DIST_CTR_ID','tinyint',NULL,61),
+ (508,'BIRTH_DATE','datetime',NULL,61),
+ (509,'EMP_ID','tinyint',NULL,61),
+ (510,'EMP_FIRST_NAME','varchar',NULL,61),
+ (511,'COUNTRY_ID','tinyint',NULL,62),
+ (512,'REGION_ID','tinyint',NULL,62),
+ (513,'CALL_CTR_ID','tinyint',NULL,62),
+ (514,'DIST_CTR_ID','tinyint',NULL,62),
+ (515,'CENTER_NAME','varchar',NULL,62),
+ (516,'MANAGER_ID','tinyint',NULL,62),
+ (517,'DEVICE_ID','varchar',NULL,63),
+ (518,'EMAIL','varchar',NULL,63),
+ (519,'MSTR_USER','varchar',NULL,63),
+ (520,'MGR_FIRST_NAME','varchar',NULL,63),
+ (521,'MANAGER_ID','tinyint',NULL,63),
+ (522,'ADDRESS_DISPLAY','varchar',NULL,63),
+ (523,'MGR_LAST_NAME','varchar',NULL,63),
+ (524,'COUNTRY_ID','tinyint',NULL,64),
+ (525,'REGION_ID','tinyint',NULL,64),
+ (526,'REGION_NAME','varchar',NULL,64),
+ (527,'COUNTRY_ID','tinyint',NULL,65),
+ (528,'DIST_CTR_NAME','varchar',NULL,65),
+ (529,'DIST_CTR_ID','tinyint',NULL,65),
+ (530,'COUNTRY_ID','tinyint',NULL,66),
+ (531,'COUNTRY_NAME','varchar',NULL,66),
+ (532,'CALL_CTR_ID','tinyint',NULL,67),
+ (533,'DAY_DATE','datetime',NULL,67),
+ (534,'TOT_UNIT_SALES','double',NULL,67),
+ (535,'TOT_COST','double',NULL,67),
+ (536,'TOT_DOLLAR_SALES','double',NULL,67);
 /*!40000 ALTER TABLE `columna` ENABLE KEYS */;
 
 
@@ -325,7 +403,7 @@ CREATE TABLE `filtro` (
   `proyecto_id` int(10) unsigned NOT NULL,
   `atributo_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `filtro`
@@ -333,7 +411,12 @@ CREATE TABLE `filtro` (
 
 /*!40000 ALTER TABLE `filtro` DISABLE KEYS */;
 INSERT INTO `filtro` (`id`,`nombre`,`columna_id`,`operador`,`valor`,`proyecto_id`,`atributo_id`) VALUES 
- (18,'Region Comercio - Empieza con Mexico',381,'Empieza con','Mexico',7,54);
+ (18,'Region Comercio - Empieza con Mexico',381,'Empieza con','Mexico',7,54),
+ (19,'Cliente empieza con A',486,'Empieza con','A',8,67),
+ (20,'Region cliente igual a Canada',497,'=','Canada',8,71),
+ (21,'Region cliente igual a X',497,'=','Mid-Atlantic',8,71),
+ (22,'Gerente Barbara',520,'=','Barbara',8,75),
+ (23,'Clase Almacen - Large',320,'Empieza con','Large',7,44);
 /*!40000 ALTER TABLE `filtro` ENABLE KEYS */;
 
 
@@ -348,7 +431,7 @@ CREATE TABLE `hecho` (
   `columna_id` int(10) unsigned NOT NULL,
   `proyecto_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hecho`
@@ -365,7 +448,10 @@ INSERT INTO `hecho` (`id`,`nombre`,`columna_id`,`proyecto_id`) VALUES
  (12,'Cantidad de Expensas',296,7),
  (13,'Ventas',301,7),
  (14,'Costo',289,7),
- (15,'Unidades Vendidas',303,7);
+ (15,'Unidades Vendidas',303,7),
+ (20,'Unidades Vendidas',534,8),
+ (21,'Costos de ventas',535,8),
+ (22,'Ventas',536,8);
 /*!40000 ALTER TABLE `hecho` ENABLE KEYS */;
 
 
@@ -381,7 +467,7 @@ CREATE TABLE `metrica` (
   `hecho_id` int(10) unsigned NOT NULL,
   `proyecto_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `metrica`
@@ -398,7 +484,10 @@ INSERT INTO `metrica` (`id`,`nombre`,`funcion`,`hecho_id`,`proyecto_id`) VALUES
  (14,'Total - Cantidad Expensas','SUM({0})',12,7),
  (15,'Total - Ventas','SUM({0})',13,7),
  (16,'Total - Costos','SUM({0})',14,7),
- (17,'Total - Unidades Vendidas','SUM({0})',15,7);
+ (17,'Total - Unidades Vendidas','SUM({0})',15,7),
+ (22,'Total - Unidades Vendidas','SUM({0})',20,8),
+ (23,'Total - Costos','SUM({0})',21,8),
+ (24,'Total - Ventas','SUM({0})',22,8);
 /*!40000 ALTER TABLE `metrica` ENABLE KEYS */;
 
 
@@ -416,7 +505,7 @@ CREATE TABLE `proyecto` (
   `usuario` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proyecto`
@@ -424,7 +513,8 @@ CREATE TABLE `proyecto` (
 
 /*!40000 ALTER TABLE `proyecto` DISABLE KEYS */;
 INSERT INTO `proyecto` (`id`,`nombre`,`descripcion`,`servidor`,`nombreBD`,`usuario`,`password`) VALUES 
- (7,'FoodMart','Gestion de Mayorista de Productos Alimenticio','localhost','foodmart','bic','bic');
+ (7,'FoodMart','Gestion de Mayorista de Productos Alimenticio','localhost','foodmart','bic','bic'),
+ (8,'Tutorial MS','Tutorial MS','localhost','tutorial_data','bic','bic');
 /*!40000 ALTER TABLE `proyecto` ENABLE KEYS */;
 
 
@@ -438,7 +528,7 @@ CREATE TABLE `reporte` (
   `nombre` varchar(45) NOT NULL,
   `proyecto_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`,`proyecto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reporte`
@@ -446,7 +536,13 @@ CREATE TABLE `reporte` (
 
 /*!40000 ALTER TABLE `reporte` DISABLE KEYS */;
 INSERT INTO `reporte` (`id`,`nombre`,`proyecto_id`) VALUES 
- (29,'Ventas y costos por regiones',7);
+ (29,'Ventas y costos por regiones (X)',7),
+ (32,'Jerarquia de Empleado',8),
+ (33,'Control de Ventas',8),
+ (34,'Inventario por producto (X)',7),
+ (35,'Inventario por clase almacen y clase (X)',7),
+ (36,'Almacenes',7),
+ (38,'Producto (X)',7);
 /*!40000 ALTER TABLE `reporte` ENABLE KEYS */;
 
 
@@ -468,7 +564,17 @@ CREATE TABLE `reporte_atributo` (
 /*!40000 ALTER TABLE `reporte_atributo` DISABLE KEYS */;
 INSERT INTO `reporte_atributo` (`reporte_id`,`atributo_id`) VALUES 
  (29,54),
- (29,64);
+ (32,72),
+ (32,74),
+ (32,75),
+ (33,75),
+ (34,80),
+ (35,44),
+ (35,47),
+ (36,40),
+ (36,44),
+ (38,46),
+ (38,47);
 /*!40000 ALTER TABLE `reporte_atributo` ENABLE KEYS */;
 
 
@@ -489,7 +595,8 @@ CREATE TABLE `reporte_filtro` (
 
 /*!40000 ALTER TABLE `reporte_filtro` DISABLE KEYS */;
 INSERT INTO `reporte_filtro` (`reporte_id`,`filtro_id`) VALUES 
- (29,18);
+ (29,18),
+ (35,23);
 /*!40000 ALTER TABLE `reporte_filtro` ENABLE KEYS */;
 
 
@@ -512,7 +619,17 @@ CREATE TABLE `reporte_metrica` (
 INSERT INTO `reporte_metrica` (`reporte_id`,`metrica_id`) VALUES 
  (29,15),
  (29,16),
- (29,17);
+ (29,17),
+ (33,22),
+ (33,23),
+ (33,24),
+ (34,8),
+ (34,9),
+ (35,8),
+ (35,9),
+ (35,10),
+ (35,11),
+ (35,12);
 /*!40000 ALTER TABLE `reporte_metrica` ENABLE KEYS */;
 
 
@@ -529,7 +646,7 @@ CREATE TABLE `tabla` (
   `proyecto_id` int(10) unsigned NOT NULL,
   `peso` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabla`
@@ -537,7 +654,7 @@ CREATE TABLE `tabla` (
 
 /*!40000 ALTER TABLE `tabla` DISABLE KEYS */;
 INSERT INTO `tabla` (`id`,`nombre`,`alias`,`nombreBD`,`proyecto_id`,`peso`) VALUES 
- (34,'inventory_fact','Inventario FACT','foodmart',7,2),
+ (34,'inventory_fact','Inventario FACT','foodmart',7,10),
  (35,'expense_fact','Expensas FACT','foodmart',7,3),
  (36,'sales_fact','Ventas FACT','foodmart',7,8),
  (37,'time_by_day','Tiempo LKP','foodmart',7,0),
@@ -551,7 +668,19 @@ INSERT INTO `tabla` (`id`,`nombre`,`alias`,`nombreBD`,`proyecto_id`,`peso`) VALU
  (45,'category','Categoria LKP','foodmart',7,0),
  (46,'promotion','Promocion LKP','foodmart',7,0),
  (47,'customer','Cliente LKP','foodmart',7,0),
- (48,'currency','Moneda LKP','foodmart',7,0);
+ (48,'currency','Moneda LKP','foodmart',7,0),
+ (56,'lu_customer','Cliente LKP','tutorial_data',8,0),
+ (57,'lu_cust_city','Ciudad Cliente LKP','tutorial_data',8,0),
+ (58,'lu_cust_state','Provincia Cliente LKP','tutorial_data',8,0),
+ (59,'lu_cust_region','Region Cliente LKP','tutorial_data',8,0),
+ (60,'lu_income','Ingresos Cliente LKP','tutorial_data',8,0),
+ (61,'lu_employee','Empleado LKP','tutorial_data',8,0),
+ (62,'lu_call_ctr','Call Center LKP','tutorial_data',8,0),
+ (63,'lu_manager','Gerente LKP','tutorial_data',8,0),
+ (64,'lu_region','Region LKP','tutorial_data',8,0),
+ (65,'lu_dist_ctr','Centro de Distribucion LKP','tutorial_data',8,0),
+ (66,'lu_country','Pais LKP','tutorial_data',8,0),
+ (67,'day_ctr_sls','Control Ventas Dias FACT','tutorial_data',8,1);
 /*!40000 ALTER TABLE `tabla` ENABLE KEYS */;
 
 
