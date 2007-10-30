@@ -255,21 +255,6 @@ namespace Bic.Web
 		}
 
 
-		public ArrayList GetColumnNames()
-		{
-			DataSet ds = this.ReportSourceCache;
-
-			ArrayList columnNames = new ArrayList();
-
-			foreach(DataColumn column in ds.Tables[0].Columns)
-			{
-				columnNames.Add(column.ColumnName);
-			}
-
-			return columnNames;
-		}			
-
-
 		public ChartCollection GetPreviewCharts(ChartEngine chartEngine)
 		{
 			ChartCollection chartCollection = new ChartCollection(chartEngine);
