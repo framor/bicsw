@@ -27,6 +27,7 @@ namespace Bic.Web
 	{
 		#region	Web controls
 
+		protected System.Web.UI.WebControls.Button btnChartWizard;
 		protected System.Web.UI.WebControls.DataGrid dtgReport;
 		protected System.Web.UI.WebControls.DropDownList ddlDrillDown; 
 		protected System.Web.UI.WebControls.DropDownList ddlDrillUp;
@@ -50,6 +51,10 @@ namespace Bic.Web
 					this.InitializeComboValues();
 					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache;				 
 					this.dtgReport.DataBind();	
+					
+					this.RegisterScripts();
+					this.btnChartWizard.Enabled = ReportManager.GetInstance(this.Session).Reporte.Metricas.Count != 0 && ReportManager.GetInstance(this.Session).Reporte.Atributos.Count !=0;
+					
 				}
 				catch (ServiceException se)
 				{
@@ -188,6 +193,7 @@ namespace Bic.Web
 			}
 		}
 
+
 		#endregion
 
 		#region	Private methods
@@ -234,6 +240,7 @@ namespace Bic.Web
 			this.ddlDrillUp.Items.Insert(0, new System.Web.UI.WebControls.ListItem(string.Empty,string.Empty));
 		}
 
+
 		private ICollection GetAtributosHijos()
 		{
 			ArrayList atributosHijos = new ArrayList();
@@ -249,6 +256,7 @@ namespace Bic.Web
 
 			return atributosHijos;
 		}
+
 
 		private ICollection GetAtributosPadres()
 		{
@@ -268,6 +276,11 @@ namespace Bic.Web
 			return atributosPadres;
 		}
 
+
+		private void RegisterScripts()
+		{
+			this.btnChartWizard.Attributes.Add("OnClick", @"window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')");
+		}
 
 		#endregion
 
