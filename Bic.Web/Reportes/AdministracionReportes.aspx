@@ -35,9 +35,9 @@
 							<tr><td>&nbsp;</td></tr>
 							<tr valign="bottom">
 								<td align="left" colspan="3">
-									<div style="width:730px;height:250px;overflow-x:auto;">
+									<div style="width:730px;height:250px;overflow:scroll;">
 									<asp:datagrid id="dtgReport" Runat="server" CellPadding="5" Font-Names="Verdana" Width="100%"
-										UseAccessibleHeader="True">
+										UseAccessibleHeader="True" EnableViewState="False">
 										<AlternatingItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="Gainsboro"></AlternatingItemStyle>
 										<ItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="PapayaWhip"></ItemStyle>
 										<HeaderStyle Font-Names="Verdana" ForeColor="Black" BackColor="LightBlue"></HeaderStyle>
