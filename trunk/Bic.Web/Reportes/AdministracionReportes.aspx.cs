@@ -291,7 +291,7 @@ namespace Bic.Web
 
 		private void RegisterScripts()
 		{
-			this.btnChartWizard.Attributes.Add("OnClick", @"window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')");
+			this.btnChartWizard.Attributes.Add("OnClick", @"window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no');");
 		}
 
 

@@ -42,7 +42,7 @@
 								<td align="left" colspan="3">
 									<div style="width:730px;height:250px;overflow:scroll;">
 									<asp:datagrid id="dtgReport" Runat="server" CellPadding="5" Font-Names="Verdana" Width="100%"
-										UseAccessibleHeader="True" EnableViewState="False">
+										UseAccessibleHeader="True" >
 										<AlternatingItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="Gainsboro"></AlternatingItemStyle>
 										<ItemStyle Font-Names="Verdana" ForeColor="Black" BackColor="PapayaWhip"></ItemStyle>
 										<HeaderStyle Font-Names="Verdana" ForeColor="Black" BackColor="LightBlue"></HeaderStyle>
@@ -56,7 +56,7 @@
 									<input type="button" value="Ver SQL" onClick="window.open('VerSQL.aspx' , 'SQL' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">
 								</td>							
 								<td align="right" >
-									<asp:Button id = "btnChartWizard" runat="server" Text="Asistente de gráficos" AutoPostBack="true"></asp:Button>
+									<asp:Button id = "btnChartWizard" runat="server" Text="Asistente de gráficos" ></asp:Button>
 								</td>
 							</tr>
 						</table>						
