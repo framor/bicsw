@@ -67,7 +67,7 @@ namespace Bic.Web
 		private void imgBtnExcel_Click(object sender, ImageClickEventArgs e)
 		{
 			Response.Clear();
-			Response.AddHeader("content-disposition", "attachment;filename=FileName.xls");
+			Response.AddHeader("content-disposition", "attachment;filename="+this.GetFileName()+".xls");
 			Response.Charset = "";
 			Response.Cache.SetCacheability(HttpCacheability.NoCache);
 			Response.ContentType = "application/vnd.xls";
@@ -82,7 +82,7 @@ namespace Bic.Web
 		private void imgBtnWord_Click(object sender, ImageClickEventArgs e)
 		{
 			Response.Clear();
-			Response.AddHeader("content-disposition", "attachment;filename=FileName.doc");
+			Response.AddHeader("content-disposition", "attachment;filename="+this.GetFileName()+".doc");
 			Response.Charset = "";
 			Response.Cache.SetCacheability(HttpCacheability.NoCache);
 			Response.ContentType = "application/vnd.word";
@@ -106,7 +106,7 @@ namespace Bic.Web
 				//TODO : Manejar adecuadamente las excepciones que se generen durante la exportacion ( para todos los tipos )
 
 				PdfWriter writer = PdfWriter.GetInstance(document, 
-					new FileStream(Request.PhysicalApplicationPath + "/" + "FileName.pdf", FileMode.Create));
+					new FileStream(Request.PhysicalApplicationPath + "/" + this.GetFileName()+".pdf", FileMode.Create));
 
 				// step 3: we open the document
 				document.Open();
@@ -118,8 +118,8 @@ namespace Bic.Web
 
 				Response.Clear();       
 				Response.ContentType = "application/octet-stream";
-				Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(@"E:\bic\Bic.Web\FileName.pdf"));
-				Response.WriteFile(Request.PhysicalApplicationPath + "/" + "FileName.pdf");
+				Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(@"E:\bic\Bic.Web\" + this.GetFileName()+".pdf"));
+				Response.WriteFile(Request.PhysicalApplicationPath + "/" + this.GetFileName()+".pdf");
 				Response.End();
 			}
 			catch (DocumentException de)
@@ -151,7 +151,7 @@ namespace Bic.Web
 			}
 
 			Response.Clear();
-			Response.AddHeader("content-disposition", "attachment;filename=FileName.txt");
+			Response.AddHeader("content-disposition", "attachment;filename="+this.GetFileName()+".txt");
 			Response.Charset = "";
 			Response.Cache.SetCacheability(HttpCacheability.NoCache);
 			Response.ContentType = "application/vnd.text";
@@ -281,6 +281,13 @@ namespace Bic.Web
 		{
 			this.btnChartWizard.Attributes.Add("OnClick", @"window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')");
 		}
+
+
+		private string GetFileName()
+		{
+			return ReportManager.GetInstance(this.Session).Reporte.Nombre;
+		}
+
 
 		#endregion
 
