@@ -12,10 +12,6 @@ namespace Bic.Framework
 			ret = StringUtils.RemoveCharacters(ret,'<');
 			ret = StringUtils.RemoveCharacters(ret,'>');
 			ret = StringUtils.RemoveCharacters(ret,'\'');
-			//ret = ret.IndexOf('&') >= 0 ? ret.Remove(ret.IndexOf('&'), 1) : ret;
-			//ret = ret.IndexOf('<') >= 0 ? ret.Remove(ret.IndexOf('<'), 1) : ret;
-			//ret = ret.IndexOf('>') >= 0 ? ret.Remove(ret.IndexOf('>'), 1) : ret;
-			//ret = ret.IndexOf('\'') >= 0 ? ret.Remove(ret.IndexOf('\''), 1) : ret;
 			return ret;
 		}
 

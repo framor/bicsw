@@ -112,19 +112,12 @@ namespace Bic.Web
 				f.Atributo = atributo;
 				f.Nombre = nombre;
 				f.Valor = valor;
-				try
-				{
-					f.Operador = operador;
-				}
-				catch (OperadorInvalidoException oie)
-				{
-					throw new ServiceException(oie.Message);
-				}
+				f.Operador = operador;
 				f.Proyecto = Proyecto;
 				BICContext.Instance.FiltroService.Save(f);
 				Response.Redirect("ListaFiltro.aspx");
 			} 
-			catch (ServiceException se)
+			catch (Exception se)
 			{
 				this.valNombre.IsValid = false;
 				this.valNombre.ErrorMessage = se.Message;

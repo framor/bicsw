@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{7693AA34-CAC8-4954-82B4-EF5392E13784}"
     >
@@ -227,6 +227,11 @@
                 />
                 <File
                     RelPath = "Dao\IUsuarioDAO.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Exception\FiltroInvalidoException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
