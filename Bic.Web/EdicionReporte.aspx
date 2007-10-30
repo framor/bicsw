@@ -15,34 +15,34 @@
 				<div id="container2" style="HEIGHT:450px">
 					<div id="content" style="HEIGHT:83%">
 						<h2>Configurando reporte</h2>
-						<table width="100%" cellspacing="1" cellpadding="0" border="0">
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td width="30%" nowrap="nowrap"><b>Nombre reporte:&nbsp;</b></td>
 								<td width="70%" colspan="4">
-									<asp:TextBox id="txtNombreReporte" runat="server"></asp:TextBox>
+									<asp:TextBox id="txtNombreReporte" runat="server" Width="190px"></asp:TextBox>
 									<asp:RequiredFieldValidator ID="reqNombreReporte" Runat="server" ControlToValidate="txtNombreReporte" ErrorMessage="Por favor complete el Nombre del reporte.">*</asp:RequiredFieldValidator>
 									<asp:CustomValidator Id="valNombre" runat="server">*</asp:CustomValidator>
 								</td>
 							</tr>
 							<tr>
-								<td><b>Atributos</b></td>
+								<td valign="top"><b>Atributos</b></td>
 								<td>
 									<asp:ListBox id="lstAtributos" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" SelectionMode="Multiple"></asp:ListBox>
+										Width="200px" SelectionMode="Multiple" Height="100px"></asp:ListBox>
 								</td>
 							</tr>
 							<tr>
-								<td><b>Metricas</b></td>
+								<td valign="top"><b>Metricas</b></td>
 								<td>
 									<asp:ListBox id="lstMetricas" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" SelectionMode="Multiple"></asp:ListBox>
+										Width="200px" SelectionMode="Multiple" Height="100px"></asp:ListBox>
 								</td>
 							</tr>
 							<tr>
-								<td><b>Filtros</b></td>
+								<td valign="top"><b>Filtros</b></td>
 								<td>
 									<asp:ListBox id="lstFiltros" runat="server" DataTextField="Nombre" DataValueField="Id"
-										Width="150px" SelectionMode="Multiple"></asp:ListBox>
+										Width="200px" SelectionMode="Multiple"></asp:ListBox>
 								</td>
 							</tr>
 							<tr>
@@ -51,8 +51,6 @@
 								</td>
 							</tr>
 						</table>
-						<br>
-						<br>
 						<br>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr valign="bottom">
