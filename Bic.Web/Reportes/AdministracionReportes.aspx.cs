@@ -36,6 +36,9 @@ namespace Bic.Web
 		protected System.Web.UI.WebControls.ImageButton imgBtnText;
 		protected System.Web.UI.WebControls.ImageButton imgBtnPDF;
 
+		protected CustomValidator valDrill;
+		protected ValidationSummary valSummary;
+
 		#endregion
 	
 		#region Event handlers
@@ -169,7 +172,16 @@ namespace Bic.Web
 				Atributo atributo = BICContext.Instance.AtributoService.Retrieve(long.Parse( this.ddlDrillDown.SelectedValue));
 				ReportManager.GetInstance(this.Session).Reporte.Atributos.Add(atributo);
 
-				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+				try
+				{
+					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+				}
+				catch (ServiceException se)
+				{
+					this.valDrill.IsValid = false;
+					this.valDrill.ErrorMessage = se.Message;
+
+				}
 				this.dtgReport.DataBind();	
 
 				this.InitializeComboValues();
