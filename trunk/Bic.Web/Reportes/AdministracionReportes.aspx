@@ -15,6 +15,11 @@
 				<div id="container2">
 					<div id="content" style="HEIGHT:83%">
 						<h2>Reporte</h2>
+                        <tr>
+							<td align="center" nowrap="nowrap">
+								<asp:CustomValidator Id="valDrill" runat="server"></asp:CustomValidator>
+							</td>
+						</tr>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr valign="bottom">
 								<td align="left">
@@ -66,4 +71,4 @@
 			</div>
 		</form>
 	</body>
-</HTML>
+</HTML>
