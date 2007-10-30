@@ -51,26 +51,30 @@ namespace Bic.Domain
 		public string Valor
 		{
 			get { return this.valor; }
-			set { 
+			set 
+			{ 
 				try 
 				{
 					switch (this.Columna.Tipo)
 					{
 						case "date":
-						case "timestamp": System.DateTime.Parse(value, new System.Globalization.CultureInfo("es-AR")); break;
+						case "timestamp":
+							System.DateTime.Parse(value, new System.Globalization.CultureInfo("es-AR")); break;
 						case "int":
 						case "decimal":
 						case "smallint":
 						case "double":
 						case "tinyint":
-						case "bigint": double.Parse(value); break;
+						case "bigint": 
+							double.Parse(value,new System.Globalization.CultureInfo("es-AR")); break;
 					}
 				} 
 				catch (System.FormatException fe) 
 				{
 					throw new FiltroInvalidoException("El valor del filtro no corresponde al tipo de columna utilizado.");
 				}
-				this.valor = value; }
+				this.valor = value;
+			}
 		}
 		public Columna Columna
 		{
@@ -133,7 +137,7 @@ namespace Bic.Domain
 					sql += this.operador + " cast('" + val.Year + "/" + val.Month + "/" + val.Day +"' as date)"; 
 					break;
 				default:
-					sql += this.Operador + " " + this.Valor + " ";
+					sql += this.Operador + " " + double.Parse(this.Valor, new System.Globalization.CultureInfo("es-AR")).ToString(new System.Globalization.CultureInfo("en-US")) + " ";
 					break;
 			}				
 			return sql;
