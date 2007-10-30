@@ -52,7 +52,6 @@
 								</td>							
 								<td align="right" >
 									<asp:Button id = "btnChartWizard" runat="server" Text="Asistente de gráficos" AutoPostBack="true"></asp:Button>
-									<!--<input type="button"  value="Asistente de gráficos" onClick="window.open('ChartWizardStep1.aspx' , 'Asistente' , 'width= 800 ,height=730 ,directories= no ,location= no ,menubar= no ,scrollbars= no ,status=no ,toolbar= no,resizable=no')">-->
 								</td>
 							</tr>
 						</table>						
