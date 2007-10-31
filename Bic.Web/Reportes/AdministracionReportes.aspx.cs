@@ -198,7 +198,16 @@ namespace Bic.Web
 				ReportManager.GetInstance(this.Session).Reporte.Atributos.Add(atributoPadre);
 				ReportManager.GetInstance(this.Session).Reporte.Atributos.Remove(atributoPadre.Hijo);
 
-				this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+				try
+				{
+					this.dtgReport.DataSource = ReportManager.GetInstance(this.Session).ReportSourceCache; 
+				}
+				catch (ServiceException se)
+				{
+					this.valDrill.IsValid = false;
+					this.valDrill.ErrorMessage = se.Message;
+
+				}
 				this.dtgReport.DataBind();	
 
 				this.InitializeComboValues();

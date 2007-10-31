@@ -15,7 +15,7 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<h2>1 - Escoja el estilo de su gráfico</h2>
+						<h2>Paso 1: Escoja el estilo de su gráfico</h2>
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td width="60%">
@@ -64,12 +64,12 @@
 							Para salir del asistente de generación de gráficos, haga click en cancelar.
 						</p>
 					</div>
-					<div id="footer">
+					<!--<div id="footer">
 						<p>
 							<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a> | 
 							Copyright © BIC | Design by <a href="#">BIC Design</a>
 						</p>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</form>

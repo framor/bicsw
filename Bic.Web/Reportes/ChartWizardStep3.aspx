@@ -19,7 +19,7 @@
 						<table width="720px" >
 							<tr>
 								<td>
-									<h2>Paso 3 : visualice gráfico</h2>			
+									<h2>Paso 3: Visualice gráfico</h2>			
 								</td>
 								<td align="right">
 									<a href="javascript:window.print();"><img src="../img/icon-print.jpg" /></a>
@@ -45,12 +45,12 @@
 								</tr>
 						</table>			
 					</div>
-					<div id="footer">
+					<!--<div id="footer">
 						<p>
 							<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a> | 
 							Copyright © BIC | Design by <a href="#">BIC Design</a>
 						</p>
-					</div> 
+					</div>--> 
 				</div>
 			</div>
 		</form>
