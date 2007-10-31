@@ -16,7 +16,7 @@
 				</div>
 				<div id="container2">
 					<div id="content" style="HEIGHT:100%">
-						<h2>Paso 1: configurando el origen de datos</h2>
+						<h2>Paso 2: Configure el origen de datos</h2>
 						<table width="100%" cellspacing="0" cellpadding="1" border="0" >
 							<tr>
 								<td width="40%">
@@ -101,12 +101,12 @@
 							Para salir del asistente de generación de gráficos, haga click en cancelar.
 						</p>
 					</div>
-					<div id="footer">
+					<!--<div id="footer">
 						<p>
 							<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a> | 
 							Copyright © BIC | Design by <a href="#">BIC Design</a>
 						</p>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</form>

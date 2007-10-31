@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Bic.Application;
+using Bic.Framework.Exception;
 
 namespace Bic.Web
 {
@@ -39,7 +40,16 @@ namespace Bic.Web
 
 		protected override void PopulateView()
 		{
-			string sql = BICContext.Instance.ReporteService.GetReportSQL(ReportManager.GetInstance(this.Session).Reporte);
+			string sql = string.Empty;
+			try
+			{
+				sql = BICContext.Instance.ReporteService.GetReportSQL(ReportManager.GetInstance(this.Session).Reporte);
+			}
+			catch (ServiceException se)
+			{
+				this.lblSQLString.Text = se.Message;
+				return;
+			}
 			sql = sql.Replace("\n", "<br>");
 			sql = sql.Replace("select", "<span style='color:blue'><b>select</b></span>");
 			sql = sql.Replace("from", "<span style='color:blue'><b>from</b></span>");
