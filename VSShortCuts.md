@@ -1,0 +1,1 @@
+http://www.codinghorror.com/blog/files/Visual%20Studio%20.NET%202003%20Keyboard%20Shortcuts.htm
